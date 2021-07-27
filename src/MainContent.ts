@@ -1,4 +1,4 @@
-import {ViewPort} from "./Viewport/ViewPort";
+import {ViewPort} from "./MrkS3/MrkS3";
 
 class MainContent {
     conceptMap

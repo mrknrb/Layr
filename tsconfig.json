@@ -13,6 +13,6 @@
   "include": [
     "src",
     "decs.d.ts",
-    "index.d.ts"
+    "chrome.d.ts"
   ]
 }

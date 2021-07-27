@@ -1,4 +1,4 @@
-import {MrkS3} from "./Viewport/ViewPort";
+import {MrkS3} from "./MrkS3/MrkS3";
 import {URL_Object} from "./Arangodb/AdatTipusok/URL_Object";
 
 /*

@@ -31,7 +31,6 @@ export class  MrkS3 {
         this.arangoMrkMessageClient.docsDownloader([docURL], function (docs) {
             console.log(docs)
             let nodeDiv = new NodeDiv(self, {root: true, docData: docs[0]})
-
             self.nodeDivMap.set(nodeDiv.data.nodeDivid, nodeDiv)
         })
     }
