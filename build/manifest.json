@@ -1,0 +1,70 @@
+{
+  "manifest_version": 2,
+  "name": "MrkS3",
+  "description": "MrkS 4ever!",
+  "version": "0.0.0",
+  "icons": {
+    "128": "0Resources/Asset128.png",
+    "48": "0Resources/Asset48.png",
+    "16": "0Resources/Asset16.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "Main.html"
+  },
+  "browser_action": {
+    "default_icon": "0Resources/Asset48.png",
+    "default_title": "MrkS",
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "0Libraries/jquery.js",
+        "0Libraries/arangojs.js",
+        "MrkLibrary.js",
+        "docgrouptesztfajlok.js",
+        "Classes/Arangodb/ArangoMrkMessageClient.js",
+        "Classes/ConceptMap/NodeDiv/NodeDiv.js",
+        "Classes/ConceptMap/NodeDiv/GroupElem.js",
+        "Classes/ConceptMap/NodeDiv/KeretElem.js",
+        "Classes/ConceptMap/NodeDiv/TextAreaElem.js",
+        "Classes/ConceptMap/NodeDiv/DetailsGroup.js",
+        "Classes/ConceptMap/NodeDiv/MetaDataGroup.js",
+        "Classes/ConceptMap/Talca.js",
+        "Classes/ConceptMap/ConceptMap.js",
+        "MainContent.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": [
+      "0Libraries/jquery.js",
+      "0Libraries/arangojs.js",
+      "MrkLibrary.js",
+      "Classes/Arangodb/ArangoMrkMessageBackground.js",
+      "Classes/Arangodb/ArangoMrkBackground.js",
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "https://www.google.hu/search?*",
+    "https://www.google.com/search?*",
+    "https://i.reddit.com/*",
+    "http://*/*",
+    "https://*/*",
+    "unlimitedStorage",
+    "<all_urls>",
+    "cookies",
+    "history",
+    "https://www.reddit.com/*",
+    "webNavigation"
+  ]
+}

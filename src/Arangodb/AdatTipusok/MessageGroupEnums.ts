@@ -1,0 +1,8 @@
+export enum MessageGroupEnums{
+
+    ArangoMrk
+
+
+
+
+}
