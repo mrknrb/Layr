@@ -236,7 +236,7 @@ function nodeGenerator(docURL) {
 
     node.nodeid = Math.floor(Math.random() * 100000000)
     node.docURL = docURL
-    node.nodeViewData.positionType=PositionType.absolute
+    node.nodeViewData.positionType = PositionType.absolute
     node.nodeViewData.all.color = "#" + Math.floor(Math.random() * 16777215).toString(16)
 
     node.nodeViewData.absolute.width = Math.floor(50 + Math.random() * 100) + "px"
@@ -248,7 +248,7 @@ function nodeGenerator(docURL) {
 }
 
 function docMetaGenerator() {
-    let doc=new DocData()
+    let doc = new DocData()
 
     doc.docid = Math.floor(Math.random() * 100000000).toString()
     doc._key = doc.docid
@@ -257,3 +257,4 @@ function docMetaGenerator() {
     doc.rank = Math.floor(Math.random() * 5)
     return doc
 }
+

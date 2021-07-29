@@ -1,4 +1,6 @@
-export class TextAreaElem{
+import {ElementBaseClass} from "../ElementBaseClass";
+
+export class TextAreaElem extends ElementBaseClass{
 
 
     static _createTextArea(NodeDivMain,buttonname, type, data) {

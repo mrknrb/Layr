@@ -1,6 +1,6 @@
 import {NodeData} from "../NodeData/NodeData";
 
-export class DocData{
+export interface DocData{
 
     docid
     _key

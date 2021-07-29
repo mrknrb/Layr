@@ -1,10 +1,12 @@
-import {NodeViewData} from "./NodeViewData";
+import {LayoutData} from "./LayoutData";
+import {Layouts} from "../../Elements/Layouts";
 
 
-export class NodeData{
-    nodeid
+export interface NodeData{
+    nodeId
     docURL
-    nodeViewData:NodeViewData
+    layout:Layouts
+    layoutData:LayoutData
 
 
 }

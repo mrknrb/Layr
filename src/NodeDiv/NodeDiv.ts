@@ -1,53 +1,55 @@
-import {KeretElem} from "./KeretElem";
-import {DetailsGroup} from "../DataElements/DetailsGroup";
-import {MetaDataGroup} from "../DataElements/MetaDataGroup";
-import {GroupElem} from "../DataElements/GroupElem";
+import {KeretElem} from "./Elements/MainElements/KeretElem";
+import {DetailsGroup} from "./Elements/ElementsRegi/DetailsGroup";
+import {MetaDataGroup} from "./Elements/ElementsRegi/MetaDataGroup";
+import {GroupElem} from "./Elements/ElementsRegi/GroupElem";
+import {DocData} from "./NodeDocData/DocData/DocData";
+import {MrkS3} from "../MrkS3/MrkS3";
+import {NodeDocData} from "./NodeDocData/NodeDocData";
+import {NodeDivAllData} from "./NodeDivAllData";
+import {ElementBaseClass} from "./Elements/ElementBaseClass";
 
 export class NodeDiv {
-    conceptMapObject
-    data
-    elements
-    root
+    mrkS3: MrkS3
+    nodeDivAllData: NodeDivAllData
+    elements: Map<string, ElementBaseClass>
 
-    parentnodeGroup
 
-    constructor(conceptMapObject, nodeDivData) {
-        this.conceptMapObject = conceptMapObject
-        this.data = {}
-        this.data.nodeDivid = Math.random() * 1000000
-        this.elements = {}
-        if (nodeDivData) {
-            this.newData(nodeDivData)
+    constructor(mrkS3: MrkS3, nodeDivAllData: NodeDivAllData) {
+        this.mrkS3 = mrkS3
+        this.newAllData(nodeDivAllData)
+        this.elements = new Map<string, ElementBaseClass>()
+       this. nodeDivElementsLoader()
+    }
+
+    private newAllData(nodeDivAllData: NodeDivAllData) {
+        if (nodeDivAllData.nodeDivData) {
+            this.newNodeDivData(this.nodeDivAllData.nodeDivData)
+        } else {
+            this.nodeDivAllData.nodeDivData.nodeDivId = (Math.random() * 1000000).toString()
+        }
+        if (nodeDivAllData.nodeDocData.docData) {
+            this.newDocData(this.nodeDivAllData.nodeDocData.docData)
+        }
+        if (nodeDivAllData.nodeDocData.nodeData) {
+            this.newNodeData(this.nodeDivAllData.nodeDocData.nodeData)
         }
     }
 
-    newData(nodeDivData) {
-        if (nodeDivData.root) {
-            this.root = nodeDivData.root
-        }
-        if (nodeDivData.parentNode) {
-            this.data.parentNodeDivid = nodeDivData.parentNode.data.nodeDivid
-            //  rootnal nem jo
-            // this.data.parentNodeid = nodeDivData.parentNode.data.nodeData.nodeid
-            this.data.parentdocURL = nodeDivData.parentNode.data.docData.URL
-            this.parentnodeGroup = nodeDivData.parentNode.elements.group
-        }
-        if (nodeDivData.nodeData) {
-            this.data.nodeData = nodeDivData.nodeData
-        }
-        if (nodeDivData.docData) {
-            this.data.docData = nodeDivData.docData
-            if (this.data.docData.nodes) {
-                delete this.data.docData.nodes
-            }
-            if (this.data.docData.localDocs) {
-                delete this.data.docData.localDocs
-            }
-        }
+    private newNodeDivData(nodeDivData) {
+        this.nodeDivAllData.nodeDivData = nodeDivData
         this.nodeDivElementsLoader()
     }
 
-    nodeDivElementsLoader() {
+    private newNodeData(nodeData) {
+        this.nodeDivAllData.nodeDocData.nodeData = nodeData
+    }
+
+    private newDocData(docData) {
+        this.nodeDivAllData.nodeDocData.docData = docData
+
+    }
+
+    private nodeDivElementsLoader() {
 
         KeretElem._keretRefresh(this)
         KeretElem._fogantyuRefresh(this)
@@ -75,8 +77,6 @@ export class NodeDiv {
         } else {
             parentnodedividvagyRootelement.appendChild(this.elements.keret)
         }
-
-
     }
 
     _createRang(rangdata) {

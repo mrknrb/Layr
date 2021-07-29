@@ -1,4 +1,6 @@
-export class DetailsGroup{
+import {ElementBaseClass} from "../ElementBaseClass";
+
+export class DetailsGroup extends ElementBaseClass{
     static _detailsRefresh(NodeDivMain) {
 
         if (!NodeDivMain.elements.detailsdiv) {

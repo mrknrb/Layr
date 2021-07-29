@@ -1,4 +1,6 @@
-export class GroupElem{
+import {ElementBaseClass} from "../ElementBaseClass";
+
+export class GroupElem extends ElementBaseClass{
 
 
 

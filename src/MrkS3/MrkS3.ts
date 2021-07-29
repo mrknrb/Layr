@@ -1,7 +1,10 @@
 import {Talca} from "../Talca/Talca";
-import {NodeDiv} from "../NodeDiv/Elements/MainElements/NodeDiv";
+import {NodeDiv} from "../NodeDiv/NodeDiv";
 import {URL_Object} from "../Arangodb/AdatTipusok/URL_Object";
 import {ArangoMrkMessageClient} from "../Arangodb/ArangoMrkMessageClient";
+import {NodeDocData} from "../NodeDiv/NodeDocData/NodeDocData";
+import {DocData} from "../NodeDiv/NodeDocData/DocData/DocData";
+import {NodeDivAllData} from "../NodeDiv/NodeDivAllData";
 
 export class  MrkS3 {
     pouchdbClientData
@@ -16,10 +19,8 @@ export class  MrkS3 {
             auto_compaction: true
         })
         this.arangoMrkMessageClient = new ArangoMrkMessageClient()
-
         MrkLibrary.cssPreventInit()
         this.talca = new Talca(this)
-
         this.nodeDivMap = new Map<string,NodeDiv>()
     }
 
@@ -28,10 +29,13 @@ export class  MrkS3 {
         //empty virtual doc if arg is empty
        let self = this
         this.torlesNodedivs()
-        this.arangoMrkMessageClient.docsDownloader([docURL], function (docs) {
+        this.arangoMrkMessageClient.docsDownloader([docURL], function (docs:DocData) {
             console.log(docs)
-            let nodeDiv = new NodeDiv(self, {root: true, docData: docs[0]})
-            self.nodeDivMap.set(nodeDiv.data.nodeDivid, nodeDiv)
+         let data:NodeDivAllData=null
+            data.root=true
+            data.nodeDocData.docData=docs[0]
+            let nodeDiv = new NodeDiv(self, data)
+            self.nodeDivMap.set(nodeDiv.nodeDocData.nodeDivId, nodeDiv)
         })
     }
 
