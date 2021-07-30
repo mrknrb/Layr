@@ -1,10 +1,8 @@
-import {KeretElem} from "./Elements/MainElements/KeretElem";
+import {KeretElem} from "./Elements/ElementsRegi/KeretElem";
 import {DetailsGroup} from "./Elements/ElementsRegi/DetailsGroup";
 import {MetaDataGroup} from "./Elements/ElementsRegi/MetaDataGroup";
 import {GroupElem} from "./Elements/ElementsRegi/GroupElem";
-import {DocData} from "./NodeDocData/DocData/DocData";
 import {MrkS3} from "../MrkS3/MrkS3";
-import {NodeDocData} from "./NodeDocData/NodeDocData";
 import {NodeDivAllData} from "./NodeDivAllData";
 import {ElementBaseClass} from "./Elements/ElementBaseClass";
 

@@ -39,7 +39,7 @@ interface Window {
  * Important: This API works only on Chrome OS.
  */
 declare namespace chrome.accessibilityFeatures {
-    /** **ChromeOS only.** Spoken feedback (text-to-speech). */
+    /** **ChromeOS only.** Spoken feedback (TextArea-to-speech). */
     export var spokenFeedback: chrome.types.ChromeSetting;
     /** **ChromeOS only.** Enlarged cursor. */
     export var largeCursor: chrome.types.ChromeSetting;
@@ -192,9 +192,9 @@ declare namespace chrome.action {
 
     /**
      * Since Chrome 88.
-     * Gets the badge text of the action. If no tab is specified, the non-tab-specific badge text is returned.
-     * If displayActionCountAsBadgeText is enabled, a placeholder text will be returned unless the
-     * declarativeNetRequestFeedback permission is present or tab-specific badge text was provided.
+     * Gets the badge TextArea of the action. If no tab is specified, the non-tab-specific badge TextArea is returned.
+     * If displayActionCountAsBadgeText is enabled, a placeholder TextArea will be returned unless the
+     * declarativeNetRequestFeedback permission is present or tab-specific badge TextArea was provided.
      * @param callback The callback parameter should be a function that looks like this:
      * (result: string) => {...}
      */
@@ -202,9 +202,9 @@ declare namespace chrome.action {
 
     /**
      * Since Chrome 88.
-     * Gets the badge text of the action. If no tab is specified, the non-tab-specific badge text is returned.
-     * If displayActionCountAsBadgeText is enabled, a placeholder text will be returned unless the
-     * declarativeNetRequestFeedback permission is present or tab-specific badge text was provided.
+     * Gets the badge TextArea of the action. If no tab is specified, the non-tab-specific badge TextArea is returned.
+     * If displayActionCountAsBadgeText is enabled, a placeholder TextArea will be returned unless the
+     * declarativeNetRequestFeedback permission is present or tab-specific badge TextArea was provided.
      * @return The `getBadgeText` method provides its result via callback or returned as a `Promise` (MV3 only).
      */
     export function getBadgeText(details: TabDetails): Promise<string>;
@@ -256,14 +256,14 @@ declare namespace chrome.action {
 
     /**
      * Since Chrome 88.
-     * Sets the badge text for the action. The badge is displayed on top of the icon.
+     * Sets the badge TextArea for the action. The badge is displayed on top of the icon.
      * @return The `setBadgeText` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setBadgeText(details: BadgeTextDetails): Promise<void>;
 
     /**
      * Since Chrome 88.
-     * Sets the badge text for the action. The badge is displayed on top of the icon.
+     * Sets the badge TextArea for the action. The badge is displayed on top of the icon.
      * @param callback The callback parameter should be a function that looks like this:
      * () => {...}
      */
@@ -479,7 +479,7 @@ declare namespace chrome.bookmarks {
         index?: number | undefined;
         /** Optional. When this node was created, in milliseconds since the epoch (new Date(dateAdded)).  */
         dateAdded?: number | undefined;
-        /** The text displayed for the node. */
+        /** The TextArea displayed for the node. */
         title: string;
         /** Optional. The URL navigated to when a user clicks the bookmark. Omitted for folders.   */
         url?: string | undefined;
@@ -836,12 +836,12 @@ declare namespace chrome.browserAction {
      */
     export function setBadgeBackgroundColor(details: BadgeBackgroundColorDetails, callback?: () => void): void;
     /**
-     * Sets the badge text for the browser action. The badge is displayed on top of the icon.
+     * Sets the badge TextArea for the browser action. The badge is displayed on top of the icon.
      * @return The `setBadgeText` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setBadgeText(details: BadgeTextDetails): Promise<void>;
     /**
-     * Sets the badge text for the browser action. The badge is displayed on top of the icon.
+     * Sets the badge TextArea for the browser action. The badge is displayed on top of the icon.
      * @param callback Supported since Chrome 67
      */
     export function setBadgeText(details: BadgeTextDetails, callback?: () => void): void;
@@ -857,13 +857,13 @@ declare namespace chrome.browserAction {
     export function setTitle(details: TitleDetails, callback?: () => void): void;
     /**
      * Since Chrome 19.
-     * Gets the badge text of the browser action. If no tab is specified, the non-tab-specific badge text is returned.
+     * Gets the badge TextArea of the browser action. If no tab is specified, the non-tab-specific badge TextArea is returned.
      * @param callback Supported since Chrome 67
      */
     export function getBadgeText(details: TabDetails, callback: (result: string) => void): void;
     /**
      * Since Chrome 19.
-     * Gets the badge text of the browser action. If no tab is specified, the non-tab-specific badge text is returned.
+     * Gets the badge TextArea of the browser action. If no tab is specified, the non-tab-specific badge TextArea is returned.
      * @return The `getBadgeText` method provides its result via callback or returned as a `Promise` (MV3 only).
      */
     export function getBadgeText(details: TabDetails): Promise<string>;
@@ -1478,7 +1478,7 @@ declare namespace chrome.contextMenus {
         /**
          * Optional.
          * Since Chrome 35.
-         * The text for the context selection, if any.
+         * The TextArea for the context selection, if any.
          */
         selectionText?: string | undefined;
         /**
@@ -1507,7 +1507,7 @@ declare namespace chrome.contextMenus {
         frameUrl?: string | undefined;
         /**
          * Since Chrome 35.
-         * A flag indicating whether the element is editable (text input, textarea, etc.).
+         * A flag indicating whether the element is editable (TextArea input, textarea, etc.).
          */
         editable: boolean;
         /**
@@ -1552,7 +1552,7 @@ declare namespace chrome.contextMenus {
         documentUrlPatterns?: string[] | undefined;
         /** Optional. The initial state of a checkbox or radio item: true for selected and false for unselected. Only one radio item can be selected at a time in a given group of radio items.  */
         checked?: boolean | undefined;
-        /** Optional. The text to be displayed in the item; this is required unless type is 'separator'. When the context is 'selection', you can use %s within the string to show the selected text. For example, if this parameter's value is "Translate '%s' to Pig Latin" and the user selects the word "cool", the context menu item for the selection is "Translate 'cool' to Pig Latin".  */
+        /** Optional. The TextArea to be displayed in the item; this is required unless type is 'separator'. When the context is 'selection', you can use %s within the string to show the selected TextArea. For example, if this parameter's value is "Translate '%s' to Pig Latin" and the user selects the word "cool", the context menu item for the selection is "Translate 'cool' to Pig Latin".  */
         title?: string | undefined;
         /** Optional. List of contexts this menu item will appear in. Defaults to ['page'] if not specified.  */
         contexts?: string[] | undefined;
@@ -2230,7 +2230,7 @@ declare namespace chrome.devtools.inspectedWindow {
         getContent(callback: (content: string, encoding: string) => void): void;
         /**
          * Sets the content of the resource.
-         * @param content New content of the resource. Only resources with the text type are currently supported.
+         * @param content New content of the resource. Only resources with the TextArea type are currently supported.
          * @param commit True if the user has finished editing the resource, and the new content of the resource should be persisted; false if this is a minor change sent in progress of the user editing the resource.
          * @param callback A function called upon request completion.
          * If you specify the callback parameter, it should be a function that looks like this:
@@ -2394,7 +2394,7 @@ declare namespace chrome.devtools.panels {
         /**
          * Appends a button to the status bar of the panel.
          * @param iconPath Path to the icon of the button. The file should contain a 64x24-pixel image composed of two 32x24 icons. The left icon is used when the button is inactive; the right icon is displayed when the button is pressed.
-         * @param tooltipText Text shown as a tooltip when user hovers the mouse over the button.
+         * @param tooltipText TextArea shown as a tooltip when user hovers the mouse over the button.
          * @param disabled Whether the button is disabled.
          */
         createStatusBarButton(iconPath: string, tooltipText: string, disabled: boolean): Button;
@@ -2413,7 +2413,7 @@ declare namespace chrome.devtools.panels {
         /**
          * Updates the attributes of the button. If some of the arguments are omitted or null, the corresponding attributes are not updated.
          * @param iconPath Path to the new icon of the button.
-         * @param tooltipText Text shown as a tooltip when user hovers the mouse over the button.
+         * @param tooltipText TextArea shown as a tooltip when user hovers the mouse over the button.
          * @param disabled Whether the button is disabled.
          */
         update(iconPath?: string | null, tooltipText?: string | null, disabled?: boolean | null): void;
@@ -2427,7 +2427,7 @@ declare namespace chrome.devtools.panels {
     export interface ElementsPanel {
         /**
          * Creates a pane within panel's sidebar.
-         * @param title Text that is displayed in sidebar caption.
+         * @param title TextArea that is displayed in sidebar caption.
          * @param callback A callback invoked when the sidebar is created.
          * If you specify the callback parameter, it should be a function that looks like this:
          * function( ExtensionSidebarPane result) {...};
@@ -2445,7 +2445,7 @@ declare namespace chrome.devtools.panels {
     export interface SourcesPanel {
         /**
          * Creates a pane within panel's sidebar.
-         * @param title Text that is displayed in sidebar caption.
+         * @param title TextArea that is displayed in sidebar caption.
          * @param callback A callback invoked when the sidebar is created.
          * If you specify the callback parameter, it should be a function that looks like this:
          * function( ExtensionSidebarPane result) {...};
@@ -4132,7 +4132,7 @@ declare namespace chrome.history {
     }
 
     export interface HistoryQuery {
-        /** A free-text query to the history service. Leave empty to retrieve all pages. */
+        /** A free-TextArea query to the history service. Leave empty to retrieve all pages. */
         text: string;
         /** Optional. The maximum number of results to retrieve. Defaults to 100. */
         maxResults?: number | undefined;
@@ -4220,7 +4220,7 @@ declare namespace chrome.i18n {
     export interface DetectedLanguage {
         /** An ISO language code such as 'en' or 'fr'.
          * For a complete list of languages supported by this method, see  [kLanguageInfoTable]{@link https://src.chromium.org/viewvc/chrome/trunk/src/third_party/cld/languages/internal/languages.cc}.
-         * For an unknown language, 'und' will be returned, which means that [percentage] of the text is unknown to CLD */
+         * For an unknown language, 'und' will be returned, which means that [percentage] of the TextArea is unknown to CLD */
         language: string;
 
         /** The percentage of the detected language */
@@ -4255,7 +4255,7 @@ declare namespace chrome.i18n {
      */
     export function getUILanguage(): string;
 
-    /** Detects the language of the provided text using CLD.
+    /** Detects the language of the provided TextArea using CLD.
      * @param text User input string to be translated.
      * @param callback The callback parameter should be a function that looks like this: function(object result) {...};
      */
@@ -4524,22 +4524,22 @@ declare namespace chrome.input.ime {
 
     /** Describes an input Context */
     export interface InputContext {
-        /** This is used to specify targets of text field operations. This ID becomes invalid as soon as onBlur is called. */
+        /** This is used to specify targets of TextArea field operations. This ID becomes invalid as soon as onBlur is called. */
         contextID: number;
-        /** Type of value this text field edits, (Text, Number, URL, etc) */
+        /** Type of value this TextArea field edits, (TextArea, Number, URL, etc) */
         type: string;
         /**
-         * Whether the text field wants auto-correct.
+         * Whether the TextArea field wants auto-correct.
          * @since Chrome 40.
          */
         autoCorrect: boolean;
         /**
-         * Whether the text field wants auto-complete.
+         * Whether the TextArea field wants auto-complete.
          * @since Chrome 40.
          */
         autoComplete: boolean;
         /**
-         * Whether the text field wants spell-check.
+         * Whether the TextArea field wants spell-check.
          * @since Chrome 40.
          */
         spellCheck: boolean;
@@ -4552,7 +4552,7 @@ declare namespace chrome.input.ime {
     export interface MenuItem {
         /** String that will be passed to callbacks referencing this MenuItem. */
         id: string;
-        /** Optional. Text displayed in the menu for this item. */
+        /** Optional. TextArea displayed in the menu for this item. */
         label?: string | undefined;
         /** Optional. The type of menu item. */
         style?: string | undefined;
@@ -4572,9 +4572,9 @@ declare namespace chrome.input.ime {
     }
 
     export interface CommitTextParameters {
-        /** The text to commit */
+        /** The TextArea to commit */
         text: string;
-        /** ID of the context where the text will be committed */
+        /** ID of the context where the TextArea will be committed */
         contextID: number;
     }
 
@@ -4602,7 +4602,7 @@ declare namespace chrome.input.ime {
         label?: string | undefined;
         /**
          * Optional.
-         * Additional text describing the candidate
+         * Additional TextArea describing the candidate
          */
         annotation?: string | undefined;
         /**
@@ -4629,17 +4629,17 @@ declare namespace chrome.input.ime {
     }
 
     export interface CompositionParameters {
-        /** ID of the context where the composition text will be set */
+        /** ID of the context where the composition TextArea will be set */
         contextID: number;
-        /** Text to set */
+        /** TextArea to set */
         text: string;
         /** Optional. List of segments and their associated types. */
         segments?: CompositionParameterSegment[] | undefined;
-        /** Position in the text of the cursor. */
+        /** Position in the TextArea of the cursor. */
         cursor: number;
-        /** Optional. Position in the text that the selection starts at. */
+        /** Optional. Position in the TextArea that the selection starts at. */
         selectionStart?: number | undefined;
-        /** Optional. Position in the text that the selection ends at. */
+        /** Optional. Position in the TextArea that the selection ends at. */
         selectionEnd?: number | undefined;
     }
 
@@ -4679,12 +4679,12 @@ declare namespace chrome.input.ime {
         pageSize?: number | undefined;
         /**
          * Optional.
-         * True to display the auxiliary text, false to hide it.
+         * True to display the auxiliary TextArea, false to hide it.
          */
         auxiliaryTextVisible?: boolean | undefined;
         /**
          * Optional.
-         * Text that is shown at the bottom of the candidate window.
+         * TextArea that is shown at the bottom of the candidate window.
          */
         auxiliaryText?: string | undefined;
         /**
@@ -4728,7 +4728,7 @@ declare namespace chrome.input.ime {
     export interface DeleteSurroundingTextParameters {
         /** ID of the engine receiving the event. */
         engineID: string;
-        /** ID of the context where the surrounding text will be deleted. */
+        /** ID of the context where the surrounding TextArea will be deleted. */
         contextID: number;
         /** The offset from the caret position where deletion will start. This value can be negative. */
         offset: number;
@@ -4737,7 +4737,7 @@ declare namespace chrome.input.ime {
     }
 
     export interface SurroundingTextInfo {
-        /** The text around cursor. */
+        /** The TextArea around cursor. */
         text: string;
         /** The ending position of the selection. This value indicates caret position if there is no selection. */
         focus: number;
@@ -4784,8 +4784,8 @@ declare namespace chrome.input.ime {
      */
     export function setMenuItems(parameters: ImeParameters, callback?: () => void): void;
     /**
-     * Commits the provided text to the current input.
-     * @param callback Called when the operation completes with a boolean indicating if the text was accepted or not. On failure, chrome.runtime.lastError is set.
+     * Commits the provided TextArea to the current input.
+     * @param callback Called when the operation completes with a boolean indicating if the TextArea was accepted or not. On failure, chrome.runtime.lastError is set.
      * If you specify the callback parameter, it should be a function that looks like this:
      * function(boolean success) {...};
      */
@@ -4799,7 +4799,7 @@ declare namespace chrome.input.ime {
     export function setCandidates(parameters: CandidatesParameters, callback?: (success: boolean) => void): void;
     /**
      * Set the current composition. If this extension does not own the active IME, this fails.
-     * @param callback Called when the operation completes with a boolean indicating if the text was accepted or not. On failure, chrome.runtime.lastError is set.
+     * @param callback Called when the operation completes with a boolean indicating if the TextArea was accepted or not. On failure, chrome.runtime.lastError is set.
      * If you specify the callback parameter, it should be a function that looks like this:
      * function(boolean success) {...};
      */
@@ -4854,7 +4854,7 @@ declare namespace chrome.input.ime {
     ): void;
     /**
      * Clear the current composition. If this extension does not own the active IME, this fails.
-     * @param callback Called when the operation completes with a boolean indicating if the text was accepted or not. On failure, chrome.runtime.lastError is set.
+     * @param callback Called when the operation completes with a boolean indicating if the TextArea was accepted or not. On failure, chrome.runtime.lastError is set.
      * If you specify the callback parameter, it should be a function that looks like this:
      * function(boolean success) {...};
      */
@@ -4886,7 +4886,7 @@ declare namespace chrome.input.ime {
      */
     export function hideInputView(): void;
     /**
-     * Deletes the text around the caret.
+     * Deletes the TextArea around the caret.
      * @since Chrome 27.
      */
     export function deleteSurroundingText(parameters: DeleteSurroundingTextParameters, callback?: () => void): void;
@@ -4898,7 +4898,7 @@ declare namespace chrome.input.ime {
      */
     export function keyEventHandled(requestId: string, response: boolean): void;
 
-    /** This event is sent when focus leaves a text box. It is sent to all extensions that are listening to this event, and enabled by the user. */
+    /** This event is sent when focus leaves a TextArea box. It is sent to all extensions that are listening to this event, and enabled by the user. */
     export var onBlur: BlurEvent;
     /** This event is sent when a button in an assistive window is clicked. */
     export var onAssistiveWindowButtonClicked: AssistiveWindowButtonClickedEvent;
@@ -4912,17 +4912,17 @@ declare namespace chrome.input.ime {
     export var onInputContextUpdate: InputContextUpdateEvent;
     /** This event is sent when an IME is activated. It signals that the IME will be receiving onKeyPress events. */
     export var onActivate: ActivateEvent;
-    /** This event is sent when focus enters a text box. It is sent to all extensions that are listening to this event, and enabled by the user. */
+    /** This event is sent when focus enters a TextArea box. It is sent to all extensions that are listening to this event, and enabled by the user. */
     export var onFocus: FocusEvent;
     /** Called when the user selects a menu item */
     export var onMenuItemActivated: MenuItemActivatedEvent;
     /**
-     * Called when the editable string around caret is changed or when the caret position is moved. The text length is limited to 100 characters for each back and forth direction.
+     * Called when the editable string around caret is changed or when the caret position is moved. The TextArea length is limited to 100 characters for each back and forth direction.
      * @since Chrome 27.
      */
     export var onSurroundingTextChanged: SurroundingTextChangedEvent;
     /**
-     * This event is sent when chrome terminates ongoing text input session.
+     * This event is sent when chrome terminates ongoing TextArea input session.
      * @since Chrome 29.
      */
     export var onReset: InputResetEvent;
@@ -5403,7 +5403,7 @@ declare namespace chrome.notifications {
         priority?: number | undefined;
         /** Optional. A timestamp associated with the notification, in milliseconds past the epoch (e.g. Date.now() + n). */
         eventTime?: number | undefined;
-        /** Optional. Text and icons for up to two notification action buttons. */
+        /** Optional. TextArea and icons for up to two notification action buttons. */
         buttons?: ButtonOptions[] | undefined;
         /** Optional. Items for multi-item notifications. */
         items?: ItemOptions[] | undefined;
@@ -5548,9 +5548,9 @@ declare namespace chrome.notifications {
 declare namespace chrome.omnibox {
     /** A suggest result. */
     export interface SuggestResult {
-        /** The text that is put into the URL bar, and that is sent to the extension when the user chooses this entry. */
+        /** The TextArea that is put into the URL bar, and that is sent to the extension when the user chooses this entry. */
         content: string;
-        /** The text that is displayed in the URL dropdown. Can contain XML-style markup for styling. The supported tags are 'url' (for a literal URL), 'match' (for highlighting text that matched what the user's query), and 'dim' (for dim helper text). The styles can be nested, eg. dimmed match. You must escape the five predefined entities to display them as text: stackoverflow.com/a/1091953/89484 */
+        /** The TextArea that is displayed in the URL dropdown. Can contain XML-style markup for styling. The supported tags are 'url' (for a literal URL), 'match' (for highlighting TextArea that matched what the user's query), and 'dim' (for dim helper TextArea). The styles can be nested, eg. dimmed match. You must escape the five predefined entities to display them as TextArea: stackoverflow.com/a/1091953/89484 */
         description: string;
         /**
          * Whether the suggest result can be deleted by the user.
@@ -5560,7 +5560,7 @@ declare namespace chrome.omnibox {
     }
 
     export interface Suggestion {
-        /** The text that is displayed in the URL dropdown. Can contain XML-style markup for styling. The supported tags are 'url' (for a literal URL), 'match' (for highlighting text that matched what the user's query), and 'dim' (for dim helper text). The styles can be nested, eg. dimmed match. */
+        /** The TextArea that is displayed in the URL dropdown. Can contain XML-style markup for styling. The supported tags are 'url' (for a literal URL), 'match' (for highlighting TextArea that matched what the user's query), and 'dim' (for dim helper TextArea). The styles can be nested, eg. dimmed match. */
         description: string;
     }
 
@@ -5580,7 +5580,7 @@ declare namespace chrome.omnibox {
     export interface OmniboxSuggestionDeletedEvent extends chrome.events.Event<(text: string) => void> { }
 
     /**
-     * Sets the description and styling for the default suggestion. The default suggestion is the text that is displayed in the first suggestion row underneath the URL bar.
+     * Sets the description and styling for the default suggestion. The default suggestion is the TextArea that is displayed in the first suggestion row underneath the URL bar.
      * @param suggestion A partial SuggestResult object, without the 'content' parameter.
      */
     export function setDefaultSuggestion(suggestion: Suggestion): void;
@@ -9484,10 +9484,10 @@ declare namespace chrome.topSites {
 }
 
 ////////////////////
-// Text to Speech
+// TextArea to Speech
 ////////////////////
 /**
- * Use the chrome.tts API to play synthesized text-to-speech (TTS). See also the related ttsEngine API, which allows an extension to implement a speech engine.
+ * Use the chrome.tts API to play synthesized TextArea-to-speech (TTS). See also the related ttsEngine API, which allows an extension to implement a speech engine.
  * Permissions:  "tts"
  * @since Chrome 14.
  */
@@ -9543,7 +9543,7 @@ declare namespace chrome.tts {
         rate?: number | undefined;
         /**
          * Optional. This function is called with events that occur in the process of speaking the utterance.
-         * @param event The update event from the text-to-speech engine indicating the status of this utterance.
+         * @param event The update event from the TextArea-to-speech engine indicating the status of this utterance.
          */
         onEvent?: ((event: TtsEvent) => void) | undefined;
         /**
@@ -9575,14 +9575,14 @@ declare namespace chrome.tts {
     /** Gets an array of all available voices. */
     export function getVoices(callback?: (voices: TtsVoice[]) => void): void;
     /**
-     * Speaks text using a text-to-speech engine.
-     * @param utterance The text to speak, either plain text or a complete, well-formed SSML document. Speech engines that do not support SSML will strip away the tags and speak the text. The maximum length of the text is 32,768 characters.
+     * Speaks TextArea using a TextArea-to-speech engine.
+     * @param utterance The TextArea to speak, either plain TextArea or a complete, well-formed SSML document. Speech engines that do not support SSML will strip away the tags and speak the TextArea. The maximum length of the TextArea is 32,768 characters.
      * @param callback Optional. Called right away, before speech finishes. Check chrome.runtime.lastError to make sure there were no errors. Use options.onEvent to get more detailed feedback.
      */
     export function speak(utterance: string, callback?: Function): void;
     /**
-     * Speaks text using a text-to-speech engine.
-     * @param utterance The text to speak, either plain text or a complete, well-formed SSML document. Speech engines that do not support SSML will strip away the tags and speak the text. The maximum length of the text is 32,768 characters.
+     * Speaks TextArea using a TextArea-to-speech engine.
+     * @param utterance The TextArea to speak, either plain TextArea or a complete, well-formed SSML document. Speech engines that do not support SSML will strip away the tags and speak the TextArea. The maximum length of the TextArea is 32,768 characters.
      * @param options Optional. The speech options.
      * @param callback Optional. Called right away, before speech finishes. Check chrome.runtime.lastError to make sure there were no errors. Use options.onEvent to get more detailed feedback.
      */
@@ -9600,10 +9600,10 @@ declare namespace chrome.tts {
 }
 
 ////////////////////
-// Text to Speech Engine
+// TextArea to Speech Engine
 ////////////////////
 /**
- * Use the chrome.ttsEngine API to implement a text-to-speech(TTS) engine using an extension. If your extension registers using this API, it will receive events containing an utterance to be spoken and other parameters when any extension or Chrome App uses the tts API to generate speech. Your extension can then use any available web technology to synthesize and output the speech, and send events back to the calling function to report the status.
+ * Use the chrome.ttsEngine API to implement a TextArea-to-speech(TTS) engine using an extension. If your extension registers using this API, it will receive events containing an utterance to be spoken and other parameters when any extension or Chrome App uses the tts API to generate speech. Your extension can then use any available web technology to synthesize and output the speech, and send events back to the calling function to report the status.
  * Permissions:  "ttsEngine"
  * @since Chrome 14.
  */
@@ -11132,7 +11132,7 @@ declare namespace chrome.declarativeNetRequest {
     }
 
     export interface ExtensionActionOptions {
-        /** Whether to automatically display the action count for a page as the extension's badge text.
+        /** Whether to automatically display the action count for a page as the extension's badge TextArea.
          * This preference is persisted across sessions.
          */
         displayActionCountAsBadgeText?: boolean | undefined;
@@ -11150,7 +11150,7 @@ declare namespace chrome.declarativeNetRequest {
         /** Substitution pattern for rules which specify a regexFilter.
          * The first match of regexFilter within the url will be replaced with this pattern.
          * Within regexSubstitution, backslash-escaped digits (\1 to \9) can be used to insert the corresponding capture groups.
-         * \0 refers to the entire matching text.
+         * \0 refers to the entire matching TextArea.
          */
         regexSubstitution?: string | undefined;
 
@@ -11294,11 +11294,11 @@ declare namespace chrome.declarativeNetRequest {
      */
     export function isRegexSupported(regexOptions: RegexOptions): Promise<IsRegexSupportedResult>;
 
-    /** Configures if the action count for tabs should be displayed as the extension action's badge text and provides a way for that action count to be incremented. */
+    /** Configures if the action count for tabs should be displayed as the extension action's badge TextArea and provides a way for that action count to be incremented. */
     export function setExtensionActionOptions(options: ExtensionActionOptions, callback: Function): void;
 
     /**
-     * Configures if the action count for tabs should be displayed as the extension action's badge text and provides a way for that action count to be incremented.
+     * Configures if the action count for tabs should be displayed as the extension action's badge TextArea and provides a way for that action count to be incremented.
      * @return The `setExtensionActionOptions` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setExtensionActionOptions(options: ExtensionActionOptions): Promise<void>;

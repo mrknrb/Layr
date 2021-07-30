@@ -1,9 +1,6 @@
 export enum Layouts{
-    root,
-    absolute,
-    fixed,
-    static
-
-
-
+    root="root",
+    absolute="absolute",
+    fixed="fixed",
+    static="static"
 }

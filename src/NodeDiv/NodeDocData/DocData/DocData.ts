@@ -1,14 +1,7 @@
-import {NodeData} from "../NodeData/NodeData";
 
-export interface DocData{
+import {DocField} from "./DocField";
 
-    docid
-    _key
-    title
-    note
-    rank
-nodes:NodeData[]
-localDocs:DocData[]
-    type
-    appData
+export interface DocData {
+    _key:string
+    docFields:any
 }

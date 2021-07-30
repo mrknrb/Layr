@@ -1,9 +1,7 @@
 export enum ElementTypes {
-    TextOneLine,
-    TextArea,
-    DropDownDynamic,
-    DropDownStatic,
-    Group,
-App
-
+    TextArea = "TextArea",
+    DropDownDynamic = "DropDownDynamic",
+    DropDownStatic = "DropDownStatic",
+    Group = "Group",
+    App = "App"
 }
