@@ -1,11 +1,11 @@
 import {ElementTypes} from "./ElementTypes";
 import {ElementBaseClass} from "./ElementBaseClass";
-import {DropDownDynamicElement} from "./Elements/DropDownDynamicElement";
+import {DropDownDynamicElement} from "./Elements/DropDownDynamicElement/DropDownDynamicElement";
 import {TextOneLineElement} from "./Elements/TextOneLineElement";
-import {TextAreaElement} from "./Elements/TextAreaElement";
-import {GroupElement} from "./Elements/GroupElement";
+import {TextAreaElement} from "./Elements/TextAreaElement/TextAreaElement";
+import {GroupElement} from "./Elements/GroupElement/GroupElement";
 import {AppElement} from "./Elements/AppElement";
-import {DropDownStaticElement} from "./Elements/DropDownStaticElement";
+import {DropDownStaticElement} from "./Elements/DropDownStaticElement/DropDownStaticElement";
 
 export abstract class ElementTypesClassFinder {
 

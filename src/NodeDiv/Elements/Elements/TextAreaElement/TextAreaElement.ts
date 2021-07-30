@@ -1,15 +1,18 @@
-import {NodeData} from "../../NodeDocData/NodeData/NodeData";
-import {MainElementLayouts} from "../MainElements/MainElementLayouts";
-import {NodeDivAllData} from "../../NodeDivAllData";
-import {DataTypeElementTypeData} from "../DataTypeElementTypeData";
+import {NodeData} from "../../../NodeDocData/NodeData/NodeData";
+import {NodeDivAllData} from "../../../NodeDivAllData";
+import {DataTypeElementTypeData} from "../../DataTypeElementTypeData";
+import {ElementBaseClass} from "../../ElementBaseClass";
+import {ElementTypes} from "../../ElementTypes";
 
-export class TextAreaElement {
+export class TextAreaElement extends ElementBaseClass{
+
     element: any
     nodeData: NodeData
     resizeObserver
     resizeAutoON: boolean
 
     constructor(nodeDivAllData: NodeDivAllData) {
+        super(ElementTypes.TextArea);
         this.nodeData = nodeDivAllData.nodeDocData.nodeData
 
         this.elementInit()
@@ -64,5 +67,8 @@ export class TextAreaElement {
             this.element.style.height = "5px"
             this.element.style.height = (this.element.scrollHeight - 3) + "px"
         }
+    }
+
+    deleteData() {
     }
 }

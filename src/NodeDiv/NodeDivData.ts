@@ -1,6 +1,6 @@
 export class NodeDivData{
-    parentdocURL:string
-    parentNodeDivid:string
+    parentDocURL:string
+    parentNodeDivId:string
     nodeDivId:string
     root:boolean
 }

@@ -1,10 +1,8 @@
-import {TextAreaElementSettings} from "./Elements/TextAreaElementSettings";
+import {TextAreaElementSettings} from "./Elements/TextAreaElement/TextAreaElementSettings";
 
 export interface ElementSettings {
 
-    TextOneLine:{
 
-    },
     TextArea:TextAreaElementSettings,
     DropDownDynamic ,
     DropDownStatic,

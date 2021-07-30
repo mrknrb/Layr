@@ -3,16 +3,12 @@ import {Layouts} from "../../Elements/Layouts";
 import {ElementSettings} from "../../Elements/ElementSettings";
 
 
-export interface NodeData{
+export interface NodeData {
     nodeId
     docURL
-    layoutData:NodeLayoutData
+    layoutData: NodeLayoutData
 
-    ElementSettings:ElementSettings
-    DocFieldsElementSettings: {
-
-
-
-    }
+    ElementSettings: ElementSettings
+    DocFieldsElementSettings: any
 
 }

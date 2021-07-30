@@ -16,7 +16,7 @@ export class NodeDiv {
         this.mrkS3 = mrkS3
         this.newAllData(nodeDivAllData)
         this.elements = new Map<string, ElementBaseClass>()
-       this. nodeDivElementsLoader()
+        this.nodeDivElementsLoader()
     }
 
     private newAllData(nodeDivAllData: NodeDivAllData) {

@@ -6,11 +6,11 @@ import {NodeDocData} from "../NodeDiv/NodeDocData/NodeDocData";
 import {DocData} from "../NodeDiv/NodeDocData/DocData/DocData";
 import {NodeDivAllData} from "../NodeDiv/NodeDivAllData";
 
-export class  MrkS3 {
+export class MrkS3 {
     pouchdbClientData
-    arangoMrkMessageClient:ArangoMrkMessageClient
-    talca:Talca
-    nodeDivMap:Map<string,NodeDiv>
+    arangoMrkMessageClient: ArangoMrkMessageClient
+    talca: Talca
+    nodeDivMap: Map<string, NodeDiv>
 
     constructor() {
         // @ts-ignore
@@ -21,31 +21,29 @@ export class  MrkS3 {
         this.arangoMrkMessageClient = new ArangoMrkMessageClient()
         MrkLibrary.cssPreventInit()
         this.talca = new Talca(this)
-        this.nodeDivMap = new Map<string,NodeDiv>()
+        this.nodeDivMap = new Map<string, NodeDiv>()
     }
 
 //---------------------------------------------------------co rootnodediv
-    ujRootNodeDivBetoltes(docURL:string) {
+    ujRootNodeDivBetoltes(docURL: string) {
         //empty virtual doc if arg is empty
-       let self = this
+        let self = this
         this.torlesNodedivs()
-        this.arangoMrkMessageClient.docsDownloader([docURL], function (docs:DocData) {
-            console.log(docs)
-         let data:NodeDivAllData=null
-            data.root=true
-            data.nodeDocData.docData=docs[0]
+        this.arangoMrkMessageClient.docsDownloader([docURL], function (docs: DocData) {
+
+            let data: NodeDivAllData = null
+            data.nodeDivData.root = true
+            data.nodeDocData.docData = docs[0]
             let nodeDiv = new NodeDiv(self, data)
-            self.nodeDivMap.set(nodeDiv.nodeDocData.nodeDivId, nodeDiv)
+            self.nodeDivMap.set(nodeDiv.nodeDivAllData.nodeDivData.nodeDivId, nodeDiv)
         })
     }
-
-
 
 
 //-------------------------------------pa nodeDivGroupsBetoltes
 
 
-   private _docGroupBetoltottNodeDivsMaker(docgroup, docGroupRoot) {
+    private _docGroupBetoltottNodeDivsMaker(docgroup, docGroupRoot) {
         let self = this
         let betoltetlennodes = docgroup.data.nodes
         docgroup.data.nodes.forEach(function (nodeDocData) {
@@ -59,13 +57,14 @@ export class  MrkS3 {
     }
 
 
-   private async docGroupChildDocsGetter(doc, callback) {
+    private async docGroupChildDocsGetter(doc, callback) {
         let self = this
-        let docs = { collectiondocIDs : [],
-            collectiondoclocaldocIDs : [],
-            localdocarray : [],
-            collectiondocarray : [],
-            collectiondoclocaldocarray :[]
+        let docs = {
+            collectiondocIDs: [],
+            collectiondoclocaldocIDs: [],
+            localdocarray: [],
+            collectiondocarray: [],
+            collectiondoclocaldocarray: []
         }
 
 
@@ -114,7 +113,7 @@ export class  MrkS3 {
 
     }
 
-   private _localDocFinder(docid, doc) {
+    private _localDocFinder(docid, doc) {
         let doc3
         doc.localdocs.forEach(function (doc2) {
             if (docid == doc2.id) {
@@ -126,7 +125,7 @@ export class  MrkS3 {
 
     }
 
-  private torlesNodedivs() {
+    private torlesNodedivs() {
         this.nodeDivMap.forEach(function (nodeDiv) {
             nodeDiv.nodeDivTorles()
 

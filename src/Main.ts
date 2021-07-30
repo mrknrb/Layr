@@ -1,5 +1,8 @@
 import {MrkS3} from "./MrkS3/MrkS3";
 import {URL_Object} from "./Arangodb/AdatTipusok/URL_Object";
+import {NodeDivData} from "./NodeDiv/NodeDivData";
+import {NodeDocData} from "./NodeDiv/NodeDocData/NodeDocData";
+import {NodeDivAllData} from "./NodeDiv/NodeDivAllData";
 
 /*
 let scriptek = [
@@ -41,24 +44,28 @@ function scriptbetoltes() {
 export class Main {
     mrks3
     bkg
-
     constructor() {
-
-
         this.mrks3 = new MrkS3()
-
         this.mrks3.ujRootNodeDivBetoltes("http://localhost:8529|_system|docs|91894511|")
-
-
         this.bkg = chrome.extension.getBackgroundPage()
-
-
         this.bkg.background.newTab(window)
-
-
     }
-
 }
 
 let main = new Main()
 //scriptbetoltes()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

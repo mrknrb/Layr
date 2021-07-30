@@ -1,7 +1,7 @@
 import {NodeDocData} from "./NodeDocData/NodeDocData";
 import {NodeDivData} from "./NodeDivData";
 
-export class NodeDivAllData{
+export interface NodeDivAllData{
     nodeDivData:NodeDivData
     nodeDocData:NodeDocData
 }

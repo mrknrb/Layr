@@ -10,9 +10,8 @@ export class MainElementLayouts {
 
     newLayout(layout: Layouts) {
         this.deleteLayout()
-        this.mainElem.element.style.backgroundColor = this.mainElem.nodeData.layoutData.all.color
+       // this.mainElem.element.style.backgroundColor = this.mainElem.nodeData.DocFieldsElementSettings
         this.mainElem.element.style.borderStyle = "solid"
-
         this.mainElem.element.style.minWidth = "100px"
         this.mainElem.element.style.minHeight = "40px"
         if (layout == Layouts.root) {
@@ -39,7 +38,6 @@ export class MainElementLayouts {
     }
 
     private layoutAbsolute() {
-
         this.mainElem.element.style.height = "fit-content"
         this.mainElem.element.style.position = "absolute"
         if (this.mainElem.nodeData.layoutData.absolute.width)
