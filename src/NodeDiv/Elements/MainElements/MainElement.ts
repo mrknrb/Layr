@@ -2,19 +2,15 @@ import {Layouts} from "../Layouts";
 import {NodeDivAllData} from "../../NodeDivAllData";
 import {NodeData} from "../../NodeDocData/NodeData/NodeData";
 import {MainElementLayouts} from "./MainElementLayouts";
+import {NodeDiv} from "../../NodeDiv";
 
 export class MainElement {
     element: any
     nodeData: NodeData
     mainElementLayouts: MainElementLayouts
-    constructor(nodeDivAllData: NodeDivAllData) {
-        this.nodeData = nodeDivAllData.nodeDocData.nodeData
+    constructor(nodeDiv:NodeDiv) {
         this.mainElementLayouts=new MainElementLayouts(this)
         this.elementInit()
-        if (this.nodeData.layout){
-            MainElementLayouts.newLayout(this.nodeData.layout)
-        }
-
     }
 
     private elementInit() {

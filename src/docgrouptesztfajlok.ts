@@ -235,7 +235,7 @@ function nodeGenerator(docURL) {
     let node = new NodeData()
 
     node.nodeid = Math.floor(Math.random() * 100000000)
-    node.docURL = docURL
+    node.docRelativeURL = docURL
     node.nodeViewData.positionType = PositionType.absolute
     node.nodeViewData.all.color = "#" + Math.floor(Math.random() * 16777215).toString(16)
 

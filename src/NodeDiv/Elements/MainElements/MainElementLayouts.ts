@@ -10,7 +10,7 @@ export class MainElementLayouts {
 
     newLayout(layout: Layouts) {
         this.deleteLayout()
-       // this.mainElem.element.style.backgroundColor = this.mainElem.nodeData.DocFieldsElementSettings
+       // this.mainElem.element.style.backgroundColor = this.mainElem.nodeData.docFieldsElementSettings
         this.mainElem.element.style.borderStyle = "solid"
         this.mainElem.element.style.minWidth = "100px"
         this.mainElem.element.style.minHeight = "40px"
@@ -40,20 +40,20 @@ export class MainElementLayouts {
     private layoutAbsolute() {
         this.mainElem.element.style.height = "fit-content"
         this.mainElem.element.style.position = "absolute"
-        if (this.mainElem.nodeData.layoutData.absolute.width)
-            this.mainElem.element.style.width = this.mainElem.nodeData.layoutData.absolute.width
+        if (this.mainElem.nodeData.layoutsData.absolute.width)
+            this.mainElem.element.style.width = this.mainElem.nodeData.layoutsData.absolute.width
         else
             this.mainElem.element.style.width = "100px"
-        if (this.mainElem.nodeData.layoutData.absolute.height)
-            this.mainElem.element.style.height = this.mainElem.nodeData.layoutData.absolute.height
+        if (this.mainElem.nodeData.layoutsData.absolute.height)
+            this.mainElem.element.style.height = this.mainElem.nodeData.layoutsData.absolute.height
         else
             this.mainElem.element.style.height = "50px"
-        if (this.mainElem.nodeData.layoutData.absolute.top)
-            this.mainElem.element.style.top = this.mainElem.nodeData.layoutData.absolute.top
+        if (this.mainElem.nodeData.layoutsData.absolute.top)
+            this.mainElem.element.style.top = this.mainElem.nodeData.layoutsData.absolute.top
         else
             this.mainElem.element.style.top = "50px"
-        if (this.mainElem.nodeData.layoutData.absolute.left)
-            this.mainElem.element.style.left = this.mainElem.nodeData.layoutData.absolute.left
+        if (this.mainElem.nodeData.layoutsData.absolute.left)
+            this.mainElem.element.style.left = this.mainElem.nodeData.layoutsData.absolute.left
         else
             this.mainElem.element.style.left = "50px"
 

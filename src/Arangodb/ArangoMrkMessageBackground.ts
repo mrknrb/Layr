@@ -1,5 +1,6 @@
-import {MessageGroupEnums} from "./AdatTipusok/MessageGroupEnums";
-import {MessageTypeEnums} from "./AdatTipusok/MessageTypeEnums";
+import {MessageGroups} from "./AdatTipusok/MessageGroups";
+import {MessageTypes} from "./AdatTipusok/MessageTypes";
+import {MessageMrkS} from "./MessageMrkS";
 
 export class ArangoMrkMessageBackground {
     arangoMrkBackground
@@ -10,9 +11,9 @@ export class ArangoMrkMessageBackground {
     }
 
     _messageInit() {
-        chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-            if (message.messageGroup === MessageGroupEnums.ArangoMrk) {
-                if (message.messageType === MessageTypeEnums.docsDownloader) {
+        chrome.runtime.onMessage.addListener((message:MessageMrkS, sender, sendResponse) => {
+            if (message.messageGroup === MessageGroups.ArangoMrk) {
+                if (message.messageType === MessageTypes.docsDownloader) {
                     arangoMrkBackground.docsDownloader(message.messageData, function (data) {
 
                         sendResponse(data)

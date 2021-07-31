@@ -1,6 +1,6 @@
 import {TextAreaElementSettings} from "./Elements/TextAreaElement/TextAreaElementSettings";
 
-export interface ElementSettings {
+export interface ElementsDefaultSettings {
 
 
     TextArea:TextAreaElementSettings,

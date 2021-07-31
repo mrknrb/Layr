@@ -6,13 +6,30 @@ export class URL_Object {
     urlData
     docQueryid
 
-    constructor(URL: string) {
-        this.UrlString = URL
+    constructor(URLabsolute: string, URLrelativeTarget_IF_ABSOLUTE_THAN_NULL: string | null) {
+        //Ha az absolut URL-bol akarsz obejctet csinalni, akkor csak hagyd uresen
+        let urlAbsoluteTarget=URLabsolute
+        if (URLrelativeTarget_IF_ABSOLUTE_THAN_NULL != null) {
+            urlAbsoluteTarget= this.mrkSFullUrlMaker(URLabsolute, URLrelativeTarget_IF_ABSOLUTE_THAN_NULL)
+        }
+        this.UrlString = urlAbsoluteTarget
         this.UrlDecoder()
     }
 
 
-    private UrlDecoder():void {
+    private mrkSFullUrlMaker(rootAbsoluteURL, childRelativeURL) {
+        let rootSplit = rootAbsoluteURL.split("|")
+        rootSplit.reverse()
+        let childSplit = childRelativeURL.split("|")
+        childSplit.reverse()
+        childSplit.forEach(function (child, i) {
+            rootSplit[i] = child
+        })
+        rootSplit.reverse()
+        return rootSplit.join("|")
+    }
+
+    private UrlDecoder(): void {
 // hogy a http:// ne kavarjon be
 
         let urlArray = this.UrlString.split("|")

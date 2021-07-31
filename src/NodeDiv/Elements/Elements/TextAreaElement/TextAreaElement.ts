@@ -1,6 +1,6 @@
 import {NodeData} from "../../../NodeDocData/NodeData/NodeData";
 import {NodeDivAllData} from "../../../NodeDivAllData";
-import {DataTypeElementTypeData} from "../../DataTypeElementTypeData";
+import {DocFieldsElementSettings} from "../../DocFieldsElementSettings";
 import {ElementBaseClass} from "../../ElementBaseClass";
 import {ElementTypes} from "../../ElementTypes";
 
@@ -19,7 +19,7 @@ export class TextAreaElement extends ElementBaseClass{
 
 
         //a note objectbe es a formazas fajlba rogzithetnem
-        if (DataTypeElementTypeData.note.resizeType == "auto")
+        if (DocFieldsElementSettings.note.resizeType == "auto")
             this.resizeAuto()
         else
             this.resizeManual()

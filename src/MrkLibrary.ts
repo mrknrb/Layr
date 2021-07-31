@@ -1,12 +1,12 @@
-
 class MrkLibrary {
-    static dragElement(draggingElement, moveableElement,kikapcsolas) {
+    static dragElement(draggingElement, moveableElement, kikapcsolas) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0
-        if(kikapcsolas){
-            draggingElement.onmousedown =null
-        }else{
+        if (kikapcsolas) {
+            draggingElement.onmousedown = null
+        } else {
             draggingElement.onmousedown = dragMouseDown
         }
+
         function dragMouseDown(e) {
             e = e || window.event
             e.preventDefault()
@@ -46,8 +46,8 @@ class MrkLibrary {
         let pos = {top: 0, left: 0, x: 0, y: 0}
 
         const mouseDownHandler = function (e) {
-          //  e.stopPropagation()
-           // e = e || window.event
+            //  e.stopPropagation()
+            // e = e || window.event
             e.stopPropagation()
             e.preventDefault()
             pos = {
@@ -62,7 +62,7 @@ class MrkLibrary {
 
         }
         const mouseMoveHandler = function (e) {
-           // e = e || window.event
+            // e = e || window.event
             e.preventDefault()
 
             // How far the mouse has been moved
@@ -82,9 +82,9 @@ class MrkLibrary {
         elementDiv.addEventListener('mousedown', mouseDownHandler)
 
 
-
     }
 
+//URL_Objectbe atrakva
     static mrkSUrlDecoder(url) {
 // hogy a http:// ne kavarjon be
         console.log(url)
@@ -156,6 +156,7 @@ class MrkLibrary {
         return answer
     }
 
+//URL_Objectbe atrakva
     static mrkSFullUrlMaker(rootAbsoluteURL, childRelativeURL) {
         let rootSplit = rootAbsoluteURL.split("|")
         rootSplit.reverse()
@@ -165,8 +166,6 @@ class MrkLibrary {
             rootSplit[i] = child
         })
         rootSplit.reverse()
-
-
         return rootSplit.join("|")
     }
 

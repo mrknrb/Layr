@@ -24,7 +24,7 @@ export class ArangoMrkBackground {
         let URLsSzetvalogatott = new Map()
 
         URLsBejovo.forEach(function (URL) {
-            let urlObject = new URL_Object(URL)
+            let urlObject = new URL_Object(URL,null)
 //host szerint szedi szet egy mapbe a databaseket
             if (URLsSzetvalogatott.get(urlObject.urlData.hostid) === undefined) {
                 URLsSzetvalogatott.set(urlObject.urlData.hostid, new Map())

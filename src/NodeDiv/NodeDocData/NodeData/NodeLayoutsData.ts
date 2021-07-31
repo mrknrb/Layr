@@ -1,7 +1,7 @@
-import {ElementSettings} from "../../Elements/ElementSettings";
+import {ElementsDefaultSettings} from "../../Elements/ElementsDefaultSettings";
 
 
-export interface NodeLayoutData{
+export interface NodeLayoutsData{
 
         absolute:{width:string,height:string,top:string,left:string}
         fixed:{width:string,height:string,top:string,left:string}

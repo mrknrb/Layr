@@ -1,12 +1,7 @@
-
-
-export let DocFieldDefaultList={
-    title,
-    note,
-    rank,
-    group,
-    type
-    appData
-
-
+export enum DocFieldDefaultList{
+    title="title",
+    note="note",
+    rank="rank",
+    group="group",
+    app="app",
 }

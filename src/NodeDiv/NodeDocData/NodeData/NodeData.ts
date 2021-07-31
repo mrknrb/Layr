@@ -1,14 +1,13 @@
-import {NodeLayoutData} from "./NodeLayoutData";
+import {NodeLayoutsData} from "./NodeLayoutsData";
 import {Layouts} from "../../Elements/Layouts";
-import {ElementSettings} from "../../Elements/ElementSettings";
+import {ElementsDefaultSettings} from "../../Elements/ElementsDefaultSettings";
+import {DocFieldElementSettings} from "./DocFieldElementSettings";
 
 
 export interface NodeData {
-    nodeId
-    docURL
-    layoutData: NodeLayoutData
-
-    ElementSettings: ElementSettings
-    DocFieldsElementSettings: any
-
+    nodeId:string
+    docRelativeURL:string
+    layout:Layouts
+    layoutsData: NodeLayoutsData
+    docFieldsElementSettings:DocFieldElementSettings[]
 }

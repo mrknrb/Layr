@@ -1,8 +1,0 @@
-export enum MessageTypeEnums{
-
-    docsDownloader
-
-
-
-
-}
