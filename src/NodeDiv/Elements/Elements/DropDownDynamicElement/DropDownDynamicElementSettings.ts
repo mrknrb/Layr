@@ -1,6 +1,6 @@
-export interface DropDownDynamicElementSettings {
+export class DropDownDynamicElementSettings {
 
 
-
+moreWords:boolean
 
 }

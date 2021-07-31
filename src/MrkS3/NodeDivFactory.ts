@@ -12,7 +12,7 @@ export class NodeDivFactory {
 
     ujRootNodeDivBetoltes(docURL: string) {
         //empty virtual doc if arg is empty
-        let self = this
+
         this.torlesNodedivs()
         let data: NodeDivAllData = null
 
@@ -25,6 +25,7 @@ export class NodeDivFactory {
     }
 
     private _docGroupBetoltottNodeDivsMaker(docgroup, docGroupRoot) {
+
         let self = this
         docgroup.data.nodes.forEach(function (nodeDocData) {
             let nodediv = new NodeDiv(self, nodeDocData)

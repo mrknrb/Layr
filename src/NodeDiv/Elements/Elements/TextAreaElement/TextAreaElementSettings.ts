@@ -1,8 +1,8 @@
 import {TextAreaResizeTypes} from "./TextAreaResizeTypes";
 
-export interface TextAreaElementSettings {
+export class TextAreaElementSettings {
 
-    resizeType:TextAreaResizeTypes
-
+    resizeType: TextAreaResizeTypes
+    height: string // a scrolltipusnal van hasznalva
 
 }

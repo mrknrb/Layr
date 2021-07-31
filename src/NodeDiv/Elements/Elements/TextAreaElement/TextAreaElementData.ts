@@ -1,4 +1,4 @@
-export interface TextAreaElementData {
+export class TextAreaElementData {
 
     content:string
 

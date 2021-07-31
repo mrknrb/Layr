@@ -1,4 +1,4 @@
-export interface DropDownStaticElementSettings {
+export class DropDownStaticElementSettings {
 
-
+options:string[]
 }

@@ -1,4 +1,4 @@
-export interface DropDownStaticElementData {
+export class DropDownStaticElementData {
 
 
 

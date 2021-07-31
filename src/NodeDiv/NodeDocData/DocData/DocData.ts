@@ -1,8 +1,13 @@
 
 import {DocField} from "./DocField";
-import {ElementTypes} from "../../Elements/ElementTypes";
+import {DocFieldhezElementSettings} from "../NodeData/DocFieldhezElementSettings";
+import {NodeData} from "../NodeData/NodeData";
 
-export interface DocData {
+export class DocData {
+
+
     _key:string
+    ownDefaultDocFieldElementSettings:DocFieldhezElementSettings[] //rootnal johet jol, amikor a sajat docfieldjeit formaznad
     docFields:DocField[]
+
 }

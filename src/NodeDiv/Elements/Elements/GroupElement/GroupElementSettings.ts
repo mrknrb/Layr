@@ -1,4 +1,4 @@
-export interface GroupElementSettings {
+export class GroupElementSettings {
 
-
+height:string
 }

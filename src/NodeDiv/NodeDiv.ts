@@ -9,6 +9,7 @@ export class NodeDiv {
     elements: Map<string, ElementBaseClass>
     mainElement: MainElement
 
+
     constructor(mrkS3: MrkS3) {
         this.mrkS3 = mrkS3
         this.elements = new Map<string, ElementBaseClass>()
@@ -19,7 +20,6 @@ export class NodeDiv {
     refresher() {
 
         this.nodeDivAllData.nodeDocData.docData.docFields
-
 
 
     }

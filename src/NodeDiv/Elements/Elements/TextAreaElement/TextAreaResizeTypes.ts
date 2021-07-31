@@ -1,7 +1,7 @@
 export enum TextAreaResizeTypes {
 
     auto="auto",
-    manual="manual",
+    scroll="scroll",
     oneLine="oneLine"
 
 }

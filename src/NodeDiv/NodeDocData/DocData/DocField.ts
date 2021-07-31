@@ -1,6 +1,6 @@
 import {ElementTypes} from "../../Elements/ElementTypes";
 
-export interface DocField {
+export class DocField {
     name:string
     data:any
 }

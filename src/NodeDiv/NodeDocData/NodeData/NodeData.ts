@@ -1,13 +1,16 @@
 import {NodeLayoutsData} from "./NodeLayoutsData";
 import {Layouts} from "../../Elements/Layouts";
-import {ElementsDefaultSettings} from "../../Elements/ElementsDefaultSettings";
-import {DocFieldElementSettings} from "./DocFieldElementSettings";
+import {DocFieldhezElementSettings} from "./DocFieldhezElementSettings";
 
 
-export interface NodeData {
+export class NodeData {
+    constructor() {
+        this.layoutsData=new NodeLayoutsData()
+    }
+
     nodeId:string
     docRelativeURL:string
     layout:Layouts
     layoutsData: NodeLayoutsData
-    docFieldsElementSettings:DocFieldElementSettings[]
+    docFieldekhezElementSettings:DocFieldhezElementSettings[]
 }

@@ -1,4 +1,4 @@
-export interface DropDownDynamicElementData {
+export class DropDownDynamicElementData {
 
 
 }

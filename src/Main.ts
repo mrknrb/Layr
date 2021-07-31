@@ -3,6 +3,7 @@ import {URL_Object} from "./Arangodb/AdatTipusok/URL_Object";
 import {NodeDivData} from "./NodeDiv/NodeDivData";
 import {NodeDocData} from "./NodeDiv/NodeDocData/NodeDocData";
 import {NodeDivAllData} from "./NodeDiv/NodeDivAllData";
+import {NodeDiv} from "./NodeDiv/NodeDiv";
 
 /*
 let scriptek = [
@@ -54,8 +55,6 @@ export class Main {
 
 let main = new Main()
 //scriptbetoltes()
-
-
 
 
 

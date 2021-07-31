@@ -1,7 +1,6 @@
 import {ElementTypes} from "./ElementTypes";
 import {ElementBaseClass} from "./ElementBaseClass";
 import {DropDownDynamicElement} from "./Elements/DropDownDynamicElement/DropDownDynamicElement";
-import {TextOneLineElement} from "./Elements/TextOneLineElement";
 import {TextAreaElement} from "./Elements/TextAreaElement/TextAreaElement";
 import {GroupElement} from "./Elements/GroupElement/GroupElement";
 import {AppElement} from "./Elements/AppElement";
@@ -24,8 +23,5 @@ export abstract class ElementTypesClassFinder {
         }else if (elemType == ElementTypes.App) {
             return new AppElement()
         }
-
     }
-
-
 }
