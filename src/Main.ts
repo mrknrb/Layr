@@ -1,30 +1,12 @@
-import {MrkS3} from "./MrkS3/MrkS3";
-import {URL_Object} from "./Arangodb/AdatTipusok/URL_Object";
-import {NodeDivData} from "./NodeDiv/NodeDivData";
-import {NodeDocData} from "./NodeDiv/NodeDocData/NodeDocData";
-import {NodeDivAllData} from "./NodeDiv/NodeDivAllData";
-import {NodeDiv} from "./NodeDiv/NodeDiv";
+import {MrkS3} from "./MrkS3/MrkS3.js";
+import {zSampleDataFactory} from "./zSampleDataFactory.js";
 
-/*
 let scriptek = [
     "0Libraries/polyfill.js",
     "0Libraries/pouchdb.js",
-
     "0Libraries/jquery.js",
-    "0Libraries/arangojs.js",
-    "MrkLibrary.js",
-    "docgrouptesztfajlok.js",
-    "Classes/Arangodb/ArangoMrkMessageClient.js",
-    "Classes/ConceptMap/NodeDiv/NodeDiv.js",
-    "Classes/ConceptMap/NodeDiv/GroupElem.js",
-    "Classes/ConceptMap/NodeDiv/KeretElem.js",
-    "Classes/ConceptMap/NodeDiv/TextAreaElem.js",
-    "Classes/ConceptMap/NodeDiv/DetailsGroup.js",
-    "Classes/ConceptMap/NodeDiv/MetaDataGroup.js",
-    "Classes/ConceptMap/Talca.js",
-    "Classes/ConceptMap/ConceptMap.js"
+    "0Libraries/arangojs.js"
 ]
-let main = {}
 function scriptbetoltes() {
     let betoltottscriptszam=0
     scriptek.forEach(function (scriptsrc,i) {
@@ -37,29 +19,30 @@ function scriptbetoltes() {
                 main = new Main()
             }
         };
-
     })
 }
-*/
+let main ={}
+scriptbetoltes()
+
 
 export class Main {
-    mrks3
-    bkg
+    mrks3:MrkS3
+    bkg:Window
     constructor() {
         this.mrks3 = new MrkS3()
-        this.mrks3.ujRootNodeDivBetoltes("http://localhost:8529|_system|docs|91894511|")
-        this.bkg = chrome.extension.getBackgroundPage()
-        this.bkg.background.newTab(window)
+       this.mrks3.nodeDivFactory.ujRootNodeDivBetoltes("http://localhost:8529|_system|docsTs|78505685.1225844|")
+
+       // this.bkg = chrome.extension.getBackgroundPage()
+        //this.bkg.background.newTab(window)
     }
 }
 
-let main = new Main()
-//scriptbetoltes()
 
 
 
 
-
+//let docdataset= zSampleDataFactory.generateSampleDocDataset(100 )
+//console.log(docdataset)
 
 
 

@@ -1,6 +1,5 @@
-import {DocData} from "./DocData/DocData";
-import {NodeData} from "./NodeData/NodeData";
-import {NodeDivData} from "../NodeDivData";
+import {DocData} from "./DocData/DocData.js";
+import {NodeData} from "./NodeData/NodeData.js";
 
 export class NodeDocData{
 constructor() {

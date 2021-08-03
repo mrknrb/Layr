@@ -1,9 +1,33 @@
-import {ElementsDefaultSettings} from "../../Elements/ElementsDefaultSettings";
+export class NodeLayoutsData {
+
+constructor() {
+	this.absolute=new Absolute()
+	this.fixed=new Fixed()
+	this.static=new Static()
+}
+	absolute:Absolute
+	fixed: Fixed
+	static:Static
+}
+
+class Absolute {
+	width: string
+	height: string
+	top: string
+	left: string
+}
+class Fixed{
+	width: string
+	height: string
+	top: string
+	left: string
 
 
-export class NodeLayoutsData{
 
-        absolute:{width:string,height:string,top:string,left:string}
-        fixed:{width:string,height:string,top:string,left:string}
-        static:{place:string,width:string,height:string}
+}
+
+class Static{
+	place: string
+	width: string
+	height: string
 }

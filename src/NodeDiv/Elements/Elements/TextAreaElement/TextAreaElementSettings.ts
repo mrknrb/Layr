@@ -1,8 +1,10 @@
-import {TextAreaResizeTypes} from "./TextAreaResizeTypes";
+
+import {ResizeTypes} from "../../ElementResizer/ResizeTypes.js";
+
 
 export class TextAreaElementSettings {
 
-    resizeType: TextAreaResizeTypes
+    resizeType:ResizeTypes
     height: string // a scrolltipusnal van hasznalva
 
 }

@@ -1,7 +1,4 @@
-import {DropDownDynamicElementSettings} from "../../Elements/Elements/DropDownDynamicElement/DropDownDynamicElementSettings";
-import {ElementTypes} from "../../Elements/ElementTypes";
-import {DropDownStaticElementSettings} from "../../Elements/Elements/DropDownStaticElement/DropDownStaticElementSettings";
-import {TextAreaElementSettings} from "../../Elements/Elements/TextAreaElement/TextAreaElementSettings";
+import {ElementTypes} from "../../Elements/ElementTypes.js";
 
 export class DocFieldhezElementSettings {
     docFieldName: string

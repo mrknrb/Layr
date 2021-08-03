@@ -1,10 +1,11 @@
-import {ElementBaseClass} from "../ElementBaseClass";
-
-export class GroupElem extends ElementBaseClass{
-
+import {ElementBaseClass} from "../ElementBaseClass.js";
+import {NodeDiv} from "../../NodeDiv.js";
 
 
-   static _groupRefresh(NodeDivMain) {
+export class GroupElem extends ElementBaseClass {
+
+
+    static _groupRefresh(NodeDivMain) {
 
         let init = !NodeDivMain.elements.groupKeret
         //--------------------------------------------pa groupkeret
@@ -26,7 +27,7 @@ export class GroupElem extends ElementBaseClass{
         if (NodeDivMain.root) {
             NodeDivMain.elements.groupKeret = document.body
             // document.body.appendChild(NodeDivMain.elements.groupKeret)
-            GroupElem.nodeDivGroupsBetoltes(NodeDivMain,[NodeDivMain])
+            GroupElem.nodeDivGroupsBetoltes(NodeDivMain, [NodeDivMain])
             NodeDivMain.elements.groupKeret.style.display = "inline"
             // NodeDivMain.elements.groupKeret.style.flex = "1 1 auto"
 
@@ -43,7 +44,7 @@ export class GroupElem extends ElementBaseClass{
                     if (NodeDivMain.elements.groupKeret.style.display === "none") {
                         NodeDivMain.elements.keret.style.resize = "both"
                         NodeDivMain.elements.groupKeret.style.display = "inline"
-                        GroupElem.nodeDivGroupsBetoltes(NodeDivMain,[NodeDivMain])
+                        GroupElem.nodeDivGroupsBetoltes(NodeDivMain, [NodeDivMain])
                     } else {
                         NodeDivMain.elements.groupKeret.style.display = "none"
                         NodeDivMain.elements.keret.style.resize = "horizontal"
@@ -90,7 +91,7 @@ export class GroupElem extends ElementBaseClass{
 
     }
 
-  static _groupcontrollerRefresh(NodeDivMain) {
+    static _groupcontrollerRefresh(NodeDivMain) {
 
         if (!NodeDivMain.elements.groupController) {
             NodeDivMain.elements.groupController = document.createElement("div")
@@ -109,7 +110,7 @@ export class GroupElem extends ElementBaseClass{
         NodeDivMain.elements.groupController.style.overflow = "auto"
 
         NodeDivMain.elements.groupController.style.position = "relative"
-//---------------------------------------------------------------pa openChildren
+        //---------------------------------------------------------------pa openChildren
         if (!NodeDivMain.elements.groupLoadButton) {
             NodeDivMain.elements.groupLoadButton = document.createElement("div")
             NodeDivMain.elements.groupLoadButton.style.backgroundColor = "blue"
@@ -118,13 +119,13 @@ export class GroupElem extends ElementBaseClass{
             NodeDivMain.elements.groupLoadButton.style.float = "right"
 
             NodeDivMain.elements.groupLoadButton.addEventListener("click", function () {
-                GroupElem.nodeDivGroupsBetoltes(NodeDivMain,[NodeDivMain])
+                GroupElem.nodeDivGroupsBetoltes(NodeDivMain, [NodeDivMain])
             })
             NodeDivMain.elements.groupController.appendChild(NodeDivMain.elements.groupLoadButton)
         }
     }
 
-   static nodeDivGroupsBetoltes(NodeDivMain,ArrayOfGroupNodeDivs) {
+    static nodeDivGroupsBetoltes(NodeDivMain, ArrayOfGroupNodeDivs) {
 
         let docURLs = []
 
@@ -133,7 +134,7 @@ export class GroupElem extends ElementBaseClass{
                 docURLs.push(nodeDiv.data.docData.URL);
 
         })
-        let docURLs2 =[]
+        let docURLs2 = []
         // a mapnal a foreachnel a keyeken nem megy at
         console.log(NodeDivMain)
         NodeDivMain.conceptMapObject.arangoMrkMessageClient.docsDownloader(docURLs, function (parentDocs) {

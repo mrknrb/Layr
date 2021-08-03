@@ -1,10 +1,10 @@
-import {Talca} from "../Talca/Talca";
-import {NodeDiv} from "../NodeDiv/NodeDiv";
-import {ArangoMrkMessageClient} from "../Arangodb/ArangoMrkMessageClient";
-import {DocData} from "../NodeDiv/NodeDocData/DocData/DocData";
-import {NodeDivAllData} from "../NodeDiv/NodeDivAllData";
-import {Events} from "./Events";
-import {NodeDivFactory} from "./NodeDivFactory";
+import {Talca} from "../Talca/Talca.js";
+import {Events} from "./Events.js";
+import {ArangoMrkMessageClient} from "../Arangodb/ArangoMrkMessageClient.js";
+import {NodeDiv} from "../NodeDiv/NodeDiv.js";
+import {NodeDivFactory} from "./NodeDivFactory.js";
+import {MrkLibrary} from "../MrkLibrary.js";
+
 
 export class MrkS3 {
     pouchDB
@@ -15,17 +15,19 @@ export class MrkS3 {
     nodeDivFactory: NodeDivFactory
 
     constructor() {
+
         // @ts-ignore
         this.pouchDB = new PouchDB("MrkSUserData", {
             revs_limit: 50,
             auto_compaction: true
         })
+
         this.arangoMrkMessageClient = new ArangoMrkMessageClient()
-        MrkLibrary.cssPreventInit()
         this.talca = new Talca(this)
         this.nodeDivMap = new Map<string, NodeDiv>()
         this.events = new Events()
         this.nodeDivFactory = new NodeDivFactory(this)
+        MrkLibrary.cssPreventInit()
     }
 
 

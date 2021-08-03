@@ -1,5 +1,6 @@
-import {MessageGroups} from "./AdatTipusok/MessageGroups";
-import {MessageTypes} from "./AdatTipusok/MessageTypes";
+import {MessageGroups} from "./AdatTipusok/MessageGroups.js";
+import {MessageTypes} from "./AdatTipusok/MessageTypes.js";
+
 
 export class MessageMrkS{
     messageGroup:MessageGroups

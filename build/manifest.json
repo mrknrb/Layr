@@ -16,38 +16,12 @@
     "default_title": "MrkS",
     "persistent": true
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "0Libraries/jquery.js",
-        "0Libraries/arangojs.js",
-        "MrkLibrary.js",
-        "docgrouptesztfajlok.js",
-        "Classes/Arangodb/ArangoMrkMessageClient.js",
-        "Classes/ConceptMap/NodeDiv/NodeDiv.js",
-        "Classes/ConceptMap/NodeDiv/GroupElem.js",
-        "Classes/ConceptMap/NodeDiv/KeretElem.js",
-        "Classes/ConceptMap/NodeDiv/TextAreaElem.js",
-        "Classes/ConceptMap/NodeDiv/DetailsGroup.js",
-        "Classes/ConceptMap/NodeDiv/MetaDataGroup.js",
-        "Classes/ConceptMap/Talca.js",
-        "Classes/ConceptMap/ConceptMap.js",
-        "MainContent.js"
-      ],
-      "run_at": "document_end"
-    }
-  ],
   "background": {
     "scripts": [
       "0Libraries/jquery.js",
       "0Libraries/arangojs.js",
-      "MrkLibrary.js",
-      "Classes/Arangodb/ArangoMrkMessageBackground.js",
-      "Classes/Arangodb/ArangoMrkBackground.js",
-      "background.js"
+      "0Libraries/pouchdb.js",
+      "backgroundStarterSeged.js"
     ],
     "persistent": true
   },

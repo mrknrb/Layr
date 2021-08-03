@@ -271,7 +271,7 @@ declare namespace chrome.action {
 
     /**
      * Since Chrome 88.
-     * Sets the icon for the action. The icon can be specified either as the path to an image file or as the pixel data from a canvas element,
+     * Sets the icon for the action. The icon can be specified either as the path to an image file or as the pixel data from a canvas elementObject,
      * or as dictionary of either one of those. Either the path or the imageData property must be specified.
      * @param callback The callback parameter should be a function that looks like this:
      * () => {...}
@@ -931,7 +931,7 @@ declare namespace chrome.browserAction {
      */
     export function getPopup(details: TabDetails): Promise<string>;
     /**
-     * Sets the icon for the browser action. The icon can be specified either as the path to an image file or as the pixel data from a canvas element, or as dictionary of either one of those. Either the path or the imageData property must be specified.
+     * Sets the icon for the browser action. The icon can be specified either as the path to an image file or as the pixel data from a canvas elementObject, or as dictionary of either one of those. Either the path or the imageData property must be specified.
      * @param callback If you specify the callback parameter, it should be a function that looks like this:
      * function() {...};
      */
@@ -1495,19 +1495,19 @@ declare namespace chrome.contextMenus {
         /**
          * Optional.
          * Since Chrome 35.
-         * The ID of the frame of the element where the context menu was
+         * The ID of the frame of the elementObject where the context menu was
          * clicked, if it was in a frame.
          */
         frameId?: number | undefined;
         /**
          * Optional.
          * Since Chrome 35.
-         * The URL of the frame of the element where the context menu was clicked, if it was in a frame.
+         * The URL of the frame of the elementObject where the context menu was clicked, if it was in a frame.
          */
         frameUrl?: string | undefined;
         /**
          * Since Chrome 35.
-         * A flag indicating whether the element is editable (TextArea input, textarea, etc.).
+         * A flag indicating whether the elementObject is editable (TextArea input, textarea, etc.).
          */
         editable: boolean;
         /**
@@ -1530,7 +1530,7 @@ declare namespace chrome.contextMenus {
         /**
          * Optional.
          * Since Chrome 35.
-         * If the element is a link, the URL it points to.
+         * If the elementObject is a link, the URL it points to.
          */
         linkUrl?: string | undefined;
         /**
@@ -5687,7 +5687,7 @@ declare namespace chrome.pageAction {
      */
     export function getPopup(details: GetDetails, callback: (result: string) => void): void;
     /**
-     * Sets the icon for the page action. The icon can be specified either as the path to an image file or as the pixel data from a canvas element, or as dictionary of either one of those. Either the path or the imageData property must be specified.
+     * Sets the icon for the page action. The icon can be specified either as the path to an image file or as the pixel data from a canvas elementObject, or as dictionary of either one of those. Either the path or the imageData property must be specified.
      * @param callback If you specify the callback parameter, it should be a function that looks like this:
      * function() {...};
      */
@@ -8105,7 +8105,7 @@ declare namespace chrome.tabCapture {
          * One of: "pending", "active", "stopped", or "error"
          */
         status: string;
-        /** Whether an element in the tab being captured is in fullscreen mode. */
+        /** Whether an elementObject in the tab being captured is in fullscreen mode. */
         fullscreen: boolean;
     }
 
@@ -8859,45 +8859,45 @@ declare namespace chrome.tabs {
     /**
      * Captures the visible area of the currently active tab in the specified window. You must have <all_urls> permission to use this method.
      * @param callback
-     * Parameter dataUrl: A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image element for display.
+     * Parameter dataUrl: A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(callback: (dataUrl: string) => void): void;
     /**
      * Captures the visible area of the currently active tab in the specified window. You must have <all_urls> permission to use this method.
-     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image element for display.
+     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(): Promise<string>;
     /**
      * Captures the visible area of the currently active tab in the specified window. You must have <all_urls> permission to use this method.
      * @param windowId Optional. The target window. Defaults to the current window.
      * @param callback
-     * Parameter dataUrl: A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image element for display.
+     * Parameter dataUrl: A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(windowId: number, callback: (dataUrl: string) => void): void;
     /**
      * Captures the visible area of the currently active tab in the specified window. You must have <all_urls> permission to use this method.
      * @param windowId Optional. The target window. Defaults to the current window.
-     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image element for display.
+     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(windowId: number): Promise<string>;
     /**
      * Captures the visible area of the currently active tab in the specified window. You must have <all_urls> permission to use this method.
      * @param options Optional. Details about the format and quality of an image.
-     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image element for display.
+     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(options: CaptureVisibleTabOptions): Promise<string>;
     /**
      * Captures the visible area of the currently active tab in the specified window. You must have <all_urls> permission to use this method.
      * @param options Optional. Details about the format and quality of an image.
      * @param callback
-     * Parameter dataUrl: A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image element for display.
+     * Parameter dataUrl: A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(options: CaptureVisibleTabOptions, callback: (dataUrl: string) => void): void;
     /**
      * Captures the visible area of the currently active tab in the specified window. You must have <all_urls> permission to use this method.
      * @param windowId Optional. The target window. Defaults to the current window.
      * @param options Optional. Details about the format and quality of an image.
-     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image element for display.
+     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(
         windowId: number,
@@ -8908,7 +8908,7 @@ declare namespace chrome.tabs {
      * @param windowId Optional. The target window. Defaults to the current window.
      * @param options Optional. Details about the format and quality of an image.
      * @param callback
-     * Parameter dataUrl: A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image element for display.
+     * Parameter dataUrl: A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(
         windowId: number,
@@ -9499,7 +9499,7 @@ declare namespace chrome.tts {
         /** Optional. The error description, if the event type is 'error'. */
         errorMessage?: string | undefined;
         /**
-         * The type can be 'start' as soon as speech has started, 'word' when a word boundary is reached, 'sentence' when a sentence boundary is reached, 'marker' when an SSML mark element is reached, 'end' when the end of the utterance is reached, 'interrupted' when the utterance is stopped or interrupted before reaching the end, 'cancelled' when it's removed from the queue before ever being synthesized, or 'error' when any other error occurs. When pausing speech, a 'pause' event is fired if a particular utterance is paused in the middle, and 'resume' if an utterance resumes speech. Note that pause and resume events may not fire if speech is paused in-between utterances.
+         * The type can be 'start' as soon as speech has started, 'word' when a word boundary is reached, 'sentence' when a sentence boundary is reached, 'marker' when an SSML mark elementObject is reached, 'end' when the end of the utterance is reached, 'interrupted' when the utterance is stopped or interrupted before reaching the end, 'cancelled' when it's removed from the queue before ever being synthesized, or 'error' when any other error occurs. When pausing speech, a 'pause' event is fired if a particular utterance is paused in the middle, and 'resume' if an utterance resumes speech. Note that pause and resume events may not fire if speech is paused in-between utterances.
          * One of: "start", "end", "word", "sentence", "marker", "interrupted", "cancelled", "error", "pause", or "resume"
          */
         type: string;
@@ -9967,7 +9967,7 @@ declare namespace chrome.webNavigation {
         transitionType: string;
         /**
          * A list of transition qualifiers.
-         * Each element one of: "client_redirect", "server_redirect", "forward_back", or "from_address_bar"
+         * Each elementObject one of: "client_redirect", "server_redirect", "forward_back", or "from_address_bar"
          */
         transitionQualifiers: string[];
     }
@@ -10335,7 +10335,7 @@ declare namespace chrome.webRequest {
 declare namespace chrome.webstore {
     /**
      * @param url Optional. If you have more than one <link> tag on your page with the chrome-webstore-item relation, you can choose which item you'd like to install by passing in its URL here. If it is omitted, then the first (or only) link will be used. An exception will be thrown if the passed in URL does not exist on the page.
-     * @param successCallback Optional. This function is invoked when inline installation successfully completes (after the dialog is shown and the user agrees to add the item to Chrome). You may wish to use this to hide the user interface element that prompted the user to install the app or extension.
+     * @param successCallback Optional. This function is invoked when inline installation successfully completes (after the dialog is shown and the user agrees to add the item to Chrome). You may wish to use this to hide the user interface elementObject that prompted the user to install the app or extension.
      * @param failureCallback Optional. This function is invoked when inline installation does not successfully complete. Possible reasons for this include the user canceling the dialog, the linked item not being found in the store, or the install being initiated from a non-verified site.
      * Parameter error: The failure detail. You may wish to inspect or log this for debugging purposes, but you should not rely on specific strings being passed back.
      * Optional parameter errorCode: The error code from the stable set of possible errors.
@@ -10364,7 +10364,7 @@ declare namespace chrome.webstore {
         failureCallback?: (error: string, errorCode?: string) => void,
     ): void;
     /**
-     * @param successCallback Optional. This function is invoked when inline installation successfully completes (after the dialog is shown and the user agrees to add the item to Chrome). You may wish to use this to hide the user interface element that prompted the user to install the app or extension.
+     * @param successCallback Optional. This function is invoked when inline installation successfully completes (after the dialog is shown and the user agrees to add the item to Chrome). You may wish to use this to hide the user interface elementObject that prompted the user to install the app or extension.
      * @param failureCallback Optional. This function is invoked when inline installation does not successfully complete. Possible reasons for this include the user canceling the dialog, the linked item not being found in the store, or the install being initiated from a non-verified site.
      * Parameter error: The failure detail. You may wish to inspect or log this for debugging purposes, but you should not rely on specific strings being passed back.
      * Optional parameter errorCode: The error code from the stable set of possible errors.

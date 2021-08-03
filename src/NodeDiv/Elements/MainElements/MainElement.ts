@@ -1,35 +1,45 @@
-import {Layouts} from "../Layouts";
-import {NodeDivAllData} from "../../NodeDivAllData";
-import {NodeData} from "../../NodeDocData/NodeData/NodeData";
-import {MainElementLayouts} from "./MainElementLayouts";
-import {NodeDiv} from "../../NodeDiv";
+import {MainElementLayouts} from "./MainElementLayouts.js";
+import {NodeData} from "../../NodeDocData/NodeData/NodeData.js";
+import {NodeDiv} from "../../NodeDiv.js";
+
 
 export class MainElement {
-    element: any
-    nodeData: NodeData
-    mainElementLayouts: MainElementLayouts
-    constructor(nodeDiv:NodeDiv) {
-        this.mainElementLayouts=new MainElementLayouts(this)
-        this.elementInit()
-    }
+	element: HTMLDivElement
+	nodeDiv: NodeDiv
+	mainElementLayouts: MainElementLayouts
 
-    private elementInit() {
-        this.element = document.createElement("div")
-        this.element.setAttribute("class", "NodeDivMrkS")
-        this.element.addEventListener("mousedown", function (e) {
-            e.stopPropagation()
-        })
+	constructor(nodeDiv: NodeDiv) {
+		this.nodeDiv = nodeDiv
+		this.mainElementLayouts = new MainElementLayouts(this)
+		this.elementInit()
+	}
 
-        this.element.addEventListener("mouseenter", function (e) {
+	private elementInit() {
+		this.element = document.createElement("div")
+		this.element.setAttribute("class", "NodeDivMrkS")
+		this.element.addEventListener("mousedown", function (e) {
+			e.stopPropagation()
+		})
 
-        })
-        this.element.addEventListener("mouseleave", function (e) {
+		this.element.addEventListener("mouseenter", function (e) {
 
-        })
+		})
+		this.element.addEventListener("mouseleave", function (e) {
 
-    }
+		})
 
-
+	}
 
 
 }
+
+
+
+
+
+
+
+
+
+
+

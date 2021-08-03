@@ -1,15 +1,21 @@
-import {ElementBaseClass} from "../../ElementBaseClass";
-import {ElementTypes} from "../../ElementTypes";
+import {ElementTypes} from "../../ElementTypes.js";
+import {ElementBaseClass} from "../../ElementBaseClass.js";
+import {NodeDiv} from "../../../NodeDiv.js";
 
 export class DropDownDynamicElement extends ElementBaseClass{
 
-    constructor() {
-        super(ElementTypes.DropDownDynamic);
+    constructor(nodeDiv:NodeDiv,elementData,elementSettings) {
+        super(ElementTypes.DropDownDynamic,nodeDiv,elementData,elementSettings);
 
 
     }
 
-    deleteData() {
+
+
+    refreshData() {
+    }
+
+    deleteElement() {
     }
 
 }

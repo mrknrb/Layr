@@ -1,29 +1,32 @@
-import {MessageGroups} from "./AdatTipusok/MessageGroups";
-import {MessageTypes} from "./AdatTipusok/MessageTypes";
-import {MessageMrkS} from "./MessageMrkS";
+import {MessageGroups} from "./AdatTipusok/MessageGroups.js";
+import {MessageMrkS} from "./MessageMrkS.js";
+import {MessageTypes} from "./AdatTipusok/MessageTypes.js";
+
 
 export class ArangoMrkMessageBackground {
-    arangoMrkBackground
+	arangoMrkBackground
 
-    constructor(arangoMrkBackground2) {
-        this.arangoMrkBackground = arangoMrkBackground2
-        this._messageInit()
-    }
+	constructor(arangoMrkBackground2) {
+		this.arangoMrkBackground = arangoMrkBackground2
+		this._messageInit()
+	}
 
-    _messageInit() {
-        chrome.runtime.onMessage.addListener((message:MessageMrkS, sender, sendResponse) => {
-            if (message.messageGroup === MessageGroups.ArangoMrk) {
-                if (message.messageType === MessageTypes.docsDownloader) {
-                    arangoMrkBackground.docsDownloader(message.messageData, function (data) {
+	_messageInit() {
+		chrome.runtime.onMessage.addListener((message: MessageMrkS, sender, sendResponse) => {
+			console.log(message)
+			if (message.messageGroup === MessageGroups.ArangoMrk) {
+				if (message.messageType === MessageTypes.docsDownloader) {
 
-                        sendResponse(data)
-                    })
-                }
-            }
-            return true
-        })
+					console.log("message")
+					this.arangoMrkBackground.docsDownloader(message.messageData, function (data) {
 
-    }
+						sendResponse(data)
+					})
+				}
+			}
+			return true
+		})
+
+	}
 
 }
-

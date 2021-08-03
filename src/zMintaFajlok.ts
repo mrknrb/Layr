@@ -1,5 +1,7 @@
-import {ElementTypes} from "./NodeDiv/Elements/ElementTypes";
-import {Layouts} from "./NodeDiv/Elements/Layouts";
+import {Layouts} from "./NodeDiv/Elements/Layouts.js";
+import {ElementTypes} from "./NodeDiv/Elements/ElementTypes.js";
+import {DocData} from "./NodeDiv/NodeDocData/DocData/DocData.js";
+
 
 let tesztdoctypescript = {
     docId: "thdghdgndfgb",
@@ -11,11 +13,7 @@ let tesztdoctypescript = {
         layoutType: Layouts.absolute,
         groupLayoutData: {
             absolute:{
-
             },
-
-
-
         },
         defaultNodeLayoutData: {
 
@@ -43,7 +41,7 @@ let tesztdoctypescript = {
                         content: "My note",
                     },
                     title: {
-                        elementType: ElementTypes.TextOneLine,
+                        elementType: ElementTypes.TextArea,
                         content: "My title",
                     },
                     rank: {
@@ -60,3 +58,14 @@ let tesztdoctypescript = {
 
 
 }
+
+
+export class testDocFactory{
+
+
+
+}
+
+
+let docData=new DocData()
+docData.

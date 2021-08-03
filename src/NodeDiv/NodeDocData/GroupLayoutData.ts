@@ -1,7 +1,7 @@
-import {Layouts} from "../Elements/Layouts";
-import createTypeEnum = chrome.windows.createTypeEnum;
-import {StaticLayoutSubTypes} from "./LayoutSubTypes/StaticLayoutSubTypes";
-import {AbsoluteLayoutSubTypes} from "./LayoutSubTypes/AbsoluteLayoutSubTypes";
+import {Layouts} from "../Elements/Layouts.js";
+import {AbsoluteLayoutSubTypes} from "./LayoutSubTypes/AbsoluteLayoutSubTypes.js";
+import {StaticLayoutSubTypes} from "./LayoutSubTypes/StaticLayoutSubTypes.js";
+
 
 export interface GroupLayoutData {
     backGroundColor:string

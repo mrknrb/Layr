@@ -1,4 +1,8 @@
+import {ResizeTypes} from "../../ElementResizer/ResizeTypes.js";
+
 export class GroupElementSettings {
 
-height:string
+	resizeType: ResizeTypes
+	height: string
+	width: string
 }

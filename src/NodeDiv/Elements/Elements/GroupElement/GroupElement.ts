@@ -1,16 +1,46 @@
-import {ElementBaseClass} from "../../ElementBaseClass";
-import {ElementTypes} from "../../ElementTypes";
+import {ElementTypes} from "../../ElementTypes.js";
+import {ElementBaseClass} from "../../ElementBaseClass.js";
+import {NodeDiv} from "../../../NodeDiv.js";
+import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
+import {ResizeTypes} from "../../ElementResizer/ResizeTypes.js";
+import {GroupElementSettings} from "./GroupElementSettings.js";
+import {GroupElementData} from "./GroupElementData.js";
+
 
 export class GroupElement extends ElementBaseClass {
-    deleteData() {
+	element: HTMLDivElement
+	elementResizer: ElementResizer
+	elementSettings:GroupElementSettings
+	elementData:GroupElementData
 
-    }
+	constructor(nodeDiv: NodeDiv, elementData, elementSettings) {
+		super(ElementTypes.Group, nodeDiv, elementData, elementSettings);
+		this.elementResizer = new ElementResizer(this)
 
-    constructor() {
-        super(ElementTypes.Group);
-    }
+		this.elementResizer.resizeActivate(ResizeTypes.autoXY)
+	}
 
-haha(){
+	private elementInit() {
+		let self = this
+		this.element = document.createElement("div")
+		this.element.style.border = `black`
+		this.element.style.width = "calc(100% - 5px)"
+		this.element.style.height = "50px"
 
-}
+		this.element.addEventListener("mousedown", function (e) {
+			e.stopPropagation()
+		})
+		this.nodeDiv.mainElement.element.appendChild(this.element)
+		this.refreshData()
+	}
+
+
+	refreshData() {
+
+	}
+
+	deleteElement() {
+	}
+
+
 }

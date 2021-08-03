@@ -1,5 +1,5 @@
-import {NodeDocData} from "./NodeDocData/NodeDocData";
-import {NodeDivData} from "./NodeDivData";
+import {NodeDivData} from "./NodeDivData.js";
+import {NodeDocData} from "./NodeDocData/NodeDocData.js";
 
 export class NodeDivAllData{
     constructor() {

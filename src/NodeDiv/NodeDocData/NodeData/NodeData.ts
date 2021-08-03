@@ -1,11 +1,13 @@
-import {NodeLayoutsData} from "./NodeLayoutsData";
-import {Layouts} from "../../Elements/Layouts";
-import {DocFieldhezElementSettings} from "./DocFieldhezElementSettings";
+import {Layouts} from "../../Elements/Layouts.js";
+import {NodeLayoutsData} from "./NodeLayoutsData.js";
+import {DocFieldhezElementSettings} from "./DocFieldhezElementSettings.js";
 
 
 export class NodeData {
     constructor() {
         this.layoutsData=new NodeLayoutsData()
+       this. docFieldekhezElementSettings=[]
+
     }
 
     nodeId:string

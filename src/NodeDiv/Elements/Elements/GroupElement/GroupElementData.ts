@@ -1,15 +1,21 @@
-import {NodeData} from "../../../NodeDocData/NodeData/NodeData";
-import {DocData} from "../../../NodeDocData/DocData/DocData";
-import {ElementsDefaultSettings} from "../../ElementsDefaultSettings";
-import {Layouts} from "../../Layouts";
-import {DocFieldhezElementSettings} from "../../../NodeDocData/NodeData/DocFieldhezElementSettings";
+import {Layouts} from "../../Layouts.js";
+import {DocData} from "../../../NodeDocData/DocData/DocData.js";
+import {NodeData} from "../../../NodeDocData/NodeData/NodeData.js";
+import {DocFieldhezElementSettings} from "../../../NodeDocData/NodeData/DocFieldhezElementSettings.js";
+
 
 export class GroupElementData {
 
+	constructor() {
+		this.nodes = []
+		this.localDocs = []
+		this.docFieldekhezElementSettingsGroupSzinten = []
 
-    nodes: NodeData[]
-    localDocs: DocData[]
-    elementsDefaultSettings:ElementsDefaultSettings
-    docFieldekhezElementSettingsGroupSzinten:DocFieldhezElementSettings[]
-    groupDefaultLayout:Layouts
+
+	}
+
+	nodes: NodeData[]
+	localDocs: DocData[]
+	docFieldekhezElementSettingsGroupSzinten: DocFieldhezElementSettings[]
+	groupDefaultLayout: Layouts
 }

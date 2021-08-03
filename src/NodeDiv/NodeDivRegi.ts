@@ -1,7 +1,8 @@
-import {KeretElem} from "./Elements/ElementsRegi/KeretElem";
-import {DetailsGroup} from "./Elements/ElementsRegi/DetailsGroup";
-import {MetaDataGroup} from "./Elements/ElementsRegi/MetaDataGroup";
-import {GroupElem} from "./Elements/ElementsRegi/GroupElem";
+import {KeretElem} from "./Elements/ElementsRegi/KeretElem.js";
+import {GroupElem} from "./Elements/ElementsRegi/GroupElem.js";
+import {DetailsGroup} from "./Elements/ElementsRegi/DetailsGroup.js";
+import {MetaDataGroup} from "./Elements/ElementsRegi/MetaDataGroup.js";
+import {NodeDiv} from "./NodeDiv.js";
 
 class NodeDivRegi
 {

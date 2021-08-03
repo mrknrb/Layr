@@ -1,6 +1,6 @@
-import {ElementTypes} from "./ElementTypes";
-import {TextAreaResizeTypes} from "./Elements/TextAreaElement/TextAreaResizeTypes";
-import {DocFieldsDefault} from "../NodeDocData/DocData/DocFieldsDefault";
+import {TextAreaResizeTypes} from "./Elements/TextAreaElement/TextAreaResizeTypes.js";
+import {ElementTypes} from "./ElementTypes.js";
+import {DocFieldsDefault} from "../NodeDocData/DocData/DocFieldsDefault.js";
 
 
 export const DocFieldekhezElementSettingsDefault = [

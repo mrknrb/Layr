@@ -1,4 +1,5 @@
-import {ElementBaseClass} from "../ElementBaseClass";
+import {ElementBaseClass} from "../ElementBaseClass.js";
+
 
 export class DetailsGroup extends ElementBaseClass{
     static _detailsRefresh(NodeDivMain) {

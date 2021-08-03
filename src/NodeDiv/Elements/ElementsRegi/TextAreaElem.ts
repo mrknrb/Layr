@@ -1,4 +1,5 @@
-import {ElementBaseClass} from "../ElementBaseClass";
+import {ElementBaseClass} from "../ElementBaseClass.js";
+
 
 export class TextAreaElem extends ElementBaseClass{
 

@@ -1,67 +1,61 @@
-import {Layouts} from "../Layouts";
-import {MainElement} from "./MainElement";
+import {Layouts} from "../Layouts.js";
+import {MainElement} from "./MainElement.js";
 
 export class MainElementLayouts {
-    mainElem: MainElement
+	mainElem: MainElement
 
-    constructor(mainElem: MainElement) {
-        this.mainElem = mainElem
-    }
+	constructor(mainElem: MainElement) {
+		this.mainElem = mainElem
 
-    newLayout(layout: Layouts) {
-        this.deleteLayout()
-       // this.mainElem.element.style.backgroundColor = this.mainElem.nodeData.docFieldsElementSettings
-        this.mainElem.element.style.borderStyle = "solid"
-        this.mainElem.element.style.minWidth = "100px"
-        this.mainElem.element.style.minHeight = "40px"
-        if (layout == Layouts.root) {
-            this.layoutRoot()
-        } else if (layout == Layouts.absolute) {
-            this.layoutAbsolute()
-        } else if (layout == Layouts.static) {
-            this.layoutAbsolute()
-        }
-    }
-
-    private deleteLayout() {
-        this.mainElem.element.removeAttribute("style")
-
-    }
+	}
 
 
-    private layoutRoot() {
-        this.mainElem.element.style.position = "relative"
-        this.mainElem.element.style.width = "100%"
-        this.mainElem.element.style.height = "6ch"
-        this.mainElem.element.style.display = "flex"
-        this.mainElem.element.style.flexFlow = "column"
-    }
+	private layoutClean() {
+		this.mainElem.element.removeAttribute("style")
+	}
 
-    private layoutAbsolute() {
-        this.mainElem.element.style.height = "fit-content"
-        this.mainElem.element.style.position = "absolute"
-        if (this.mainElem.nodeData.layoutsData.absolute.width)
-            this.mainElem.element.style.width = this.mainElem.nodeData.layoutsData.absolute.width
-        else
-            this.mainElem.element.style.width = "100px"
-        if (this.mainElem.nodeData.layoutsData.absolute.height)
-            this.mainElem.element.style.height = this.mainElem.nodeData.layoutsData.absolute.height
-        else
-            this.mainElem.element.style.height = "50px"
-        if (this.mainElem.nodeData.layoutsData.absolute.top)
-            this.mainElem.element.style.top = this.mainElem.nodeData.layoutsData.absolute.top
-        else
-            this.mainElem.element.style.top = "50px"
-        if (this.mainElem.nodeData.layoutsData.absolute.left)
-            this.mainElem.element.style.left = this.mainElem.nodeData.layoutsData.absolute.left
-        else
-            this.mainElem.element.style.left = "50px"
+	private layoutDefault() {
+		this.mainElem.element.style.cssText += `
+                border-style: solid;
+                overflow: hidden;
+                resize: horizontal;
+                background-color: antiquewhite;
+                min-width: 40px;
+                min-height: 20px;              
+                height: fit-content;
+                z-index:2100000000 ;
+                width:40px;
+                `
+	}
 
-        this.mainElem.element.style.resize = "horizontal"
-        this.mainElem.element.style.display = "flex"
-        this.mainElem.element.style.flexFlow = "column"
-        this.mainElem.element.style.zIndex = "2100000000"
-    }
+	layoutApply(layout: Layouts): void {
+		let s = this.mainElem.element.style
+		let nodeData=this.mainElem.nodeDiv.nodeDivAllData.nodeDocData.nodeData
+		this.layoutClean()
+		this.layoutDefault()
+
+		if (layout === Layouts.root) {
+			s.position = "fixed"
+			s.bottom = "6ch"
+			s.left = "0px"
+			s.width="300px"
+			document.body.appendChild(this.mainElem.element)
+		} else {
+			let d = nodeData.layoutsData
+			if (layout === Layouts.absolute) {
+				s.position = "absolute"
+				d.absolute.top ? s.top = d.absolute.top : null
+				d.absolute.left ? s.left = d.absolute.left : null
+			} else if (layout === Layouts.fixed) {
+				s.position = "fixed"
+				d.fixed.top ? s.top = d.fixed.top : null
+				d.fixed.left ? s.left = d.fixed.left : null
+			} else if (layout === Layouts.static) {
+				s.position = "static"
+			}
+		}
+
+	}
 
 
 }

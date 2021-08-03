@@ -1,3 +1,5 @@
+import {ArangoMrkBackground} from "./Arangodb/ArangoMrkBackground.js";
+
 chrome.browserAction.onClicked.addListener(function () {
     chrome.tabs.create({ url: chrome.runtime.getURL("Desktop.html") });
 });
@@ -5,17 +7,18 @@ chrome.browserAction.onClicked.addListener(function () {
 
 
 
-class Background{
+export class Background{
     tabWindows=[]
+    constructor() {
+        let arangoMrkBackground=new ArangoMrkBackground()
+        //
+        console.log("betolt")
+    }
+
+
     newTab(TabWindow){
         this.tabWindows.push(TabWindow)
     }
 }
-
-let arangoMrkBackground=new ArangoMrkBackground()
-
-
-
-
-
 var background=new Background()
+

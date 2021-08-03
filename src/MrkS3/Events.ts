@@ -1,5 +1,5 @@
-import {TypedEvent} from "../0Libraries/TypedEvents";
-import {NodeDiv} from "../NodeDiv/NodeDiv";
+import {TypedEvent} from "../0Libraries/TypedEvents.js";
+import {NodeDiv} from "../NodeDiv/NodeDiv.js";
 
 export class Events {
 

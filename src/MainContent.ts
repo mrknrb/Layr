@@ -1,13 +1,14 @@
-import {ViewPort} from "./MrkS3/MrkS3";
+import {MrkS3} from "./MrkS3/MrkS3.js";
+
 
 class MainContent {
-    conceptMap
+    mrks3
     constructor() {
 
 
-        this.conceptMap = new ViewPort()
+        this.mrks3 = new MrkS3()
 
-        this.conceptMap.ujRootNodeDivBetoltes("http://localhost:8529|_system|docs|91894511|")
+       // this.mrks3.ujRootNodeDivBetoltes("http://localhost:8529|_system|docs|91894511|")
 
 
     }

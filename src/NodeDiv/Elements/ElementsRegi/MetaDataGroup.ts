@@ -1,4 +1,5 @@
-import {TextAreaElem} from "./TextAreaElem";
+import {TextAreaElem} from "./TextAreaElem.js";
+
 
 export class MetaDataGroup{
 

@@ -1,27 +1,24 @@
-import {ElementTypes} from "./ElementTypes";
-import {ElementBaseClass} from "./ElementBaseClass";
-import {DropDownDynamicElement} from "./Elements/DropDownDynamicElement/DropDownDynamicElement";
-import {TextAreaElement} from "./Elements/TextAreaElement/TextAreaElement";
-import {GroupElement} from "./Elements/GroupElement/GroupElement";
-import {AppElement} from "./Elements/AppElement";
-import {DropDownStaticElement} from "./Elements/DropDownStaticElement/DropDownStaticElement";
+import {DropDownStaticElement} from "./Elements/DropDownStaticElement/DropDownStaticElement.js";
+import {ElementTypes} from "./ElementTypes.js";
+import {ElementBaseClass} from "./ElementBaseClass.js";
+import {GroupElement} from "./Elements/GroupElement/GroupElement.js";
+import {TextAreaElement} from "./Elements/TextAreaElement/TextAreaElement.js";
+import {AppElement} from "./Elements/AppElement.js";
+import {DropDownDynamicElement} from "./Elements/DropDownDynamicElement/DropDownDynamicElement.js";
 
 export abstract class ElementTypesClassFinder {
 
-    static find(elemType: ElementTypes): ElementBaseClass {
-
-        if (elemType == ElementTypes.TextOneLine) {
-            return new TextOneLineElement()
-        } else if (elemType == ElementTypes.TextArea) {
-            return new TextAreaElement()
+    static find(elemType: ElementTypes) {
+       if (elemType == ElementTypes.TextArea) {
+            return  TextAreaElement
         } else if (elemType == ElementTypes.DropDownDynamic) {
-            return new DropDownDynamicElement()
+            return  DropDownDynamicElement
         } else if (elemType == ElementTypes.DropDownStatic) {
-            return new DropDownStaticElement()
+            return  DropDownStaticElement
         }else if (elemType == ElementTypes.Group) {
-            return new GroupElement()
+            return  GroupElement
         }else if (elemType == ElementTypes.App) {
-            return new AppElement()
+            return  AppElement
         }
     }
 }

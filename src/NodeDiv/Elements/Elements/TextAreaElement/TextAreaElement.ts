@@ -1,74 +1,49 @@
-import {NodeData} from "../../../NodeDocData/NodeData/NodeData";
-import {NodeDivAllData} from "../../../NodeDivAllData";
-import {DocFieldsElementSettings} from "../../DocFieldsElementSettings";
-import {ElementBaseClass} from "../../ElementBaseClass";
-import {ElementTypes} from "../../ElementTypes";
-
-export class TextAreaElement extends ElementBaseClass{
-
-    element: any
-    nodeData: NodeData
-    resizeObserver
-    resizeAutoON: boolean
-
-    constructor(nodeDivAllData: NodeDivAllData) {
-        super(ElementTypes.TextArea);
-        this.nodeData = nodeDivAllData.nodeDocData.nodeData
-
-        this.elementInit()
+import {ElementTypes} from "../../ElementTypes.js";
+import {ElementBaseClass} from "../../ElementBaseClass.js";
+import {NodeDiv} from "../../../NodeDiv.js";
+import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
+import {ResizeTypes} from "../../ElementResizer/ResizeTypes.js";
+import {TextAreaElementData} from "./TextAreaElementData.js";
+import {TextAreaElementSettings} from "./TextAreaElementSettings.js";
 
 
-        //a note objectbe es a formazas fajlba rogzithetnem
-        if (DocFieldsElementSettings.note.resizeType == "auto")
-            this.resizeAuto()
-        else
-            this.resizeManual()
-    }
+export class TextAreaElement extends ElementBaseClass {
 
-    private elementInit() {
-        let self = this
-        this.element = document.createElement("textarea")
-        this.element.style.resize = "none"
-        this.element.style.backgroundColor = "transparent"
-        this.element.style.width = "calc(100% - 5px)"
-        this.element.style.height = "50px"
-        // @ts-ignore
-        this.resizeObserver = new ResizeObserver(function () {
-            self.adjustSize()
-        }).observe(this.element)
-        this.element.addEventListener("keyup", function (e) {
-            self.adjustSize()
-        })
-        this.element.addEventListener("mousedown", function (e) {
-            e.stopPropagation()
-        })
+	element: HTMLTextAreaElement
+	elementResizer: ElementResizer
+	elementSettings:TextAreaElementSettings
+	elementData:TextAreaElementData
+	constructor(nodeDiv: NodeDiv, elementData, elementSettings) {
+		super(ElementTypes.TextArea, nodeDiv, elementData, elementSettings);
+		this.elementInit()
+		this.elementResizer = new ElementResizer(this)
+		this.elementResizer.resizeActivate(ResizeTypes.autoY)
+	}
 
-        this.element.addEventListener("mouseenter", function (e) {
+	private elementInit() {
+		let self = this
+		this.element = document.createElement("textarea")
+		this.element.style.resize = "none"
+		this.element.style.backgroundColor = "transparent"
+		this.element.style.width = "calc(100% - 5px)"
+		this.element.style.height = "50px"
 
-        })
-        this.element.addEventListener("mouseleave", function (e) {
 
-        })
+		this.element.addEventListener("keyup", function (e) {
+			self.elementResizer.adjustSize()
+		})
+		this.element.addEventListener("mousedown", function (e) {
+			e.stopPropagation()
+		})
+		this.nodeDiv.mainElement.element.appendChild(this.element)
+		this.refreshData()
+	}
 
-    }
 
-    private resizeAuto() {
-        this.resizeAutoON = true
-        this.element.style.resize = "none"
-    }
+	refreshData() {
+		this.element.innerText = this.elementData.content
+	}
 
-    private resizeManual() {
-        this.resizeAutoON = false
-        this.element.style.resize = "vertical"
-    }
-
-    private adjustSize() {
-        if (this.resizeAutoON) {
-            this.element.style.height = "5px"
-            this.element.style.height = (this.element.scrollHeight - 3) + "px"
-        }
-    }
-
-    deleteData() {
-    }
+	deleteElement() {
+	}
 }

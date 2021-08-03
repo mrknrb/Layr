@@ -1,6 +1,16 @@
 export class ArangoDBInitData{
     url:string
     databaseName:string
-    auth:{username:string,password:string}
+    auth:Auth
+constructor() {
+  this.auth =new  Auth()
+}
+
+
+}
+class Auth{
+    username:string
+    password:string
+
 
 }
