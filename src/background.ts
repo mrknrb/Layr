@@ -20,5 +20,8 @@ export class Background{
         this.tabWindows.push(TabWindow)
     }
 }
-var background=new Background()
 
+
+
+// @ts-ignore
+window.background=new Background()

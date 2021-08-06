@@ -1,9 +1,9 @@
 import {MrkS3} from "./MrkS3.js";
 import {DocData} from "../NodeDiv/NodeDocData/DocData/DocData.js";
 import {NodeDiv} from "../NodeDiv/NodeDiv.js";
-import {MrkLibrary} from "../MrkLibrary.js";
 import {GroupElementData} from "../NodeDiv/Elements/Elements/GroupElement/GroupElementData.js";
 import {URL_Object} from "../Arangodb/AdatTipusok/URL_Object.js";
+import {NodeDocData} from "../NodeDiv/NodeDocData/NodeDocData.js";
 
 
 export class NodeDivFactory {
@@ -39,8 +39,17 @@ export class NodeDivFactory {
 	}
 
 
-	private async docGroupChildDocsGetter(nodeDiv:NodeDiv,groupField: GroupElementData, callback) {
+	private async docGroupsChildDocsDataGetter(nodeDiv_AND_GroupFieldArray: { nodeDiv: NodeDiv, groupField: GroupElementData }[], callback) {
 		let self = this
+
+		nodeDiv_AND_GroupFieldArray.forEach(function (nodeDiv_AND_GroupField) {
+			let nodeDiv = nodeDiv_AND_GroupField.nodeDiv
+			let groupField = nodeDiv_AND_GroupField.groupField
+
+
+
+		})
+
 		let docs = {
 			collectiondocIDs: [],
 			collectiondoclocaldocIDs: [],
@@ -48,27 +57,28 @@ export class NodeDivFactory {
 			collectiondocarray: [],
 			collectiondoclocaldocarray: []
 		}
-		//-------------------------------------refactor-----------------
 
-				groupField.nodes.forEach(function (node) {
-					if (node.docRelativeURL) {
-						let urlObject= new URL_Object(nodeDiv.nodeDivAllData.nodeDivData.docAbsoluteURL,node.docRelativeURL)
-						if (urlObject.dataScope == "doc") {
+		let nodeDocDataArray: NodeDocData[] = []
+		groupField.nodes.forEach(function (node) {
+			let nodeDocData: NodeDocData = new NodeDocData()
+			let urlObject = new URL_Object(nodeDiv.nodeDivAllData.nodeDivData.docAbsoluteURL, node.docRelativeURL)
 
-							node. = self._localDocFinder(node.docid, groupField)
-							console.log(self._localDocFinder(node.docid, groupField))
-						} else if (urlObject.dataScope == "collection") {
-							if (urlObject.dataType == "doc") {
-								docs.collectiondocIDs.push(urlObject.docid)
-							} else if (urlObject.dataType == "localdoc") {
-								docs.collectiondoclocaldocIDs.push(urlObject)
-							}
-						}
-					}
-				})
+			if (urlObject.dataScope == "doc") {
+				nodeDocData.docData = self._localDocFinder(urlObject.docid, groupField.localDocs)
+
+				nodeDocDataArray.push()
+			} else if (urlObject.dataScope == "collection") {
+				if (urlObject.dataType == "doc") {
+					docs.collectiondocIDs.push(urlObject.docid)
+				} else if (urlObject.dataType == "localdoc") {
+					docs.collectiondoclocaldocIDs.push(urlObject)
+				}
+			}
+
+		})
 
 
-		this.mrkS3.arangoMrkMessageClient.docsDownloader(docs.collectiondocIDs, function (docs2) {
+		await this.mrkS3.arangoMrkMessageClient.docsDownloader(docs.collectiondocIDs, function (docs2) {
 				console.log(groupField)
 
 				groupField.data.nodes.forEach(function (node) {
@@ -79,23 +89,20 @@ export class NodeDivFactory {
 					})
 				})
 				return callback()
-
-
 			}
 		)
-
-
 	}
 
-	private _localDocFinder(docid, doc) {
 
-		doc.localdocs.forEach(function (doc2) {
-			if (docid == doc2.id) {
-
-				return doc2
+	private _localDocFinder(docId, docDataList): DocData {
+		let doc: DocData = new DocData()
+		docDataList.forEach(function (doc2: DocData) {
+			if (docId == doc2._key) {
+				doc = doc2
 			}
 		})
 
+		return doc
 	}
 
 	private torlesNodedivs() {
