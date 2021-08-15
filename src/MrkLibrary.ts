@@ -1,6 +1,6 @@
-import {DocField} from "./NodeDiv/NodeDocData/DocData/DocField.js";
-import {DocData} from "./NodeDiv/NodeDocData/DocData/DocData.js";
-import {DocFieldsDefault} from "./NodeDiv/NodeDocData/DocData/DocFieldsDefault.js";
+import {DocField} from "./Layr/Background/Data/DocData/DocField.js";
+import {DocData} from "./Layr/Background/Data/DocData/DocData.js";
+import {DocFieldsDefault} from "./Layr/Background/Data/DocData/DocFieldsDefault.js";
 
 export class MrkLibrary {
 	static dragElement(draggingElement, moveableElement, kikapcsolas) {

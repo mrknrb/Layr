@@ -1718,7 +1718,7 @@ declare namespace chrome.cookies {
     export interface CookieStore {
         /** The unique identifier for the cookie store. */
         id: string;
-        /** Identifiers of all the browser tabs that share this cookie store. */
+        /** Identifiers of all the browser frames that share this cookie store. */
         tabIds: number[];
     }
 
@@ -1861,7 +1861,7 @@ declare namespace chrome.cookies {
 // Debugger
 ////////////////////
 /**
- * The chrome.debugger API serves as an alternate transport for Chrome's remote debugging protocol. Use chrome.debugger to attach to one or more tabs to instrument network interaction, debug JavaScript, mutate the DOM and CSS, etc. Use the Debuggee tabId to target tabs with sendCommand and route events by tabId from onEvent callbacks.
+ * The chrome.debugger API serves as an alternate transport for Chrome's remote debugging protocol. Use chrome.debugger to attach to one or more frames to instrument network interaction, debug JavaScript, mutate the DOM and CSS, etc. Use the Debuggee tabId to target frames with sendCommand and route events by tabId from onEvent callbacks.
  * Availability: Since Chrome 18.
  * Permissions:  "debugger"
  */
@@ -2169,7 +2169,7 @@ declare namespace chrome.declarativeWebRequest {
 // DesktopCapture
 ////////////////////
 /**
- * Desktop Capture API that can be used to capture content of screen, individual windows or tabs.
+ * Desktop Capture API that can be used to capture content of screen, individual windows or frames.
  * Availability: Since Chrome 34.
  * Permissions:  "desktopCapture"
  */
@@ -2275,7 +2275,7 @@ declare namespace chrome.devtools.inspectedWindow {
     export interface ResourceContentCommittedEvent
         extends chrome.events.Event<(resource: Resource, content: string) => void> { }
 
-    /** The ID of the tab being inspected. This ID may be used with chrome.tabs.* API. */
+    /** The ID of the tab being inspected. This ID may be used with chrome.frames.* API. */
     export var tabId: number;
 
     /** Reloads the inspected page. */
@@ -3255,7 +3255,7 @@ declare namespace chrome.extension {
         tabId?: number | undefined;
         /** Optional. The window to restrict the search to. If omitted, returns all views.  */
         windowId?: number | undefined;
-        /** Optional. The type of view to get. If omitted, returns all views (including background pages and tabs). Valid values: 'tab', 'notification', 'popup'.  */
+        /** Optional. The type of view to get. If omitted, returns all views (including background pages and frames). Valid values: 'tab', 'notification', 'popup'.  */
         type?: string | undefined;
     }
 
@@ -3272,7 +3272,7 @@ declare namespace chrome.extension {
 
     /**
      * Since Chrome 7.
-     * True for content scripts running inside incognito tabs, and for extension pages running inside an incognito process. The latter only applies to extensions with 'split' incognito_behavior.
+     * True for content scripts running inside incognito frames, and for extension pages running inside an incognito process. The latter only applies to extensions with 'split' incognito_behavior.
      */
     export var inIncognitoContext: boolean;
     /** Set for the lifetime of a callback if an ansychronous extension api has resulted in an error. If no error has occured lastError will be undefined. */
@@ -3326,7 +3326,7 @@ declare namespace chrome.extension {
      */
     export function sendRequest(request: any, responseCallback?: (response: any) => void): void;
     /**
-     * Returns an array of the JavaScript 'window' objects for each of the tabs running inside the current extension. If windowId is specified, returns only the 'window' objects of tabs attached to the specified window.
+     * Returns an array of the JavaScript 'window' objects for each of the frames running inside the current extension. If windowId is specified, returns only the 'window' objects of frames attached to the specified window.
      * @deprecated Deprecated since Chrome 33. Please use extension.getViews {type: "tab"}.
      */
     export function getExtensionTabs(windowId?: number): Window[];
@@ -5391,7 +5391,7 @@ declare namespace chrome.notifications {
         iconUrl?: string | undefined;
         /** Optional. Title of the notification (e.g. sender name for email). Required for notifications.create method. */
         title?: string | undefined;
-        /** Optional. Main notification content. Required for notifications.create method. */
+        /** Optional. FrameScript notification content. Required for notifications.create method. */
         message?: string | undefined;
         /**
          * Optional.
@@ -6489,7 +6489,7 @@ declare namespace chrome.runtime {
     export interface MessageSender {
         /** The ID of the extension or app that opened the connection, if any. */
         id?: string | undefined;
-        /** The tabs.Tab which opened the connection, if any. This property will only be present when the connection was opened from a tab (including content scripts), and only if the receiver is an extension, not an app. */
+        /** The frames.Tab which opened the connection, if any. This property will only be present when the connection was opened from a tab (including content scripts), and only if the receiver is an extension, not an app. */
         tab?: chrome.tabs.Tab | undefined;
         /** The name of the native application that opened the connection, if any.
          * @since Chrome 74
@@ -6800,12 +6800,12 @@ declare namespace chrome.runtime {
     }
 
     /**
-     * Attempts to connect to connect listeners within an extension/app (such as the background page), or other extensions/apps. This is useful for content scripts connecting to their extension processes, inter-app/extension communication, and web messaging. Note that this does not connect to any listeners in a content script. Extensions may connect to content scripts embedded in tabs via tabs.connect.
+     * Attempts to connect to connect listeners within an extension/app (such as the background page), or other extensions/apps. This is useful for content scripts connecting to their extension processes, inter-app/extension communication, and web messaging. Note that this does not connect to any listeners in a content script. Extensions may connect to content scripts embedded in frames via frames.connect.
      * @since Chrome 26.
      */
     export function connect(connectInfo?: ConnectInfo): Port;
     /**
-     * Attempts to connect to connect listeners within an extension/app (such as the background page), or other extensions/apps. This is useful for content scripts connecting to their extension processes, inter-app/extension communication, and web messaging. Note that this does not connect to any listeners in a content script. Extensions may connect to content scripts embedded in tabs via tabs.connect.
+     * Attempts to connect to connect listeners within an extension/app (such as the background page), or other extensions/apps. This is useful for content scripts connecting to their extension processes, inter-app/extension communication, and web messaging. Note that this does not connect to any listeners in a content script. Extensions may connect to content scripts embedded in frames via frames.connect.
      * @since Chrome 26.
      * @param extensionId Optional.
      * The ID of the extension or app to connect to. If omitted, a connection will be attempted with your own extension. Required if sending messages from a web page for web messaging.
@@ -6861,14 +6861,14 @@ declare namespace chrome.runtime {
      */
     export function restart(): void;
     /**
-     * Sends a single message to event listeners within your extension/app or a different extension/app. Similar to runtime.connect but only sends a single message, with an optional response. If sending to your extension, the runtime.onMessage event will be fired in each page, or runtime.onMessageExternal, if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use tabs.sendMessage.
+     * Sends a single message to event listeners within your extension/app or a different extension/app. Similar to runtime.connect but only sends a single message, with an optional response. If sending to your extension, the runtime.onMessage event will be fired in each page, or runtime.onMessageExternal, if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use frames.sendMessage.
      * @since Chrome 26.
      * @param responseCallback Optional
      * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and runtime.lastError will be set to the error message.
      */
     export function sendMessage(message: any, responseCallback?: (response: any) => void): void;
     /**
-     * Sends a single message to event listeners within your extension/app or a different extension/app. Similar to runtime.connect but only sends a single message, with an optional response. If sending to your extension, the runtime.onMessage event will be fired in each page, or runtime.onMessageExternal, if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use tabs.sendMessage.
+     * Sends a single message to event listeners within your extension/app or a different extension/app. Similar to runtime.connect but only sends a single message, with an optional response. If sending to your extension, the runtime.onMessage event will be fired in each page, or runtime.onMessageExternal, if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use frames.sendMessage.
      * @since Chrome 32.
      * @param responseCallback Optional
      * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and runtime.lastError will be set to the error message.
@@ -6879,7 +6879,7 @@ declare namespace chrome.runtime {
         responseCallback?: (response: any) => void,
     ): void;
     /**
-     * Sends a single message to event listeners within your extension/app or a different extension/app. Similar to runtime.connect but only sends a single message, with an optional response. If sending to your extension, the runtime.onMessage event will be fired in each page, or runtime.onMessageExternal, if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use tabs.sendMessage.
+     * Sends a single message to event listeners within your extension/app or a different extension/app. Similar to runtime.connect but only sends a single message, with an optional response. If sending to your extension, the runtime.onMessage event will be fired in each page, or runtime.onMessageExternal, if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use frames.sendMessage.
      * @since Chrome 26.
      * @param extensionId The ID of the extension/app to send the message to. If omitted, the message will be sent to your own extension/app. Required if sending messages from a web page for web messaging.
      * @param responseCallback Optional
@@ -6887,7 +6887,7 @@ declare namespace chrome.runtime {
      */
     export function sendMessage(extensionId: string, message: any, responseCallback?: (response: any) => void): void;
     /**
-     * Sends a single message to event listeners within your extension/app or a different extension/app. Similar to runtime.connect but only sends a single message, with an optional response. If sending to your extension, the runtime.onMessage event will be fired in each page, or runtime.onMessageExternal, if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use tabs.sendMessage.
+     * Sends a single message to event listeners within your extension/app or a different extension/app. Similar to runtime.connect but only sends a single message, with an optional response. If sending to your extension, the runtime.onMessage event will be fired in each page, or runtime.onMessageExternal, if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use frames.sendMessage.
      * @since Chrome 32.
      * @param extensionId The ID of the extension/app to send the message to. If omitted, the message will be sent to your own extension/app. Required if sending messages from a web page for web messaging.
      * @param responseCallback Optional
@@ -7090,7 +7090,7 @@ declare namespace chrome.scriptBadge {
 // Sessions
 ////////////////////
 /**
- * Use the chrome.sessions API to query and restore tabs and windows from a browsing session.
+ * Use the chrome.sessions API to query and restore frames and windows from a browsing session.
  * Permissions:  "sessions"
  * @since Chrome 37.
  */
@@ -7108,7 +7108,7 @@ declare namespace chrome.sessions {
         lastModified: number;
         /**
          * Optional.
-         * The tabs.Tab, if this entry describes a tab. Either this or sessions.Session.window will be set.
+         * The frames.Tab, if this entry describes a tab. Either this or sessions.Session.window will be set.
          */
         tab?: tabs.Tab | undefined;
         /**
@@ -7131,39 +7131,39 @@ declare namespace chrome.sessions {
     export var MAX_SESSION_RESULTS: number;
 
     /**
-     * Gets the list of recently closed tabs and/or windows.
+     * Gets the list of recently closed frames and/or windows.
      * @param callback
-     * Parameter sessions: The list of closed entries in reverse order that they were closed (the most recently closed tab or window will be at index 0). The entries may contain either tabs or windows.
+     * Parameter sessions: The list of closed entries in reverse order that they were closed (the most recently closed tab or window will be at index 0). The entries may contain either frames or windows.
      */
     export function getRecentlyClosed(filter: Filter, callback: (sessions: Session[]) => void): void;
     /**
-     * Gets the list of recently closed tabs and/or windows.
+     * Gets the list of recently closed frames and/or windows.
      * @param callback
-     * Parameter sessions: The list of closed entries in reverse order that they were closed (the most recently closed tab or window will be at index 0). The entries may contain either tabs or windows.
+     * Parameter sessions: The list of closed entries in reverse order that they were closed (the most recently closed tab or window will be at index 0). The entries may contain either frames or windows.
      */
     export function getRecentlyClosed(callback: (sessions: Session[]) => void): void;
     /**
      * Retrieves all devices with synced sessions.
      * @param callback
-     * Parameter devices: The list of sessions.Device objects for each synced session, sorted in order from device with most recently modified session to device with least recently modified session. tabs.Tab objects are sorted by recency in the windows.Window of the sessions.Session objects.
+     * Parameter devices: The list of sessions.Device objects for each synced session, sorted in order from device with most recently modified session to device with least recently modified session. frames.Tab objects are sorted by recency in the windows.Window of the sessions.Session objects.
      */
     export function getDevices(filter: Filter, callback: (devices: Device[]) => void): void;
     /**
      * Retrieves all devices with synced sessions.
      * @param callback
-     * Parameter devices: The list of sessions.Device objects for each synced session, sorted in order from device with most recently modified session to device with least recently modified session. tabs.Tab objects are sorted by recency in the windows.Window of the sessions.Session objects.
+     * Parameter devices: The list of sessions.Device objects for each synced session, sorted in order from device with most recently modified session to device with least recently modified session. frames.Tab objects are sorted by recency in the windows.Window of the sessions.Session objects.
      */
     export function getDevices(callback: (devices: Device[]) => void): void;
     /**
-     * Reopens a windows.Window or tabs.Tab, with an optional callback to run when the entry has been restored.
+     * Reopens a windows.Window or frames.Tab, with an optional callback to run when the entry has been restored.
      * @param sessionId Optional.
-     * The windows.Window.sessionId, or tabs.Tab.sessionId to restore. If this parameter is not specified, the most recently closed session is restored.
+     * The windows.Window.sessionId, or frames.Tab.sessionId to restore. If this parameter is not specified, the most recently closed session is restored.
      * @param callback Optional.
-     * Parameter restoredSession: A sessions.Session containing the restored windows.Window or tabs.Tab object.
+     * Parameter restoredSession: A sessions.Session containing the restored windows.Window or frames.Tab object.
      */
     export function restore(sessionId?: string, callback?: (restoredSession: Session) => void): void;
 
-    /** Fired when recently closed tabs and/or windows are changed. This event does not monitor synced sessions changes. */
+    /** Fired when recently closed frames and/or windows are changed. This event does not monitor synced sessions changes. */
     export var onChanged: SessionChangedEvent;
 }
 
@@ -8128,7 +8128,7 @@ declare namespace chrome.tabCapture {
     export interface GetMediaStreamOptions {
         /** Optional tab id of the tab which will later invoke getUserMedia() to consume the stream. If not specified then the resulting stream can be used only by the calling extension. The stream can only be used by frames in the given tab whose security origin matches the consumber tab's origin. The tab's origin must be a secure origin, e.g. HTTPS. */
         consumerTabId?: number | undefined;
-        /** Optional tab id of the tab which will be captured. If not specified then the current active tab will be selected. Only tabs for which the extension has been granted the activeTab permission can be used as the target tab. */
+        /** Optional tab id of the tab which will be captured. If not specified then the current active tab will be selected. Only frames for which the extension has been granted the activeTab permission can be used as the target tab. */
         targetTabId?: number | undefined;
     }
 
@@ -8141,8 +8141,8 @@ declare namespace chrome.tabCapture {
      */
     export function capture(options: CaptureOptions, callback: (stream: MediaStream | null) => void): void;
     /**
-     * Returns a list of tabs that have requested capture or are being captured, i.e. status != stopped and status != error. This allows extensions to inform the user that there is an existing tab capture that would prevent a new tab capture from succeeding (or to prevent redundant requests for the same tab).
-     * @param callback Callback invoked with CaptureInfo[] for captured tabs.
+     * Returns a list of frames that have requested capture or are being captured, i.e. status != stopped and status != error. This allows extensions to inform the user that there is an existing tab capture that would prevent a new tab capture from succeeding (or to prevent redundant requests for the same tab).
+     * @param callback Callback invoked with CaptureInfo[] for captured frames.
      */
     export function getCapturedTabs(callback: (result: CaptureInfo[]) => void): void;
 
@@ -8153,7 +8153,7 @@ declare namespace chrome.tabCapture {
      */
     export function getMediaStreamId(options: GetMediaStreamOptions, callback: (streamId: string) => void): void;
 
-    /** Event fired when the capture status of a tab changes. This allows extension authors to keep track of the capture status of tabs to keep UI elements like page actions in sync. */
+    /** Event fired when the capture status of a tab changes. This allows extension authors to keep track of the capture status of frames to keep UI elements like page actions in sync. */
     export var onStatusChanged: CaptureStatusChangedEvent;
 }
 
@@ -8161,8 +8161,8 @@ declare namespace chrome.tabCapture {
 // Tabs
 ////////////////////
 /**
- * Use the chrome.tabs API to interact with the browser's tab system. You can use this API to create, modify, and rearrange tabs in the browser.
- * Permissions: The majority of the chrome.tabs API can be used without declaring any permission. However, the "tabs" permission is required in order to populate the url, title, and favIconUrl properties of Tab.
+ * Use the chrome.frames API to interact with the browser's tab system. You can use this API to create, modify, and rearrange frames in the browser.
+ * Permissions: The majority of the chrome.frames API can be used without declaring any permission. However, the "frames" permission is required in order to populate the url, title, and favIconUrl properties of Tab.
  * @since Chrome 5.
  */
 declare namespace chrome.tabs {
@@ -8204,17 +8204,17 @@ declare namespace chrome.tabs {
         openerTabId?: number | undefined;
         /**
          * Optional.
-         * The title of the tab. This property is only present if the extension's manifest includes the "tabs" permission.
+         * The title of the tab. This property is only present if the extension's manifest includes the "frames" permission.
          */
         title?: string | undefined;
         /**
          * Optional.
-         * The URL the tab is displaying. This property is only present if the extension's manifest includes the "tabs" permission.
+         * The URL the tab is displaying. This property is only present if the extension's manifest includes the "frames" permission.
          */
         url?: string | undefined;
         /**
          * The URL the tab is navigating to, before it has committed.
-         * This property is only present if the extension's manifest includes the "tabs" permission and there is a pending navigation.
+         * This property is only present if the extension's manifest includes the "frames" permission and there is a pending navigation.
          * @since Chrome 79.
          */
         pendingUrl?: string | undefined;
@@ -8237,19 +8237,19 @@ declare namespace chrome.tabs {
         active: boolean;
         /**
          * Optional.
-         * The URL of the tab's favicon. This property is only present if the extension's manifest includes the "tabs" permission. It may also be an empty string if the tab is loading.
+         * The URL of the tab's favicon. This property is only present if the extension's manifest includes the "frames" permission. It may also be an empty string if the tab is loading.
          */
         favIconUrl?: string | undefined;
         /**
          * Optional.
-         * The ID of the tab. Tab IDs are unique within a browser session. Under some circumstances a Tab may not be assigned an ID, for example when querying foreign tabs using the sessions API, in which case a session ID may be present. Tab ID can also be set to chrome.tabs.TAB_ID_NONE for apps and devtools windows.
+         * The ID of the tab. Tab IDs are unique within a browser session. Under some circumstances a Tab may not be assigned an ID, for example when querying foreign frames using the sessions API, in which case a session ID may be present. Tab ID can also be set to chrome.frames.TAB_ID_NONE for apps and devtools windows.
          */
         id?: number | undefined;
         /** Whether the tab is in an incognito window. */
         incognito: boolean;
         /**
          * Whether the tab is selected.
-         * @deprecated since Chrome 33. Please use tabs.Tab.highlighted.
+         * @deprecated since Chrome 33. Please use frames.Tab.highlighted.
          */
         selected: boolean;
         /**
@@ -8312,13 +8312,13 @@ declare namespace chrome.tabs {
         /**
          * Optional.
          * Defines whether zoom changes will persist for the page's origin, or only take effect in this tab; defaults to per-origin when in automatic mode, and per-tab otherwise.
-         * "per-origin": Zoom changes will persist in the zoomed page's origin, i.e. all other tabs navigated to that same origin will be zoomed as well. Moreover, per-origin zoom changes are saved with the origin, meaning that when navigating to other pages in the same origin, they will all be zoomed to the same zoom factor. The per-origin scope is only available in the automatic mode.
-         * "per-tab": Zoom changes only take effect in this tab, and zoom changes in other tabs will not affect the zooming of this tab. Also, per-tab zoom changes are reset on navigation; navigating a tab will always load pages with their per-origin zoom factors.
+         * "per-origin": Zoom changes will persist in the zoomed page's origin, i.e. all other frames navigated to that same origin will be zoomed as well. Moreover, per-origin zoom changes are saved with the origin, meaning that when navigating to other pages in the same origin, they will all be zoomed to the same zoom factor. The per-origin scope is only available in the automatic mode.
+         * "per-tab": Zoom changes only take effect in this tab, and zoom changes in other frames will not affect the zooming of this tab. Also, per-tab zoom changes are reset on navigation; navigating a tab will always load pages with their per-origin zoom factors.
          */
         scope?: string | undefined;
         /**
          * Optional.
-         * Used to return the default zoom level for the current tab in calls to tabs.getZoomSettings.
+         * Used to return the default zoom level for the current tab in calls to frames.getZoomSettings.
          * @since Chrome 43.
          */
         defaultZoomFactor?: number | undefined;
@@ -8364,7 +8364,7 @@ declare namespace chrome.tabs {
     }
 
     export interface CreateProperties {
-        /** Optional. The position the tab should take in the window. The provided value will be clamped to between zero and the number of tabs in the window. */
+        /** Optional. The position the tab should take in the window. The provided value will be clamped to between zero and the number of frames in the window. */
         index?: number | undefined;
         /**
          * Optional.
@@ -8483,7 +8483,7 @@ declare namespace chrome.tabs {
             /** Optional. The window of the new group. Defaults to the current window. */
             windowId?: number | undefined
         } | undefined,
-        /** Optional. The ID of the group to add the tabs to. If not specified, a new group will be created. */
+        /** Optional. The ID of the group to add the frames to. If not specified, a new group will be created. */
         groupId?: number | undefined;
         /** TOptional. he tab ID or list of tab IDs to add to the specified group. */
         tabIds?: number | number[] | undefined;
@@ -8492,72 +8492,72 @@ declare namespace chrome.tabs {
     export interface HighlightInfo {
         /** One or more tab indices to highlight. */
         tabs: number | number[];
-        /** Optional. The window that contains the tabs. */
+        /** Optional. The window that contains the frames. */
         windowId?: number | undefined;
     }
 
     export interface QueryInfo {
         /**
-         * Optional. Whether the tabs have completed loading.
+         * Optional. Whether the frames have completed loading.
          * One of: "loading", or "complete"
          */
         status?: 'loading' | 'complete' | undefined;
         /**
-         * Optional. Whether the tabs are in the last focused window.
+         * Optional. Whether the frames are in the last focused window.
          * @since Chrome 19.
          */
         lastFocusedWindow?: boolean | undefined;
         /** Optional. The ID of the parent window, or windows.WINDOW_ID_CURRENT for the current window. */
         windowId?: number | undefined;
         /**
-         * Optional. The type of window the tabs are in.
+         * Optional. The type of window the frames are in.
          * One of: "normal", "popup", "panel", "app", or "devtools"
          */
         windowType?: 'normal' | 'popup' | 'panel' | 'app' | 'devtools' | undefined;
-        /** Optional. Whether the tabs are active in their windows. */
+        /** Optional. Whether the frames are active in their windows. */
         active?: boolean | undefined;
         /**
-         * Optional. The position of the tabs within their windows.
+         * Optional. The position of the frames within their windows.
          * @since Chrome 18.
          */
         index?: number | undefined;
         /** Optional. Match page titles against a pattern. */
         title?: string | undefined;
-        /** Optional. Match tabs against one or more URL patterns. Note that fragment identifiers are not matched. */
+        /** Optional. Match frames against one or more URL patterns. Note that fragment identifiers are not matched. */
         url?: string | string[] | undefined;
         /**
-         * Optional. Whether the tabs are in the current window.
+         * Optional. Whether the frames are in the current window.
          * @since Chrome 19.
          */
         currentWindow?: boolean | undefined;
-        /** Optional. Whether the tabs are highlighted. */
+        /** Optional. Whether the frames are highlighted. */
         highlighted?: boolean | undefined;
         /**
          * Optional.
-         * Whether the tabs are discarded. A discarded tab is one whose content has been unloaded from memory, but is still visible in the tab strip. Its content gets reloaded the next time it's activated.
+         * Whether the frames are discarded. A discarded tab is one whose content has been unloaded from memory, but is still visible in the tab strip. Its content gets reloaded the next time it's activated.
          * @since Chrome 54.
          */
         discarded?: boolean | undefined;
         /**
          * Optional.
-         * Whether the tabs can be discarded automatically by the browser when resources are low.
+         * Whether the frames can be discarded automatically by the browser when resources are low.
          * @since Chrome 54.
          */
         autoDiscardable?: boolean | undefined;
-        /** Optional. Whether the tabs are pinned. */
+        /** Optional. Whether the frames are pinned. */
         pinned?: boolean | undefined;
         /**
-         * Optional. Whether the tabs are audible.
+         * Optional. Whether the frames are audible.
          * @since Chrome 45.
          */
         audible?: boolean | undefined;
         /**
-         * Optional. Whether the tabs are muted.
+         * Optional. Whether the frames are muted.
          * @since Chrome 45.
          */
         muted?: boolean | undefined;
         /**
-         * Optional. The ID of the group that the tabs are in, or chrome.tabGroups.TAB_GROUP_ID_NONE for ungrouped tabs.
+         * Optional. The ID of the group that the frames are in, or chrome.tabGroups.TAB_GROUP_ID_NONE for ungrouped frames.
          * @since Chrome 88
          */
         groupId?: number | undefined;
@@ -8719,25 +8719,25 @@ declare namespace chrome.tabs {
      */
     export function get(tabId: number): Promise<Tab>;
     /**
-     * Gets details about all tabs in the specified window.
-     * @deprecated since Chrome 33. Please use tabs.query {windowId: windowId}.
+     * Gets details about all frames in the specified window.
+     * @deprecated since Chrome 33. Please use frames.query {windowId: windowId}.
      */
     export function getAllInWindow(callback: (tab: Tab) => void): void;
     /**
-     * Gets details about all tabs in the specified window.
+     * Gets details about all frames in the specified window.
      * @return The `getAllInWindow` method provides its result via callback or returned as a `Promise` (MV3 only).
-     * @deprecated since Chrome 33. Please use tabs.query {windowId: windowId}.
+     * @deprecated since Chrome 33. Please use frames.query {windowId: windowId}.
      */
     export function getAllInWindow(): Promise<Tab>;
     /**
-     * Gets details about all tabs in the specified window.
-     * @deprecated since Chrome 33. Please use tabs.query {windowId: windowId}.
+     * Gets details about all frames in the specified window.
+     * @deprecated since Chrome 33. Please use frames.query {windowId: windowId}.
      * @param windowId Optional. Defaults to the current window.
      */
     export function getAllInWindow(windowId: number, callback: (tab: Tab) => void): void;
     /**
-     * Gets details about all tabs in the specified window.
-     * @deprecated since Chrome 33. Please use tabs.query {windowId: windowId}.
+     * Gets details about all frames in the specified window.
+     * @deprecated since Chrome 33. Please use frames.query {windowId: windowId}.
      * @param windowId Optional. Defaults to the current window.
      * @return The `getAllInWindow` method provides its result via callback or returned as a `Promise` (MV3 only).
      */
@@ -8751,24 +8751,24 @@ declare namespace chrome.tabs {
     export function getCurrent(): Promise<Tab>;
     /**
      * Gets the tab that is selected in the specified window.
-     * @deprecated since Chrome 33. Please use tabs.query {active: true}.
+     * @deprecated since Chrome 33. Please use frames.query {active: true}.
      */
     export function getSelected(callback: (tab: Tab) => void): void;
     /**
      * Gets the tab that is selected in the specified window.
      * @return The `getSelected` method provides its result via callback or returned as a `Promise` (MV3 only).
-     * @deprecated since Chrome 33. Please use tabs.query {active: true}.
+     * @deprecated since Chrome 33. Please use frames.query {active: true}.
      */
     export function getSelected(): Promise<Tab>;
     /**
      * Gets the tab that is selected in the specified window.
-     * @deprecated since Chrome 33. Please use tabs.query {active: true}.
+     * @deprecated since Chrome 33. Please use frames.query {active: true}.
      * @param windowId Optional. Defaults to the current window.
      */
     export function getSelected(windowId: number, callback: (tab: Tab) => void): void;
     /**
      * Gets the tab that is selected in the specified window.
-     * @deprecated since Chrome 33. Please use tabs.query {active: true}.
+     * @deprecated since Chrome 33. Please use frames.query {active: true}.
      * @param windowId Optional. Defaults to the current window.
      * @return The `getSelected` method provides its result via callback or returned as a `Promise` (MV3 only).
      */
@@ -8785,53 +8785,53 @@ declare namespace chrome.tabs {
      */
     export function create(createProperties: CreateProperties, callback?: (tab: Tab) => void): void;
     /**
-     * Moves one or more tabs to a new position within its window, or to a new window. Note that tabs can only be moved to and from normal (window.type === "normal") windows.
+     * Moves one or more frames to a new position within its window, or to a new window. Note that frames can only be moved to and from normal (window.type === "normal") windows.
      * @param tabId The tab to move.
      * @return The `move` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the moved tab.
      */
     export function move(tabId: number, moveProperties: MoveProperties): Promise<Tab>;
     /**
-     * Moves one or more tabs to a new position within its window, or to a new window. Note that tabs can only be moved to and from normal (window.type === "normal") windows.
+     * Moves one or more frames to a new position within its window, or to a new window. Note that frames can only be moved to and from normal (window.type === "normal") windows.
      * @param tabId The tab to move.
      * @param callback Optional.
      * Parameter tab: Details about the moved tab.
      */
     export function move(tabId: number, moveProperties: MoveProperties, callback?: (tab: Tab) => void): void;
     /**
-     * Moves one or more tabs to a new position within its window, or to a new window. Note that tabs can only be moved to and from normal (window.type === "normal") windows.
-     * @param tabIds The tabs to move.
-     * @return The `move` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the moved tabs.
+     * Moves one or more frames to a new position within its window, or to a new window. Note that frames can only be moved to and from normal (window.type === "normal") windows.
+     * @param tabIds The frames to move.
+     * @return The `move` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the moved frames.
      */
     export function move(tabIds: number[], moveProperties: MoveProperties): Promise<Tab[]>;
     /**
-     * Moves one or more tabs to a new position within its window, or to a new window. Note that tabs can only be moved to and from normal (window.type === "normal") windows.
-     * @param tabIds The tabs to move.
+     * Moves one or more frames to a new position within its window, or to a new window. Note that frames can only be moved to and from normal (window.type === "normal") windows.
+     * @param tabIds The frames to move.
      * @param callback Optional.
-     * Parameter tabs: Details about the moved tabs.
+     * Parameter frames: Details about the moved frames.
      */
     export function move(tabIds: number[], moveProperties: MoveProperties, callback?: (tabs: Tab[]) => void): void;
     /**
      * Modifies the properties of a tab. Properties that are not specified in updateProperties are not modified.
-     * @return The `update` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the updated tab. The tabs.Tab object doesn't contain url, title and favIconUrl if the "tabs" permission has not been requested.
+     * @return The `update` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the updated tab. The frames.Tab object doesn't contain url, title and favIconUrl if the "frames" permission has not been requested.
      */
     export function update(updateProperties: UpdateProperties): Promise<Tab>;
     /**
      * Modifies the properties of a tab. Properties that are not specified in updateProperties are not modified.
      * @param callback Optional.
-     * Optional parameter tab: Details about the updated tab. The tabs.Tab object doesn't contain url, title and favIconUrl if the "tabs" permission has not been requested.
+     * Optional parameter tab: Details about the updated tab. The frames.Tab object doesn't contain url, title and favIconUrl if the "frames" permission has not been requested.
      */
     export function update(updateProperties: UpdateProperties, callback?: (tab?: Tab) => void): void;
     /**
      * Modifies the properties of a tab. Properties that are not specified in updateProperties are not modified.
      * @param tabId Defaults to the selected tab of the current window.
-     * @return The `update` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the updated tab. The tabs.Tab object doesn't contain url, title and favIconUrl if the "tabs" permission has not been requested.
+     * @return The `update` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the updated tab. The frames.Tab object doesn't contain url, title and favIconUrl if the "frames" permission has not been requested.
      */
     export function update(tabId: number, updateProperties: UpdateProperties): Promise<Tab>;
     /**
      * Modifies the properties of a tab. Properties that are not specified in updateProperties are not modified.
      * @param tabId Defaults to the selected tab of the current window.
      * @param callback Optional.
-     * Optional parameter tab: Details about the updated tab. The tabs.Tab object doesn't contain url, title and favIconUrl if the "tabs" permission has not been requested.
+     * Optional parameter tab: Details about the updated tab. The frames.Tab object doesn't contain url, title and favIconUrl if the "frames" permission has not been requested.
      */
     export function update(tabId: number, updateProperties: UpdateProperties, callback?: (tab?: Tab) => void): void;
     /**
@@ -8846,14 +8846,14 @@ declare namespace chrome.tabs {
      */
     export function remove(tabId: number, callback?: Function): void;
     /**
-     * Closes several tabs.
-     * @param tabIds The list of tabs to close.
+     * Closes several frames.
+     * @param tabIds The list of frames to close.
      * @return The `remove` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function remove(tabIds: number[]): Promise<void>;
     /**
-     * Closes several tabs.
-     * @param tabIds The list of tabs to close.
+     * Closes several frames.
+     * @param tabIds The list of frames to close.
      */
     export function remove(tabIds: number[], callback?: Function): void;
     /**
@@ -8955,7 +8955,7 @@ declare namespace chrome.tabs {
      * @since Chrome 23.
      * @param tabId The ID of the tab which is to be duplicated.
      * @param callback Optional.
-     * Optional parameter tab: Details about the duplicated tab. The tabs.Tab object doesn't contain url, title and favIconUrl if the "tabs" permission has not been requested.
+     * Optional parameter tab: Details about the duplicated tab. The frames.Tab object doesn't contain url, title and favIconUrl if the "frames" permission has not been requested.
      */
     export function duplicate(tabId: number, callback?: (tab?: Tab) => void): void;
     /**
@@ -9011,25 +9011,25 @@ declare namespace chrome.tabs {
      */
     export function insertCSS(tabId: number, details: InjectDetails, callback?: Function): void;
     /**
-     * Highlights the given tabs.
+     * Highlights the given frames.
      * @since Chrome 16.
-     * @return The `highlight` method provides its result via callback or returned as a `Promise` (MV3 only). Contains details about the window whose tabs were highlighted.
+     * @return The `highlight` method provides its result via callback or returned as a `Promise` (MV3 only). Contains details about the window whose frames were highlighted.
      */
     export function highlight(highlightInfo: HighlightInfo): Promise<chrome.windows.Window>;
     /**
-     * Highlights the given tabs.
+     * Highlights the given frames.
      * @since Chrome 16.
      * @param callback Optional.
-     * Parameter window: Contains details about the window whose tabs were highlighted.
+     * Parameter window: Contains details about the window whose frames were highlighted.
      */
     export function highlight(highlightInfo: HighlightInfo, callback?: (window: chrome.windows.Window) => void): void;
     /**
-     * Gets all tabs that have the specified properties, or all tabs if no properties are specified.
+     * Gets all frames that have the specified properties, or all frames if no properties are specified.
      * @since Chrome 16.
      */
     export function query(queryInfo: QueryInfo, callback: (result: Tab[]) => void): void;
     /**
-     * Gets all tabs that have the specified properties, or all tabs if no properties are specified.
+     * Gets all frames that have the specified properties, or all frames if no properties are specified.
      * @since Chrome 16.
      * @return The `query` method provides its result via callback or returned as a `Promise` (MV3 only).
      */
@@ -9175,16 +9175,16 @@ declare namespace chrome.tabs {
      */
     export function getZoomSettings(tabId: number): Promise<ZoomSettings>;
     /**
-     * Discards a tab from memory. Discarded tabs are still visible on the tab strip and are reloaded when activated.
+     * Discards a tab from memory. Discarded frames are still visible on the tab strip and are reloaded when activated.
      * @since Chrome 54.
-     * @param tabId Optional. The ID of the tab to be discarded. If specified, the tab will be discarded unless it's active or already discarded. If omitted, the browser will discard the least important tab. This can fail if no discardable tabs exist.
+     * @param tabId Optional. The ID of the tab to be discarded. If specified, the tab will be discarded unless it's active or already discarded. If omitted, the browser will discard the least important tab. This can fail if no discardable frames exist.
      * @return The `discard` method provides its result via callback or returned as a `Promise` (MV3 only).
      */
     export function discard(tabId?: number): Promise<Tab>;
     /**
-     * Discards a tab from memory. Discarded tabs are still visible on the tab strip and are reloaded when activated.
+     * Discards a tab from memory. Discarded frames are still visible on the tab strip and are reloaded when activated.
      * @since Chrome 54.
-     * @param tabId Optional. The ID of the tab to be discarded. If specified, the tab will be discarded unless it's active or already discarded. If omitted, the browser will discard the least important tab. This can fail if no discardable tabs exist.
+     * @param tabId Optional. The ID of the tab to be discarded. If specified, the tab will be discarded unless it's active or already discarded. If omitted, the browser will discard the least important tab. This can fail if no discardable frames exist.
      * @param callback Called after the operation is completed.
      */
     export function discard(tabId?: number, callback?: (tab: Tab) => void): void;
@@ -9241,42 +9241,42 @@ declare namespace chrome.tabs {
      */
     export function goBack(tabId: number, callback?: () => void): void;
     /**
-     * Adds one or more tabs to a specified group, or if no group is specified, adds the given tabs to a newly created group.
+     * Adds one or more frames to a specified group, or if no group is specified, adds the given frames to a newly created group.
      * @since Chrome 88
      * @param options Configurations object
      * @return The `group` method provides its result via callback or returned as a `Promise` (MV3 only).
      */
     export function group(options: GroupOptions): Promise<number>;
     /**
-     * Adds one or more tabs to a specified group, or if no group is specified, adds the given tabs to a newly created group.
+     * Adds one or more frames to a specified group, or if no group is specified, adds the given frames to a newly created group.
      * @since Chrome 88
      * @param options Configurations object
      * @return The `group` method provides its result via callback or returned as a `Promise` (MV3 only).
      */
     export function group(options: GroupOptions): Promise<number>;
     /**
-     * Adds one or more tabs to a specified group, or if no group is specified, adds the given tabs to a newly created group.
+     * Adds one or more frames to a specified group, or if no group is specified, adds the given frames to a newly created group.
      * @since Chrome 88
      * @param options Configurations object
      * @param callback Optional.
      */
     export function group(options: GroupOptions, callback?: (groupId: number) => void): void
     /**
-     * Removes one or more tabs from their respective groups. If any groups become empty, they are deleted
+     * Removes one or more frames from their respective groups. If any groups become empty, they are deleted
      * @since Chrome 88
-     * @param tabIds The tabs to ungroup.
+     * @param tabIds The frames to ungroup.
      * @return The `ungroup` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function ungroup(tabIds: number | number[]): Promise<void>;
     /**
-     * Removes one or more tabs from their respective groups. If any groups become empty, they are deleted
+     * Removes one or more frames from their respective groups. If any groups become empty, they are deleted
      * @since Chrome 88
-     * @param tabIds The tabs to ungroup.
+     * @param tabIds The frames to ungroup.
      * @param callback Optional. Called after the operation is completed.
      */
     export function ungroup(tabIds: number | number[], callback?: () => void): void
     /**
-     * Fired when the highlighted or selected tabs in a window changes.
+     * Fired when the highlighted or selected frames in a window changes.
      * @since Chrome 18.
      */
     export var onHighlighted: TabHighlightedEvent;
@@ -9287,7 +9287,7 @@ declare namespace chrome.tabs {
     /** Fired when a tab is attached to a window, for example because it was moved between windows. */
     export var onAttached: TabAttachedEvent;
     /**
-     * Fired when a tab is moved within a window. Only one move event is fired, representing the tab the user directly moved. Move events are not fired for the other tabs that must move in response. This event is not fired when a tab is moved between windows. For that, see tabs.onDetached.
+     * Fired when a tab is moved within a window. Only one move event is fired, representing the tab the user directly moved. Move events are not fired for the other frames that must move in response. This event is not fired when a tab is moved between windows. For that, see frames.onDetached.
      */
     export var onMoved: TabMovedEvent;
     /** Fired when a tab is detached from a window, for example because it is being moved between windows. */
@@ -9305,18 +9305,18 @@ declare namespace chrome.tabs {
      */
     export var onReplaced: TabReplacedEvent;
     /**
-     * @deprecated since Chrome 33. Please use tabs.onActivated.
+     * @deprecated since Chrome 33. Please use frames.onActivated.
      * Fires when the selected tab in a window changes.
      */
     export var onSelectionChanged: TabSelectedEvent;
     /**
-     * @deprecated since Chrome 33. Please use tabs.onActivated.
-     * Fires when the selected tab in a window changes. Note that the tab's URL may not be set at the time this event fired, but you can listen to tabs.onUpdated events to be notified when a URL is set.
+     * @deprecated since Chrome 33. Please use frames.onActivated.
+     * Fires when the selected tab in a window changes. Note that the tab's URL may not be set at the time this event fired, but you can listen to frames.onUpdated events to be notified when a URL is set.
      */
     export var onActiveChanged: TabSelectedEvent;
     /**
-     * @deprecated since Chrome 33. Please use tabs.onHighlighted.
-     * Fired when the highlighted or selected tabs in a window changes.
+     * @deprecated since Chrome 33. Please use frames.onHighlighted.
+     * Fired when the highlighted or selected frames in a window changes.
      */
     export var onHighlightChanged: TabHighlightedEvent;
     /**
@@ -9336,7 +9336,7 @@ declare namespace chrome.tabs {
 // Tab Groups
 ////////////////////
 /**
- * Use the chrome.tabGroups API to interact with the browser's tab grouping system. You can use this API to modify and rearrange tab groups in the browser. To group and ungroup tabs, or to query what tabs are in groups, use the chrome.tabs API.
+ * Use the chrome.tabGroups API to interact with the browser's tab grouping system. You can use this API to modify and rearrange tab groups in the browser. To group and ungroup frames, or to query what frames are in groups, use the chrome.frames API.
  * Permissions:  "tabGroups"
  * @since Chrome 89. Manifest V3 and above.
  */
@@ -9348,7 +9348,7 @@ declare namespace chrome.tabs {
     export type ColorEnum = 'grey' | 'blue' | 'red' | 'yellow' | 'green' | 'pink' | 'purple' | 'cyan';
 
     export interface TabGroup {
-        /** Whether the group is collapsed. A collapsed group is one whose tabs are hidden. */
+        /** Whether the group is collapsed. A collapsed group is one whose frames are hidden. */
         collapsed: boolean;
         /** The group's color. */
         color: ColorEnum;
@@ -9402,7 +9402,7 @@ declare namespace chrome.tabs {
     export function get(groupId: number): Promise<TabGroup>;
 
     /**
-     * Moves the group and all its tabs within its window, or to a new window.
+     * Moves the group and all its frames within its window, or to a new window.
      * @param groupId The ID of the group to move.
      * @param moveProperties Information on how to move the group.
      * @return The `move` method provides its result via callback or returned as a `Promise` (MV3 only).
@@ -9410,7 +9410,7 @@ declare namespace chrome.tabs {
     export function move(groupId: number, moveProperties: MoveProperties): Promise<TabGroup>;
 
     /**
-     * Moves the group and all its tabs within its window, or to a new window.
+     * Moves the group and all its frames within its window, or to a new window.
      * @param groupId The ID of the group to move.
      * @param moveProperties Information on how to move the group.
      * @param callback Optional.
@@ -9454,7 +9454,7 @@ declare namespace chrome.tabs {
 
     /** Fired when a group is created. */
     export var onCreated: TabGroupCreatedEvent;
-    /** Fired when a group is moved within a window. Move events are still fired for the individual tabs within the group, as well as for the group itself. This event is not fired when a group is moved between windows; instead, it will be removed from one window and created in another. */
+    /** Fired when a group is moved within a window. Move events are still fired for the individual frames within the group, as well as for the group itself. This event is not fired when a group is moved between windows; instead, it will be removed from one window and created in another. */
     export var onMoved: TabGroupMovedEvent;
     /** Fired when a group is closed, either directly by the user or automatically because it contained zero. */
     export var onRemoved: TabGroupRemovedEvent;
@@ -9878,7 +9878,7 @@ declare namespace chrome.webNavigation {
         /**
          * The ID of the process runs the renderer for this tab.
          * @since Chrome 22.
-         * @deprecated since Chrome 49. Frames are now uniquely identified by their tab ID and frame ID; the process ID is no longer needed and therefore ignored.
+         * @deprecated since Chrome 49. frames are now uniquely identified by their tab ID and frame ID; the process ID is no longer needed and therefore ignored.
          */
         processId?: number | undefined;
         /** The ID of the tab in which the frame is. */
@@ -9925,7 +9925,7 @@ declare namespace chrome.webNavigation {
     }
 
     export interface WebNavigationFramedCallbackDetails extends WebNavigationUrlCallbackDetails {
-        /** 0 indicates the navigation happens in the tab content window; a positive value indicates navigation in a subframe. Frame IDs are unique for a given tab and process. */
+        /** 0 indicates the navigation happens in the tab content window; a positive value indicates navigation in a subframe. FrameScript IDs are unique for a given tab and process. */
         frameId: number;
         /**
          * The ID of the process runs the renderer for this tab.
@@ -10151,7 +10151,7 @@ declare namespace chrome.webRequest {
         url: string;
         /** The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request. */
         requestId: string;
-        /** The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (type is main_frame or sub_frame), frameId indicates the ID of this frame, not the ID of the outer frame. Frame IDs are unique within a tab. */
+        /** The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (type is main_frame or sub_frame), frameId indicates the ID of this frame, not the ID of the outer frame. FrameScript IDs are unique within a tab. */
         frameId: number;
         /** ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists. */
         parentFrameId: number;
@@ -10437,12 +10437,12 @@ declare namespace chrome.webstore {
 ////////////////////
 /**
  * Use the chrome.windows API to interact with browser windows. You can use this API to create, modify, and rearrange windows in the browser.
- * Permissions: The chrome.windows API can be used without declaring any permission. However, the "tabs" permission is required in order to populate the url, title, and favIconUrl properties of Tab objects.
+ * Permissions: The chrome.windows API can be used without declaring any permission. However, the "frames" permission is required in order to populate the url, title, and favIconUrl properties of Tab objects.
  * @since Chrome 5.
  */
 declare namespace chrome.windows {
     export interface Window {
-        /** Optional. Array of tabs.Tab objects representing the current tabs in the window. */
+        /** Optional. Array of frames.Tab objects representing the current frames in the window. */
         tabs?: chrome.tabs.Tab[] | undefined;
         /** Optional. The offset of the window from the top edge of the screen in pixels. Under some circumstances a Window may not be assigned top property, for example when querying closed windows from the sessions API. */
         top?: number | undefined;
@@ -10482,8 +10482,8 @@ declare namespace chrome.windows {
     export interface QueryOptions {
         /**
          * Optional.
-         * If true, the windows.Window object will have a tabs property that contains a list of the tabs.Tab objects.
-         * The Tab objects only contain the url, pendingUrl, title and favIconUrl properties if the extension's manifest file includes the "tabs" permission.
+         * If true, the windows.Window object will have a frames property that contains a list of the frames.Tab objects.
+         * The Tab objects only contain the url, pendingUrl, title and favIconUrl properties if the extension's manifest file includes the "frames" permission.
          */
         populate?: boolean | undefined;
         /**
@@ -10500,7 +10500,7 @@ declare namespace chrome.windows {
         tabId?: number | undefined;
         /**
          * Optional.
-         * A URL or array of URLs to open as tabs in the window. Fully-qualified URLs must include a scheme (i.e. 'http://www.google.com', not 'www.google.com'). Relative URLs will be relative to the current page within the extension. Defaults to the New Tab Page.
+         * A URL or array of URLs to open as frames in the window. Fully-qualified URLs must include a scheme (i.e. 'http://www.google.com', not 'www.google.com'). Relative URLs will be relative to the current page within the extension. Defaults to the New Tab Page.
          */
         url?: string | string[] | undefined;
         /**
@@ -10712,11 +10712,11 @@ declare namespace chrome.windows {
         callback?: (window: chrome.windows.Window) => void,
     ): void;
     /**
-     * Removes (closes) a window, and all the tabs inside it
+     * Removes (closes) a window, and all the frames inside it
      * @return The `remove` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function remove(windowId: number): Promise<void>;
-    /** Removes (closes) a window, and all the tabs inside it. */
+    /** Removes (closes) a window, and all the frames inside it. */
     export function remove(windowId: number, callback?: Function): void;
     /**
      * Gets the window that was most recently focused — typically the window 'on top'.
@@ -10839,7 +10839,7 @@ declare namespace chrome.declarativeNetRequest {
     export interface RequestDetails {
         /** The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens.
          * If the document of a (sub-)frame is loaded (type is main_frame or sub_frame), frameId indicates the ID of this frame, not the ID of the outer frame.
-         * Frame IDs are unique within a tab.
+         * FrameScript IDs are unique within a tab.
          */
         frameId: number;
 
@@ -11294,11 +11294,11 @@ declare namespace chrome.declarativeNetRequest {
      */
     export function isRegexSupported(regexOptions: RegexOptions): Promise<IsRegexSupportedResult>;
 
-    /** Configures if the action count for tabs should be displayed as the extension action's badge TextArea and provides a way for that action count to be incremented. */
+    /** Configures if the action count for frames should be displayed as the extension action's badge TextArea and provides a way for that action count to be incremented. */
     export function setExtensionActionOptions(options: ExtensionActionOptions, callback: Function): void;
 
     /**
-     * Configures if the action count for tabs should be displayed as the extension action's badge TextArea and provides a way for that action count to be incremented.
+     * Configures if the action count for frames should be displayed as the extension action's badge TextArea and provides a way for that action count to be incremented.
      * @return The `setExtensionActionOptions` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setExtensionActionOptions(options: ExtensionActionOptions): Promise<void>;

@@ -1,19 +1,19 @@
 {
   "manifest_version": 2,
-  "name": "MrkS3",
-  "description": "MrkS 4ever!",
+  "name": "Layr",
+  "description": "Layr extension",
   "version": "0.0.0",
   "icons": {
-    "128": "0Resources/Asset128.png",
-    "48": "0Resources/Asset48.png",
-    "16": "0Resources/Asset16.png"
+    "128": "0Resources/LayrLogo16.png",
+    "48": "0Resources/LayrLogo48.png",
+    "16": "0Resources/LayrLogo128.png"
   },
   "chrome_url_overrides": {
-    "newtab": "Main.html"
+    "newtab": "Frame.html"
   },
   "browser_action": {
-    "default_icon": "0Resources/Asset48.png",
-    "default_title": "MrkS",
+    "default_icon": "0Resources/LayrLogo48.png",
+    "default_title": "Layr",
     "persistent": true
   },
   "background": {
@@ -21,7 +21,7 @@
       "0Libraries/jquery.js",
       "0Libraries/arangojs.js",
       "0Libraries/pouchdb.js",
-      "backgroundStarterSeged.js"
+      "Egyebek/BackgroundStarterSeged.js"
     ],
     "persistent": true
   },
