@@ -1,7 +1,7 @@
 import {LayrBackground} from "./LayrBackground.js";
 import {DocData} from "./Data/DocData/DocData.js";
 import {DocDataObject} from "./Data/DocData/DocDataObject.js";
-import {NodeDiv} from "../Frame/NodeDiv/NodeDiv.js";
+import {NodeDivBase} from "../Frame/NodeDiv/NodeDivBase.js";
 import {NodeDivData} from "../Frame/NodeDiv/NodeDivData.js";
 
 export class DocsManager {
@@ -14,6 +14,9 @@ export class DocsManager {
 		this.layr = layr
 		this.docsMap = new Map<string, DocDataObject>()
 	}
+
+
+
 
 	async docsDownloadAndLoad(docURLs: string[], callback) {
 		let self = this

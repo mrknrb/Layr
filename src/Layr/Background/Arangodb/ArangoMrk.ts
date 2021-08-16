@@ -1,4 +1,4 @@
-import {URL_Object} from "./ArangoAdatok/URL_Object.js";
+import {DocURLObject} from "./ArangoAdatok/DocURLObject.js";
 import {ArangoDBInitData} from "./ArangoAdatok/ArangoDBInitData.js";
 
 
@@ -21,7 +21,7 @@ export class ArangoMrk {
 		let URLsSzetvalogatott = new Map()
 
 		URLsBejovo.forEach(function (URL) {
-			let urlObject = new URL_Object(URL, null)
+			let urlObject = new DocURLObject(URL, null)
 			//host szerint szedi szet egy mapbe a databaseket
 			if (URLsSzetvalogatott.get(urlObject.urlData.hostid) === undefined) {
 				URLsSzetvalogatott.set(urlObject.urlData.hostid, new Map())
@@ -44,7 +44,7 @@ export class ArangoMrk {
 		URLsSzetvalogatott.forEach(function (hostdbs, hostid) {
 			hostdbs.forEach(function (databaseURLObjectArray, databaseid) {
 				let docsQueryDataArray = []
-				databaseURLObjectArray.forEach(function (urlObject:URL_Object) {
+				databaseURLObjectArray.forEach(function (urlObject:DocURLObject) {
 					let docQueryData: any = {}
 					docQueryData.URL = urlObject.UrlString
 					docQueryData.docQueryid = urlObject.docQueryid

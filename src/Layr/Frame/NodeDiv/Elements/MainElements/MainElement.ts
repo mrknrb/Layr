@@ -1,14 +1,14 @@
 import {MainElementLayouts} from "./MainElementLayouts.js";
 import {NodeData} from "../../../../Background/Data/NodeData/NodeData.js";
-import {NodeDiv} from "../../NodeDiv.js";
+import {NodeDivBase} from "../../NodeDivBase.js";
 
 
 export class MainElement {
 	element: HTMLDivElement
-	nodeDiv: NodeDiv
+	nodeDiv: NodeDivBase
 	mainElementLayouts: MainElementLayouts
 
-	constructor(nodeDiv: NodeDiv) {
+	constructor(nodeDiv: NodeDivBase) {
 		this.nodeDiv = nodeDiv
 		this.mainElementLayouts = new MainElementLayouts(this)
 		this.elementInit()
@@ -27,7 +27,6 @@ export class MainElement {
 		this.element.addEventListener("mouseleave", function (e) {
 
 		})
-
 	}
 
 

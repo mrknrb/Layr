@@ -1,6 +1,6 @@
 import {ElementTypes} from "../../ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
-import {NodeDiv} from "../../../NodeDiv.js";
+import {NodeDivBase} from "../../../NodeDivBase.js";
 import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
 import {ResizeTypes} from "../../ElementResizer/ResizeTypes.js";
 import {TextAreaElementData} from "./TextAreaElementData.js";
@@ -13,7 +13,7 @@ export class TextAreaElement extends ElementBaseClass {
 	elementResizer: ElementResizer
 	elementSettings:TextAreaElementSettings
 	elementData:TextAreaElementData
-	constructor(nodeDiv: NodeDiv, elementData, elementSettings) {
+	constructor(nodeDiv: NodeDivBase, elementData, elementSettings) {
 		super(ElementTypes.TextArea, nodeDiv, elementData, elementSettings);
 		this.elementInit()
 		this.elementResizer = new ElementResizer(this)

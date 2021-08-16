@@ -1,32 +1,37 @@
 import {LayrBackground} from "../Background/LayrBackground.js";
 import {DocData} from "../Background/Data/DocData/DocData.js";
-import {NodeDiv} from "./NodeDiv/NodeDiv.js";
+import {NodeDivBase} from "./NodeDiv/NodeDivBase.js";
 import {GroupElementData} from "./NodeDiv/Elements/Elements/GroupElement/GroupElementData.js";
-import {URL_Object} from "../Background/Arangodb/ArangoAdatok/URL_Object.js";
+import {DocURLObject} from "../Background/Arangodb/ArangoAdatok/DocURLObject.js";
 import {NodeDivData} from "./NodeDiv/NodeDivData.js";
 
 
 export class NodeDivManager {
 
 	layrBackground: LayrBackground
-	nodeDivs: Map<string, NodeDiv>
-	rootNodeDiv: NodeDiv
+	nodeDivs: Map<string, NodeDivBase>
+	rootNodeDiv: NodeDivBase
 
 	constructor(layrBackground: LayrBackground) {
 		this.layrBackground = layrBackground
-		this.nodeDivs = new Map<string, NodeDiv>()
+		this.nodeDivs = new Map<string, NodeDivBase>()
 	}
 
-	createRootNodeDiv() {
+	createRootNodeDiv(docURL:string) {
+		let self=this
+		this.layrBackground.docsManager.docGetOrDownload(docURL,function (doc) {
+			self.rootNodeDiv = new NodeDivBase()
+			self.rootNodeDiv.rootInit(doc)
+		})
 
-		this.rootNodeDiv = new NodeDiv()
-		this.rootNodeDiv.rootInit()
 	}
 
 	ujRootNodeDivBetoltes(docURL: string) {
 		//empty virtual doc if arg is empty
 		this.torlesNodedivs()
-		let nodeDiv = new NodeDiv()
+		let
+			let
+		nodeDiv = new NodeDivBase()
 		nodeDiv.nodeDivData.root = true
 		this.layrBackground.nodeDivMap.set(nodeDiv.nodeDivData.nodeDivData.nodeDivId, nodeDiv)
 		this.layrBackground.arangoMrk.docsDownloader([docURL], function (docs: DocData[]) {
@@ -38,7 +43,7 @@ export class NodeDivManager {
 	private _docGroupBetoltottNodeDivsMaker(docgroup, docGroupRoot) {
 		let self = this
 		docgroup.data.nodes.forEach(function (nodeDocData) {
-			let nodediv = new NodeDiv(self, nodeDocData)
+			let nodediv = new NodeDivBase(self, nodeDocData)
 			nodediv.appendNodeDiv(docGroupRoot)
 			self.nodeDivMap.push(nodediv)
 
@@ -46,7 +51,7 @@ export class NodeDivManager {
 	}
 
 
-	private async docGroupsChildDocsDataGetter(nodeDiv_AND_GroupFieldArray: { nodeDiv: NodeDiv, groupField: GroupElementData }[], callback) {
+	private async docGroupsChildDocsDataGetter(nodeDiv_AND_GroupFieldArray: { nodeDiv: NodeDivBase, groupField: GroupElementData }[], callback) {
 		let self = this
 
 		nodeDiv_AND_GroupFieldArray.forEach(function (nodeDiv_AND_GroupField) {
@@ -65,7 +70,7 @@ export class NodeDivManager {
 		let nodeDocDataArray: NodeDocData[] = []
 		groupField.nodes.forEach(function (node) {
 			let nodeDocData: NodeDocData = new NodeDocData()
-			let urlObject = new URL_Object(nodeDiv.nodeDivAllData.nodeDivData.docAbsoluteURL, node.docRelativeURL)
+			let urlObject = new DocURLObject(nodeDiv.nodeDivAllData.nodeDivData.docAbsoluteURL, node.docRelativeURL)
 
 			if (urlObject.dataScope == "doc") {
 				nodeDocData.docData = self._localDocFinder(urlObject.docid, groupField.localDocs)

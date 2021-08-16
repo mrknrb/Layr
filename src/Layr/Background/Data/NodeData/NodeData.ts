@@ -5,7 +5,7 @@ import {DocFieldhezElementSettings} from "./DocFieldhezElementSettings.js";
 
 export class NodeData {
     constructor() {
-        this.layoutsData=new NodeLayoutsData()
+        this.nodeLayoutsData=new NodeLayoutsData()
        this. docFieldekhezElementSettings=[]
 
     }
@@ -13,6 +13,6 @@ export class NodeData {
     nodeId: string | undefined
     docRelativeURL: string | undefined
     layout: Layouts | undefined
-    layoutsData: NodeLayoutsData
+    nodeLayoutsData: NodeLayoutsData
     docFieldekhezElementSettings:DocFieldhezElementSettings[]
 }

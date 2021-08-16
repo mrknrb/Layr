@@ -1,4 +1,4 @@
-export class URL_Object {
+export class DocURLObject {
     UrlString: string
     docid
     dataType

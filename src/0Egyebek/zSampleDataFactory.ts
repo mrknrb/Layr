@@ -46,20 +46,20 @@ export class zSampleDataFactory {
 		nodeData.docRelativeURL = docURL
 		if (Math.round(Math.random())) {
 			nodeData.layout = Layouts.absolute
-			nodeData.layoutsData.absolute.width = Math.floor(50 + Math.random() * 100) + "px"
-			nodeData.layoutsData.absolute.height = Math.floor(50 + Math.random() * 100) + "px"
-			nodeData.layoutsData.absolute.top = Math.floor(50 + Math.random() * 1000) + "px"
-			nodeData.layoutsData.absolute.left = Math.floor(50 + Math.random() * 1000) + "px"
+			nodeData.nodeLayoutsData.absolute.width = Math.floor(50 + Math.random() * 100) + "px"
+			nodeData.nodeLayoutsData.absolute.height = Math.floor(50 + Math.random() * 100) + "px"
+			nodeData.nodeLayoutsData.absolute.top = Math.floor(50 + Math.random() * 1000) + "px"
+			nodeData.nodeLayoutsData.absolute.left = Math.floor(50 + Math.random() * 1000) + "px"
 		} else {
 			nodeData.layout = Layouts.fixed
 
-			nodeData.layoutsData.fixed.width = Math.floor(50 + Math.random() * 100) + "px"
-			nodeData.layoutsData.fixed.height = Math.floor(50 + Math.random() * 100) + "px"
-			nodeData.layoutsData.fixed.top = Math.floor(50 + Math.random() * 1000) + "px"
-			nodeData.layoutsData.fixed.left = Math.floor(50 + Math.random() * 1000) + "px"
+			nodeData.nodeLayoutsData.fixed.width = Math.floor(50 + Math.random() * 100) + "px"
+			nodeData.nodeLayoutsData.fixed.height = Math.floor(50 + Math.random() * 100) + "px"
+			nodeData.nodeLayoutsData.fixed.top = Math.floor(50 + Math.random() * 1000) + "px"
+			nodeData.nodeLayoutsData.fixed.left = Math.floor(50 + Math.random() * 1000) + "px"
 		}
 
-		//nodeData.layoutsData.all.color = "#" + Math.floor(Math.random() * 16777215).toString(16)
+		//nodeData.nodeLayoutsData.all.color = "#" + Math.floor(Math.random() * 16777215).toString(16)
 
 
 		return nodeData

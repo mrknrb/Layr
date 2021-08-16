@@ -1,13 +1,13 @@
-import {NodeDiv} from "./NodeDiv.js";
+import {NodeDivBase} from "./NodeDivBase.js";
 import {DocFieldekhezElementSettingsDefault} from "./Elements/DocFieldekhezElementSettingsDefault.js";
 import {ElementTypesClassFinder} from "./Elements/ElementTypesClassFinder.js";
 import {ElementBaseClass} from "./Elements/ElementBaseClass.js";
 
 export class ElementsManager {
 	elements: Map<string, any>
-	nodeDiv: NodeDiv
+	nodeDiv: NodeDivBase
 
-	constructor(nodeDiv: NodeDiv) {
+	constructor(nodeDiv: NodeDivBase) {
 		this.nodeDiv = nodeDiv
 		this.elements = new Map<string, any>()
 	}
