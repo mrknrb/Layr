@@ -1,7 +1,7 @@
 import {NodeData} from "../../Background/Data/NodeData/NodeData.js";
 import {DocDataObject} from "../../Background/Data/DocData/DocDataObject.js";
 import {DocField} from "../../Background/Data/DocData/DocField.js";
-import {NodeDivBase} from "./NodeDivBase.js";
+import {NodeDivBase} from "./NodeDiv/NodeDivBase.js";
 
 export class NodeDivData {
 	//a nodediv osszes hivatkozasa

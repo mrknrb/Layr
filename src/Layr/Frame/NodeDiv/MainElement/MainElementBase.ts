@@ -1,16 +1,16 @@
-import {MainElementLayouts} from "./MainElementLayouts.js";
-import {NodeData} from "../../../../Background/Data/NodeData/NodeData.js";
-import {NodeDivBase} from "../../NodeDivBase.js";
+import {MainElementLayoutBase} from "./Layout/MainElementLayoutBase.js";
+import {NodeData} from "../../../Background/Data/NodeData/NodeData.js";
+import {NodeDivBase} from "../NodeDiv/NodeDivBase.js";
 
 
-export class MainElement {
+export abstract class MainElementBase {
 	element: HTMLDivElement
 	nodeDiv: NodeDivBase
-	mainElementLayouts: MainElementLayouts
+	mainElementLayout: MainElementLayoutBase
 
 	constructor(nodeDiv: NodeDivBase) {
 		this.nodeDiv = nodeDiv
-		this.mainElementLayouts = new MainElementLayouts(this)
+
 		this.elementInit()
 	}
 

@@ -1,6 +1,6 @@
 import {ElementTypes} from "../../ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
-import {NodeDivBase} from "../../../NodeDivBase.js";
+import {NodeDivBase} from "../../../NodeDiv/NodeDivBase.js";
 import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
 import {ResizeTypes} from "../../ElementResizer/ResizeTypes.js";
 import {GroupElementSettings} from "./GroupElementSettings.js";

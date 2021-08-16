@@ -1,7 +1,7 @@
 import {LayrBackground} from "./LayrBackground.js";
 import {DocData} from "./Data/DocData/DocData.js";
 import {DocDataObject} from "./Data/DocData/DocDataObject.js";
-import {NodeDivBase} from "../Frame/NodeDiv/NodeDivBase.js";
+import {NodeDivBase} from "../Frame/NodeDiv/NodeDiv/NodeDivBase.js";
 import {NodeDivData} from "../Frame/NodeDiv/NodeDivData.js";
 
 export class DocsManager {

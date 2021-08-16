@@ -1,9 +1,10 @@
 import {LayrBackground} from "../Background/LayrBackground.js";
 import {DocData} from "../Background/Data/DocData/DocData.js";
-import {NodeDivBase} from "./NodeDiv/NodeDivBase.js";
+import {NodeDivBase} from "./NodeDiv/NodeDiv/NodeDivBase.js";
 import {GroupElementData} from "./NodeDiv/Elements/Elements/GroupElement/GroupElementData.js";
 import {DocURLObject} from "../Background/Arangodb/ArangoAdatok/DocURLObject.js";
 import {NodeDivData} from "./NodeDiv/NodeDivData.js";
+import {NodeDivRoot} from "./NodeDiv/NodeDiv/NodeDivRoot.js";
 
 
 export class NodeDivManager {
@@ -20,25 +21,11 @@ export class NodeDivManager {
 	createRootNodeDiv(docURL:string) {
 		let self=this
 		this.layrBackground.docsManager.docGetOrDownload(docURL,function (doc) {
-			self.rootNodeDiv = new NodeDivBase()
-			self.rootNodeDiv.rootInit(doc)
-		})
-
-	}
-
-	ujRootNodeDivBetoltes(docURL: string) {
-		//empty virtual doc if arg is empty
-		this.torlesNodedivs()
-		let
-			let
-		nodeDiv = new NodeDivBase()
-		nodeDiv.nodeDivData.root = true
-		this.layrBackground.nodeDivMap.set(nodeDiv.nodeDivData.nodeDivData.nodeDivId, nodeDiv)
-		this.layrBackground.arangoMrk.docsDownloader([docURL], function (docs: DocData[]) {
-			nodeDiv.nodeDivData.nodeDocData.docData = docs[0]
-			nodeDiv.refresher()
+			self.rootNodeDiv = new NodeDivRoot()
+			self.rootNodeDiv.nodeInit(doc)
 		})
 	}
+
 
 	private _docGroupBetoltottNodeDivsMaker(docgroup, docGroupRoot) {
 		let self = this

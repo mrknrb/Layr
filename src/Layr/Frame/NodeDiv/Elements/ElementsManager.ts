@@ -1,7 +1,7 @@
-import {NodeDivBase} from "./NodeDivBase.js";
-import {DocFieldekhezElementSettingsDefault} from "./Elements/DocFieldekhezElementSettingsDefault.js";
-import {ElementTypesClassFinder} from "./Elements/ElementTypesClassFinder.js";
-import {ElementBaseClass} from "./Elements/ElementBaseClass.js";
+import {NodeDivBase} from "../NodeDiv/NodeDivBase.js";
+import {DocFieldekhezElementSettingsDefault} from "./DocFieldekhezElementSettingsDefault.js";
+import {ElementTypesClassFinder} from "./ElementTypesClassFinder.js";
+import {ElementBaseClass} from "./ElementBaseClass.js";
 
 export class ElementsManager {
 	elements: Map<string, any>
