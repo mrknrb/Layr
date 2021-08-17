@@ -20,10 +20,10 @@ export class NodeDivManager {
 
 	createRootNodeDiv(docURL:string) {
 		let self=this
+
 		this.layrBackground.docsManager.docGetOrDownload(docURL,function (doc) {
-
+			console.log(doc)
 			self.rootNodeDiv = new NodeDivRoot(doc)
-
 		})
 	}
 

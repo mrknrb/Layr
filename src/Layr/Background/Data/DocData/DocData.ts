@@ -8,6 +8,8 @@ export class DocData {
 	ownDefaultDocFieldElementSettings: DocFieldhezElementSettings[] //rootnal johet jol, amikor a sajat docfieldjeit formaznad
 	docFields: DocField[]
 
+
+
 	constructor() {
 		this.docFields = []
 		this.ownDefaultDocFieldElementSettings = []

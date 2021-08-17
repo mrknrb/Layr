@@ -1,5 +1,6 @@
 import {DocURLObject} from "./ArangoAdatok/DocURLObject.js";
 import {ArangoDBInitData} from "./ArangoAdatok/ArangoDBInitData.js";
+import {DocGetResponseMessage} from "./ArangoAdatok/DocGetResponseMessage.js";
 
 
 export class ArangoMrk {
@@ -40,7 +41,7 @@ export class ArangoMrk {
 	async docsDownloader(docURLsArray, callback) {
 		let self = this
 		let URLsSzetvalogatott = this.URLszetvalogato(docURLsArray)
-		let letoltottdocok = []
+		let letoltottdocok:DocGetResponseMessage[] = []
 		URLsSzetvalogatott.forEach(function (hostdbs, hostid) {
 			hostdbs.forEach(function (databaseURLObjectArray, databaseid) {
 				let docsQueryDataArray = []
@@ -70,14 +71,13 @@ export class ArangoMrk {
 
 	private async docsDownloaderLekerdezes(docsQueryData, arangodb, callback) {
 		let docsQueryDataString = JSON.stringify(docsQueryData)
-		const docs = await arangodb.query(` 
+		const docs:DocGetResponseMessage[] = await arangodb.query(` 
               let docsQueryData=${docsQueryDataString}  
               LET docs = (
                  FOR docQueryData IN docsQueryData  
-                         let doc= merge(DOCUMENT(docQueryData.docQueryid),
-                         {URL:docQueryData.URL}
-                         )
-                RETURN doc        
+                 let docWithUrl=merge({URL:docQueryData.URL},{doc:DOCUMENT(docQueryData.docQueryid)})
+               
+                RETURN docWithUrl        
                   )   
               RETURN docs
              `)

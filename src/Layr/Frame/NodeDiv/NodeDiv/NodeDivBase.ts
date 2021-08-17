@@ -12,7 +12,7 @@ export abstract class NodeDivBase {
 
 	constructor() {
 		this.elementsManager = new ElementsManager(this)
-		this.refresher()
+
 	}
 
 

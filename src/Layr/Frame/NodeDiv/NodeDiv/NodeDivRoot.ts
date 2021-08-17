@@ -19,5 +19,6 @@ export class NodeDivRoot extends NodeDivBase{
 
 	layoutRefresh() {
 		this.mainElement.mainElementLayout.layoutApply(Layouts.root)
+
 	}
 }

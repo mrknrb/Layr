@@ -14,7 +14,7 @@ export class ElementsManager {
 
 	elementsInit() {
 		let self=this
-		let docFieldsData = this.nodeDiv.nodeDivData.nodeDocData.docData.docFields
+		let docFieldsData = this.nodeDiv.nodeDivData.hivatkozottDocDataObject.docData.docFields
 		docFieldsData.forEach(function (docFieldData) {
 			DocFieldekhezElementSettingsDefault.forEach(function (docFieldDefaultSettings) {
 				if (docFieldData.name == docFieldDefaultSettings.docFieldName) {

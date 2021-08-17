@@ -1,12 +1,13 @@
 import {LayrBackground} from "../../Background/LayrBackground.js";
+import {LayrFrame} from "../LayrFrame.js";
 
 export class Talca {
-	mrkS3:LayrBackground
+	layrFrame:LayrFrame
 	elemek
 	talcaElement
 
-	constructor(mrkS3: LayrBackground) {
-		this.mrkS3 = mrkS3
+	constructor(layrFrame: LayrFrame) {
+		this.layrFrame = layrFrame
 		this._talcaInit()
 		this.elemek = {}
 		//options gomb
@@ -75,7 +76,8 @@ export class Talca {
 		elemek.openButton.style.float = "right"
 		elemek.openButton.addEventListener("click", function () {
 			console.log("open1")
-			self.mrkS3.nodeDivFactory.ujRootNodeDivBetoltes(elemek.openInput.value)
+
+			self.layrFrame.nodeDivManager.createRootNodeDiv(elemek.openInput.value)
 		})
 
 
