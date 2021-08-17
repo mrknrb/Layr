@@ -12,9 +12,8 @@ export class NodeDivRoot extends NodeDivBase{
 		nodeDivData.root = true
 		nodeDivData.hivatkozottDocDataObject = hivatkozottDocDataObject
 		this.nodeDivData = nodeDivData
-
-
 		this.mainElement=new MainElementRoot(this)
+		this.refresher()
 	}
 
 

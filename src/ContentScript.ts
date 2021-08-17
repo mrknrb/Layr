@@ -1,7 +1,7 @@
 import {LayrBackground} from "./Layr/Background/LayrBackground.js";
 
 
-class Content {
+class ContentScript {
     constructor() {
 
 
@@ -11,4 +11,4 @@ class Content {
     }
 
 }
-let mainContent=new Content()
+let mainContent=new ContentScript()

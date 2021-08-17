@@ -1,5 +1,6 @@
 import {LayrBackground} from "./Layr/Background/LayrBackground.js";
 import {zSampleDataFactory} from "./0Egyebek/zSampleDataFactory.js";
+import {LayrFrame} from "./Layr/Frame/LayrFrame.js";
 
 let scriptek = [
     "0Libraries/polyfill.js",
@@ -32,11 +33,11 @@ LoadLibraries(function () {
 
 
 export class FrameScript {
-    layr:LayrBackground
-    bkg:Window|null
+    layrFrame:LayrFrame
     constructor() {
+        this.layrFrame=new LayrFrame()
+        this.layrFrame.nodeDivManager.createRootNodeDiv("http://localhost:8529|_system|docsTs|78505685.1225844|")
 
-        this.bkg = chrome.extension.getBackgroundPage()
         //this.bkg.background.newTab(window)
     }
 }

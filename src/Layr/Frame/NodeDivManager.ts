@@ -22,8 +22,8 @@ export class NodeDivManager {
 		let self=this
 		this.layrBackground.docsManager.docGetOrDownload(docURL,function (doc) {
 
-			self.rootNodeDiv = new NodeDivRoot()
-			self.rootNodeDiv.nodeInit(doc)
+			self.rootNodeDiv = new NodeDivRoot(doc)
+
 		})
 	}
 

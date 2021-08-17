@@ -18,10 +18,7 @@
   },
   "background": {
     "scripts": [
-      "0Libraries/jquery.js",
-      "0Libraries/arangojs.js",
-      "0Libraries/pouchdb.js",
-      "Egyebek/BackgroundStarterSeged.js"
+      "0Egyebek/BackgroundStarterSeged.js"
     ],
     "persistent": true
   },

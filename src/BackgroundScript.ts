@@ -32,7 +32,7 @@ chrome.browserAction.onClicked.addListener(function () {
 
 
 
-export class Background{
+export class BackgroundScript{
 
 
     constructor() {

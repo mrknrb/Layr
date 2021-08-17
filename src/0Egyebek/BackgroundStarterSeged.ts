@@ -4,7 +4,7 @@
 
 let bckg=document.createElement("script")
 bckg.type="module"
-bckg.src="background.js"
+bckg.src="BackgroundScript.js";
 document.body.appendChild(bckg)
 
 
