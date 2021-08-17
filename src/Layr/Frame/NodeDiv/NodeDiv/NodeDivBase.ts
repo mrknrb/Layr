@@ -10,10 +10,7 @@ export abstract class NodeDivBase {
 	mainElement: MainElementBase
 	elementsManager: ElementsManager
 
-	constructor(nodeDivData:NodeDivData) {
-
-		this.nodeDivData = nodeDivData
-		this.mainElement = new MainElementBase(this)
+	constructor() {
 		this.elementsManager = new ElementsManager(this)
 		this.refresher()
 	}

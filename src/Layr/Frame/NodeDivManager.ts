@@ -11,7 +11,7 @@ export class NodeDivManager {
 
 	layrBackground: LayrBackground
 	nodeDivs: Map<string, NodeDivBase>
-	rootNodeDiv: NodeDivBase
+	rootNodeDiv: NodeDivRoot
 
 	constructor(layrBackground: LayrBackground) {
 		this.layrBackground = layrBackground
@@ -21,6 +21,7 @@ export class NodeDivManager {
 	createRootNodeDiv(docURL:string) {
 		let self=this
 		this.layrBackground.docsManager.docGetOrDownload(docURL,function (doc) {
+
 			self.rootNodeDiv = new NodeDivRoot()
 			self.rootNodeDiv.nodeInit(doc)
 		})
