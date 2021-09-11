@@ -10,7 +10,6 @@ export abstract class MainElementBase {
 
 	constructor(nodeDiv: NodeDivBase) {
 		this.nodeDiv = nodeDiv
-
 		this.elementInit()
 	}
 

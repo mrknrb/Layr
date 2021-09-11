@@ -15,7 +15,7 @@ export class DropDownStaticElement extends ElementBaseClass {
 	}
 
 
-	private elementInit() {
+	protected elementInit() {
 		this.element = document.createElement("select")
 
 		this.dataRefresh()

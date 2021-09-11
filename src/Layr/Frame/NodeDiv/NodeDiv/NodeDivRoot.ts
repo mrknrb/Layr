@@ -8,10 +8,8 @@ export class NodeDivRoot extends NodeDivBase{
 
 	constructor(hivatkozottDocDataObject: DocDataObject) {
 		super();
-		let nodeDivData = new NodeDivData()
-		nodeDivData.root = true
-		nodeDivData.hivatkozottDocDataObject = hivatkozottDocDataObject
-		this.nodeDivData = nodeDivData
+		this.nodeDivData.root = true
+		this.nodeDivData.hivatkozottDocDataObject = hivatkozottDocDataObject
 		this.mainElement=new MainElementRoot(this)
 		this.refresher()
 	}
@@ -19,6 +17,8 @@ export class NodeDivRoot extends NodeDivBase{
 
 	layoutRefresh() {
 		this.mainElement.mainElementLayout.layoutApply(Layouts.root)
+	}
 
+	removeNodeDiv() {
 	}
 }

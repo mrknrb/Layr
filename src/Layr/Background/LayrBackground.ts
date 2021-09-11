@@ -1,6 +1,6 @@
 import {Talca} from "../Frame/Talca/Talca.js";
 import {Events} from "../Events.js";
-import {NodeDivManager} from "../Frame/NodeDivManager.js";
+import {RootNodeDivManager} from "../Frame/RootNodeDivManager.js";
 import {MrkLibrary} from "../../MrkLibrary.js";
 import {ArangoMrk} from "./Arangodb/ArangoMrk.js";
 import {DocsManager} from "./DocsManager.js";
@@ -23,8 +23,8 @@ export class LayrBackground {
 		})
 
 		this.arangoMrk = new ArangoMrk()
-		this.talca = new Talca(this)
 		this.events = new Events()
 		this.docsManager=new DocsManager(this)
+
 	}
 }

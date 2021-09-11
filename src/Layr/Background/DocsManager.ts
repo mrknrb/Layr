@@ -3,7 +3,6 @@ import {DocData} from "./Data/DocData/DocData.js";
 import {DocDataObject} from "./Data/DocData/DocDataObject.js";
 import {NodeDivBase} from "../Frame/NodeDiv/NodeDiv/NodeDivBase.js";
 import {NodeDivData} from "../Frame/NodeDiv/NodeDivData.js";
-import {DocGetResponseMessage} from "./Arangodb/ArangoAdatok/DocGetResponseMessage.js";
 
 export class DocsManager {
 
@@ -17,38 +16,35 @@ export class DocsManager {
 	}
 
 
-
-
-	 docsDownloadAndLoad(docURLs: string[], callback) {
-		let self = this
-		this.layr.arangoMrk.docsDownloader(docURLs, function (docs:DocGetResponseMessage[]) {
-
-			docs.forEach(function (docDataResponse) {
-				self.docsMap.set(docDataResponse.URL, new DocDataObject(docDataResponse.doc))
-			})
-			callback()
-		})
-	}
-
-	 docGetOrDownload(docURL: string, callback) {
+	docGetOrDownload(docURL: string, callback) {
 		let self=this
 		let doc = this.docsMap.get(docURL)
 
 		if (doc == undefined) {
-			 this.docsDownloadAndLoad([docURL], function () {
+			this.docDownloadAndLoad(docURL, function (docResponse) {
 
 				let doc2 = self.docsMap.get(docURL)
-				 console.log(doc2)
 
 				if (doc2 == undefined) {
 					callback(null)
 				} else {
-					callback(doc2)
+					callback(docResponse)
 				}
 			})
 		} else {
 			callback(doc)
 		}
+	}
+
+
+
+	private docDownloadAndLoad(docURL: string, callback) {
+		let self = this
+		this.layr.arangoMrk.docDownloader(docURL, function (docResponse:DocDataObject) {
+		let docDataObject=	self.docsMap.set(docResponse.docAbsoluteURL,docResponse)
+
+			callback(docDataObject)
+		})
 	}
 
 

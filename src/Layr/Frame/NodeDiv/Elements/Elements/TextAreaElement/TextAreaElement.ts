@@ -18,9 +18,11 @@ export class TextAreaElement extends ElementBaseClass {
 		this.elementInit()
 		this.elementResizer = new ElementResizer(this)
 		this.elementResizer.resizeActivate(ResizeTypes.autoY)
+		let self=this
+
 	}
 
-	private elementInit() {
+	protected elementInit() {
 		let self = this
 		this.element = document.createElement("textarea")
 		this.element.style.resize = "none"

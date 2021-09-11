@@ -6,7 +6,7 @@ import {GroupElementData} from "../Layr/Frame/NodeDiv/Elements/Elements/GroupEle
 import {Layouts} from "../Layr/Frame/Layouts/Layouts.js";
 import {TextAreaElementData} from "../Layr/Frame/NodeDiv/Elements/Elements/TextAreaElement/TextAreaElementData.js";
 import {DocFieldsDefault} from "../Layr/Background/Data/DocData/DocFieldsDefault.js";
-
+import {ElementTypes} from "../Layr/Frame/NodeDiv/Elements/ElementTypes.js";
 export class zSampleDataFactory {
 	static generateSampleDocDataset(DocokSzama): DocData[] {
 		//az elso paron nincsenek global nodeok
@@ -73,21 +73,25 @@ export class zSampleDataFactory {
 		docData._key = (Math.random() * 100000000).toString()
 		let noteDocField = new DocField()
 		noteDocField.name = DocFieldsDefault.note
+		noteDocField.elementType=ElementTypes.TextArea
 		noteDocField.data = new TextAreaElementData()
 		noteDocField.data.content = (Math.random() * 10000000000).toString()
 		docData.docFields.push(noteDocField)
 		let titleDocField = new DocField()
 		titleDocField.name = DocFieldsDefault.title
+		titleDocField.elementType=ElementTypes.TextArea
 		titleDocField.data = new TextAreaElementData()
 		titleDocField.data.content = (Math.random() * 1000000000).toString()
 		docData.docFields.push(titleDocField)
 		let rankDocField = new DocField()
 		rankDocField.name = DocFieldsDefault.rank
+		rankDocField.elementType=ElementTypes.DropDownStatic
 		rankDocField.data = new TextAreaElementData()
 		rankDocField.data.content = Math.floor(Math.random() * 5)
 		docData.docFields.push(rankDocField)
 		let groupDocField = new DocField()
 		groupDocField.name = DocFieldsDefault.group
+		groupDocField.elementType=ElementTypes.Group
 		groupDocField.data = new GroupElementData()
 		docData.docFields.push(groupDocField)
 

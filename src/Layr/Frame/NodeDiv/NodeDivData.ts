@@ -2,11 +2,13 @@ import {NodeData} from "../../Background/Data/NodeData/NodeData.js";
 import {DocDataObject} from "../../Background/Data/DocData/DocDataObject.js";
 import {DocField} from "../../Background/Data/DocData/DocField.js";
 import {NodeDivBase} from "./NodeDiv/NodeDivBase.js";
+import {MainElementBase} from "./MainElement/MainElementBase.js";
+import {ElementBaseClass} from "./Elements/ElementBaseClass.js";
 
 export class NodeDivData {
 	//a nodediv osszes hivatkozasa
 	parentDocDataObject: DocDataObject
-	parentDocField: DocField
+	parentElement: ElementBaseClass
 	nodeData: NodeData
 	hivatkozottDocDataObject: DocDataObject //rootnal csak a docDataobject van meg
 
@@ -24,12 +26,12 @@ export class NodeDivData {
 	}
 
 	normalInit(parentDocDataObject: DocDataObject,
-	           parentDocField: DocField,
+	           parentElement: ElementBaseClass,
 	           nodeData: NodeData,
 	           hivatkozottDocDataObject: DocDataObject,
 	           parentNodeDiv: NodeDivBase) {
 		this.parentDocDataObject = parentDocDataObject
-		this.parentDocField = parentDocField
+		this.parentElement = parentElement
 		this.nodeData = nodeData
 		this.hivatkozottDocDataObject = hivatkozottDocDataObject
 		this.parentNodeDiv = parentNodeDiv

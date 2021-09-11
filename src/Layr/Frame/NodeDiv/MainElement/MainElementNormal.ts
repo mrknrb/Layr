@@ -8,5 +8,9 @@ export class MainElementNormal extends MainElementBase{
 	constructor(nodeDiv: NodeDivNormal) {
 		super(nodeDiv);
 		this.mainElementLayout = new MainElementLayoutNormal(this)
+
+
+
+
 	}
 }

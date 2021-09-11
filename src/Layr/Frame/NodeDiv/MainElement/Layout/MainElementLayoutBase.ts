@@ -8,7 +8,7 @@ export abstract class MainElementLayoutBase {
 		this.mainElem = mainElem
 	}
 
-	abstract layoutApply(layoutRootHaUres?: Layouts)
+	abstract layoutApply()
 	protected layoutClean() {
 		this.mainElem.element.removeAttribute("style")
 	}
@@ -16,7 +16,6 @@ export abstract class MainElementLayoutBase {
 	protected layoutDefault() {
 		this.mainElem.element.style.cssText += `
                 border-style: solid;
-                overflow: hidden;
                 resize: horizontal;
                 background-color: antiquewhite;
                 min-width: 40px;

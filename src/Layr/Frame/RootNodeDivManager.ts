@@ -3,27 +3,26 @@ import {DocData} from "../Background/Data/DocData/DocData.js";
 import {NodeDivBase} from "./NodeDiv/NodeDiv/NodeDivBase.js";
 import {GroupElementData} from "./NodeDiv/Elements/Elements/GroupElement/GroupElementData.js";
 import {DocURLObject} from "../Background/Arangodb/ArangoAdatok/DocURLObject.js";
-import {NodeDivData} from "./NodeDiv/NodeDivData.js";
 import {NodeDivRoot} from "./NodeDiv/NodeDiv/NodeDivRoot.js";
 
 
-export class NodeDivManager {
+export class RootNodeDivManager {
 
 	layrBackground: LayrBackground
-	nodeDivs: Map<string, NodeDivBase>
 	rootNodeDiv: NodeDivRoot
 
 	constructor(layrBackground: LayrBackground) {
 		this.layrBackground = layrBackground
-		this.nodeDivs = new Map<string, NodeDivBase>()
 	}
 
-	createRootNodeDiv(docURL:string) {
-		let self=this
+	createRootNodeDiv(docURL: string) {
+		let self = this
 
-		this.layrBackground.docsManager.docGetOrDownload(docURL,function (doc) {
+		this.layrBackground.docsManager.docGetOrDownload(docURL, function (doc) {
 			console.log(doc)
 			self.rootNodeDiv = new NodeDivRoot(doc)
+
+
 		})
 	}
 
@@ -74,7 +73,7 @@ export class NodeDivManager {
 		})
 
 
-		await this.layrBackground.arangoMrk.docsDownloader(docs.collectiondocIDs, function (docs2) {
+		await this.layrBackground.arangoMrk.docsDownloaderFromArray(docs.collectiondocIDs, function (docs2) {
 				console.log(groupField)
 
 				groupField.data.nodes.forEach(function (node) {
@@ -90,16 +89,6 @@ export class NodeDivManager {
 	}
 
 
-	private _localDocFinder(docId, docDataList): DocData {
-		let doc: DocData = new DocData()
-		docDataList.forEach(function (doc2: DocData) {
-			if (docId == doc2._key) {
-				doc = doc2
-			}
-		})
-
-		return doc
-	}
 
 	private torlesNodedivs() {
 		this.layrBackground.nodeDivMap.forEach(function (nodeDiv) {
