@@ -1,4 +1,4 @@
-import {NodeDivBase} from "../NodeDiv/NodeDivBase.js";
+import {NodeDivBase} from "../NodeDivObject/NodeDivBase.js";
 import {DocFieldekhezElementSettingsDefault} from "./DocFieldekhezElementSettingsDefault.js";
 import {ElementBaseClass} from "./ElementBaseClass.js";
 import {ElementTypesClassFinder} from "./ElementTypesClassFinder.js";

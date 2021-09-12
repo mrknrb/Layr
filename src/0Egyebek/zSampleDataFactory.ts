@@ -24,14 +24,7 @@ export class zSampleDataFactory {
 						group.nodes.push(this.nodeGenerator(docDataArray[Math.floor(Math.random() * docDataArray.length)]._key + "|"))
 					}
 				}
-				//localdocok
-				for (let i = 0; i < 10; i++) {
-					let localDoc = this.docDataGenerator()
 
-					//egyelore kikapcsolva
-					//doc.nodes.push(nodeGenerator( localDoc.docid))
-					group.localDocs.push(localDoc)
-				}
 			}
 			docDataArray.push(docData)
 

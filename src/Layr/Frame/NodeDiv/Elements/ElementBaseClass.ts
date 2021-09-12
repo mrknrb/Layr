@@ -1,5 +1,5 @@
 import {ElementTypes} from "./ElementTypes.js";
-import {NodeDivBase} from "../NodeDiv/NodeDivBase.js";
+import {NodeDivBase} from "../NodeDivObject/NodeDivBase.js";
 import {ContextMenu} from "./ContextMenu/ContextMenu.js";
 
 

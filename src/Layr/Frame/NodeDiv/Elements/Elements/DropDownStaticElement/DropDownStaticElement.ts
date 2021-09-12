@@ -1,6 +1,6 @@
 import {ElementTypes} from "../../ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
-import {NodeDivBase} from "../../../NodeDiv/NodeDivBase.js";
+import {NodeDivBase} from "../../../NodeDivObject/NodeDivBase.js";
 
 
 export class DropDownStaticElement extends ElementBaseClass {

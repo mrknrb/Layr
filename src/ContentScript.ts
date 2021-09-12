@@ -1,5 +1,3 @@
-import {LayrBackground} from "./Layr/Background/LayrBackground.js";
-
 
 class ContentScript {
     constructor() {

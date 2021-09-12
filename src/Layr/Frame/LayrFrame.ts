@@ -17,7 +17,7 @@ export class LayrFrame {
         // @ts-ignore
         this.layrBackground = this.bkg.layr
         this.talca = new Talca(this)
-        this.nodeDivManager = new RootNodeDivManager(this.layrBackground)
+        this.nodeDivManager = new RootNodeDivManager()
     }
 
     createLayrFrame() {

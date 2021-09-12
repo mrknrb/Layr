@@ -1,19 +1,17 @@
 import {NodeData} from "../../Background/Data/NodeData/NodeData.js";
 import {DocDataObject} from "../../Background/Data/DocData/DocDataObject.js";
 import {DocField} from "../../Background/Data/DocData/DocField.js";
-import {NodeDivBase} from "./NodeDiv/NodeDivBase.js";
+import {NodeDivBase} from "./NodeDivObject/NodeDivBase.js";
 import {MainElementBase} from "./MainElement/MainElementBase.js";
 import {ElementBaseClass} from "./Elements/ElementBaseClass.js";
 
 export class NodeDivData {
 	//a nodediv osszes hivatkozasa
-	parentDocDataObject: DocDataObject
 	parentElement: ElementBaseClass
 	nodeData: NodeData
 	hivatkozottDocDataObject: DocDataObject //rootnal csak a docDataobject van meg
 
 	//nodeDivId: string  //root
-	parentNodeDiv: NodeDivBase
 	root: boolean = false //root
 	constructor() {
 		//this.nodeDivId = (Math.random() * 1000000).toString()
@@ -25,16 +23,13 @@ export class NodeDivData {
 
 	}
 
-	normalInit(parentDocDataObject: DocDataObject,
+	normalInit(
 	           parentElement: ElementBaseClass,
 	           nodeData: NodeData,
-	           hivatkozottDocDataObject: DocDataObject,
-	           parentNodeDiv: NodeDivBase) {
-		this.parentDocDataObject = parentDocDataObject
+	           hivatkozottDocDataObject: DocDataObject) {
 		this.parentElement = parentElement
 		this.nodeData = nodeData
 		this.hivatkozottDocDataObject = hivatkozottDocDataObject
-		this.parentNodeDiv = parentNodeDiv
 	}
 
 }

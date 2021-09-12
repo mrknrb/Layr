@@ -1,4 +1,3 @@
-import {LayrBackground} from "../../Background/LayrBackground.js";
 import {LayrFrame} from "../LayrFrame.js";
 
 export class Talca {

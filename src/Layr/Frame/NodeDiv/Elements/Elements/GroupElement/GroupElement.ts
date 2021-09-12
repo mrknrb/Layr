@@ -1,11 +1,11 @@
 import {ElementTypes} from "../../ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
-import {NodeDivBase} from "../../../NodeDiv/NodeDivBase.js";
+import {NodeDivBase} from "../../../NodeDivObject/NodeDivBase.js";
 import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
 import {GroupElementSettings} from "./GroupElementSettings.js";
 import {GroupElementData} from "./GroupElementData.js";
 import {LayrBackground} from "../../../../../Background/LayrBackground.js";
-import {NodeDivNormal} from "../../../NodeDiv/NodeDivNormal.js";
+import {NodeDivNormal} from "../../../NodeDivObject/NodeDivNormal.js";
 import {DocURLObject} from "../../../../../Background/Arangodb/ArangoAdatok/DocURLObject.js";
 import {DocDataObject} from "../../../../../Background/Data/DocData/DocDataObject.js";
 
@@ -45,16 +45,16 @@ export class GroupElement extends ElementBaseClass {
 
 
     refreshData() {
-        let self=this
+        let self = this
         this.nodeDivs.forEach(function (nodeDiv) {
             nodeDiv.removeNodeDiv()
         })
         this.nodeDivs = new Map<string, NodeDivNormal>()
         this.elementData.nodes.forEach(function (node) {
-let docUrlObject=new DocURLObject(self.nodeDiv.nodeDivData.hivatkozottDocDataObject.docAbsoluteURL,node.docRelativeURL)
-            self.layrBackground.docsManager.docGetOrDownload(docUrlObject.UrlString,function (docResponse:DocDataObject) {
-let nodeDiv:NodeDivNormal=new NodeDivNormal(self.nodeDiv.nodeDivData.hivatkozottDocDataObject,self,node,docResponse,self.nodeDiv)
-                self.nodeDivs.set(docResponse.docAbsoluteURL,nodeDiv)
+            let docUrlObject = new DocURLObject(self.nodeDiv.nodeDivData.hivatkozottDocDataObject.docAbsoluteURL, node.docRelativeURL)
+            self.layrBackground.docsManager.docGetOrDownload(docUrlObject.UrlString, function (docResponse: DocDataObject) {
+                let nodeDiv: NodeDivNormal = new NodeDivNormal(self,node,self.nodeDiv.nodeDivData.hivatkozottDocDataObject)
+               self.nodeDivs.set(docResponse.docAbsoluteURL, nodeDiv)
             })
 
         })

@@ -68,4 +68,3 @@ export class testDocFactory{
 
 
 let docData=new DocData()
-docData.

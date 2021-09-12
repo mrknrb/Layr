@@ -1,12 +1,10 @@
-import {MainElementLayoutBase} from "./Layout/MainElementLayoutBase.js";
-import {NodeData} from "../../../Background/Data/NodeData/NodeData.js";
-import {NodeDivBase} from "../NodeDiv/NodeDivBase.js";
+
+import {NodeDivBase} from "../NodeDivObject/NodeDivBase.js";
 
 
 export abstract class MainElementBase {
 	element: HTMLDivElement
 	nodeDiv: NodeDivBase
-	mainElementLayout: MainElementLayoutBase
 
 	constructor(nodeDiv: NodeDivBase) {
 		this.nodeDiv = nodeDiv
@@ -27,7 +25,23 @@ export abstract class MainElementBase {
 
 		})
 	}
+	abstract layoutApply()
+	protected layoutClean() {
+		this.element.removeAttribute("style")
+	}
 
+	protected layoutDefault() {
+		this.element.style.cssText += `
+                border-style: solid;
+                resize: horizontal;
+                background-color: antiquewhite;
+                min-width: 40px;
+                min-height: 20px;              
+                height: fit-content;
+                z-index:2100000000 ;
+                width:40px;
+                `
+	}
 
 }
 

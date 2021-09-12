@@ -1,4 +1,3 @@
-import {LayrBackground} from "./Layr/Background/LayrBackground.js";
 import {zSampleDataFactory} from "./0Egyebek/zSampleDataFactory.js";
 import {LayrFrame} from "./Layr/Frame/LayrFrame.js";
 
@@ -32,6 +31,10 @@ LoadLibraries(function () {
 })
 
 
+
+let docdataset= zSampleDataFactory.generateSampleDocDataset(100 )
+console.log(docdataset)
+
 export class FrameScript {
     layrFrame:LayrFrame
     constructor() {
@@ -44,10 +47,6 @@ export class FrameScript {
 
 
 
-
-
-let docdataset= zSampleDataFactory.generateSampleDocDataset(100 )
-console.log(docdataset)
 
 
 
