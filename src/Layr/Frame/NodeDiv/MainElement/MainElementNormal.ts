@@ -1,6 +1,7 @@
 import {MainElementBase} from "./MainElementBase.js";
 import {NodeDivNormal} from "../NodeDivObject/NodeDivNormal.js";
 import {Layouts} from "../../Layouts/Layouts.js";
+import {MrkLibrary} from "../../../../MrkLibrary.js";
 
 export class MainElementNormal extends MainElementBase{
 	nodeDiv: NodeDivNormal
@@ -16,6 +17,7 @@ export class MainElementNormal extends MainElementBase{
 		let layout = this.nodeDiv.nodeData.layout
 		this.layoutClean()
 		this.layoutDefault()
+		MrkLibrary.dragElement(this.elementOptionsButton,this.element,false)
 		let s = this.element.style
 		let d = nodeData.nodeLayoutsData
 		s.overflow="hidden"
@@ -25,10 +27,6 @@ export class MainElementNormal extends MainElementBase{
 			d.absolute.top ? s.top = d.absolute.top : null
 			d.absolute.left ? s.left = d.absolute.left : null
 			d.absolute.width ? s.width = d.absolute.width : null
-		} else if (layout === Layouts.fixed) {
-			s.position = "fixed"
-			d.fixed.top ? s.top = d.fixed.top : null
-			d.fixed.left ? s.left = d.fixed.left : null
 		} else if (layout === Layouts.static) {
 			s.position = "static"
 		}

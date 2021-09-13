@@ -25,7 +25,7 @@ export class Talca {
 		this.talcaElement.style.height = "6ch"
 		this.talcaElement.style.position = "fixed"
 		this.talcaElement.style.bottom = "0"
-		this.talcaElement.style.zIndex = "2147483647"
+		this.talcaElement.style.zIndex = "9999"
 		this.talcaElement.style.left = "0"
 		//kozepre helyezi oket
 		this.talcaElement.style.display = "inline-flex"

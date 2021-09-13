@@ -52,7 +52,7 @@ export class MrkLibrary {
 			//  e.stopPropagation()
 			// e = e || window.event
 			e.stopPropagation()
-			e.preventDefault()
+			//e.preventDefault()
 			pos = {
 				left: elementDiv.scrollLeft,
 				top: elementDiv.scrollTop,

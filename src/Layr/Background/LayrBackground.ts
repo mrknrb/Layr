@@ -1,5 +1,4 @@
 import {Talca} from "../Frame/Talca/Talca.js";
-import {Events} from "../Events.js";
 import {RootNodeDivManager} from "../Frame/RootNodeDivManager.js";
 import {MrkLibrary} from "../../MrkLibrary.js";
 import {ArangoMrk} from "./Arangodb/ArangoMrk.js";
@@ -10,7 +9,6 @@ export class LayrBackground {
 	pouchDB
 	arangoMrk: ArangoMrk
 	talca: Talca
-	events: Events
 	docsManager:DocsManager
 
 
@@ -23,7 +21,6 @@ export class LayrBackground {
 		})
 
 		this.arangoMrk = new ArangoMrk()
-		this.events = new Events()
 		this.docsManager=new DocsManager(this)
 
 	}

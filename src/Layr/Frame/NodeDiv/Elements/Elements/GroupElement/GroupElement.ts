@@ -8,14 +8,16 @@ import {NodeDivNormal} from "../../../NodeDivObject/NodeDivNormal.js";
 import {DocURLObject} from "../../../../../Background/Arangodb/ArangoAdatok/DocURLObject.js";
 import {DocDataObject} from "../../../../../Background/Data/DocData/DocDataObject.js";
 import {NodeDivInterface} from "../../../NodeDivObject/NodeDivInterface.js";
-import {Layouts} from "../../../../Layouts/Layouts.js";
+import {MrkLibrary} from "../../../../../../MrkLibrary.js";
+import {DocFieldObject} from "../../../../../Background/Data/DocData/DocFieldObject.js";
 
 
 export class GroupElement extends ElementBaseClass {
     element: HTMLDivElement
     elementResizer: ElementResizer
     elementSettings: GroupElementSettings
-    elementData: GroupElementData
+    docFieldObject:DocFieldObject
+    groupElementData:GroupElementData
     layrBackground: LayrBackground
     nodeDivs: Map<string, NodeDivNormal>
 
@@ -25,6 +27,7 @@ export class GroupElement extends ElementBaseClass {
         let bkg = chrome.extension.getBackgroundPage()
         // @ts-ignore
         this.layrBackground = bkg.layr
+        this.groupElementData=this.docFieldObject.docFieldData.data
         //this.elementResizer = new ElementResizer(this)
         //this.elementResizer.resizeActivate(ResizeTypes.autoXY)
         this.elementInit()
@@ -38,12 +41,13 @@ export class GroupElement extends ElementBaseClass {
         this.element.style.width = "calc(100% - 5px)"
         this.element.style.height = "50px"
         this.element.style.backgroundColor = "cadetBlue"
-        this.element.style.overflow="auto"
-        this.element.style.position="relative"
-        this.element.style.resize="vertical"
+        this.element.style.overflow = "auto"
+        this.element.style.position = "relative"
+        this.element.style.resize = "vertical"
         this.element.addEventListener("mousedown", function (e) {
             e.stopPropagation()
         })
+        MrkLibrary.grabInit(this.element)
         this.nodeDiv.mainElement.element.appendChild(this.element)
         this.refreshData()
     }
@@ -57,14 +61,14 @@ export class GroupElement extends ElementBaseClass {
         })
         this.nodeDivs = new Map<string, NodeDivNormal>()
 
-        this.elementData.nodes.forEach(function (node) {
+        this.groupElementData.nodes.forEach(function (node) {
             let docUrlObject = new DocURLObject(self.nodeDiv.hivatkozottDocDataObject.docAbsoluteURL, node.docRelativeURL)
             self.layrBackground.docsManager.docGetOrDownload(docUrlObject.UrlString, function (docResponse: DocDataObject) {
-             //   console.log(docResponse)
-                if(node.layout!=Layouts.fixed) {
-                    let nodeDiv: NodeDivNormal = new NodeDivNormal(self, node, docResponse)
-                    self.nodeDivs.set(docResponse.docAbsoluteURL, nodeDiv)
-                }
+                //   console.log(docResponse)
+
+                let nodeDiv: NodeDivNormal = new NodeDivNormal(self, node, docResponse)
+                self.nodeDivs.set(docResponse.docAbsoluteURL, nodeDiv)
+
             })
 
         })

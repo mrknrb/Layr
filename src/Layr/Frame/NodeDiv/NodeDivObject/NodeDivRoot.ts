@@ -25,6 +25,7 @@ export class NodeDivRoot implements NodeDivInterface {
         this.root = true
 
         this.refresher()
+
     }
 
     refresher() {

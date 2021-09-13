@@ -20,6 +20,7 @@ export class MainElementRoot extends MainElementBase {
         s.width = "300px"
         s.overflow = "hidden"
         s.resize = "horizontal"
+        s.zIndex = "10000"
         document.body.appendChild(this.element)
     }
 

@@ -1,5 +1,6 @@
 import {LayrBackground} from "./LayrBackground.js";
 import {DocDataObject} from "./Data/DocData/DocDataObject.js";
+import {DocDataResponse} from "./Data/DocData/DocDataResponse.js";
 
 export class DocsManager {
 
@@ -15,21 +16,21 @@ export class DocsManager {
 
 	docGetOrDownload(docURL: string, callback) {
 		let self=this
-		let doc = this.docsMap.get(docURL)
+		let docDataObjectMeglevo = this.docsMap.get(docURL)
 
-		if (doc == undefined) {
-			this.docDownloadAndLoad(docURL, function (docResponse) {
+		if (docDataObjectMeglevo == undefined) {
+			this.docDownloadAndLoad(docURL, function (docDataObject) {
 
 				let doc2 = self.docsMap.get(docURL)
 
 				if (doc2 == undefined) {
 					callback(null)
 				} else {
-					callback(docResponse)
+					callback(docDataObject)
 				}
 			})
 		} else {
-			callback(doc)
+			callback(docDataObjectMeglevo)
 		}
 	}
 
@@ -37,11 +38,12 @@ export class DocsManager {
 
 	private docDownloadAndLoad(docURL: string, callback) {
 		let self = this
-		this.layr.arangoMrk.docDownloader(docURL, function (docResponse:DocDataObject) {
+		this.layr.arangoMrk.docDownloader(docURL, function (docResponse:DocDataResponse) {
 
-			self.docsMap.set(docResponse.docAbsoluteURL,docResponse)
+let docDataObject=new DocDataObject(docResponse.docAbsoluteURL,docResponse.docData)
+			self.docsMap.set(docResponse.docAbsoluteURL,docDataObject)
 
-			callback(docResponse)
+			callback(docDataObject)
 		})
 	}
 

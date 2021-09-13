@@ -38,7 +38,7 @@ export class DropDownStaticElement extends ElementBaseClass {
 			let optionElement = document.createElement("option")
 			optionElement.value = optionValue
 			optionElement.innerText = optionValue
-			if (optionValue == self.elementData.content) {
+			if (optionValue == self.docFieldObject.docFieldData.data.content) {
 
 				talalat=true
 				optionElement.setAttribute("selected", "selected")
@@ -50,8 +50,8 @@ export class DropDownStaticElement extends ElementBaseClass {
 		//Ha nincs kozte a value rakja be
 		if(!talalat){
 			let optionElement = document.createElement("option")
-			optionElement.value = self.elementData.content
-			optionElement.innerText = self.elementData.content
+			optionElement.value = self.docFieldObject.docFieldData.data.content
+			optionElement.innerText = self.docFieldObject.docFieldData.data.content
 			optionElement.setAttribute("selected", "selected")
 			ures.removeAttribute("selected")
 			self.element.appendChild(optionElement)

@@ -1,5 +1,6 @@
 import {LayrBackground} from "../Background/LayrBackground.js";
 import {NodeDivRoot} from "./NodeDiv/NodeDivObject/NodeDivRoot.js";
+import {DocDataObject} from "../Background/Data/DocData/DocDataObject.js";
 
 
 export class RootNodeDivManager {
@@ -16,8 +17,9 @@ export class RootNodeDivManager {
 	createRootNodeDiv(docURL: string) {
 		let self = this
 
-		this.layrBackground.docsManager.docGetOrDownload(docURL, function (doc) {
-			self.nodeDivRoot = new NodeDivRoot(doc)
+		this.layrBackground.docsManager.docGetOrDownload(docURL, function (docDataObject:DocDataObject) {
+
+			self.nodeDivRoot = new NodeDivRoot(docDataObject)
 			self.nodeDivRoot.fullScreenElementApply()
 		})
 	}

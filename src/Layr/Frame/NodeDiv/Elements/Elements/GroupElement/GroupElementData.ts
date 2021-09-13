@@ -8,14 +8,12 @@ export class GroupElementData {
 
 	constructor() {
 		this.nodes = []
-		this.localDocs = []
 		this.docFieldekhezElementSettingsGroupSzinten = []
 
 
 	}
 
 	nodes: NodeData[]
-	localDocs: DocData[]
 	docFieldekhezElementSettingsGroupSzinten: DocFieldhezElementSettings[]
 	groupDefaultLayout: Layouts
 }

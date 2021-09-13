@@ -4,7 +4,7 @@ import {ElementTypesClassFinder} from "./ElementTypesClassFinder.js";
 import {NodeDivInterface} from "../NodeDivObject/NodeDivInterface.js";
 
 export class ElementsManager {
-    elements: Map<string, ElementBaseClass>
+    elements: Map<string, any>
     nodeDiv: NodeDivInterface
 
     constructor(nodeDiv: NodeDivInterface) {
@@ -14,13 +14,13 @@ export class ElementsManager {
 
     elementsInit() {
         let self = this
-        let docFieldsData = this.nodeDiv.hivatkozottDocDataObject.docData.docFields
-        docFieldsData.forEach(function (docFieldData) {
-            let docFieldDefaultSettings = DocFieldekhezElementSettingsDefault.find(docFieldDefaultSettings => docFieldDefaultSettings.docFieldName == docFieldData.name);
+        let docFieldObjects = this.nodeDiv.hivatkozottDocDataObject.docFieldObjects
+        docFieldObjects.forEach(function (docFieldObject) {
+            let docFieldDefaultSettings = DocFieldekhezElementSettingsDefault.find(docFieldDefaultSettings => docFieldDefaultSettings.docFieldName == docFieldObject.docFieldData.name);
 
-            let element =ElementTypesClassFinder[docFieldData.elementType]
-            let elementObject = new element(self.nodeDiv, docFieldData.data, docFieldDefaultSettings.ElementSettings)
-            self.elements.set(docFieldData.name, elementObject)
+            let element =ElementTypesClassFinder[docFieldObject.docFieldData.elementType]
+            let elementObject = new element(self.nodeDiv, docFieldObject, docFieldDefaultSettings.ElementSettings)
+            self.elements.set(docFieldObject.docFieldData.name, elementObject)
 
         })
     }
@@ -45,7 +45,6 @@ export class ElementsManager {
            /* this.elements.forEach(function (element2) {
                 element2.elementInsertInNodeDiv()
             })*/
-            console.log(element)
             element.elementInsertFullScreen()
 
         }
