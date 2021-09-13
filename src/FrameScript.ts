@@ -32,14 +32,14 @@ LoadLibraries(function () {
 
 
 
-let docdataset= zSampleDataFactory.generateSampleDocDataset(100 )
-console.log(docdataset)
+//let docdataset= zSampleDataFactory.generateSampleDocDataset(100 )
+//console.log(docdataset)
 
 export class FrameScript {
     layrFrame:LayrFrame
     constructor() {
         this.layrFrame=new LayrFrame()
-        this.layrFrame.nodeDivManager.createRootNodeDiv("http://localhost:8529|_system|docsTS2|38183205.33473547|")
+        this.layrFrame.nodeDivManager.createRootNodeDiv("http://localhost:8529|_system|docsTS2|38183205.33473547|group")
 
         //this.bkg.background.newTab(window)
     }

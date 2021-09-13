@@ -16,7 +16,7 @@ export class ArangoMrk {
         dataBaseArgs.auth.username = "root"
         dataBaseArgs.auth.password = ""
         this.databasesUserData.set(dataBaseArgs.url, dataBaseArgs)
-        this.lekerdezesMap=new Map<string, Lekerdezes>()
+        this.lekerdezesMap = new Map<string, Lekerdezes>()
     }
 
     lekerdezesMap: Map<string, Lekerdezes>
@@ -26,7 +26,8 @@ export class ArangoMrk {
 
     async docDownloader(docURL, callback) {
         this.lekerdezesMap.set(docURL, new Lekerdezes(docURL, callback))
-       await this.lekerdezesSzamlaloStart()
+
+        await this.lekerdezesSzamlaloStart()
 
     }
 
@@ -37,6 +38,7 @@ export class ArangoMrk {
             setTimeout(function () {
                 self.lekerdezesSzamlalomegy = false
                 let docURLsArray = []
+
                 self.lekerdezesMap.forEach(function (value, key) {
                     docURLsArray.push(key)
                 })
@@ -48,33 +50,40 @@ export class ArangoMrk {
 
 
     async docsDownloaderFromArray(docURLsArray) {
+
         let self = this
         let URLsSzetvalogatott = this.URLszetvalogato(docURLsArray)
         let letoltottdocok: DocDataObject[] = []
+
+
         URLsSzetvalogatott.forEach(function (hostdbs, hostid) {
             hostdbs.forEach(function (databaseURLObjectArray, databaseid) {
                 let docsQueryDataArray = []
+                //  console.log(databaseURLObjectArray)
                 databaseURLObjectArray.forEach(function (urlObject: DocURLObject) {
+
+
                     let docQueryData: any = {}
                     docQueryData.URL = urlObject.UrlString
                     docQueryData.docQueryid = urlObject.docQueryid
                     docsQueryDataArray.push(docQueryData)
-                    let userdata = self.databasesUserData.get(hostid)
+                })
+                //console.log(docQueryData)
+                let userdata = self.databasesUserData.get(hostid)
 
-                    // @ts-ignore
-                    let arangodb = new arangojs.Database(userdata)
+                // @ts-ignore
+                let arangodb = new arangojs.Database(userdata)
 
 
-                    self.docsDownloaderLekerdezes(docsQueryDataArray, arangodb, function (docs) {
-                        docs.forEach(function (doc) {
-                            console.log(self.lekerdezesMap)
-                          let lekerdezes  =self.lekerdezesMap.get(doc.URL)
-                            lekerdezes .callback(doc)
-                            self.lekerdezesMap.delete(doc.URL)
-                        })
-                        // letoltottdocok = letoltottdocok.concat(docs)
-                        // callback(letoltottdocok)
+                self.docsDownloaderLekerdezes(docsQueryDataArray, arangodb, function (docs: DocDataObject[]) {
+
+                    docs.forEach(function (doc) {
+                        let lekerdezes = self.lekerdezesMap.get(doc.docAbsoluteURL)
+                        lekerdezes.callback(doc)
+                        self.lekerdezesMap.delete(doc.docAbsoluteURL)
                     })
+                    // letoltottdocok = letoltottdocok.concat(docs)
+                    // callback(letoltottdocok)
                 })
 
 
@@ -111,15 +120,17 @@ export class ArangoMrk {
               let docsQueryData=${docsQueryDataString}  
               LET docs = (
                  FOR docQueryData IN docsQueryData  
-                 let docWithUrl=merge({docAbsoluteURL:docQueryData.URL},{doc:DOCUMENT(docQueryData.docQueryid)})
+                 let docWithUrl=merge({docAbsoluteURL:docQueryData.URL},{docData:DOCUMENT(docQueryData.docQueryid)})
                
                 RETURN docWithUrl        
                   )   
               RETURN docs
              `)
         for await (const doc of docs) {
+
             callback(doc)
         }
+
     }
 
     async docsUploader(docs, collectionString) {

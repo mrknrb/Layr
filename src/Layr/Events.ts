@@ -1,10 +1,10 @@
 import {TypedEvent} from "../0Libraries/TypedEvents.js";
-import {NodeDivBase} from "./Frame/NodeDiv/NodeDivObject/NodeDivBase.js";
+import {NodeDivInterface} from "./Frame/NodeDiv/NodeDivObject/NodeDivInterface.js";
 
 export class Events {
 
-    onDelete:TypedEvent<NodeDivBase>
+    onDelete:TypedEvent<NodeDivInterface>
     constructor() {
-        this.onDelete= new TypedEvent<NodeDivBase>();
+        this.onDelete= new TypedEvent<NodeDivInterface>();
     }
 }

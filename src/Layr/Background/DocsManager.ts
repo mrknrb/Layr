@@ -1,8 +1,5 @@
 import {LayrBackground} from "./LayrBackground.js";
-import {DocData} from "./Data/DocData/DocData.js";
 import {DocDataObject} from "./Data/DocData/DocDataObject.js";
-import {NodeDivBase} from "../Frame/NodeDiv/NodeDivObject/NodeDivBase.js";
-import {NodeDivData} from "../Frame/NodeDiv/NodeDivData.js";
 
 export class DocsManager {
 
@@ -41,9 +38,10 @@ export class DocsManager {
 	private docDownloadAndLoad(docURL: string, callback) {
 		let self = this
 		this.layr.arangoMrk.docDownloader(docURL, function (docResponse:DocDataObject) {
-		let docDataObject=	self.docsMap.set(docResponse.docAbsoluteURL,docResponse)
 
-			callback(docDataObject)
+			self.docsMap.set(docResponse.docAbsoluteURL,docResponse)
+
+			callback(docResponse)
 		})
 	}
 

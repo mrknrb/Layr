@@ -32,9 +32,9 @@ export class MrkLibrary {
 			pos4 = e.clientY
 			// set the elementObject's new position:
 			moveableElement.style.top = moveableElement.offsetTop - pos2 + "px"
-			//Math.round((draggingElement.parentElement.offsetTop - pos2) / 10) * 10 + "px";
+			//Math.round((draggingElement.parentGroupElement.offsetTop - pos2) / 10) * 10 + "px";
 			moveableElement.style.left = moveableElement.offsetLeft - pos1 + "px"
-			//Math.round((draggingElement.parentElement.offsetLeft - pos1) / 10) * 10 + "px";
+			//Math.round((draggingElement.parentGroupElement.offsetLeft - pos1) / 10) * 10 + "px";
 		}
 
 		function closeDragElement() {

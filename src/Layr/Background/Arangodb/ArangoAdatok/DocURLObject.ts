@@ -1,9 +1,11 @@
+import {URLDataObject} from "./URLDataObject.js";
+
 export class DocURLObject {
     UrlString: string
     docid
     dataType
     dataScope
-    urlData
+    urlData:URLDataObject
     docQueryid
 
     constructor(URLabsolute: string, URLrelativeTarget_IF_ABSOLUTE_THAN_NULL: string | null) {
@@ -40,7 +42,7 @@ export class DocURLObject {
         this.dataScope = ""
         let dataType = this.dataType
         let dataScope = this.dataScope
-        this.urlData = {}
+        this.urlData = new URLDataObject()
 
 
         urlArray.reverse()
@@ -81,7 +83,7 @@ export class DocURLObject {
         dataScopeMaker()
 
         if (urlArray[0]) {
-            this.urlData.localdocid = urlArray[0]
+            this.urlData.docFieldid = urlArray[0]
         }
         if (urlArray[1]) {
             this.urlData.docid = urlArray[1]

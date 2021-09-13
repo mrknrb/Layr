@@ -1,20 +1,20 @@
-import {NodeDivBase} from "../NodeDivObject/NodeDivBase.js";
 import {DocFieldekhezElementSettingsDefault} from "./DocFieldekhezElementSettingsDefault.js";
 import {ElementBaseClass} from "./ElementBaseClass.js";
 import {ElementTypesClassFinder} from "./ElementTypesClassFinder.js";
+import {NodeDivInterface} from "../NodeDivObject/NodeDivInterface.js";
 
 export class ElementsManager {
-    elements: Map<string, any>
-    nodeDiv: NodeDivBase
+    elements: Map<string, ElementBaseClass>
+    nodeDiv: NodeDivInterface
 
-    constructor(nodeDiv: NodeDivBase) {
+    constructor(nodeDiv: NodeDivInterface) {
         this.nodeDiv = nodeDiv
         this.elements = new Map<string, any>()
     }
 
     elementsInit() {
         let self = this
-        let docFieldsData = this.nodeDiv.nodeDivData.hivatkozottDocDataObject.docData.docFields
+        let docFieldsData = this.nodeDiv.hivatkozottDocDataObject.docData.docFields
         docFieldsData.forEach(function (docFieldData) {
             let docFieldDefaultSettings = DocFieldekhezElementSettingsDefault.find(docFieldDefaultSettings => docFieldDefaultSettings.docFieldName == docFieldData.name);
 
@@ -37,4 +37,20 @@ export class ElementsManager {
         })
         this.elements = new Map<string, any>()
     }
+    oneElementInsertFullScreen(elementName:string){
+
+       let element =this.elements.get(elementName)
+
+        if(element){
+           /* this.elements.forEach(function (element2) {
+                element2.elementInsertInNodeDiv()
+            })*/
+            console.log(element)
+            element.elementInsertFullScreen()
+
+        }
+
+
+    }
+
 }

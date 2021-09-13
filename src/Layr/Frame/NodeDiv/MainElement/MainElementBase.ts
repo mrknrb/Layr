@@ -1,12 +1,11 @@
-
-import {NodeDivBase} from "../NodeDivObject/NodeDivBase.js";
+import {NodeDivInterface} from "../NodeDivObject/NodeDivInterface.js";
 
 
 export abstract class MainElementBase {
 	element: HTMLDivElement
-	nodeDiv: NodeDivBase
+	nodeDiv:NodeDivInterface
 
-	constructor(nodeDiv: NodeDivBase) {
+	constructor(nodeDiv ) {
 		this.nodeDiv = nodeDiv
 		this.elementInit()
 	}

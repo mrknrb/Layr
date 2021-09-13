@@ -1,13 +1,13 @@
 import {ElementTypes} from "../../ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
-import {NodeDivBase} from "../../../NodeDivObject/NodeDivBase.js";
+import {NodeDivInterface} from "../../../NodeDivObject/NodeDivInterface.js";
 
 
 export class DropDownStaticElement extends ElementBaseClass {
 
 	options: HTMLOptionElement[]
 
-	constructor(nodeDiv: NodeDivBase, elementData, elementSettings) {
+	constructor(nodeDiv: NodeDivInterface, elementData, elementSettings) {
 		super(ElementTypes.DropDownStatic, nodeDiv, elementData, elementSettings);
 		this.options = []
 		this.elementInit()
@@ -39,7 +39,7 @@ export class DropDownStaticElement extends ElementBaseClass {
 			optionElement.value = optionValue
 			optionElement.innerText = optionValue
 			if (optionValue == self.elementData.content) {
-				console.log(self.elementData.content)
+
 				talalat=true
 				optionElement.setAttribute("selected", "selected")
 
