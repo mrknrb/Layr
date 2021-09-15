@@ -32,9 +32,12 @@ export class MrkLibrary {
 			pos4 = e.clientY
 			// set the elementObject's new position:
 			moveableElement.style.top = moveableElement.offsetTop - pos2 + "px"
-			//Math.round((draggingElement.parentGroupElement.offsetTop - pos2) / 10) * 10 + "px";
 			moveableElement.style.left = moveableElement.offsetLeft - pos1 + "px"
-			//Math.round((draggingElement.parentGroupElement.offsetLeft - pos1) / 10) * 10 + "px";
+
+			//moveableElement.style.top = Math.round((moveableElement.offsetTop - pos2) / 20) * 20 + "px";
+			//moveableElement.style.left=Math.round((moveableElement.offsetLeft - pos1) / 20) * 20 + "px";
+			//Math.round((moveableElement.offsetTop - pos2) / 10) * 10 + "px";
+			//Math.round((moveableElement.offsetLeft - pos1) / 10) * 10 + "px";
 		}
 
 		function closeDragElement() {
@@ -109,6 +112,29 @@ export class MrkLibrary {
 			}
 		})
 		return docFieldKeresett
+	}
+
+	static resize(){
+		const BORDER_SIZE = 4;
+		const panel = document.getElementById("right_panel");
+
+		let m_pos;
+		function resize(e){
+			const dx = m_pos - e.x;
+			m_pos = e.x;
+			panel.style.width = (parseInt(getComputedStyle(panel, '').width) + dx) + "px";
+		}
+
+		panel.addEventListener("mousedown", function(e){
+			if (e.offsetX < BORDER_SIZE) {
+				m_pos = e.x;
+				document.addEventListener("mousemove", resize, false);
+			}
+		}, false);
+
+		document.addEventListener("mouseup", function(){
+			document.removeEventListener("mousemove", resize, false);
+		}, false);
 	}
 }
 

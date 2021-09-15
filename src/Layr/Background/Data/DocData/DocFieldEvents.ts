@@ -13,6 +13,7 @@ export class DocFieldEvents {
         this.onFieldChange = new TypedEvent()
         this.nodeDataEvents = new NodeDataEvents()
 
+        //this.onFieldChange.on()
     }
 
 }

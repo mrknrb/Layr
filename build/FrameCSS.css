@@ -1,0 +1,40 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(0Resources/Roboto-Regular.ttf);
+}
+
+*{
+    font-family: myFirstFont, serif;
+   color:#212529;
+}
+textarea,select{
+    background-color: #fff;
+outline-color: rgba(67, 159, 208, 0.5);
+border:none;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.LayrElement{
+
+    margin-bottom: 2px;
+
+
+}
+.LayrElement:last-child {
+    margin-bottom: 0px !important;
+}
+
+
+.LayrMainElement{
+    border-style: solid;
+    resize: horizontal;
+
+    background-color: rgb(236, 236, 236);
+    border-color: #101010;
+    min-width: 40px;
+    min-height: 20px;
+    height: fit-content;
+    width:40px;
+    border-radius: 3px;
+    line-height: 0px;
+
+}

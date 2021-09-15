@@ -32,8 +32,8 @@ LoadLibraries(function () {
 
 
 
-let docdataset= zSampleDataFactory.generateSampleDocDataset(100 )
-console.log(docdataset)
+//let docdataset= zSampleDataFactory.generateSampleDocDataset(100 )
+//console.log(docdataset)
 
 export class FrameScript {
     layrFrame:LayrFrame

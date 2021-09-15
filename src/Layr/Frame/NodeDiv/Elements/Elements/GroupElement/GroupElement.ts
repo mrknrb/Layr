@@ -37,19 +37,31 @@ export class GroupElement extends ElementBaseClass {
 
         let self = this
         this.element = document.createElement("div")
+        this.element.classList.add("LayrElement")
         this.element.style.border = `black`
-        this.element.style.width = "calc(100% - 5px)"
+        this.element.style.width = "100%"
         this.element.style.height = "50px"
-        this.element.style.backgroundColor = "cadetBlue"
+        this.element.style.backgroundColor = "#90a4ae"
         this.element.style.overflow = "auto"
         this.element.style.position = "relative"
         this.element.style.resize = "vertical"
+
         this.element.addEventListener("mousedown", function (e) {
             e.stopPropagation()
         })
         MrkLibrary.grabInit(this.element)
         this.nodeDiv.mainElement.element.appendChild(this.element)
-        this.refreshData()
+        this.element.addEventListener("contextmenu", function (e) {
+
+            e.stopPropagation()
+            e.preventDefault()
+            self.refreshData()
+            self.element.removeEventListener("contextmenu", function (e) {
+                e.preventDefault()
+                e.stopPropagation()
+            })
+
+        })
     }
 
 

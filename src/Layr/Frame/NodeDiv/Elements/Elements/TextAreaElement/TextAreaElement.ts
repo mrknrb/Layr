@@ -25,20 +25,20 @@ export class TextAreaElement extends ElementBaseClass {
         this.elementResizer = new ElementResizer(this)
         this.elementResizer.resizeActivate(ResizeTypes.autoY)
         this.dataChangeSaveInit()
+       this. dataChangeUpdateInit()
     }
 
     protected elementInit() {
         let self = this
         this.element = document.createElement("textarea")
+        this.element.classList.add("LayrElement")
         this.element.style.resize = "none"
-        this.element.style.backgroundColor = "transparent"
-        this.element.style.width = "calc(100% - 5px)"
+        this.element.style.width = "calc(100% - 3px)"
         this.element.style.height = "50px"
 
 
         this.element.addEventListener("keyup", function (e) {
             self.elementResizer.adjustSize()
-
         })
         this.element.addEventListener("mousedown", function (e) {
             e.stopPropagation()
@@ -50,14 +50,17 @@ export class TextAreaElement extends ElementBaseClass {
     dataChangeSaveInit() {
         let self = this
         this.element.addEventListener("keyup", function (e) {
+            self.textAreaElementData.content=self.element.value
             self.docFieldObject.docFieldEvents.onFieldChange.emit()
         })
-
-
+    }
+    dataChangeUpdateInit() {
+        this.docFieldObject.docFieldEvents.onFieldChange.on(()=> this.element.value = this.textAreaElementData.content)
     }
 
     refreshData() {
-        this.element.innerText = this.textAreaElementData.content
+
+        this.element.value = this.textAreaElementData.content
     }
 
     deleteElement() {

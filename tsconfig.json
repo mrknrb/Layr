@@ -4,7 +4,7 @@
     "rootDir": "src",
     "module": "ES6",
     "target": "ES2020",
-    "sourceMap": true,
+    "sourceMap": false,
     "allowJs": true
     //"strict": true
   },

@@ -4,13 +4,15 @@ import {Lekerdezes} from "./ArangoAdatok/Lekerdezes.js";
 import {DocDataObject} from "../Data/DocData/DocDataObject.js";
 
 
-export class ArangoMrk {
+export class ArangoMrk2 {
 
     databasesUserData: Map<string, ArangoDBInitData>
 
     constructor() {
         this.databasesUserData = new Map()
         let dataBaseArgs = new ArangoDBInitData()
+
+
         dataBaseArgs.url = "http://localhost:8529"
         dataBaseArgs.databaseName = "_system"
         dataBaseArgs.auth.username = "root"
