@@ -148,7 +148,7 @@ declare namespace chrome.action {
      * Since Chrome 88.
      * Disables the action for a tab.
      * @param tabId The id of the tab for which you want to modify the action.
-     * @return The `disable` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `disable` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function disable(tabId: number): Promise<void>;
 
@@ -164,7 +164,7 @@ declare namespace chrome.action {
      * Since Chrome 88.
      * Enables the action for a tab. By default, actions are enabled.
      * @param tabId The id of the tab for which you want to modify the action.
-     * @return The `enable` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `enable` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function enable(tabId: number): Promise<void>;
 
@@ -179,14 +179,14 @@ declare namespace chrome.action {
     /**
      * Since Chrome 88.
      * Gets the background color of the action.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * (result: ColorArray) => {...}
      */
     export function getBadgeBackgroundColor(details: TabDetails, callback: (result: ColorArray) => void): void;
     /**
      * Since Chrome 88.
      * Gets the background color of the action.
-     * @return The `getBadgeBackgroundColor` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getBadgeBackgroundColor` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getBadgeBackgroundColor(details: TabDetails): Promise<ColorArray>;
 
@@ -195,7 +195,7 @@ declare namespace chrome.action {
      * Gets the badge TextArea of the action. If no tab is specified, the non-tab-specific badge TextArea is returned.
      * If displayActionCountAsBadgeText is enabled, a placeholder TextArea will be returned unless the
      * declarativeNetRequestFeedback permission is present or tab-specific badge TextArea was provided.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * (result: string) => {...}
      */
     export function getBadgeText(details: TabDetails, callback: (result: string) => void): void;
@@ -205,14 +205,14 @@ declare namespace chrome.action {
      * Gets the badge TextArea of the action. If no tab is specified, the non-tab-specific badge TextArea is returned.
      * If displayActionCountAsBadgeText is enabled, a placeholder TextArea will be returned unless the
      * declarativeNetRequestFeedback permission is present or tab-specific badge TextArea was provided.
-     * @return The `getBadgeText` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getBadgeText` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getBadgeText(details: TabDetails): Promise<string>;
 
     /**
      * Since Chrome 88.
      * Gets the html document set as the popup for this action.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * (result: string) => {...}
      */
     export function getPopup(details: TabDetails, callback: (result: string) => void): void;
@@ -220,14 +220,14 @@ declare namespace chrome.action {
     /**
      * Since Chrome 88.
      * Gets the html document set as the popup for this action.
-     * @return The `getPopup` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getPopup` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getPopup(details: TabDetails): Promise<string>;
 
     /**
      * Since Chrome 88.
      * Gets the title of the action.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * (result: string) => {...}
      */
     export function getTitle(details: TabDetails, callback: (result: string) => void): void;
@@ -235,21 +235,21 @@ declare namespace chrome.action {
     /**
      * Since Chrome 88.
      * Gets the title of the action.
-     * @return The `getTitle` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getTitle` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getTitle(details: TabDetails): Promise<string>;
 
     /**
      * Since Chrome 88.
      * Sets the background color for the badge.
-     * @return The `setBadgeBackgroundColor` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setBadgeBackgroundColor` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setBadgeBackgroundColor(details: BadgeBackgroundColorDetails): Promise<void>;
 
     /**
      * Since Chrome 88.
      * Sets the background color for the badge.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * () => {...}
      */
     export function setBadgeBackgroundColor(details: BadgeBackgroundColorDetails, callback?: () => void): void;
@@ -257,14 +257,14 @@ declare namespace chrome.action {
     /**
      * Since Chrome 88.
      * Sets the badge TextArea for the action. The badge is displayed on top of the icon.
-     * @return The `setBadgeText` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setBadgeText` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setBadgeText(details: BadgeTextDetails): Promise<void>;
 
     /**
      * Since Chrome 88.
      * Sets the badge TextArea for the action. The badge is displayed on top of the icon.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * () => {...}
      */
     export function setBadgeText(details: BadgeTextDetails, callback?: () => void): void;
@@ -273,7 +273,7 @@ declare namespace chrome.action {
      * Since Chrome 88.
      * Sets the icon for the action. The icon can be specified either as the path to an image file or as the pixel data from a canvas elementObject,
      * or as dictionary of either one of those. Either the path or the imageData property must be specified.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * () => {...}
      */
     export function setIcon(details: TabIconDetails, callback?: () => void): void;
@@ -281,14 +281,14 @@ declare namespace chrome.action {
     /**
      * Since Chrome 88.
      * Sets the html document to be opened as a popup when the user clicks on the action's icon.
-     * @return The `setPopup` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setPopup` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setPopup(details: PopupDetails): Promise<void>;
 
     /**
      * Since Chrome 88.
      * Sets the html document to be opened as a popup when the user clicks on the action's icon.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * () => {...}
      */
     export function setPopup(details: PopupDetails, callback?: () => void): void;
@@ -296,14 +296,14 @@ declare namespace chrome.action {
     /**
      * Since Chrome 88.
      * Sets the title of the action. This shows up in the tooltip.
-     * @return The `setTitle` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setTitle` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setTitle(details: TitleDetails): Promise<void>;
 
     /**
      * Since Chrome 88.
      * Sets the title of the action. This shows up in the tooltip.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * () => {...}
      */
     export function setTitle(details: TitleDetails, callback?: () => void): void;
@@ -358,73 +358,73 @@ declare namespace chrome.alarms {
     export function create(name: string, alarmInfo: AlarmCreateInfo): void;
     /**
      * Gets an array of all the alarms.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of Alarm alarms) {...};
      */
     export function getAll(callback: (alarms: Alarm[]) => void): void;
     /**
      * Gets an array of all the alarms.
-     * @return The `getAll` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getAll` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getAll(): Promise<Alarm[]>;
     /**
      * Clears all alarms.
      * function(boolean wasCleared) {...};
-     * @return The `clearAll` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `clearAll` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function clearAll(): Promise<boolean>;
     /**
      * Clears all alarms.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean wasCleared) {...};
      */
     export function clearAll(callback?: (wasCleared: boolean) => void): void;
     /**
      * Clears the alarm with the given name.
      * @param name The name of the alarm to clear. Defaults to the empty string.
-     * @return The `clear` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `clear` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function clear(name?: string): Promise<boolean>;
     /**
      * Clears the alarm with the given name.
      * @param name The name of the alarm to clear. Defaults to the empty string.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean wasCleared) {...};
      */
     export function clear(name?: string, callback?: (wasCleared: boolean) => void): void;
     /**
      * Clears the alarm without a name.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean wasCleared) {...};
      */
     export function clear(callback: (wasCleared: boolean) => void): void;
     /**
      * Clears the alarm without a name.
-     * @return The `clear` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `clear` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function clear(): Promise<void>;
     /**
      * Retrieves details about the specified alarm.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function( Alarm alarm) {...};
      */
     export function get(callback: (alarm: Alarm) => void): void;
     /**
      * Retrieves details about the specified alarm.
-     * @return The `get` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `get` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function get(): Promise<Alarm>;
     /**
      * Retrieves details about the specified alarm.
      * @param name The name of the alarm to get. Defaults to the empty string.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function( Alarm alarm) {...};
      */
     export function get(name: string, callback: (alarm: Alarm) => void): void;
     /**
      * Retrieves details about the specified alarm.
      * @param name The name of the alarm to get. Defaults to the empty string.
-     * @return The `get` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `get` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function get(name: string): Promise<Alarm>;
 
@@ -571,93 +571,93 @@ declare namespace chrome.bookmarks {
     /**
      * Searches for BookmarkTreeNodes matching the given query. Queries specified with an object produce BookmarkTreeNodes matching all specified properties.
      * @param query A string of words and quoted phrases that are matched against bookmark URLs and titles.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of BookmarkTreeNode results) {...};
      */
     export function search(query: string, callback: (results: BookmarkTreeNode[]) => void): void;
     /**
      * Searches for BookmarkTreeNodes matching the given query. Queries specified with an object produce BookmarkTreeNodes matching all specified properties.
      * @param query A string of words and quoted phrases that are matched against bookmark URLs and titles.
-     * @return The `search` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `search` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function search(query: string): Promise<BookmarkTreeNode[]>;
     /**
      * Searches for BookmarkTreeNodes matching the given query. Queries specified with an object produce BookmarkTreeNodes matching all specified properties.
      * @param query An object with one or more of the properties query, url, and title specified. Bookmarks matching all specified properties will be produced.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of BookmarkTreeNode results) {...};
      */
     export function search(query: BookmarkSearchQuery, callback: (results: BookmarkTreeNode[]) => void): void;
     /**
      * Searches for BookmarkTreeNodes matching the given query. Queries specified with an object produce BookmarkTreeNodes matching all specified properties.
      * @param query An object with one or more of the properties query, url, and title specified. Bookmarks matching all specified properties will be produced.
-     * @return The `search` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `search` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function search(query: BookmarkSearchQuery): Promise<BookmarkTreeNode[]>;
     /**
      * Retrieves the entire Bookmarks hierarchy.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of BookmarkTreeNode results) {...};
      */
     export function getTree(callback: (results: BookmarkTreeNode[]) => void): void;
     /**
      * Retrieves the entire Bookmarks hierarchy.
-     * @return The `getTree` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getTree` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getTree(): Promise<BookmarkTreeNode[]>;
     /**
      * Retrieves the recently added bookmarks.
      * @param numberOfItems The maximum number of items to return.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of BookmarkTreeNode results) {...};
      */
     export function getRecent(numberOfItems: number, callback: (results: BookmarkTreeNode[]) => void): void;
     /**
      * Retrieves the recently added bookmarks.
      * @param numberOfItems The maximum number of items to return.
-     * @return The `getRecent` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getRecent` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getRecent(numberOfItems: number): Promise<BookmarkTreeNode[]>;
     /**
      * Retrieves the specified BookmarkTreeNode.
      * @param id A single string-valued id
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of BookmarkTreeNode results) {...};
      */
     export function get(id: string, callback: (results: BookmarkTreeNode[]) => void): void;
     /**
      * Retrieves the specified BookmarkTreeNode.
      * @param id A single string-valued id
-     * @return The `get` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `get` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function get(id: string): Promise<BookmarkTreeNode[]>;
     /**
      * Retrieves the specified BookmarkTreeNode.
      * @param idList An array of string-valued ids
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of BookmarkTreeNode results) {...};
      */
     export function get(idList: string[], callback: (results: BookmarkTreeNode[]) => void): void;
     /**
      * Retrieves the specified BookmarkTreeNode.
      * @param idList An array of string-valued ids
-     * @return The `get` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `get` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function get(idList: string[]): Promise<BookmarkTreeNode[]>;
     /**
      * Creates a bookmark or folder under the specified parentId. If url is NULL or missing, it will be a folder.
-     * @return The `create` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `create` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function create(bookmark: BookmarkCreateArg): Promise<BookmarkTreeNode>;
     /**
      * Creates a bookmark or folder under the specified parentId. If url is NULL or missing, it will be a folder.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function( BookmarkTreeNode result) {...};
      */
     export function create(bookmark: BookmarkCreateArg, callback?: (result: BookmarkTreeNode) => void): void;
     /**
      * Moves the specified BookmarkTreeNode to the provided location.
-     * @return The `move` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `move` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function move(
         id: string,
@@ -665,7 +665,7 @@ declare namespace chrome.bookmarks {
     ): Promise<BookmarkTreeNode>;
     /**
      * Moves the specified BookmarkTreeNode to the provided location.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function( BookmarkTreeNode result) {...};
      */
     export function move(
@@ -675,7 +675,7 @@ declare namespace chrome.bookmarks {
     ): void;
     /**
      * Updates the properties of a bookmark or folder. Specify only the properties that you want to change; unspecified properties will be left unchanged. Note: Currently, only 'title' and 'url' are supported.
-     * @return The `update` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `update` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function update(
         id: string,
@@ -683,7 +683,7 @@ declare namespace chrome.bookmarks {
     ): Promise<BookmarkTreeNode>;
     /**
      * Updates the properties of a bookmark or folder. Specify only the properties that you want to change; unspecified properties will be left unchanged. Note: Currently, only 'title' and 'url' are supported.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function( BookmarkTreeNode result) {...};
      */
     export function update(
@@ -693,31 +693,31 @@ declare namespace chrome.bookmarks {
     ): void;
     /**
      * Removes a bookmark or an empty bookmark folder.
-     * @return The `remove` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `remove` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function remove(id: string): Promise<void>;
     /**
      * Removes a bookmark or an empty bookmark folder.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function remove(id: string, callback?: Function): void;
     /**
      * Retrieves the children of the specified BookmarkTreeNode id.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of BookmarkTreeNode results) {...};
      */
     export function getChildren(id: string, callback: (results: BookmarkTreeNode[]) => void): void;
     /**
      * Retrieves the children of the specified BookmarkTreeNode id.
-     * @return The `getChildren` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getChildren` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getChildren(id: string): Promise<BookmarkTreeNode[]>;
     /**
      * Since Chrome 14.
      * Retrieves part of the Bookmarks hierarchy, starting at the specified nodeObject.
      * @param id The ID of the root of the subtree to retrieve.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of BookmarkTreeNode results) {...};
      */
     export function getSubTree(id: string, callback: (results: BookmarkTreeNode[]) => void): void;
@@ -725,17 +725,17 @@ declare namespace chrome.bookmarks {
      * Since Chrome 14.
      * Retrieves part of the Bookmarks hierarchy, starting at the specified nodeObject.
      * @param id The ID of the root of the subtree to retrieve.
-     * @return The `getSubTree` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getSubTree` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getSubTree(id: string): Promise<BookmarkTreeNode[]>;
     /**
      * Recursively removes a bookmark folder.
-     * @return The `removeTree` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `removeTree` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function removeTree(id: string): Promise<void>;
     /**
      * Recursively removes a bookmark folder.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeTree(id: string, callback?: Function): void;
@@ -815,7 +815,7 @@ declare namespace chrome.browserAction {
      * Since Chrome 22.
      * Enables the browser action for a tab. By default, browser actions are enabled.
      * @param tabId The id of the tab for which you want to modify the browser action.
-     * @return The `enable` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `enable` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function enable(tabId?: number): Promise<void>;
     /**
@@ -827,7 +827,7 @@ declare namespace chrome.browserAction {
     export function enable(tabId?: number, callback?: () => void): void;
     /**
      * Sets the background color for the badge.
-     * @return The `setBadgeBackgroundColor` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setBadgeBackgroundColor` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setBadgeBackgroundColor(details: BadgeBackgroundColorDetails): Promise<void>;
     /**
@@ -837,7 +837,7 @@ declare namespace chrome.browserAction {
     export function setBadgeBackgroundColor(details: BadgeBackgroundColorDetails, callback?: () => void): void;
     /**
      * Sets the badge TextArea for the browser action. The badge is displayed on top of the icon.
-     * @return The `setBadgeText` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setBadgeText` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setBadgeText(details: BadgeTextDetails): Promise<void>;
     /**
@@ -847,7 +847,7 @@ declare namespace chrome.browserAction {
     export function setBadgeText(details: BadgeTextDetails, callback?: () => void): void;
     /**
      * Sets the title of the browser action. This shows up in the tooltip.
-     * @return The `setTitle` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setTitle` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setTitle(details: TitleDetails): Promise<void>;
     /**
@@ -864,12 +864,12 @@ declare namespace chrome.browserAction {
     /**
      * Since Chrome 19.
      * Gets the badge TextArea of the browser action. If no tab is specified, the non-tab-specific badge TextArea is returned.
-     * @return The `getBadgeText` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getBadgeText` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getBadgeText(details: TabDetails): Promise<string>;
     /**
      * Sets the html document to be opened as a popup when the user clicks on the browser action's icon.
-     * @return The `setPopup` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setPopup` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setPopup(details: PopupDetails): Promise<void>;
     /**
@@ -881,7 +881,7 @@ declare namespace chrome.browserAction {
      * Since Chrome 22.
      * Disables the browser action for a tab.
      * @param tabId The id of the tab for which you want to modify the browser action.
-     * @return The `disable` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `disable` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function disable(tabId?: number): Promise<void>;
     /**
@@ -894,45 +894,45 @@ declare namespace chrome.browserAction {
     /**
      * Since Chrome 19.
      * Gets the title of the browser action.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(string result) {...};
      */
     export function getTitle(details: TabDetails, callback: (result: string) => void): void;
     /**
      * Since Chrome 19.
      * Gets the title of the browser action.
-     * @return The `getTitle` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getTitle` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getTitle(details: TabDetails): Promise<string>;
     /**
      * Since Chrome 19.
      * Gets the background color of the browser action.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function( ColorArray result) {...};
      */
     export function getBadgeBackgroundColor(details: TabDetails, callback: (result: ColorArray) => void): void;
     /**
      * Since Chrome 19.
      * Gets the background color of the browser action.
-     * @return The `getBadgeBackgroundColor` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getBadgeBackgroundColor` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getBadgeBackgroundColor(details: TabDetails): Promise<ColorArray>;
     /**
      * Since Chrome 19.
      * Gets the html document set as the popup for this browser action.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(string result) {...};
      */
     export function getPopup(details: TabDetails, callback: (result: string) => void): void;
     /**
      * Since Chrome 19.
      * Gets the html document set as the popup for this browser action.
-     * @return The `getPopup` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getPopup` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getPopup(details: TabDetails): Promise<string>;
     /**
      * Sets the icon for the browser action. The icon can be specified either as the path to an image file or as the pixel data from a canvas elementObject, or as dictionary of either one of those. Either the path or the imageData property must be specified.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function setIcon(details: TabIconDetails, callback?: Function): void;
@@ -1021,28 +1021,28 @@ declare namespace chrome.browsingData {
     /**
      * Since Chrome 26.
      * Reports which types of data are currently selected in the 'Clear browsing data' settings UI. Note: some of the data types included in this API are not available in the settings UI, and some UI settings control more than one data type listed here.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(object result) {...};
      */
     export function settings(callback: (result: SettingsCallback) => void): void;
     /**
      * Clears plugins' data.
      * @param callback Called when plugins' data has been cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removePluginData(options: RemovalOptions, callback?: () => void): void;
     /**
      * Clears the browser's stored form data (autofill).
      * @param callback Called when the browser's form data has been cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeFormData(options: RemovalOptions, callback?: () => void): void;
     /**
      * Clears websites' file system data.
      * @param callback Called when websites' file systems have been cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeFileSystems(options: RemovalOptions, callback?: () => void): void;
@@ -1050,70 +1050,70 @@ declare namespace chrome.browsingData {
      * Clears various types of browsing data stored in a user's profile.
      * @param dataToRemove The set of data types to remove.
      * @param callback Called when deletion has completed.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function remove(options: RemovalOptions, dataToRemove: DataTypeSet, callback?: () => void): void;
     /**
      * Clears the browser's stored passwords.
      * @param callback Called when the browser's passwords have been cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removePasswords(options: RemovalOptions, callback?: () => void): void;
     /**
      * Clears the browser's cookies and server-bound certificates modified within a particular timeframe.
      * @param callback Called when the browser's cookies and server-bound certificates have been cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeCookies(options: RemovalOptions, callback?: () => void): void;
     /**
      * Clears websites' WebSQL data.
      * @param callback Called when websites' WebSQL databases have been cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeWebSQL(options: RemovalOptions, callback?: () => void): void;
     /**
      * Clears websites' appcache data.
      * @param callback Called when websites' appcache data has been cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeAppcache(options: RemovalOptions, callback?: () => void): void;
     /**
      * Clears the browser's list of downloaded files (not the downloaded files themselves).
      * @param callback Called when the browser's list of downloaded files has been cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeDownloads(options: RemovalOptions, callback?: () => void): void;
     /**
      * Clears websites' local storage data.
      * @param callback Called when websites' local storage has been cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeLocalStorage(options: RemovalOptions, callback?: () => void): void;
     /**
      * Clears the browser's cache.
      * @param callback Called when the browser's cache has been cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeCache(options: RemovalOptions, callback?: () => void): void;
     /**
      * Clears the browser's history.
      * @param callback Called when the browser's history has cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeHistory(options: RemovalOptions, callback?: () => void): void;
     /**
      * Clears websites' IndexedDB data.
      * @param callback Called when websites' IndexedDB data has been cleared.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeIndexedDB(options: RemovalOptions, callback?: () => void): void;
@@ -1142,7 +1142,7 @@ declare namespace chrome.commands {
     /**
      * Returns all the registered extension commands for this extension and their shortcut (if active).
      * @param callback Called to return the registered commands.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(array of Command commands) {...};
      */
     export function getAll(callback: (commands: Command[]) => void): void;
@@ -1257,25 +1257,25 @@ declare namespace chrome.contentSettings {
     export interface ContentSetting {
         /**
          * Clear all content setting rules set by this extension.
-         * @param callback If you specify the callback parameter, it should be a function that looks like this:
+         * @param callback If you specify the promise parameter, it should be a function that looks like this:
          * function() {...};
          */
         clear(details: ClearDetails, callback?: () => void): void;
         /**
          * Applies a new content setting rule.
-         * @param callback If you specify the callback parameter, it should be a function that looks like this:
+         * @param callback If you specify the promise parameter, it should be a function that looks like this:
          * function() {...};
          */
         set(details: SetDetails, callback?: () => void): void;
         /**
-         * @param callback The callback parameter should be a function that looks like this:
+         * @param callback The promise parameter should be a function that looks like this:
          * function(array of ResourceIdentifier resourceIdentifiers) {...};
          * Parameter resourceIdentifiers: A list of resource identifiers for this content type, or undefined if this content type does not use resource identifiers.
          */
         getResourceIdentifiers(callback: (resourceIdentifiers?: ResourceIdentifier[]) => void): void;
         /**
          * Gets the current content setting for a given pair of URLs.
-         * @param callback The callback parameter should be a function that looks like this:
+         * @param callback The promise parameter should be a function that looks like this:
          * function(object details) {...};
          */
         get(details: GetDetails, callback: (details: ReturnedDetails) => void): void;
@@ -1620,14 +1620,14 @@ declare namespace chrome.contextMenus {
     /**
      * Removes all context menu items added by this extension.
      * @param callback Called when removal is complete.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeAll(callback?: () => void): void;
     /**
-     * Creates a new context menu item. Note that if an error occurs during creation, you may not find out until the creation callback fires (the details will be in chrome.runtime.lastError).
+     * Creates a new context menu item. Note that if an error occurs during creation, you may not find out until the creation promise fires (the details will be in chrome.runtime.lastError).
      * @param callback Called when the item has been created in the browser. If there were any problems creating the item, details will be available in chrome.runtime.lastError.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function create(createProperties: CreateProperties, callback?: () => void): void;
@@ -1636,7 +1636,7 @@ declare namespace chrome.contextMenus {
      * @param id The ID of the item to update.
      * @param updateProperties The properties to update. Accepts the same values as the create function.
      * @param callback Called when the context menu has been updated.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function update(id: string, updateProperties: UpdateProperties, callback?: () => void): void;
@@ -1645,7 +1645,7 @@ declare namespace chrome.contextMenus {
      * @param id The ID of the item to update.
      * @param updateProperties The properties to update. Accepts the same values as the create function.
      * @param callback Called when the context menu has been updated.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function update(id: number, updateProperties: UpdateProperties, callback?: () => void): void;
@@ -1653,7 +1653,7 @@ declare namespace chrome.contextMenus {
      * Removes a context menu item.
      * @param menuItemId The ID of the context menu item to remove.
      * @param callback Called when the context menu has been removed.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function remove(menuItemId: string, callback?: () => void): void;
@@ -1661,7 +1661,7 @@ declare namespace chrome.contextMenus {
      * Removes a context menu item.
      * @param menuItemId The ID of the context menu item to remove.
      * @param callback Called when the context menu has been removed.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function remove(menuItemId: number, callback?: () => void): void;
@@ -1787,20 +1787,20 @@ declare namespace chrome.cookies {
 
     /**
      * Lists all existing cookie stores.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of CookieStore cookieStores) {...};
      * Parameter cookieStores: All the existing cookie stores.
      */
     export function getAllCookieStores(callback: (cookieStores: CookieStore[]) => void): void;
     /**
      * Lists all existing cookie stores.
-     * @return The `getAllCookieStores` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getAllCookieStores` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getAllCookieStores(): Promise<CookieStore[]>;
     /**
      * Retrieves all cookies from a single cookie store that match the given information. The cookies returned will be sorted, with those with the longest path first. If multiple cookies have the same path length, those with the earliest creation time will be first.
      * @param details Information to filter the cookies being retrieved.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of Cookie cookies) {...};
      * Parameter cookies: All the existing, unexpired cookies that match the given cookie info.
      */
@@ -1808,19 +1808,19 @@ declare namespace chrome.cookies {
     /**
      * Retrieves all cookies from a single cookie store that match the given information. The cookies returned will be sorted, with those with the longest path first. If multiple cookies have the same path length, those with the earliest creation time will be first.
      * @param details Information to filter the cookies being retrieved.
-     * @return The `getAll` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getAll` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getAll(details: GetAllDetails): Promise<Cookie[]>;
     /**
      * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
      * @param details Details about the cookie being set.
-     * @return The `set` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `set` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function set(details: SetDetails): Promise<Cookie | null>;
     /**
      * Sets a cookie with the given cookie data; may overwrite equivalent cookies if they exist.
      * @param details Details about the cookie being set.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function( Cookie cookie) {...};
      * Optional parameter cookie: Contains details about the cookie that's been set. If setting failed for any reason, this will be "null", and "chrome.runtime.lastError" will be set.
      */
@@ -1828,20 +1828,20 @@ declare namespace chrome.cookies {
     /**
      * Deletes a cookie by name.
      * @param details Information to identify the cookie to remove.
-     * @return The `remove` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `remove` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function remove(details: Details): Promise<Details>;
     /**
      * Deletes a cookie by name.
      * @param details Information to identify the cookie to remove.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(object details) {...};
      */
     export function remove(details: Details, callback?: (details: Details) => void): void;
     /**
      * Retrieves information about a single cookie. If more than one cookie of the same name exists for the given URL, the one with the longest path will be returned. For cookies with the same path length, the cookie with the earliest creation time will be returned.
      * @param details Details to identify the cookie being retrieved.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function( Cookie cookie) {...};
      * Parameter cookie: Contains details about the cookie. This parameter is null if no such cookie was found.
      */
@@ -1849,7 +1849,7 @@ declare namespace chrome.cookies {
     /**
      * Retrieves information about a single cookie. If more than one cookie of the same name exists for the given URL, the one with the longest path will be returned. For cookies with the same path length, the cookie with the earliest creation time will be returned.
      * @param details Details to identify the cookie being retrieved.
-     * @return The `get` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `get` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function get(details: Details): Promise<Cookie | null>;
 
@@ -1927,7 +1927,7 @@ declare module chrome {
          * @param target Debugging target to which you want to attach.
          * @param requiredVersion Required debugging protocol version ("0.1"). One can only attach to the debuggee with matching major version and greater or equal minor version. List of the protocol versions can be obtained in the documentation pages.
          * @param callback Called once the attach operation succeeds or fails. Callback receives no arguments. If the attach fails, runtime.lastError will be set to the error message.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function() {...};
          */
         export function attach(target: Debuggee, requiredVersion: string, callback?: () => void): void;
@@ -1935,7 +1935,7 @@ declare module chrome {
          * Detaches debugger from the given target.
          * @param target Debugging target from which you want to detach.
          * @param callback Called once the detach operation succeeds or fails. Callback receives no arguments. If the detach fails, runtime.lastError will be set to the error message.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function() {...};
          */
         export function detach(target: Debuggee, callback?: () => void): void;
@@ -1945,8 +1945,8 @@ declare module chrome {
          * @param method Method name. Should be one of the methods defined by the remote debugging protocol.
          * @param commandParams Since Chrome 22.
          * JSON object with request parameters. This object must conform to the remote debugging params scheme for given method.
-         * @param callback Response body. If an error occurs while posting the message, the callback will be called with no arguments and runtime.lastError will be set to the error message.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * @param callback Response body. If an error occurs while posting the message, the promise will be called with no arguments and runtime.lastError will be set to the error message.
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function(object result) {...};
          */
         export function sendCommand(
@@ -1958,7 +1958,7 @@ declare module chrome {
         /**
          * Since Chrome 28.
          * Returns the list of available debug targets.
-         * @param callback The callback parameter should be a function that looks like this:
+         * @param callback The promise parameter should be a function that looks like this:
          * function(array of TargetInfo result) {...};
          * Parameter result: Array of TargetInfo objects corresponding to the available debug targets.
          */
@@ -2057,7 +2057,7 @@ declare namespace chrome.declarativeContent {
 }
 
 ////////////////////
-// Declarative Web Request
+// Declarative Web RequestData
 ////////////////////
 declare namespace chrome.declarativeWebRequest {
     export interface HeaderFilter {
@@ -2182,18 +2182,18 @@ declare namespace chrome.desktopCapture {
     /**
      * Shows desktop media picker UI with the specified set of sources.
      * @param sources Set of sources that should be shown to the user.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(string streamId) {...};
-     * Parameter streamId: An opaque string that can be passed to getUserMedia() API to generate media stream that corresponds to the source selected by the user. If user didn't select any source (i.e. canceled the prompt) then the callback is called with an empty streamId. The created streamId can be used only once and expires after a few seconds when it is not used.
+     * Parameter streamId: An opaque string that can be passed to getUserMedia() API to generate media stream that corresponds to the source selected by the user. If user didn't select any source (i.e. canceled the prompt) then the promise is called with an empty streamId. The created streamId can be used only once and expires after a few seconds when it is not used.
      */
     export function chooseDesktopMedia(sources: string[], callback: (streamId: string, options: StreamOptions) => void): number;
     /**
      * Shows desktop media picker UI with the specified set of sources.
      * @param sources Set of sources that should be shown to the user.
      * @param targetTab Optional tab for which the stream is created. If not specified then the resulting stream can be used only by the calling extension. The stream can only be used by frames in the given tab whose security origin matches tab.url.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(string streamId) {...};
-     * Parameter streamId: An opaque string that can be passed to getUserMedia() API to generate media stream that corresponds to the source selected by the user. If user didn't select any source (i.e. canceled the prompt) then the callback is called with an empty streamId. The created streamId can be used only once and expires after a few seconds when it is not used.
+     * Parameter streamId: An opaque string that can be passed to getUserMedia() API to generate media stream that corresponds to the source selected by the user. If user didn't select any source (i.e. canceled the prompt) then the promise is called with an empty streamId. The created streamId can be used only once and expires after a few seconds when it is not used.
      */
     export function chooseDesktopMedia(
         sources: string[],
@@ -2222,7 +2222,7 @@ declare namespace chrome.devtools.inspectedWindow {
         /**
          * Gets the content of the resource.
          * @param callback A function that receives resource content when the request completes.
-         * The callback parameter should be a function that looks like this:
+         * The promise parameter should be a function that looks like this:
          * function(string content, string encoding) {...};
          * Parameter content: Content of the resource (potentially encoded).
          * Parameter encoding: Empty if content is not encoded, encoding name otherwise. Currently, only base64 is supported.
@@ -2233,7 +2233,7 @@ declare namespace chrome.devtools.inspectedWindow {
          * @param content New content of the resource. Only resources with the TextArea type are currently supported.
          * @param commit True if the user has finished editing the resource, and the new content of the resource should be persisted; false if this is a minor change sent in progress of the user editing the resource.
          * @param callback A function called upon request completion.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function(object error) {...};
          * Optional parameter error: Set to undefined if the resource content was set successfully; describes error otherwise.
          */
@@ -2281,10 +2281,10 @@ declare namespace chrome.devtools.inspectedWindow {
     /** Reloads the inspected page. */
     export function reload(reloadOptions: ReloadOptions): void;
     /**
-     * Evaluates a JavaScript expression in the context of the main frame of the inspected page. The expression must evaluate to a JSON-compliant object, otherwise an exception is thrown. The eval function can report either a DevTools-side error or a JavaScript exception that occurs during evaluation. In either case, the result parameter of the callback is undefined. In the case of a DevTools-side error, the isException parameter is non-null and has isError set to true and code set to an error code. In the case of a JavaScript error, isException is set to true and value is set to the string value of thrown object.
+     * Evaluates a JavaScript expression in the context of the main frame of the inspected page. The expression must evaluate to a JSON-compliant object, otherwise an exception is thrown. The eval function can report either a DevTools-side error or a JavaScript exception that occurs during evaluation. In either case, the result parameter of the promise is undefined. In the case of a DevTools-side error, the isException parameter is non-null and has isError set to true and code set to an error code. In the case of a JavaScript error, isException is set to true and value is set to the string value of thrown object.
      * @param expression An expression to evaluate.
      * @param callback A function called when evaluation completes.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(object result, object exceptionInfo) {...};
      * Parameter result: The result of evaluation.
      * Parameter exceptionInfo: An object providing details if an exception occurred while evaluating the expression.
@@ -2294,11 +2294,11 @@ declare namespace chrome.devtools.inspectedWindow {
         callback?: (result: T, exceptionInfo: EvaluationExceptionInfo) => void,
     ): void;
     /**
-     * Evaluates a JavaScript expression in the context of the main frame of the inspected page. The expression must evaluate to a JSON-compliant object, otherwise an exception is thrown. The eval function can report either a DevTools-side error or a JavaScript exception that occurs during evaluation. In either case, the result parameter of the callback is undefined. In the case of a DevTools-side error, the isException parameter is non-null and has isError set to true and code set to an error code. In the case of a JavaScript error, isException is set to true and value is set to the string value of thrown object.
+     * Evaluates a JavaScript expression in the context of the main frame of the inspected page. The expression must evaluate to a JSON-compliant object, otherwise an exception is thrown. The eval function can report either a DevTools-side error or a JavaScript exception that occurs during evaluation. In either case, the result parameter of the promise is undefined. In the case of a DevTools-side error, the isException parameter is non-null and has isError set to true and code set to an error code. In the case of a JavaScript error, isException is set to true and value is set to the string value of thrown object.
      * @param expression An expression to evaluate.
      * @param options The options parameter can contain one or more options.
      * @param callback A function called when evaluation completes.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(object result, object exceptionInfo) {...};
      * Parameter result: The result of evaluation.
      * Parameter exceptionInfo: An object providing details if an exception occurred while evaluating the expression.
@@ -2311,7 +2311,7 @@ declare namespace chrome.devtools.inspectedWindow {
     /**
      * Retrieves the list of resources from the inspected page.
      * @param callback A function that receives the list of resources when the request completes.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(array of Resource resources) {...};
      */
     export function getResources(callback: (resources: Resource[]) => void): void;
@@ -2324,7 +2324,7 @@ declare namespace chrome.devtools.inspectedWindow {
     export interface EvalOptions {
         /** If specified, the expression is evaluated on the iframe whose URL matches the one specified. By default, the expression is evaluated in the top frame of the inspected page. */
         frameURL?: string | undefined;
-        /** Evaluate the expression in the context of the content script of the calling extension, provided that the content script is already injected into the inspected page. If not, the expression is not evaluated and the callback is invoked with the exception parameter set to an object that has the isError field set to true and the code field set to E_NOTFOUND. */
+        /** Evaluate the expression in the context of the content script of the calling extension, provided that the content script is already injected into the inspected page. If not, the expression is not evaluated and the promise is invoked with the exception parameter set to an object that has the isError field set to true and the code field set to E_NOTFOUND. */
         useContentScriptContext?: boolean | undefined;
         /** Evaluate the expression in the context of a content script of an extension that matches the specified origin. If given, contextSecurityOrigin overrides the 'true' setting on userContentScriptContext. */
         contextSecurityOrigin?: string | undefined;
@@ -2348,7 +2348,7 @@ declare namespace chrome.devtools.network {
         /**
          * Returns content of the response body.
          * @param callback A function that receives the response body when the request completes.
-         * The callback parameter should be a function that looks like this:
+         * The promise parameter should be a function that looks like this:
          * function(string content, string encoding) {...};
          * Parameter content: Content of the response body (potentially encoded).
          * Parameter encoding: Empty if content is not encoded, encoding name otherwise. Currently, only base64 is supported.
@@ -2363,7 +2363,7 @@ declare namespace chrome.devtools.network {
     /**
      * Returns HAR log that contains all known network requests.
      * @param callback A function that receives the HAR log when the request completes.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(object harLog) {...};
      * Parameter harLog: A HAR log. See HAR specification for details.
      */
@@ -2428,8 +2428,8 @@ declare namespace chrome.devtools.panels {
         /**
          * Creates a pane within panel's sidebar.
          * @param title TextArea that is displayed in sidebar caption.
-         * @param callback A callback invoked when the sidebar is created.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * @param callback A promise invoked when the sidebar is created.
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function( ExtensionSidebarPane result) {...};
          * Parameter result: An ExtensionSidebarPane object for created sidebar pane.
          */
@@ -2446,8 +2446,8 @@ declare namespace chrome.devtools.panels {
         /**
          * Creates a pane within panel's sidebar.
          * @param title TextArea that is displayed in sidebar caption.
-         * @param callback A callback invoked when the sidebar is created.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * @param callback A promise invoked when the sidebar is created.
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function( ExtensionSidebarPane result) {...};
          * Parameter result: An ExtensionSidebarPane object for created sidebar pane.
          */
@@ -2472,16 +2472,16 @@ declare namespace chrome.devtools.panels {
          * Sets an expression that is evaluated within the inspected page. The result is displayed in the sidebar pane.
          * @param expression An expression to be evaluated in context of the inspected page. JavaScript objects and DOM nodes are displayed in an expandable tree similar to the console/watch.
          * @param rootTitle An optional title for the root of the expression tree.
-         * @param callback A callback invoked after the sidebar pane is updated with the expression evaluation results.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * @param callback A promise invoked after the sidebar pane is updated with the expression evaluation results.
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function() {...};
          */
         setExpression(expression: string, rootTitle?: string, callback?: () => void): void;
         /**
          * Sets an expression that is evaluated within the inspected page. The result is displayed in the sidebar pane.
          * @param expression An expression to be evaluated in context of the inspected page. JavaScript objects and DOM nodes are displayed in an expandable tree similar to the console/watch.
-         * @param callback A callback invoked after the sidebar pane is updated with the expression evaluation results.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * @param callback A promise invoked after the sidebar pane is updated with the expression evaluation results.
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function() {...};
          */
         setExpression(expression: string, callback?: () => void): void;
@@ -2489,16 +2489,16 @@ declare namespace chrome.devtools.panels {
          * Sets a JSON-compliant object to be displayed in the sidebar pane.
          * @param jsonObject An object to be displayed in context of the inspected page. Evaluated in the context of the caller (API client).
          * @param rootTitle An optional title for the root of the expression tree.
-         * @param callback A callback invoked after the sidebar is updated with the object.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * @param callback A promise invoked after the sidebar is updated with the object.
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function() {...};
          */
         setObject(jsonObject: Object, rootTitle?: string, callback?: () => void): void;
         /**
          * Sets a JSON-compliant object to be displayed in the sidebar pane.
          * @param jsonObject An object to be displayed in context of the inspected page. Evaluated in the context of the caller (API client).
-         * @param callback A callback invoked after the sidebar is updated with the object.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * @param callback A promise invoked after the sidebar is updated with the object.
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function() {...};
          */
         setObject(jsonObject: Object, callback?: () => void): void;
@@ -2527,7 +2527,7 @@ declare namespace chrome.devtools.panels {
      * @param iconPath Path of the panel's icon relative to the extension directory.
      * @param pagePath Path of the panel's HTML page relative to the extension directory.
      * @param callback A function that is called when the panel is created.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function( ExtensionPanel panel) {...};
      * Parameter panel: An ExtensionPanel object representing the created panel.
      */
@@ -2540,7 +2540,7 @@ declare namespace chrome.devtools.panels {
     /**
      * Specifies the function to be called when the user clicks a resource link in the Developer Tools window. To unset the handler, either call the method with no parameters or pass null as the parameter.
      * @param callback A function that is called when the user clicks on a valid resource link in Developer Tools window. Note that if the user clicks an invalid URL or an XHR, this function is not called.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function( devtools.inspectedWindow.Resource resource) {...};
      * Parameter resource: A devtools.inspectedWindow.Resource object for the resource that was clicked.
      */
@@ -2553,7 +2553,7 @@ declare namespace chrome.devtools.panels {
      * @param url The URL of the resource to open.
      * @param lineNumber Specifies the line number to scroll to when the resource is loaded.
      * @param callback A function that is called when the resource has been successfully loaded.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function openResource(url: string, lineNumber: number, callback: () => void): void;
@@ -2590,10 +2590,10 @@ declare namespace chrome.documentScan {
     }
 
     /**
-     * Performs a document scan. On success, the PNG data will be sent to the callback.
+     * Performs a document scan. On success, the PNG data will be sent to the promise.
      * @param options Object containing scan parameters.
      * @param callback Called with the result and data from the scan.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(object result) {...};
      */
     export function scan(options: DocumentScanOptions, callback: (result: DocumentScanCallbackArg) => void): void;
@@ -2811,7 +2811,7 @@ declare namespace chrome.downloads {
 
     /**
      * Find DownloadItem. Set query to the empty object to get all DownloadItem. To get a specific DownloadItem, set only the id field. To page through a large number of items, set orderBy: ['-startTime'], set limit to the number of items per page, and set startedAfter to the startTime of the last item from the last page.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of DownloadItem results) {...};
      */
     export function search(query: DownloadQuery, callback: (results: DownloadItem[]) => void): void;
@@ -2819,7 +2819,7 @@ declare namespace chrome.downloads {
      * Pause the download. If the request was successful the download is in a paused state. Otherwise runtime.lastError contains an error message. The request will fail if the download is not active.
      * @param downloadId The id of the download to pause.
      * @param callback Called when the pause request is completed.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function pause(downloadId: number, callback?: () => void): void;
@@ -2827,7 +2827,7 @@ declare namespace chrome.downloads {
      * Retrieve an icon for the specified download. For new downloads, file icons are available after the onCreated event has been received. The image returned by this function while a download is in progress may be different from the image returned after the download is complete. Icon retrieval is done by querying the underlying operating system or toolkit depending on the platform. The icon that is returned will therefore depend on a number of factors including state of the download, platform, registered file types and visual theme. If a file icon cannot be determined, runtime.lastError will contain an error message.
      * @param downloadId The identifier for the download.
      * @param callback A URL to an image that represents the download.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(string iconURL) {...};
      */
     export function getFileIcon(downloadId: number, callback: (iconURL: string) => void): void;
@@ -2835,7 +2835,7 @@ declare namespace chrome.downloads {
      * Retrieve an icon for the specified download. For new downloads, file icons are available after the onCreated event has been received. The image returned by this function while a download is in progress may be different from the image returned after the download is complete. Icon retrieval is done by querying the underlying operating system or toolkit depending on the platform. The icon that is returned will therefore depend on a number of factors including state of the download, platform, registered file types and visual theme. If a file icon cannot be determined, runtime.lastError will contain an error message.
      * @param downloadId The identifier for the download.
      * @param callback A URL to an image that represents the download.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(string iconURL) {...};
      */
     export function getFileIcon(
@@ -2847,23 +2847,23 @@ declare namespace chrome.downloads {
      * Resume a paused download. If the request was successful the download is in progress and unpaused. Otherwise runtime.lastError contains an error message. The request will fail if the download is not active.
      * @param downloadId The id of the download to resume.
      * @param callback  Called when the resume request is completed.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function resume(downloadId: number, callback?: () => void): void;
     /**
-     * Cancel a download. When callback is run, the download is cancelled, completed, interrupted or doesn't exist anymore.
+     * Cancel a download. When promise is run, the download is cancelled, completed, interrupted or doesn't exist anymore.
      * @param downloadId The id of the download to cancel.
      * @param callback Called when the cancel request is completed.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function cancel(downloadId: number, callback?: () => void): void;
     /**
-     * Download a URL. If the URL uses the HTTP[S] protocol, then the request will include all cookies currently set for its hostname. If both filename and saveAs are specified, then the Save As dialog will be displayed, pre-populated with the specified filename. If the download started successfully, callback will be called with the new DownloadItem's downloadId. If there was an error starting the download, then callback will be called with downloadId=undefined and runtime.lastError will contain a descriptive string. The error strings are not guaranteed to remain backwards compatible between releases. Extensions must not parse it.
+     * Download a URL. If the URL uses the HTTP[S] protocol, then the request will include all cookies currently set for its hostname. If both filename and saveAs are specified, then the Save As dialog will be displayed, pre-populated with the specified filename. If the download started successfully, promise will be called with the new DownloadItem's downloadId. If there was an error starting the download, then promise will be called with downloadId=undefined and runtime.lastError will contain a descriptive string. The error strings are not guaranteed to remain backwards compatible between releases. Extensions must not parse it.
      * @param options What to download and how.
      * @param callback Called with the id of the new DownloadItem.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(integer downloadId) {...};
      */
     export function download(options: DownloadOptions, callback?: (downloadId: number) => void): void;
@@ -2880,14 +2880,14 @@ declare namespace chrome.downloads {
     /** Show the default Downloads folder in a file manager. */
     export function showDefaultFolder(): void;
     /**
-     * Erase matching DownloadItem from history without deleting the downloaded file. An onErased event will fire for each DownloadItem that matches query, then callback will be called.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * Erase matching DownloadItem from history without deleting the downloaded file. An onErased event will fire for each DownloadItem that matches query, then promise will be called.
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(array of integer erasedIds) {...};
      */
     export function erase(query: DownloadQuery, callback: (erasedIds: number[]) => void): void;
     /**
      * Remove the downloaded file if it exists and the DownloadItem is complete; otherwise return an error through runtime.lastError.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeFile(downloadId: number, callback?: () => void): void;
@@ -2895,7 +2895,7 @@ declare namespace chrome.downloads {
      * Prompt the user to accept a dangerous download. Can only be called from a visible context (tab, window, or page/browser action popup). Does not automatically accept dangerous downloads. If the download is accepted, then an onChanged event will fire, otherwise nothing will happen. When all the data is fetched into a temporary file and either the download is not dangerous or the danger has been accepted, then the temporary file is renamed to the target filename, the |state| changes to 'complete', and onChanged fires.
      * @param downloadId The identifier for the DownloadItem.
      * @param callback Called when the danger prompt dialog closes.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function acceptDanger(downloadId: number, callback: () => void): void;
@@ -2942,7 +2942,7 @@ declare namespace chrome.enterprise.platformKeys {
     /**
      * Returns the available Tokens. In a regular user's session the list will always contain the user's token with id "user". If a system-wide TPM token is available, the returned list will also contain the system-wide token with id "system". The system-wide token will be the same for all sessions on this device (device in the sense of e.g. a Chromebook).
      * @param callback Invoked by getTokens with the list of available Tokens.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(array of Token tokens) {...};
      * Parameter tokens: The list of available tokens.
      */
@@ -2951,7 +2951,7 @@ declare namespace chrome.enterprise.platformKeys {
      * Returns the list of all client certificates available from the given token. Can be used to check for the existence and expiration of client certificates that are usable for a certain authentication.
      * @param tokenId The id of a Token returned by getTokens.
      * @param callback Called back with the list of the available certificates.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(array of ArrayBuffer certificates) {...};
      * Parameter certificates: The list of certificates, each in DER encoding of a X.509 certificate.
      */
@@ -2961,7 +2961,7 @@ declare namespace chrome.enterprise.platformKeys {
      * @param tokenId The id of a Token returned by getTokens.
      * @param certificate The DER encoding of a X.509 certificate.
      * @param callback Called back when this operation is finished.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function importCertificate(tokenId: string, certificate: ArrayBuffer, callback?: () => void): void;
@@ -2970,7 +2970,7 @@ declare namespace chrome.enterprise.platformKeys {
      * @param tokenId The id of a Token returned by getTokens.
      * @param certificate The DER encoding of a X.509 certificate.
      * @param callback Called back when this operation is finished.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeCertificate(tokenId: string, certificate: ArrayBuffer, callback?: () => void): void;
@@ -2987,7 +2987,7 @@ declare namespace chrome.enterprise.platformKeys {
      * @param challenge A challenge as emitted by the Verified Access Web API.
      * @param registerKey If set, the current Enterprise Machine Key is registered with the "system" token and relinquishes the Enterprise Machine Key role. The key can then be associated with a certificate and used like any other signing key. This key is 2048-bit RSA. Subsequent calls to this function will then generate a new Enterprise Machine Key. Since Chrome 59.
      * @param callback Called back with the challenge response.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(ArrayBuffer response) {...};
      * @since Chrome 50.
      */
@@ -3010,7 +3010,7 @@ declare namespace chrome.enterprise.platformKeys {
      * @param challenge A challenge as emitted by the Verified Access Web API.
      * @param registerKey If set, the current Enterprise User Key is registered with the "user" token and relinquishes the Enterprise User Key role. The key can then be associated with a certificate and used like any other signing key. This key is 2048-bit RSA. Subsequent calls to this function will then generate a new Enterprise User Key.
      * @param callback Called back with the challenge response.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(ArrayBuffer response) {...};
      * @since Chrome 50.
      */
@@ -3035,7 +3035,7 @@ declare namespace chrome.enterprise.deviceAttributes {
     /**
      * @description Fetches the value of the device identifier of the directory API, that is generated by the server and identifies the cloud record of the device for querying in the cloud directory API.
      * @param callback Called with the device identifier of the directory API when received.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(string deviceId) {...};
      */
     export function getDirectoryDeviceId(callback: (deviceId: string) => void): void;
@@ -3089,7 +3089,7 @@ declare namespace chrome.enterprise.networkingAttributes {
     /**
      * Retrieves the network details of the device's default network. If the user is not affiliated or the device is not connected to a network, runtime.lastError will be set with a failure reason.
      * @param callback Called with the device's default network's NetworkDetails.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(NetworkDetails networkAddresses) {...};
      */
     export function getNetworkDetails(callback: (networkDetails: NetworkDetails) => void): void;
@@ -3158,16 +3158,16 @@ declare namespace chrome.events {
     /** An object which allows the addition and removal of listeners for a Chrome event. */
     export interface Event<T extends Function> {
         /**
-         * Registers an event listener callback to an event.
+         * Registers an event listener promise to an event.
          * @param callback Called when an event occurs. The parameters of this function depend on the type of event.
-         * The callback parameter should be a function that looks like this:
+         * The promise parameter should be a function that looks like this:
          * function() {...};
          */
         addListener(callback: T): void;
         /**
          * Returns currently registered rules.
          * @param callback Called with registered rules.
-         * The callback parameter should be a function that looks like this:
+         * The promise parameter should be a function that looks like this:
          * function(array of Rule rules) {...};
          * Parameter rules: Rules that were registered, the optional parameters are filled with values.
          */
@@ -3176,7 +3176,7 @@ declare namespace chrome.events {
          * Returns currently registered rules.
          * @param ruleIdentifiers If an array is passed, only rules with identifiers contained in this array are returned.
          * @param callback Called with registered rules.
-         * The callback parameter should be a function that looks like this:
+         * The promise parameter should be a function that looks like this:
          * function(array of Rule rules) {...};
          * Parameter rules: Rules that were registered, the optional parameters are filled with values.
          */
@@ -3189,14 +3189,14 @@ declare namespace chrome.events {
          * Unregisters currently registered rules.
          * @param ruleIdentifiers If an array is passed, only rules with identifiers contained in this array are unregistered.
          * @param callback Called when rules were unregistered.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function() {...};
          */
         removeRules(ruleIdentifiers?: string[], callback?: () => void): void;
         /**
          * Unregisters currently registered rules.
          * @param callback Called when rules were unregistered.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function() {...};
          */
         removeRules(callback?: () => void): void;
@@ -3204,15 +3204,15 @@ declare namespace chrome.events {
          * Registers rules to handle events.
          * @param rules Rules to be registered. These do not replace previously registered rules.
          * @param callback Called with registered rules.
-         * If you specify the callback parameter, it should be a function that looks like this:
+         * If you specify the promise parameter, it should be a function that looks like this:
          * function(array of Rule rules) {...};
          * Parameter rules: Rules that were registered, the optional parameters are filled with values.
          */
         addRules(rules: Rule[], callback?: (rules: Rule[]) => void): void;
         /**
-         * Deregisters an event listener callback from an event.
+         * Deregisters an event listener promise from an event.
          * @param callback Listener that shall be unregistered.
-         * The callback parameter should be a function that looks like this:
+         * The promise parameter should be a function that looks like this:
          * function() {...};
          */
         removeListener(callback: T): void;
@@ -3275,7 +3275,7 @@ declare namespace chrome.extension {
      * True for content scripts running inside incognito frames, and for extension pages running inside an incognito process. The latter only applies to extensions with 'split' incognito_behavior.
      */
     export var inIncognitoContext: boolean;
-    /** Set for the lifetime of a callback if an ansychronous extension api has resulted in an error. If no error has occured lastError will be undefined. */
+    /** Set for the lifetime of a promise if an ansychronous extension api has resulted in an error. If no error has occured lastError will be undefined. */
     export var lastError: LastError;
 
     /** Returns the JavaScript 'window' object for the background page running inside the current extension. Returns null if the extension has no background page. */
@@ -3295,7 +3295,7 @@ declare namespace chrome.extension {
     /**
      * Retrieves the state of the extension's access to the 'file://' scheme (as determined by the user-controlled 'Allow access to File URLs' checkbox.
      * Since Chrome 12.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(boolean isAllowedAccess) {...};
      * Parameter isAllowedAccess: True if the extension can access the 'file://' scheme, false otherwise.
      */
@@ -3303,7 +3303,7 @@ declare namespace chrome.extension {
     /**
      * Retrieves the state of the extension's access to Incognito-mode (as determined by the user-controlled 'Allowed in Incognito' checkbox.
      * Since Chrome 12.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(boolean isAllowedAccess) {...};
      * Parameter isAllowedAccess: True if the extension has access to Incognito mode, false otherwise.
      */
@@ -3314,7 +3314,7 @@ declare namespace chrome.extension {
      * @param extensionId The extension ID of the extension you want to connect to. If omitted, default is your own extension.
      * @param responseCallback If you specify the responseCallback parameter, it should be a function that looks like this:
      * function(any response) {...};
-     * Parameter response: The JSON response object sent by the handler of the request. If an error occurs while connecting to the extension, the callback will be called with no arguments and runtime.lastError will be set to the error message.
+     * Parameter response: The JSON response object sent by the handler of the request. If an error occurs while connecting to the extension, the promise will be called with no arguments and runtime.lastError will be set to the error message.
      */
     export function sendRequest(extensionId: string, request: any, responseCallback?: (response: any) => void): void;
     /**
@@ -3322,7 +3322,7 @@ declare namespace chrome.extension {
      * @deprecated Deprecated since Chrome 33. Please use runtime.sendMessage.
      * @param responseCallback If you specify the responseCallback parameter, it should be a function that looks like this:
      * function(any response) {...};
-     * Parameter response: The JSON response object sent by the handler of the request. If an error occurs while connecting to the extension, the callback will be called with no arguments and runtime.lastError will be set to the error message.
+     * Parameter response: The JSON response object sent by the handler of the request. If an error occurs while connecting to the extension, the promise will be called with no arguments and runtime.lastError will be set to the error message.
      */
     export function sendRequest(request: any, responseCallback?: (response: any) => void): void;
     /**
@@ -3387,7 +3387,7 @@ declare namespace chrome.fileBrowserHandler {
      * Since Chrome 21.
      * @param selectionParams Parameters that will be used while selecting the file.
      * @param callback Function called upon completion.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(object result) {...};
      * Parameter result: Result of the method.
      */
@@ -3746,23 +3746,23 @@ declare namespace chrome.fileSystemProvider {
      * Mounts a file system with the given fileSystemId and displayName. displayName will be shown in the left panel of Files.app. displayName can contain any characters including '/', but cannot be an empty string. displayName must be descriptive but doesn't have to be unique. The fileSystemId must not be an empty string.
      * Depending on the type of the file system being mounted, the source option must be set appropriately.
      * In case of an error, runtime.lastError will be set with a corresponding error code.
-     * @param callback A generic result callback to indicate success or failure.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback A generic result promise to indicate success or failure.
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function mount(options: MountOptions, callback?: () => void): void;
     /**
      * Unmounts a file system with the given fileSystemId. It must be called after onUnmountRequested is invoked. Also, the providing extension can decide to perform unmounting if not requested (eg. in case of lost connection, or a file error).
      * In case of an error, runtime.lastError will be set with a corresponding error code.
-     * @param callback A generic result callback to indicate success or failure.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback A generic result promise to indicate success or failure.
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function unmount(options: UnmountOptions, callback?: () => void): void;
     /**
      * Returns all file systems mounted by the extension.
      * @param callback Callback to receive the result of getAll function.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(array of FileSystemInfo fileSystems) {...};
      */
     export function getAll(callback: (fileSystems: FileSystemInfo[]) => void): void;
@@ -3770,7 +3770,7 @@ declare namespace chrome.fileSystemProvider {
      * Returns information about a file system with the passed fileSystemId.
      * @since Since Chrome 42.
      * @param callback Callback to receive the result of get function.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(FileSystemInfo fileSystem) {...};
      */
     export function get(fileSystemId: string, callback: (fileSystem: FileSystemInfo) => void): void;
@@ -3781,8 +3781,8 @@ declare namespace chrome.fileSystemProvider {
      * Not all providers are able to provide a tag, but if the file system has a changelog, then the tag can be eg. a change number, or a revision number.
      * Note that if a parent directory is removed, then all descendant entries are also removed, and if they are watched, then the API must be notified about the fact. Also, if a directory is renamed, then all descendant entries are in fact removed, as there is no entry under their original paths anymore.
      * In case of an error, runtime.lastError will be set will a corresponding error code.
-     * @param callback A generic result callback to indicate success or failure.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback A generic result promise to indicate success or failure.
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function notify(options: NotificationOptions, callback: () => void): void;
@@ -3911,85 +3911,85 @@ declare namespace chrome.fontSettings {
 
     /**
      * Sets the default font size.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function setDefaultFontSize(details: DefaultFontSizeDetails, callback?: Function): void;
     /**
      * Gets the font for a given script and generic font family.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(object details) {...};
      */
     export function getFont(details: FontDetails, callback?: (details: FontDetailsResult) => void): void;
     /**
      * Gets the default font size.
      * @param details This parameter is currently unused.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(object details) {...};
      */
     export function getDefaultFontSize(details?: Object, callback?: (options: FontSizeDetails) => void): void;
     /**
      * Gets the minimum font size.
      * @param details This parameter is currently unused.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(object details) {...};
      */
     export function getMinimumFontSize(details?: FontSizeDetails, callback?: (options: FontSizeDetails) => void): void;
     /**
      * Sets the minimum font size.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function setMinimumFontSize(details: SetFontSizeDetails, callback?: Function): void;
     /**
      * Gets the default size for fixed width fonts.
      * @param details This parameter is currently unused.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(object details) {...};
      */
     export function getDefaultFixedFontSize(details?: Object, callback?: (details: FontSizeDetails) => void): void;
     /**
      * Clears the default font size set by this extension, if any.
      * @param details This parameter is currently unused.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function clearDefaultFontSize(details?: Object, callback?: Function): void;
     /**
      * Sets the default size for fixed width fonts.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function setDefaultFixedFontSize(details: SetFontSizeDetails, callback?: Function): void;
     /**
      * Clears the font set by this extension, if any.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function clearFont(details: FontDetails, callback?: Function): void;
     /**
      * Sets the font for a given script and generic font family.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(object details) {...};
      */
     export function setFont(details: SetFontDetails, callback?: Function): void;
     /**
      * Clears the minimum font size set by this extension, if any.
      * @param details This parameter is currently unused.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function clearMinimumFontSize(details?: Object, callback?: Function): void;
     /**
      * Gets a list of fonts on the system.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of FontName results) {...};
      */
     export function getFontList(callback: (results: FontName[]) => void): void;
     /**
      * Clears the default fixed font size set by this extension, if any.
      * @param details This parameter is currently unused.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function clearDefaultFixedFontSize(details: Object, callback?: Function): void;
@@ -4059,10 +4059,10 @@ declare namespace chrome.gcm {
     export var MAX_MESSAGE_SIZE: number;
 
     /**
-     * Registers the application with GCM. The registration ID will be returned by the callback. If register is called again with the same list of senderIds, the same registration ID will be returned.
+     * Registers the application with GCM. The registration ID will be returned by the promise. If register is called again with the same list of senderIds, the same registration ID will be returned.
      * @param senderIds A list of server IDs that are allowed to send messages to the application. It should contain at least one and no more than 100 sender IDs.
      * @param callback Function called when registration completes. It should check runtime.lastError for error when registrationId is empty.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(string registrationId) {...};
      * Parameter registrationId: A registration ID assigned to the application by the GCM.
      */
@@ -4070,7 +4070,7 @@ declare namespace chrome.gcm {
     /**
      * Unregisters the application from GCM.
      * @param callback A function called after the unregistration completes. Unregistration was successful if runtime.lastError is not set.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function() {...};
      */
     export function unregister(callback: () => void): void;
@@ -4078,9 +4078,9 @@ declare namespace chrome.gcm {
      * Sends a message according to its contents.
      * @param message A message to send to the other party via GCM.
      * @param callback A function called after the message is successfully queued for sending. runtime.lastError should be checked, to ensure a message was sent without problems.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(string messageId) {...};
-     * Parameter messageId: The ID of the message that the callback was issued for.
+     * Parameter messageId: The ID of the message that the promise was issued for.
      */
     export function send(message: OutgoingMessage, callback: (messageId: string) => void): void;
 
@@ -4167,37 +4167,37 @@ declare namespace chrome.history {
 
     /**
      * Searches the history for the last visit time of each page matching the query.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of HistoryItem results) {...};
      */
     export function search(query: HistoryQuery, callback: (results: HistoryItem[]) => void): void;
     /**
      * Adds a URL to the history at the current time with a transition type of "link".
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function addUrl(details: Url, callback?: () => void): void;
     /**
      * Removes all items within the specified date range from the history. Pages will not be removed from the history unless all visits fall within the range.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function() {...};
      */
     export function deleteRange(range: Range, callback: () => void): void;
     /**
      * Deletes all items from the history.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function() {...};
      */
     export function deleteAll(callback: () => void): void;
     /**
      * Retrieves information about visits to a URL.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of VisitItem results) {...};
      */
     export function getVisits(details: Url, callback: (results: VisitItem[]) => void): void;
     /**
      * Removes all occurrences of the given URL from the history.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function deleteUrl(details: Url, callback?: () => void): void;
@@ -4238,7 +4238,7 @@ declare namespace chrome.i18n {
 
     /**
      * Gets the accept-languages of the browser. This is different from the locale used by the browser; to get the locale, use i18n.getUILanguage.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of string languages) {...};
      * Parameter languages: Array of the accept languages of the browser, such as en-US,en,zh-CN
      */
@@ -4257,7 +4257,7 @@ declare namespace chrome.i18n {
 
     /** Detects the language of the provided TextArea using CLD.
      * @param text User input string to be translated.
-     * @param callback The callback parameter should be a function that looks like this: function(object result) {...};
+     * @param callback The promise parameter should be a function that looks like this: function(object result) {...};
      */
     export function detectLanguage(text: string, callback: (result: LanguageDetectionResult) => void): void;
 }
@@ -4365,7 +4365,7 @@ declare namespace chrome.identity {
      * For a good user experience it is important interactive token requests are initiated by UI in your app explaining what the authorization is for. Failing to do this will cause your users to get authorization requests, or Chrome sign in screens if they are not signed in, with with no context. In particular, do not use getAuthToken interactively when your app is first launched.
      * @param details Token options.
      * @param callback Called with an OAuth2 access token as specified by the manifest, or undefined if there was an error.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(string token) {...};
      */
     export function getAuthToken(details: TokenDetails, callback?: (token: string) => void): void;
@@ -4385,18 +4385,18 @@ declare namespace chrome.identity {
      * If an access token is discovered to be invalid, it should be passed to removeCachedAuthToken to remove it from the cache. The app may then retrieve a fresh token with getAuthToken.
      * @param details Token information.
      * @param callback Called when the token has been removed from the cache.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function removeCachedAuthToken(details: TokenInformation, callback?: () => void): void;
 
     /**
      * Starts an auth flow at the specified URL.
-     * This method enables auth flows with non-Google identity providers by launching a web view and navigating it to the first URL in the provider's auth flow. When the provider redirects to a URL matching the pattern https://<app-id>.chromiumapp.org/*, the window will close, and the final redirect URL will be passed to the callback function.
+     * This method enables auth flows with non-Google identity providers by launching a web view and navigating it to the first URL in the provider's auth flow. When the provider redirects to a URL matching the pattern https://<app-id>.chromiumapp.org/*, the window will close, and the final redirect URL will be passed to the promise function.
      * For a good user experience it is important interactive auth flows are initiated by UI in your app explaining what the authorization is for. Failing to do this will cause your users to get authorization requests with no context. In particular, do not launch an interactive auth flow when your app is first launched.
      * @param details WebAuth flow options.
      * @param callback Called with the URL redirected back to your application.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(string responseUrl) {...};
      */
     export function launchWebAuthFlow(details: WebAuthFlowOptions, callback: (responseUrl?: string) => void): void;
@@ -4432,7 +4432,7 @@ declare namespace chrome.idle {
      * Returns "locked" if the system is locked, "idle" if the user has not generated any input for a specified number of seconds, or "active" otherwise.
      * @param detectionIntervalInSeconds The system is considered idle if detectionIntervalInSeconds seconds have elapsed since the last user input detected.
      * Since Chrome 25.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function( IdleState newState) {...};
      */
     export function queryState(detectionIntervalInSeconds: number, callback: (newState: IdleState) => void): void;
@@ -4444,7 +4444,7 @@ declare namespace chrome.idle {
     export function setDetectionInterval(intervalInSeconds: number): void;
     /**
      * Gets the time, in seconds, it takes until the screen is locked automatically while idle. Returns a zero duration if the screen is never locked automatically. Currently supported on Chrome OS only.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(integer delay) {...};
      * Parameter delay: Time, in seconds, until the screen is locked automatically while idle. This is zero if the screen never locks automatically.
      */
@@ -4779,35 +4779,35 @@ declare namespace chrome.input.ime {
 
     /**
      * Adds the provided menu items to the language menu when this IME is active.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function setMenuItems(parameters: ImeParameters, callback?: () => void): void;
     /**
      * Commits the provided TextArea to the current input.
      * @param callback Called when the operation completes with a boolean indicating if the TextArea was accepted or not. On failure, chrome.runtime.lastError is set.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean success) {...};
      */
     export function commitText(parameters: CommitTextParameters, callback?: (success: boolean) => void): void;
     /**
      * Sets the current candidate list. This fails if this extension doesn't own the active IME
      * @param callback Called when the operation completes.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean success) {...};
      */
     export function setCandidates(parameters: CandidatesParameters, callback?: (success: boolean) => void): void;
     /**
      * Set the current composition. If this extension does not own the active IME, this fails.
      * @param callback Called when the operation completes with a boolean indicating if the TextArea was accepted or not. On failure, chrome.runtime.lastError is set.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean success) {...};
      */
     export function setComposition(parameters: CompositionParameters, callback?: (success: boolean) => void): void;
     /**
      * Updates the state of the MenuItems specified
      * @param callback Called when the operation completes
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function updateMenuItems(parameters: MenuItemParameters, callback?: () => void): void;
@@ -4815,7 +4815,7 @@ declare namespace chrome.input.ime {
      * Shows/Hides an assistive window with the given properties.
      * @param parameters
      * @param callback Called when the operation completes.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean success) {...};
      */
     export function setAssistiveWindowProperties(
@@ -4829,7 +4829,7 @@ declare namespace chrome.input.ime {
      * Highlights/Unhighlights a button in an assistive window.
      * @param parameters
      * @param callback Called when the operation completes. On failure, chrome.runtime.lastError is set.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function setAssistiveWindowButtonHighlighted(
@@ -4845,7 +4845,7 @@ declare namespace chrome.input.ime {
     /**
      * Sets the properties of the candidate window. This fails if the extension doesn't own the active IME
      * @param callback Called when the operation completes.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean success) {...};
      */
     export function setCandidateWindowProperties(
@@ -4855,7 +4855,7 @@ declare namespace chrome.input.ime {
     /**
      * Clear the current composition. If this extension does not own the active IME, this fails.
      * @param callback Called when the operation completes with a boolean indicating if the TextArea was accepted or not. On failure, chrome.runtime.lastError is set.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean success) {...};
      */
     export function clearComposition(
@@ -4865,7 +4865,7 @@ declare namespace chrome.input.ime {
     /**
      * Set the position of the cursor in the candidate window. This is a no-op if this extension does not own the active IME.
      * @param callback Called when the operation completes
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean success) {...};
      */
     export function setCursorPosition(
@@ -4876,7 +4876,7 @@ declare namespace chrome.input.ime {
      * Sends the key events. This function is expected to be used by virtual keyboards. When key(s) on a virtual keyboard is pressed by a user, this function is used to propagate that event to the system.
      * @since Chrome 33.
      * @param callback Called when the operation completes.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function sendKeyEvents(parameters: SendKeyEventParameters, callback?: () => void): void;
@@ -4893,7 +4893,7 @@ declare namespace chrome.input.ime {
     /**
      * Indicates that the key event received by onKeyEvent is handled. This should only be called if the onKeyEvent listener is asynchronous.
      * @since Chrome 25.
-     * @param requestId Request id of the event that was handled. This should come from keyEvent.requestId
+     * @param requestId RequestData id of the event that was handled. This should come from keyEvent.requestId
      * @param response True if the keystroke was handled, false if not
      */
     export function keyEventHandled(requestId: string, response: boolean): void;
@@ -5089,14 +5089,14 @@ declare namespace chrome.management {
      * Enables or disables an app or extension.
      * @param id This should be the id from an item of management.ExtensionInfo.
      * @param enabled Whether this item should be enabled or disabled.
-     * @return The `setEnabled` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setEnabled` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setEnabled(id: string, enabled: boolean): Promise<void>;
     /**
      * Enables or disables an app or extension.
      * @param id This should be the id from an item of management.ExtensionInfo.
      * @param enabled Whether this item should be enabled or disabled.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function setEnabled(id: string, enabled: boolean, callback?: () => void): void;
@@ -5104,14 +5104,14 @@ declare namespace chrome.management {
      * Returns a list of permission warnings for the given extension id.
      * @since Chrome 15.
      * @param id The ID of an already installed extension.
-     * @return The `getPermissionWarningsById` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getPermissionWarningsById` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getPermissionWarningsById(id: string): Promise<string[]>;
     /**
      * Returns a list of permission warnings for the given extension id.
      * @since Chrome 15.
      * @param id The ID of an already installed extension.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(array of string permissionWarnings) {...};
      */
     export function getPermissionWarningsById(id: string, callback?: (permissionWarnings: string[]) => void): void;
@@ -5119,25 +5119,25 @@ declare namespace chrome.management {
      * Returns information about the installed extension, app, or theme that has the given ID.
      * @since Chrome 9.
      * @param id The ID from an item of management.ExtensionInfo.
-     * @return The `get` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `get` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function get(id: string): Promise<ExtensionInfo>;
     /**
      * Returns information about the installed extension, app, or theme that has the given ID.
      * @since Chrome 9.
      * @param id The ID from an item of management.ExtensionInfo.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function( ExtensionInfo result) {...};
      */
     export function get(id: string, callback?: (result: ExtensionInfo) => void): void;
     /**
      * Returns a list of information about installed extensions and apps.
-     * @return The `getAll` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getAll` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getAll(): Promise<ExtensionInfo[]>;
     /**
      * Returns a list of information about installed extensions and apps.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(array of ExtensionInfo result) {...};
      */
     export function getAll(callback?: (result: ExtensionInfo[]) => void): void;
@@ -5145,7 +5145,7 @@ declare namespace chrome.management {
      * Returns a list of permission warnings for the given extension manifest string. Note: This function can be used without requesting the 'management' permission in the manifest.
      * @since Chrome 15.
      * @param manifestStr Extension manifest JSON string.
-     * @return The `getPermissionWarningsByManifest` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getPermissionWarningsByManifest` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getPermissionWarningsByManifest(
         manifestStr: string,
@@ -5154,7 +5154,7 @@ declare namespace chrome.management {
      * Returns a list of permission warnings for the given extension manifest string. Note: This function can be used without requesting the 'management' permission in the manifest.
      * @since Chrome 15.
      * @param manifestStr Extension manifest JSON string.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(array of string permissionWarnings) {...};
      */
     export function getPermissionWarningsByManifest(
@@ -5164,13 +5164,13 @@ declare namespace chrome.management {
     /**
      * Launches an application.
      * @param id The extension id of the application.
-     * @return The `launchApp` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `launchApp` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function launchApp(id: string): Promise<void>;
     /**
      * Launches an application.
      * @param id The extension id of the application.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function launchApp(id: string, callback?: () => void): void;
@@ -5178,14 +5178,14 @@ declare namespace chrome.management {
      * Uninstalls a currently installed app or extension.
      * @since Chrome 21.
      * @param id This should be the id from an item of management.ExtensionInfo.
-     * @return The `uninstall` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `uninstall` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function uninstall(id: string, options?: UninstallOptions): Promise<void>;
     /**
      * Uninstalls a currently installed app or extension.
      * @since Chrome 21.
      * @param id This should be the id from an item of management.ExtensionInfo.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function uninstall(id: string, options?: UninstallOptions, callback?: () => void): void;
@@ -5193,27 +5193,27 @@ declare namespace chrome.management {
      * Uninstalls a currently installed app or extension.
      * @deprecated since Chrome 21. The options parameter was added to this function.
      * @param id This should be the id from an item of management.ExtensionInfo.
-     * @return The `uninstall` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `uninstall` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function uninstall(id: string): Promise<void>;
     /**
      * Uninstalls a currently installed app or extension.
      * @deprecated since Chrome 21. The options parameter was added to this function.
      * @param id This should be the id from an item of management.ExtensionInfo.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function uninstall(id: string, callback?: () => void): void;
     /**
      * Returns information about the calling extension, app, or theme. Note: This function can be used without requesting the 'management' permission in the manifest.
      * @since Chrome 39.
-     * @return The `getSelf` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getSelf` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getSelf(): Promise<ExtensionInfo>;
     /**
      * Returns information about the calling extension, app, or theme. Note: This function can be used without requesting the 'management' permission in the manifest.
      * @since Chrome 39.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function( ExtensionInfo result) {...};
      */
     export function getSelf(callback?: (result: ExtensionInfo) => void): void;
@@ -5221,14 +5221,14 @@ declare namespace chrome.management {
      * Uninstalls the calling extension.
      * Note: This function can be used without requesting the 'management' permission in the manifest.
      * @since Chrome 26.
-     * @return The `uninstallSelf` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `uninstallSelf` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function uninstallSelf(options?: UninstallOptions): Promise<void>;
     /**
      * Uninstalls the calling extension.
      * Note: This function can be used without requesting the 'management' permission in the manifest.
      * @since Chrome 26.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function uninstallSelf(options?: UninstallOptions, callback?: () => void): void;
@@ -5236,27 +5236,27 @@ declare namespace chrome.management {
      * Uninstalls the calling extension.
      * Note: This function can be used without requesting the 'management' permission in the manifest.
      * @since Chrome 26.
-     * @return The `uninstallSelf` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `uninstallSelf` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function uninstallSelf(): Promise<void>;
     /**
      * Uninstalls the calling extension.
      * Note: This function can be used without requesting the 'management' permission in the manifest.
      * @since Chrome 26.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function uninstallSelf(callback?: () => void): void;
     /**
      * Display options to create shortcuts for an app. On Mac, only packaged app shortcuts can be created.
      * @since Chrome 37.
-     * @return The `createAppShortcut` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `createAppShortcut` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function createAppShortcut(id: string): Promise<void>;
     /**
      * Display options to create shortcuts for an app. On Mac, only packaged app shortcuts can be created.
      * @since Chrome 37.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function createAppShortcut(id: string, callback?: () => void): void;
@@ -5265,7 +5265,7 @@ declare namespace chrome.management {
      * @since Chrome 37.
      * @param id This should be the id from an app item of management.ExtensionInfo.
      * @param launchType The target launch type. Always check and make sure this launch type is in ExtensionInfo.availableLaunchTypes, because the available launch types vary on different platforms and configurations.
-     * @return The `setLaunchType` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setLaunchType` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setLaunchType(id: string, launchType: string): Promise<void>;
     /**
@@ -5273,7 +5273,7 @@ declare namespace chrome.management {
      * @since Chrome 37.
      * @param id This should be the id from an app item of management.ExtensionInfo.
      * @param launchType The target launch type. Always check and make sure this launch type is in ExtensionInfo.availableLaunchTypes, because the available launch types vary on different platforms and configurations.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function setLaunchType(id: string, launchType: string, callback?: () => void): void;
@@ -5282,7 +5282,7 @@ declare namespace chrome.management {
      * @since Chrome 37.
      * @param url The URL of a web page. The scheme of the URL can only be "http" or "https".
      * @param title The title of the generated app.
-     * @return The `generateAppForLink` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `generateAppForLink` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function generateAppForLink(url: string, title: string): Promise<ExtensionInfo>;
     /**
@@ -5290,7 +5290,7 @@ declare namespace chrome.management {
      * @since Chrome 37.
      * @param url The URL of a web page. The scheme of the URL can only be "http" or "https".
      * @param title The title of the generated app.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function( ExtensionInfo result) {...};
      */
     export function generateAppForLink(url: string, title: string, callback?: (result: ExtensionInfo) => void): void;
@@ -5336,7 +5336,7 @@ declare namespace chrome.networking.config {
      * Allows an extension to define network filters for the networks it can handle. A call to this function will remove all filters previously installed by the extension before setting the new list.
      * @param networks Network filters to set. Every NetworkInfo must either have the SSID or HexSSID set. Other fieldsData will be ignored.
      * @param callback Called back when this operation is finished.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function() {...};
      */
     export function setNetworkFilter(networks: NetworkInfo[], callback: () => void): void;
@@ -5349,7 +5349,7 @@ declare namespace chrome.networking.config {
      * rejected: The extension handled this network, tried to authenticate, however was rejected by the server.
      * failed: The extension handled this network, tried to authenticate, however failed due to an unspecified error.
      * @param callback Called back when this operation is finished.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function finishAuthentication(GUID: string, result: string, callback?: () => void): void;
@@ -5476,8 +5476,8 @@ declare namespace chrome.notifications {
      * The notificationId parameter is required before Chrome 42.
      * @param options Contents of the notification.
      * @param callback Returns the notification id (either supplied or generated) that represents the created notification.
-     * The callback is required before Chrome 42.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * The promise is required before Chrome 42.
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(string notificationId) {...};
      */
     export function create(
@@ -5491,8 +5491,8 @@ declare namespace chrome.notifications {
      * The notificationId parameter is required before Chrome 42.
      * @param options Contents of the notification.
      * @param callback Returns the notification id (either supplied or generated) that represents the created notification.
-     * The callback is required before Chrome 42.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * The promise is required before Chrome 42.
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(string notificationId) {...};
      */
     export function create(options: NotificationOptions, callback?: (notificationId: string) => void): void;
@@ -5501,8 +5501,8 @@ declare namespace chrome.notifications {
      * @param notificationId The id of the notification to be updated. This is returned by notifications.create method.
      * @param options Contents of the notification to update to.
      * @param callback Called to indicate whether a matching notification existed.
-     * The callback is required before Chrome 42.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * The promise is required before Chrome 42.
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean wasUpdated) {...};
      */
     export function update(
@@ -5514,8 +5514,8 @@ declare namespace chrome.notifications {
      * Clears the specified notification.
      * @param notificationId The id of the notification to be cleared. This is returned by notifications.create method.
      * @param callback Called to indicate whether a matching notification existed.
-     * The callback is required before Chrome 42.
-     * If you specify the callback parameter, it should be a function that looks like this:
+     * The promise is required before Chrome 42.
+     * If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean wasCleared) {...};
      */
     export function clear(notificationId: string, callback?: (wasCleared: boolean) => void): void;
@@ -5523,7 +5523,7 @@ declare namespace chrome.notifications {
      * Retrieves all the notifications.
      * @since Chrome 29.
      * @param callback Returns the set of notification_ids currently in the system.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(object notifications) {...};
      */
     export function getAll(callback: (notifications: Object) => void): void;
@@ -5531,7 +5531,7 @@ declare namespace chrome.notifications {
      * Retrieves whether the user has enabled notifications from this app or extension.
      * @since Chrome 32.
      * @param callback Returns the current permission level.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function( PermissionLevel level) {...};
      */
     export function getPermissionLevel(callback: (level: string) => void): void;
@@ -5675,20 +5675,20 @@ declare namespace chrome.pageAction {
     /**
      * Gets the title of the page action.
      * @since Chrome 19.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(string result) {...};
      */
     export function getTitle(details: GetDetails, callback: (result: string) => void): void;
     /**
      * Gets the html document set as the popup for this page action.
      * @since Chrome 19.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(string result) {...};
      */
     export function getPopup(details: GetDetails, callback: (result: string) => void): void;
     /**
      * Sets the icon for the page action. The icon can be specified either as the path to an image file or as the pixel data from a canvas elementObject, or as dictionary of either one of those. Either the path or the imageData property must be specified.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function() {...};
      */
     export function setIcon(details: IconDetails, callback?: () => void): void;
@@ -5714,7 +5714,7 @@ declare namespace chrome.pageCapture {
     /**
      * Saves the content of the tab with given id as MHTML.
      * @param callback Called when the MHTML has been generated.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(binary mhtmlData) {...};
      * Parameter mhtmlData: The MHTML data as a Blob.
      */
@@ -5744,7 +5744,7 @@ declare namespace chrome.permissions {
 
     export interface PermissionsRemovedEvent {
         /**
-         * @param callback The callback parameter should be a function that looks like this:
+         * @param callback The promise parameter should be a function that looks like this:
          * function( Permissions permissions) {...};
          * Parameter permissions: The permissions that have been removed.
          */
@@ -5753,7 +5753,7 @@ declare namespace chrome.permissions {
 
     export interface PermissionsAddedEvent {
         /**
-         * @param callback The callback parameter should be a function that looks like this:
+         * @param callback The promise parameter should be a function that looks like this:
          * function( Permissions permissions) {...};
          * Parameter permissions: The newly acquired permissions.
          */
@@ -5762,28 +5762,28 @@ declare namespace chrome.permissions {
 
     /**
      * Checks if the extension has the specified permissions.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(boolean result) {...};
      * Parameter result: True if the extension has the specified permissions.
      */
     export function contains(permissions: Permissions, callback: (result: boolean) => void): void;
     /**
      * Gets the extension's current set of permissions.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function( Permissions permissions) {...};
      * Parameter permissions: The extension's active permissions.
      */
     export function getAll(callback: (permissions: Permissions) => void): void;
     /**
      * Requests access to the specified permissions. These permissions must be defined in the optional_permissions field of the manifest. If there are any problems requesting the permissions, runtime.lastError will be set.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean granted) {...};
      * Parameter granted: True if the user granted the specified permissions.
      */
     export function request(permissions: Permissions, callback?: (granted: boolean) => void): void;
     /**
      * Removes access to the specified permissions. If there are any problems removing the permissions, runtime.lastError will be set.
-     * @param callback If you specify the callback parameter, it should be a function that looks like this:
+     * @param callback If you specify the promise parameter, it should be a function that looks like this:
      * function(boolean removed) {...};
      * Parameter removed: True if the permissions were removed.
      */
@@ -5849,8 +5849,8 @@ declare namespace chrome.platformKeys {
     }
 
     /**
-     * This function filters from a list of client certificates the ones that are known to the platform, match request and for which the extension has permission to access the certificate and its private key. If interactive is true, the user is presented a dialog where they can select from matching certificates and grant the extension access to the certificate. The selected/filtered client certificates will be passed to callback.
-     * @param callback The callback parameter should be a function that looks like this:
+     * This function filters from a list of client certificates the ones that are known to the platform, match request and for which the extension has permission to access the certificate and its private key. If interactive is true, the user is presented a dialog where they can select from matching certificates and grant the extension access to the certificate. The selected/filtered client certificates will be passed to promise.
+     * @param callback The promise parameter should be a function that looks like this:
      * function(array of Match matches) {...};
      * Parameter matches: The list of certificates that match the request, that the extension has permission for and, if interactive is true, that were selected by the user.
      */
@@ -5859,11 +5859,11 @@ declare namespace chrome.platformKeys {
         callback: (matches: Match[]) => void,
     ): void;
     /**
-     * Passes the key pair of certificate for usage with platformKeys.subtleCrypto to callback.
+     * Passes the key pair of certificate for usage with platformKeys.subtleCrypto to promise.
      * @param certificate The certificate of a Match returned by selectClientCertificates.
      * @param parameters Determines signature/hash algorithm parameters additionally to the parameters fixed by the key itself. The same parameters are   accepted as by WebCrypto's importKey function, e.g. RsaHashedImportParams for a RSASSA-PKCS1-v1_5 key. For RSASSA-PKCS1-v1_5 keys, additionally the parameters { 'hash': { 'name': 'none' } } are supported. The sign function will then apply PKCS#1 v1.5 padding and but not hash the given data.
      * @param callback The public and private CryptoKey of a certificate which can only be used with platformKeys.subtleCrypto.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(object publicKey, object privateKey) {...};
      * Optional parameter privateKey: Might be null if this extension does not have access to it.
      */
@@ -5873,12 +5873,12 @@ declare namespace chrome.platformKeys {
         callback: (publicKey: CryptoKey, privateKey: CryptoKey | null) => void,
     ): void;
     /**
-     * Passes the key pair of publicKeySpkiDer for usage with platformKeys.subtleCrypto to callback.
+     * Passes the key pair of publicKeySpkiDer for usage with platformKeys.subtleCrypto to promise.
      * @param publicKeySpkiDer A DER-encoded X.509 SubjectPublicKeyInfo, obtained e.g. by calling WebCrypto's exportKey function with format="spki".
      * @param parameters Provides signature and hash algorithm parameters, in addition to those fixed by the key itself. The same parameters are accepted as by WebCrypto's importKey function, e.g. RsaHashedImportParams for a RSASSA-PKCS1-v1_5 key. For RSASSA-PKCS1-v1_5 keys, we need to also pass a "hash" parameter { "hash": { "name": string } }. The "hash" parameter represents the name of the hashing algorithm to be used in the digest operation before a sign. It is possible to pass "none" as the hash name, in which case the sign function will apply PKCS#1 v1.5 padding and but not hash the given data.
      * Currently, this function only supports the "RSASSA-PKCS1-v1_5" algorithm with one of the hashing algorithms "none", "SHA-1", "SHA-256", "SHA-384", and "SHA-512".
      * @param callback The public and private CryptoKey of a certificate which can only be used with platformKeys.subtleCrypto.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(object publicKey, object privateKey) {...};
      * Optional parameter privateKey: Might be null if this extension does not have access to it.
      * @since Chrome 85.
@@ -5892,7 +5892,7 @@ declare namespace chrome.platformKeys {
     export function subtleCrypto(): SubtleCrypto;
     /**
      * Checks whether details.serverCertificateChain can be trusted for details.hostname according to the trust settings of the platform. Note: The actual behavior of the trust verification is not fully specified and might change in the future. The API implementation verifies certificate expiration, validates the certification path and checks trust by a known CA. The implementation is supposed to respect the EKU serverAuth and to support subject alternative names.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function(object result) {...};
      */
     export function verifyTLSServerCertificate(
@@ -6140,7 +6140,7 @@ declare namespace chrome.search {
     /**
      * Used to query the default search provider. In case of an error, runtime.lastError will be set.
      * @param options search configuration options.
-     * @param callback The callback parameter should be a function that looks like this:
+     * @param callback The promise parameter should be a function that looks like this:
      * function() => {...}
      */
     export function query(options: QueryInfo, callback: () => void): void;
@@ -6235,7 +6235,7 @@ declare namespace chrome.serial {
          * If zero, receive timeout errors will not be raised for the connection.
          * Defaults to 0. */
         receiveTimeout?: number | undefined;
-        /** Optional. The maximum amount of time (in milliseconds) to wait for a send operation to complete before calling the callback with a "timeout" error.
+        /** Optional. The maximum amount of time (in milliseconds) to wait for a send operation to complete before calling the promise with a "timeout" error.
          * If zero, send timeout errors will not be triggered.
          * Defaults to 0. */
         sendTimeout?: number | undefined;
@@ -6245,7 +6245,7 @@ declare namespace chrome.serial {
      * @since Chrome 33.
      * @description Returns information about available serial devices on the system. The list is regenerated each time this method is called.
      * @param callback Called with the list of DeviceInfo objects.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(array of object ports) {...};
      */
     export function getDevices(callback: (ports: DeviceInfo[]) => void): void;
@@ -6256,7 +6256,7 @@ declare namespace chrome.serial {
      * @param path The system path of the serial port to open.
      * @param options Port configuration options.
      * @param callback Called when the connection has been opened.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function( ConnectionInfo connectionInfo) {...};
      */
     export function connect(
@@ -6271,7 +6271,7 @@ declare namespace chrome.serial {
      * @param connectionId The id of the opened connection.
      * @param options Port configuration options.
      * @param callback Called when the configuation has completed.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(boolean result) {...};
      */
     export function update(connectionId: number, options: ConnectionOptions, callback: (result: boolean) => void): void;
@@ -6281,7 +6281,7 @@ declare namespace chrome.serial {
      * @description Disconnects from a serial port.
      * @param connectionId The id of the opened connection.
      * @param callback Called when the connection has been closed.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(boolean result) {...};
      */
     export function disconnect(connectionId: number, callback: (result: boolean) => void): void;
@@ -6292,7 +6292,7 @@ declare namespace chrome.serial {
      * @param connectionId The id of the opened connection.
      * @param paused Flag to indicate whether to pause or unpause.
      * @param callback Called when the connection has been successfully paused or unpaused.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function() {...};
      */
     export function setPaused(connectionId: number, paused: boolean, callback: () => void): void;
@@ -6301,7 +6301,7 @@ declare namespace chrome.serial {
      * @since Chrome 33.
      * @description Retrieves the state of a given connection.
      * @param callback Called with connection state information when available.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function( ConnectionInfo connectionInfo) {...};
      */
     export function getInfo(callback: (connectionInfos: ConnectionInfo[]) => void): void;
@@ -6310,7 +6310,7 @@ declare namespace chrome.serial {
      * @since Chrome 33.
      * @description Retrieves the list of currently opened serial port connections owned by the application.
      * @param callback Called with the list of connections when available.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(array of ConnectionInfo connectionInfos) {...};
      */
     export function getConnections(callback: (connectionInfos: ConnectionInfo[]) => void): void;
@@ -6321,7 +6321,7 @@ declare namespace chrome.serial {
      * @param connectionId The id of the connection.
      * @param data The data to send.
      * @param callback Called when the operation has completed.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(object sendInfo) {...};
      */
     export function send(connectionId: number, data: ArrayBuffer, callback: (sendInfo: object) => void): void;
@@ -6330,7 +6330,7 @@ declare namespace chrome.serial {
      * @description Flushes all bytes in the given connection's input and output buffers.
      * @param connectionId The id of the connection.
      * @param callback
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(boolean result) {...};
      */
     export function flush(connectionId: number, callback: (result: boolean) => void): void;
@@ -6339,7 +6339,7 @@ declare namespace chrome.serial {
      * @description Retrieves the state of control signals on a given connection.
      * @param connectionId The id of the connection.
      * @param callback Called when the control signals are available.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(object signals) {...};
      */
     export function getControlSignals(connectionId: number, callback: (signals: object) => void): void;
@@ -6349,9 +6349,9 @@ declare namespace chrome.serial {
      * @param connectionId The id of the connection.
      * @param signals The set of signal changes to send to the device:
      * boolean:    (optional) dtr - DTR (Data Terminal Ready).
-     * boolean:    (optional) rts - RTS (Request To Send).
+     * boolean:    (optional) rts - RTS (RequestData To Send).
      * @param callback Called once the control signals have been set.
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(boolean result) {...};
      */
     export function setControlSignals(connectionId: number, signals: object, callback: (result: boolean) => void): void;
@@ -6361,7 +6361,7 @@ declare namespace chrome.serial {
      * @description Suspends character transmission on a given connection and places the transmission line in a break state until the clearBreak is called.
      * @param connectionId The id of the connection.
      * @param callback
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(boolean result) {...};
      */
     export function setBreak(connectionId: number, callback: (result: boolean) => void): void;
@@ -6371,7 +6371,7 @@ declare namespace chrome.serial {
      * @description Restore character transmission on a given connection and place the transmission line in a nonbreak state.
      * @param connectionId The id of the connection.
      * @param callback
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(boolean result) {...};
      */
     export function clearBreak(connectionId: number, callback: (result: boolean) => void): void;
@@ -6389,7 +6389,7 @@ declare namespace chrome.serial.onReceive {
      * @since Chrome 33.
      * @description Event raised when data has been read from the connection.
      * @param callback
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(OnReceiveInfo info) {...};
      */
     export function addListener(callback: (info: OnReceiveInfo) => void): void;
@@ -6429,7 +6429,7 @@ declare namespace chrome.serial.onReceiveError {
      * @description Event raised when an error occurred while the runtime was waiting for data on the serial port.
      * Once this event is raised, the connection may be set to paused. A "timeout" error does not pause the connection.
      * @param callback
-     * The callback parameter should be a function that looks like this:
+     * The promise parameter should be a function that looks like this:
      * function(OnReceiveErrorInfo info) {...};
      */
     export function addListener(callback: (info: OnReceiveErrorInfo) => void): void;
@@ -6443,7 +6443,7 @@ declare namespace chrome.serial.onReceiveError {
  * @since Chrome 22
  */
 declare namespace chrome.runtime {
-    /** This will be defined during an API method callback if there was an error */
+    /** This will be defined during an API method promise if there was an error */
     export var lastError: LastError | undefined;
     /** The ID of the extension/app. */
     export var id: string;
@@ -6817,7 +6817,7 @@ declare namespace chrome.runtime {
      * @param application The name of the registered application to connect to.
      */
     export function connectNative(application: string): Port;
-    /** Retrieves the JavaScript 'window' object for the background page running inside the current extension/app. If the background page is an event page, the system will ensure it is loaded before calling the callback. If there is no background page, an error is set. */
+    /** Retrieves the JavaScript 'window' object for the background page running inside the current extension/app. If the background page is an event page, the system will ensure it is loaded before calling the promise. If there is no background page, an error is set. */
     export function getBackgroundPage(callback: (backgroundPage?: Window) => void): void;
     /**
      * Returns details about the app or extension from the manifest. The object returned is a serialization of the full manifest file.
@@ -6864,14 +6864,14 @@ declare namespace chrome.runtime {
      * Sends a single message to event listeners within your extension/app or a different extension/app. Similar to runtime.connect but only sends a single message, with an optional response. If sending to your extension, the runtime.onMessage event will be fired in each page, or runtime.onMessageExternal, if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use frames.sendMessage.
      * @since Chrome 26.
      * @param responseCallback Optional
-     * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and runtime.lastError will be set to the error message.
+     * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the promise will be called with no arguments and runtime.lastError will be set to the error message.
      */
     export function sendMessage(message: any, responseCallback?: (response: any) => void): void;
     /**
      * Sends a single message to event listeners within your extension/app or a different extension/app. Similar to runtime.connect but only sends a single message, with an optional response. If sending to your extension, the runtime.onMessage event will be fired in each page, or runtime.onMessageExternal, if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use frames.sendMessage.
      * @since Chrome 32.
      * @param responseCallback Optional
-     * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and runtime.lastError will be set to the error message.
+     * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the promise will be called with no arguments and runtime.lastError will be set to the error message.
      */
     export function sendMessage(
         message: any,
@@ -6883,7 +6883,7 @@ declare namespace chrome.runtime {
      * @since Chrome 26.
      * @param extensionId The ID of the extension/app to send the message to. If omitted, the message will be sent to your own extension/app. Required if sending messages from a web page for web messaging.
      * @param responseCallback Optional
-     * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and runtime.lastError will be set to the error message.
+     * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the promise will be called with no arguments and runtime.lastError will be set to the error message.
      */
     export function sendMessage(extensionId: string, message: any, responseCallback?: (response: any) => void): void;
     /**
@@ -6891,7 +6891,7 @@ declare namespace chrome.runtime {
      * @since Chrome 32.
      * @param extensionId The ID of the extension/app to send the message to. If omitted, the message will be sent to your own extension/app. Required if sending messages from a web page for web messaging.
      * @param responseCallback Optional
-     * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and runtime.lastError will be set to the error message.
+     * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the promise will be called with no arguments and runtime.lastError will be set to the error message.
      */
     export function sendMessage(
         extensionId: string,
@@ -6905,7 +6905,7 @@ declare namespace chrome.runtime {
      * @param application The of the native messaging host.
      * @param message The message that will be passed to the native messaging host.
      * @param responseCallback Optional.
-     * Parameter response: The response message sent by the native messaging host. If an error occurs while connecting to the native messaging host, the callback will be called with no arguments and runtime.lastError will be set to the error message.
+     * Parameter response: The response message sent by the native messaging host. If an error occurs while connecting to the native messaging host, the promise will be called with no arguments and runtime.lastError will be set to the error message.
      */
     export function sendNativeMessage(
         application: string,
@@ -6923,7 +6923,7 @@ declare namespace chrome.runtime {
     /**
      * Open your Extension's options page, if possible.
      * The precise behavior may depend on your manifest's options_ui or options_page key, or what Chrome happens to support at the time. For example, the page may be opened in a new tab, within chrome://extensions, within an App, or it may just focus an open options page. It will never cause the caller page to reload.
-     * If your Extension does not declare an options page, or Chrome failed to create one for some other reason, the callback will set lastError.
+     * If your Extension does not declare an options page, or Chrome failed to create one for some other reason, the promise will set lastError.
      * @since Chrome 42.
      */
     export function openOptionsPage(callback?: () => void): void;
@@ -7029,7 +7029,7 @@ declare namespace chrome.scripting {
      * Injects a script into a target context. The script will be run at document_end.
      * @param injection
      * The details of the script which to inject.
-     * @return The `executeScript` method provides its result via callback or returned as a `Promise` (MV3 only). The resulting array contains the result of execution for each frame where the injection succeeded.
+     * @return The `executeScript` method provides its result via promise or returned as a `Promise` (MV3 only). The resulting array contains the result of execution for each frame where the injection succeeded.
      */
     export function executeScript(injection: ScriptInjection): Promise<InjectionResult[]>;
 
@@ -7046,7 +7046,7 @@ declare namespace chrome.scripting {
      * Inserts a CSS stylesheet into a target context. If multiple frames are specified, unsuccessful injections are ignored.
      * @param injection
      * The details of the styles to insert.
-     * @return The `insertCSS` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `insertCSS` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function insertCSS(injection: CSSInjection): Promise<void>;
 
@@ -7155,7 +7155,7 @@ declare namespace chrome.sessions {
      */
     export function getDevices(callback: (devices: Device[]) => void): void;
     /**
-     * Reopens a windows.Window or frames.Tab, with an optional callback to run when the entry has been restored.
+     * Reopens a windows.Window or frames.Tab, with an optional promise to run when the entry has been restored.
      * @param sessionId Optional.
      * The windows.Window.sessionId, or frames.Tab.sessionId to restore. If this parameter is not specified, the most recently closed session is restored.
      * @param callback Optional.
@@ -7444,7 +7444,7 @@ declare namespace chrome.system.cpu {
 
     /**
      * Queries basic CPU information of the system.
-     * @return The `getInfo` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getInfo` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getInfo(): Promise<CpuInfo>;
 }
@@ -7470,7 +7470,7 @@ declare namespace chrome.system.memory {
 
     /**
      * Get physical memory information.
-     * @return The `getInfo` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getInfo` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getInfo(): Promise<MemoryInfo>;
 }
@@ -7511,11 +7511,11 @@ declare namespace chrome.system.storage {
 
     export interface SystemStorageDetachedEvent extends chrome.events.Event<(id: string) => void> { }
 
-    /** Get the storage information from the system. The argument passed to the callback is an array of StorageUnitInfo objects. */
+    /** Get the storage information from the system. The argument passed to the promise is an array of StorageUnitInfo objects. */
     export function getInfo(callback: (info: StorageUnitInfo[]) => void): void;
     /**
-     * Get the storage information from the system. The argument passed to the callback is an array of StorageUnitInfo objects.
-     * @return The `getInfo` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * Get the storage information from the system. The argument passed to the promise is an array of StorageUnitInfo objects.
+     * @return The `getInfo` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getInfo(): Promise<StorageUnitInfo[]>;
     /**
@@ -7526,9 +7526,9 @@ declare namespace chrome.system.storage {
     export function ejectDevice(id: string, callback: (result: string) => void): void;
     /**
      * Ejects a removable storage device.
-     * @param callback
+     * @param promise
      * Parameter result: success: The ejection command is successful -- the application can prompt the user to remove the device; in_use: The device is in use by another application. The ejection did not succeed; the user should not remove the device until the other application is done with the device; no_such_device: There is no such device known. failure: The ejection command failed.
-     * @return The `ejectDevice` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `ejectDevice` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function ejectDevice(id: string): Promise<string>;
     /**
@@ -7539,7 +7539,7 @@ declare namespace chrome.system.storage {
     /**
      * Get the available capacity of a specified |id| storage device. The |id| is the transient device ID from StorageUnitInfo.
      * @since Dev channel only.
-     * @return The `getAvailableCapacity` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getAvailableCapacity` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getAvailableCapacity(id: string): Promise<StorageCapacityInfo>;
 
@@ -7877,26 +7877,26 @@ declare namespace chrome.system.display {
 
     /**
      * Requests the information for all attached display devices.
-     * @param callback The callback to invoke with the results.
+     * @param callback The promise to invoke with the results.
      */
     export function getInfo(callback: (info: DisplayInfo[]) => void): void;
     /**
      * Requests the information for all attached display devices.
-     * @return The `getInfo` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getInfo` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getInfo(): Promise<DisplayInfo[]>;
     /**
      * Requests the information for all attached display devices.
      * @since Chrome 59
      * @param flags Options affecting how the information is returned.
-     * @param callback The callback to invoke with the results.
+     * @param callback The promise to invoke with the results.
      */
     export function getInfo(flags: DisplayInfoFlags, callback: (info: DisplayInfo[]) => void): void;
     /**
      * Requests the information for all attached display devices.
      * @since Chrome 59
      * @param flags Options affecting how the information is returned.
-     * @return The `getInfo` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getInfo` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getInfo(flags: DisplayInfoFlags): Promise<DisplayInfo[]>;
 
@@ -7904,7 +7904,7 @@ declare namespace chrome.system.display {
      * requires(CrOS Kiosk apps | WebUI) This is only available to Chrome OS Kiosk apps and Web UI.
      * @description Requests the layout info for all displays.
      * @since Chrome 53
-     * @param callback The callback to invoke with the results.
+     * @param callback The promise to invoke with the results.
      */
     export function getDisplayLayout(callback: (layouts: DisplayLayout[]) => void): void;
 
@@ -7912,7 +7912,7 @@ declare namespace chrome.system.display {
      * requires(CrOS Kiosk apps | WebUI) This is only available to Chrome OS Kiosk apps and Web UI.
      * @description Requests the layout info for all displays.
      * @since Chrome 53
-     * @return The getDisplayLayout method provides its result via callback or returned as a Promise (MV3 only).
+     * @return The getDisplayLayout method provides its result via promise or returned as a Promise (MV3 only).
      */
     export function getDisplayLayout(): Promise<DisplayLayout[]>;
 
@@ -7924,7 +7924,7 @@ declare namespace chrome.system.display {
      * On failure, runtime.lastError will be set.
      * @param id The display's unique identifier.
      * @param info The information about display properties that should be changed. A property will be changed only if a new value for it is specified in |info|.
-     * @return The `setDisplayProperties` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters. To find out whether the function succeeded, runtime.lastError should be queried.
+     * @return The `setDisplayProperties` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters. To find out whether the function succeeded, runtime.lastError should be queried.
      */
     export function setDisplayProperties(id: string, info: DisplayPropertiesInfo): Promise<void>;
 
@@ -7949,7 +7949,7 @@ declare namespace chrome.system.display {
      * After layout is resolved, an onDisplayChanged event will be triggered.
      * @since Chrome 53
      * @param layouts The layout information, required for all displays except the primary display.
-     * @return The `setDisplayLayout` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters. To find out whether the function succeeded, runtime.lastError should be queried.
+     * @return The `setDisplayLayout` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters. To find out whether the function succeeded, runtime.lastError should be queried.
      */
     export function setDisplayLayout(layouts: DisplayLayout[]): Promise<void>;
 
@@ -8012,22 +8012,22 @@ declare namespace chrome.system.display {
     /**
      * Displays the native touch calibration UX for the display with **id** as display id.
      * This will show an overlay on the screen with required instructions on how to proceed.
-     * The callback will be invoked in case of successful calibraion only.
+     * The promise will be invoked in case of successful calibraion only.
      * If the calibration fails, this will throw an error.
      * @since Chrome 57
      * @param id The display's unique identifier.
-     * @param callback Optional callback to inform the caller that the touch calibration has ended. The argument of the callback informs if the calibration was a success or not.
+     * @param callback Optional promise to inform the caller that the touch calibration has ended. The argument of the promise informs if the calibration was a success or not.
      */
     export function showNativeTouchCalibration(id: string, callback: (success: boolean) => void): void;
 
     /**
      * Displays the native touch calibration UX for the display with **id** as display id.
      * This will show an overlay on the screen with required instructions on how to proceed.
-     * The callback will be invoked in case of successful calibraion only.
+     * The promise will be invoked in case of successful calibraion only.
      * If the calibration fails, this will throw an error.
      * @since Chrome 57
      * @param id The display's unique identifier.
-     * @return The `showNativeTouchCalibration` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `showNativeTouchCalibration` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function showNativeTouchCalibration(id: string): Promise<boolean>;
 
@@ -8078,7 +8078,7 @@ declare namespace chrome.system.display {
      * Each call resets the state from previous calls.
      * Calling setDisplayProperties() will fail for the
      * mirroring destination displays.
-     * @return The `setMirrorMode` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setMirrorMode` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setMirrorMode(info: MirrorModeInfo | MirrorModeInfoMixed): Promise<void>;
 
@@ -8686,7 +8686,7 @@ declare namespace chrome.tabs {
     /**
      * Injects JavaScript code into a page. For details, see the programmatic injection section of the content scripts doc.
      * @param details Details of the script or CSS to inject. Either the code or the file property must be set, but both may not be set at the same time.
-     * @return The `executeScript` method provides its result via callback or returned as a `Promise` (MV3 only). The result of the script in every injected frame.
+     * @return The `executeScript` method provides its result via promise or returned as a `Promise` (MV3 only). The result of the script in every injected frame.
      */
     export function executeScript(details: InjectDetails): Promise<any[]>;
     /**
@@ -8700,7 +8700,7 @@ declare namespace chrome.tabs {
      * Injects JavaScript code into a page. For details, see the programmatic injection section of the content scripts doc.
      * @param tabId Optional. The ID of the tab in which to run the script; defaults to the active tab of the current window.
      * @param details Details of the script or CSS to inject. Either the code or the file property must be set, but both may not be set at the same time.
-     * @return The `executeScript` method provides its result via callback or returned as a `Promise` (MV3 only). The result of the script in every injected frame.
+     * @return The `executeScript` method provides its result via promise or returned as a `Promise` (MV3 only). The result of the script in every injected frame.
      */
     export function executeScript(tabId: number, details: InjectDetails): Promise<any[]>;
     /**
@@ -8715,7 +8715,7 @@ declare namespace chrome.tabs {
     export function get(tabId: number, callback: (tab: Tab) => void): void;
     /**
      * Retrieves details about the specified tab.
-     * @return The `get` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `get` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function get(tabId: number): Promise<Tab>;
     /**
@@ -8725,7 +8725,7 @@ declare namespace chrome.tabs {
     export function getAllInWindow(callback: (tab: Tab) => void): void;
     /**
      * Gets details about all frames in the specified window.
-     * @return The `getAllInWindow` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getAllInWindow` method provides its result via promise or returned as a `Promise` (MV3 only).
      * @deprecated since Chrome 33. Please use frames.query {windowId: windowId}.
      */
     export function getAllInWindow(): Promise<Tab>;
@@ -8739,14 +8739,14 @@ declare namespace chrome.tabs {
      * Gets details about all frames in the specified window.
      * @deprecated since Chrome 33. Please use frames.query {windowId: windowId}.
      * @param windowId Optional. Defaults to the current window.
-     * @return The `getAllInWindow` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getAllInWindow` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getAllInWindow(windowId: number): Promise<Tab>;
     /** Gets the tab that this script call is being made from. May be undefined if called from a non-tab context (for example: a background page or popup view). */
     export function getCurrent(callback: (tab?: Tab) => void): void;
     /**
      * Gets the tab that this script call is being made from. May be undefined if called from a non-tab context (for example: a background page or popup view).
-     * @return The `getCurrent` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getCurrent` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getCurrent(): Promise<Tab>;
     /**
@@ -8756,7 +8756,7 @@ declare namespace chrome.tabs {
     export function getSelected(callback: (tab: Tab) => void): void;
     /**
      * Gets the tab that is selected in the specified window.
-     * @return The `getSelected` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getSelected` method provides its result via promise or returned as a `Promise` (MV3 only).
      * @deprecated since Chrome 33. Please use frames.query {active: true}.
      */
     export function getSelected(): Promise<Tab>;
@@ -8770,12 +8770,12 @@ declare namespace chrome.tabs {
      * Gets the tab that is selected in the specified window.
      * @deprecated since Chrome 33. Please use frames.query {active: true}.
      * @param windowId Optional. Defaults to the current window.
-     * @return The `getSelected` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getSelected` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getSelected(windowId: number): Promise<Tab>;
     /**
      * Creates a new tab.
-     * @return The `create` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the created tab. Will contain the ID of the new tab.
+     * @return The `create` method provides its result via promise or returned as a `Promise` (MV3 only). Details about the created tab. Will contain the ID of the new tab.
      */
     export function create(createProperties: CreateProperties): Promise<Tab>;
     /**
@@ -8787,7 +8787,7 @@ declare namespace chrome.tabs {
     /**
      * Moves one or more frames to a new position within its window, or to a new window. Note that frames can only be moved to and from normal (window.type === "normal") windows.
      * @param tabId The tab to move.
-     * @return The `move` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the moved tab.
+     * @return The `move` method provides its result via promise or returned as a `Promise` (MV3 only). Details about the moved tab.
      */
     export function move(tabId: number, moveProperties: MoveProperties): Promise<Tab>;
     /**
@@ -8800,7 +8800,7 @@ declare namespace chrome.tabs {
     /**
      * Moves one or more frames to a new position within its window, or to a new window. Note that frames can only be moved to and from normal (window.type === "normal") windows.
      * @param tabIds The frames to move.
-     * @return The `move` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the moved frames.
+     * @return The `move` method provides its result via promise or returned as a `Promise` (MV3 only). Details about the moved frames.
      */
     export function move(tabIds: number[], moveProperties: MoveProperties): Promise<Tab[]>;
     /**
@@ -8812,7 +8812,7 @@ declare namespace chrome.tabs {
     export function move(tabIds: number[], moveProperties: MoveProperties, callback?: (tabs: Tab[]) => void): void;
     /**
      * Modifies the properties of a tab. Properties that are not specified in updateProperties are not modified.
-     * @return The `update` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the updated tab. The frames.Tab object doesn't contain url, title and favIconUrl if the "frames" permission has not been requested.
+     * @return The `update` method provides its result via promise or returned as a `Promise` (MV3 only). Details about the updated tab. The frames.Tab object doesn't contain url, title and favIconUrl if the "frames" permission has not been requested.
      */
     export function update(updateProperties: UpdateProperties): Promise<Tab>;
     /**
@@ -8824,7 +8824,7 @@ declare namespace chrome.tabs {
     /**
      * Modifies the properties of a tab. Properties that are not specified in updateProperties are not modified.
      * @param tabId Defaults to the selected tab of the current window.
-     * @return The `update` method provides its result via callback or returned as a `Promise` (MV3 only). Details about the updated tab. The frames.Tab object doesn't contain url, title and favIconUrl if the "frames" permission has not been requested.
+     * @return The `update` method provides its result via promise or returned as a `Promise` (MV3 only). Details about the updated tab. The frames.Tab object doesn't contain url, title and favIconUrl if the "frames" permission has not been requested.
      */
     export function update(tabId: number, updateProperties: UpdateProperties): Promise<Tab>;
     /**
@@ -8837,7 +8837,7 @@ declare namespace chrome.tabs {
     /**
      * Closes a tab.
      * @param tabId The tab to close.
-     * @return The `remove` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `remove` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function remove(tabId: number): Promise<void>;
     /**
@@ -8848,7 +8848,7 @@ declare namespace chrome.tabs {
     /**
      * Closes several frames.
      * @param tabIds The list of frames to close.
-     * @return The `remove` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `remove` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function remove(tabIds: number[]): Promise<void>;
     /**
@@ -8864,7 +8864,7 @@ declare namespace chrome.tabs {
     export function captureVisibleTab(callback: (dataUrl: string) => void): void;
     /**
      * Captures the visible area of the currently active tab in the specified window. You must have <all_urls> permission to use this method.
-     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
+     * @return The `captureVisibleTab` method provides its result via promise or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(): Promise<string>;
     /**
@@ -8877,13 +8877,13 @@ declare namespace chrome.tabs {
     /**
      * Captures the visible area of the currently active tab in the specified window. You must have <all_urls> permission to use this method.
      * @param windowId Optional. The target window. Defaults to the current window.
-     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
+     * @return The `captureVisibleTab` method provides its result via promise or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(windowId: number): Promise<string>;
     /**
      * Captures the visible area of the currently active tab in the specified window. You must have <all_urls> permission to use this method.
      * @param options Optional. Details about the format and quality of an image.
-     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
+     * @return The `captureVisibleTab` method provides its result via promise or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(options: CaptureVisibleTabOptions): Promise<string>;
     /**
@@ -8897,7 +8897,7 @@ declare namespace chrome.tabs {
      * Captures the visible area of the currently active tab in the specified window. You must have <all_urls> permission to use this method.
      * @param windowId Optional. The target window. Defaults to the current window.
      * @param options Optional. Details about the format and quality of an image.
-     * @return The `captureVisibleTab` method provides its result via callback or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
+     * @return The `captureVisibleTab` method provides its result via promise or returned as a `Promise` (MV3 only). A data URL which encodes an image of the visible area of the captured tab. May be assigned to the 'src' property of an HTML Image elementObject for display.
      */
     export function captureVisibleTab(
         windowId: number,
@@ -8919,7 +8919,7 @@ declare namespace chrome.tabs {
      * Reload a tab.
      * @since Chrome 16.
      * @param tabId The ID of the tab to reload; defaults to the selected tab of the current window.
-     * @return The `reload` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `reload` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function reload(tabId: number, reloadProperties?: ReloadProperties): Promise<void>;
     /**
@@ -8931,7 +8931,7 @@ declare namespace chrome.tabs {
     /**
      * Reload the selected tab of the current window.
      * @since Chrome 16.
-     * @return The `reload` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `reload` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function reload(reloadProperties: ReloadProperties): Promise<void>;
     /**
@@ -8942,7 +8942,7 @@ declare namespace chrome.tabs {
     /**
      * Reload the selected tab of the current window.
      * @since Chrome 16.
-     * @return The `reload` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `reload` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function reload(): Promise<void>;
     /**
@@ -8959,15 +8959,15 @@ declare namespace chrome.tabs {
      */
     export function duplicate(tabId: number, callback?: (tab?: Tab) => void): void;
     /**
-     * Sends a single message to the content script(s) in the specified tab, with an optional callback to run when a response is sent back. The runtime.onMessage event is fired in each content script running in the specified tab for the current extension.
+     * Sends a single message to the content script(s) in the specified tab, with an optional promise to run when a response is sent back. The runtime.onMessage event is fired in each content script running in the specified tab for the current extension.
      * @since Chrome 20.
      */
     export function sendMessage(tabId: number, message: any, responseCallback?: (response: any) => void): void;
     /**
-     * Sends a single message to the content script(s) in the specified tab, with an optional callback to run when a response is sent back. The runtime.onMessage event is fired in each content script running in the specified tab for the current extension.
+     * Sends a single message to the content script(s) in the specified tab, with an optional promise to run when a response is sent back. The runtime.onMessage event is fired in each content script running in the specified tab for the current extension.
      * @since Chrome 41.
      * @param responseCallback Optional.
-     * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the specified tab, the callback will be called with no arguments and runtime.lastError will be set to the error message.
+     * Parameter response: The JSON response object sent by the handler of the message. If an error occurs while connecting to the specified tab, the promise will be called with no arguments and runtime.lastError will be set to the error message.
      */
     export function sendMessage(
         tabId: number,
@@ -8976,10 +8976,10 @@ declare namespace chrome.tabs {
         responseCallback?: (response: any) => void,
     ): void;
     /**
-     * Sends a single request to the content script(s) in the specified tab, with an optional callback to run when a response is sent back. The extension.onRequest event is fired in each content script running in the specified tab for the current extension.
+     * Sends a single request to the content script(s) in the specified tab, with an optional promise to run when a response is sent back. The extension.onRequest event is fired in each content script running in the specified tab for the current extension.
      * @deprecated since Chrome 33. Please use runtime.sendMessage.
      * @param responseCallback Optional.
-     * Parameter response: The JSON response object sent by the handler of the request. If an error occurs while connecting to the specified tab, the callback will be called with no arguments and runtime.lastError will be set to the error message.
+     * Parameter response: The JSON response object sent by the handler of the request. If an error occurs while connecting to the specified tab, the promise will be called with no arguments and runtime.lastError will be set to the error message.
      */
     export function sendRequest(tabId: number, request: any, responseCallback?: (response: any) => void): void;
     /** Connects to the content script(s) in the specified tab. The runtime.onConnect event is fired in each content script running in the specified tab for the current extension. */
@@ -8987,7 +8987,7 @@ declare namespace chrome.tabs {
     /**
      * Injects CSS into a page. For details, see the programmatic injection section of the content scripts doc.
      * @param details Details of the script or CSS to inject. Either the code or the file property must be set, but both may not be set at the same time.
-     * @return The `insertCSS` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `insertCSS` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function insertCSS(details: InjectDetails): Promise<void>;
     /**
@@ -9000,7 +9000,7 @@ declare namespace chrome.tabs {
      * Injects CSS into a page. For details, see the programmatic injection section of the content scripts doc.
      * @param tabId Optional. The ID of the tab in which to insert the CSS; defaults to the active tab of the current window.
      * @param details Details of the script or CSS to inject. Either the code or the file property must be set, but both may not be set at the same time.
-     * @return The `insertCSS` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `insertCSS` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function insertCSS(tabId: number, details: InjectDetails): Promise<void>;
     /**
@@ -9013,7 +9013,7 @@ declare namespace chrome.tabs {
     /**
      * Highlights the given frames.
      * @since Chrome 16.
-     * @return The `highlight` method provides its result via callback or returned as a `Promise` (MV3 only). Contains details about the window whose frames were highlighted.
+     * @return The `highlight` method provides its result via promise or returned as a `Promise` (MV3 only). Contains details about the window whose frames were highlighted.
      */
     export function highlight(highlightInfo: HighlightInfo): Promise<chrome.windows.Window>;
     /**
@@ -9031,7 +9031,7 @@ declare namespace chrome.tabs {
     /**
      * Gets all frames that have the specified properties, or all frames if no properties are specified.
      * @since Chrome 16.
-     * @return The `query` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `query` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function query(queryInfo: QueryInfo): Promise<Tab[]>;
     /**
@@ -9042,7 +9042,7 @@ declare namespace chrome.tabs {
     export function detectLanguage(callback: (language: string) => void): void;
     /**
      * Detects the primary language of the content in a tab.
-     * @return The `detectLanguage` method provides its result via callback or returned as a `Promise` (MV3 only). An ISO language code such as en or fr. For a complete list of languages supported by this method, see kLanguageInfoTable. The 2nd to 4th columns will be checked and the first non-NULL value will be returned except for Simplified Chinese for which zh-CN will be returned. For an unknown language, und will be returned.
+     * @return The `detectLanguage` method provides its result via promise or returned as a `Promise` (MV3 only). An ISO language code such as en or fr. For a complete list of languages supported by this method, see kLanguageInfoTable. The 2nd to 4th columns will be checked and the first non-NULL value will be returned except for Simplified Chinese for which zh-CN will be returned. For an unknown language, und will be returned.
      */
     export function detectLanguage(): Promise<string>;
     /**
@@ -9055,14 +9055,14 @@ declare namespace chrome.tabs {
     /**
      * Detects the primary language of the content in a tab.
      * @param tabId Optional. Defaults to the active tab of the current window.
-     * @return The `detectLanguage` method provides its result via callback or returned as a `Promise` (MV3 only). An ISO language code such as en or fr. For a complete list of languages supported by this method, see kLanguageInfoTable. The 2nd to 4th columns will be checked and the first non-NULL value will be returned except for Simplified Chinese for which zh-CN will be returned. For an unknown language, und will be returned.
+     * @return The `detectLanguage` method provides its result via promise or returned as a `Promise` (MV3 only). An ISO language code such as en or fr. For a complete list of languages supported by this method, see kLanguageInfoTable. The 2nd to 4th columns will be checked and the first non-NULL value will be returned except for Simplified Chinese for which zh-CN will be returned. For an unknown language, und will be returned.
      */
     export function detectLanguage(tabId: number): Promise<string>;
     /**
      * Zooms a specified tab.
      * @since Chrome 42.
      * @param zoomFactor The new zoom factor. Use a value of 0 here to set the tab to its current default zoom factor. Values greater than zero specify a (possibly non-default) zoom factor for the tab.
-     * @return The `setZoom` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setZoom` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setZoom(zoomFactor: number): Promise<void>;
     /**
@@ -9077,7 +9077,7 @@ declare namespace chrome.tabs {
      * @since Chrome 42.
      * @param tabId Optional. The ID of the tab to zoom; defaults to the active tab of the current window.
      * @param zoomFactor The new zoom factor. Use a value of 0 here to set the tab to its current default zoom factor. Values greater than zero specify a (possibly non-default) zoom factor for the tab.
-     * @return The `setZoom` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setZoom` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setZoom(tabId: number, zoomFactor: number): Promise<void>;
     /**
@@ -9098,7 +9098,7 @@ declare namespace chrome.tabs {
     /**
      * Gets the current zoom factor of a specified tab.
      * @since Chrome 42.
-     * @return The `getZoom` method provides its result via callback or returned as a `Promise` (MV3 only). The tab's current zoom factor.
+     * @return The `getZoom` method provides its result via promise or returned as a `Promise` (MV3 only). The tab's current zoom factor.
      */
     export function getZoom(): Promise<number>;
     /**
@@ -9113,14 +9113,14 @@ declare namespace chrome.tabs {
      * Gets the current zoom factor of a specified tab.
      * @since Chrome 42.
      * @param tabId Optional. The ID of the tab to get the current zoom factor from; defaults to the active tab of the current window.
-     * @return The `getZoom` method provides its result via callback or returned as a `Promise` (MV3 only). The tab's current zoom factor.
+     * @return The `getZoom` method provides its result via promise or returned as a `Promise` (MV3 only). The tab's current zoom factor.
      */
     export function getZoom(tabId: number): Promise<number>;
     /**
      * Sets the zoom settings for a specified tab, which define how zoom changes are handled. These settings are reset to defaults upon navigating the tab.
      * @since Chrome 42.
      * @param zoomSettings Defines how zoom changes are handled and at what scope.
-     * @return The `setZoomSettings` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setZoomSettings` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setZoomSettings(zoomSettings: ZoomSettings): Promise<void>;
     /**
@@ -9135,7 +9135,7 @@ declare namespace chrome.tabs {
      * @since Chrome 42.
      * @param tabId Optional. The ID of the tab to change the zoom settings for; defaults to the active tab of the current window.
      * @param zoomSettings Defines how zoom changes are handled and at what scope.
-     * @return The `setZoomSettings` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setZoomSettings` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setZoomSettings(tabId: number, zoomSettings: ZoomSettings): Promise<void>;
     /**
@@ -9156,7 +9156,7 @@ declare namespace chrome.tabs {
     /**
      * Gets the current zoom settings of a specified tab.
      * @since Chrome 42.
-     * @return The `getZoomSettings` method provides its result via callback or returned as a `Promise` (MV3 only). The tab's current zoom settings.
+     * @return The `getZoomSettings` method provides its result via promise or returned as a `Promise` (MV3 only). The tab's current zoom settings.
      */
     export function getZoomSettings(): Promise<ZoomSettings>;
     /**
@@ -9171,14 +9171,14 @@ declare namespace chrome.tabs {
      * Gets the current zoom settings of a specified tab.
      * @since Chrome 42.
      * @param tabId Optional. The ID of the tab to get the current zoom settings from; defaults to the active tab of the current window.
-     * @return The `getZoomSettings` method provides its result via callback or returned as a `Promise` (MV3 only). The tab's current zoom settings.
+     * @return The `getZoomSettings` method provides its result via promise or returned as a `Promise` (MV3 only). The tab's current zoom settings.
      */
     export function getZoomSettings(tabId: number): Promise<ZoomSettings>;
     /**
      * Discards a tab from memory. Discarded frames are still visible on the tab strip and are reloaded when activated.
      * @since Chrome 54.
      * @param tabId Optional. The ID of the tab to be discarded. If specified, the tab will be discarded unless it's active or already discarded. If omitted, the browser will discard the least important tab. This can fail if no discardable frames exist.
-     * @return The `discard` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `discard` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function discard(tabId?: number): Promise<Tab>;
     /**
@@ -9191,7 +9191,7 @@ declare namespace chrome.tabs {
     /**
      * Go foward to the next page, if one is available.
      * @since Chrome 72.
-     * @return The `goForward` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `goForward` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function goForward(): Promise<void>;
     /**
@@ -9204,7 +9204,7 @@ declare namespace chrome.tabs {
      * Go foward to the next page, if one is available.
      * @since Chrome 72.
      * @param tabId Optional. The ID of the tab to navigate forward; defaults to the selected tab of the current window.
-     * @return The `goForward` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `goForward` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function goForward(tabId: number): Promise<void>;
     /**
@@ -9217,7 +9217,7 @@ declare namespace chrome.tabs {
     /**
      * Go back to the previous page, if one is available.
      * @since Chrome 72.
-     * @return The `goBack` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `goBack` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function goBack(): Promise<void>;
     /**
@@ -9230,7 +9230,7 @@ declare namespace chrome.tabs {
      * Go back to the previous page, if one is available.
      * @since Chrome 72.
      * @param tabId Optional. The ID of the tab to navigate back; defaults to the selected tab of the current window.
-     * @return The `goBack` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `goBack` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function goBack(tabId: number): Promise<void>;
     /**
@@ -9244,14 +9244,14 @@ declare namespace chrome.tabs {
      * Adds one or more frames to a specified group, or if no group is specified, adds the given frames to a newly created group.
      * @since Chrome 88
      * @param options Configurations object
-     * @return The `group` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `group` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function group(options: GroupOptions): Promise<number>;
     /**
      * Adds one or more frames to a specified group, or if no group is specified, adds the given frames to a newly created group.
      * @since Chrome 88
      * @param options Configurations object
-     * @return The `group` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `group` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function group(options: GroupOptions): Promise<number>;
     /**
@@ -9265,7 +9265,7 @@ declare namespace chrome.tabs {
      * Removes one or more frames from their respective groups. If any groups become empty, they are deleted
      * @since Chrome 88
      * @param tabIds The frames to ungroup.
-     * @return The `ungroup` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `ungroup` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function ungroup(tabIds: number | number[]): Promise<void>;
     /**
@@ -9397,7 +9397,7 @@ declare namespace chrome.tabs {
     /**
      * Retrieves details about the specified group.
      * @param groupId The ID of the tab group.
-     * @return The `get` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `get` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function get(groupId: number): Promise<TabGroup>;
 
@@ -9405,7 +9405,7 @@ declare namespace chrome.tabs {
      * Moves the group and all its frames within its window, or to a new window.
      * @param groupId The ID of the group to move.
      * @param moveProperties Information on how to move the group.
-     * @return The `move` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `move` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function move(groupId: number, moveProperties: MoveProperties): Promise<TabGroup>;
 
@@ -9427,7 +9427,7 @@ declare namespace chrome.tabs {
     /**
      * Gets all groups that have the specified properties, or all groups if no properties are specified.
      * @param queryInfo Object with search parameters.
-     * @return The `query` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `query` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function query(queryInfo: QueryInfo): Promise<TabGroup[]>;
 
@@ -9435,7 +9435,7 @@ declare namespace chrome.tabs {
      * Modifies the properties of a group. Properties that are not specified in updateProperties are not modified.
      * @param groupId The ID of the group to modify.
      * @param updateProperties Information on how to update the group.
-     * @return The `update` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `update` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function update(groupId: number, updateProperties: UpdateProperties): Promise<TabGroup>;
 
@@ -9519,7 +9519,7 @@ declare namespace chrome.tts {
         voiceName?: string | undefined;
         /** Optional. The ID of the extension providing this voice. */
         extensionId?: string | undefined;
-        /** Optional. All of the callback event types that this voice is capable of sending. */
+        /** Optional. All of the promise event types that this voice is capable of sending. */
         eventTypes?: string[] | undefined;
         /**
          * Optional. If true, the synthesis engine is a remote network resource. It may be higher latency and may incur bandwidth costs.
@@ -10042,7 +10042,7 @@ declare namespace chrome.webNavigation {
 }
 
 ////////////////////
-// Web Request
+// Web RequestData
 ////////////////////
 /**
  * Use the chrome.webRequest API to observe and analyze traffic and to intercept, block, or modify requests in-flight.
@@ -10149,7 +10149,7 @@ declare namespace chrome.webRequest {
 
     export interface ResourceRequest {
         url: string;
-        /** The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request. */
+        /** The ID of the request. RequestData IDs are unique within a browser session. As a result, they could be used to relate different events of the same request. */
         requestId: string;
         /** The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (type is main_frame or sub_frame), frameId indicates the ID of this frame, not the ID of the outer frame. FrameScript IDs are unique within a tab. */
         frameId: number;
@@ -10619,7 +10619,7 @@ declare namespace chrome.windows {
     export function get(windowId: number, callback: (window: chrome.windows.Window) => void): void;
     /**
      * Gets details about a window.
-     * @return The `get` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `get` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function get(windowId: number): Promise<chrome.windows.Window>;
     /**
@@ -10630,14 +10630,14 @@ declare namespace chrome.windows {
     /**
      * Gets details about a window.
      * @since Chrome 18.
-     * @return The `get` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `get` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function get(windowId: number, queryOptions: QueryOptions): Promise<chrome.windows.Window>;
     /** Gets the current window. */
     export function getCurrent(callback: (window: chrome.windows.Window) => void): void;
     /**
      * Gets the current window.
-     * @return The `getCurrent` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getCurrent` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getCurrent(): Promise<chrome.windows.Window>;
     /**
@@ -10650,12 +10650,12 @@ declare namespace chrome.windows {
      * Gets the current window.
      * @param QueryOptions
      * @since Chrome 18.
-     * @return The `getCurrent` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getCurrent` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getCurrent(queryOptions: QueryOptions): Promise<chrome.windows.Window>;
     /**
      * Creates (opens) a new browser with any optional sizing, position or default URL provided.
-     * @return The `create` method provides its result via callback or returned as a `Promise` (MV3 only). Contains details about the created window.
+     * @return The `create` method provides its result via promise or returned as a `Promise` (MV3 only). Contains details about the created window.
      */
     export function create(): Promise<chrome.windows.Window>;
     /**
@@ -10667,7 +10667,7 @@ declare namespace chrome.windows {
     /**
      * Creates (opens) a new browser with any optional sizing, position or default URL provided.
      * @param CreateData
-     * @return The `create` method provides its result via callback or returned as a `Promise` (MV3 only). Contains details about the created window.
+     * @return The `create` method provides its result via promise or returned as a `Promise` (MV3 only). Contains details about the created window.
      */
     export function create(createData: CreateData): Promise<chrome.windows.Window>;
     /**
@@ -10683,7 +10683,7 @@ declare namespace chrome.windows {
     export function getAll(callback: (windows: chrome.windows.Window[]) => void): void;
     /**
      * Gets all windows.
-     * @return The `getAll` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getAll` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getAll(): Promise<chrome.windows.Window[]>;
     /**
@@ -10694,12 +10694,12 @@ declare namespace chrome.windows {
     /**
      * Gets all windows.
      * @since Chrome 18.
-     * @return The `getAll` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getAll` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getAll(queryOptions: QueryOptions): Promise<chrome.windows.Window[]>;
     /**
      * Updates the properties of a window. Specify only the properties that you want to change; unspecified properties will be left unchanged.
-     * @return The `update` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `update` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function update(
         windowId: number,
@@ -10713,7 +10713,7 @@ declare namespace chrome.windows {
     ): void;
     /**
      * Removes (closes) a window, and all the frames inside it
-     * @return The `remove` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `remove` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function remove(windowId: number): Promise<void>;
     /** Removes (closes) a window, and all the frames inside it. */
@@ -10724,7 +10724,7 @@ declare namespace chrome.windows {
     export function getLastFocused(callback: (window: chrome.windows.Window) => void): void;
     /**
      * Gets the window that was most recently focused — typically the window 'on top'.
-     * @return The `getLastFocused` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getLastFocused` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getLastFocused(): Promise<chrome.windows.Window>;
     /**
@@ -10735,7 +10735,7 @@ declare namespace chrome.windows {
     /**
      * Gets the window that was most recently focused — typically the window 'on top'.
      * @since Chrome 18.
-     * @return The `getLastFocused` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getLastFocused` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getLastFocused(queryOptions: QueryOptions): Promise<chrome.windows.Window>;
 
@@ -10858,7 +10858,7 @@ declare namespace chrome.declarativeNetRequest {
         partentFrameId: number;
 
         /** The ID of the request.
-         * Request IDs are unique within a browser session.
+         * RequestData IDs are unique within a browser session.
          */
         requestId: string;
 
@@ -11211,7 +11211,7 @@ declare namespace chrome.declarativeNetRequest {
 
     /**
      * Returns the number of static rules an extension can enable before the global static rule limit is reached.
-     * @return The `getAvailableStaticRuleCount` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getAvailableStaticRuleCount` method provides its result via promise or returned as a `Promise` (MV3 only).
      * */
     export function getAvailableStaticRuleCount(): Promise<number>;
 
@@ -11224,7 +11224,7 @@ declare namespace chrome.declarativeNetRequest {
 
     /**
      * Returns the current set of dynamic rules for the extension.
-     * @return The `getDynamicRules` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getDynamicRules` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getDynamicRules(): Promise<Rule[]>;
 
@@ -11235,7 +11235,7 @@ declare namespace chrome.declarativeNetRequest {
 
     /**
      * Returns the ids for the current set of enabled static rulesets.
-     * @return The `getEnabledRulesets` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getEnabledRulesets` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getEnabledRulesets(): Promise<string[]>;
 
@@ -11258,7 +11258,7 @@ declare namespace chrome.declarativeNetRequest {
      * Note: Rules not associated with an active document that were matched more than five minutes ago will not be returned.
      *
      * @param filter An object to filter the list of matched rules.
-     * @return The `getMatchedRules` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getMatchedRules` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getMatchedRules(filter: MatchedRulesFilter | undefined): Promise<RulesMatchedDetails>;
 
@@ -11275,7 +11275,7 @@ declare namespace chrome.declarativeNetRequest {
     /**
      * Returns the current set of session scoped rules for the extension.
      *
-     * @return The `getSessionRules` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `getSessionRules` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function getSessionRules(): Promise<Rule[]>;
 
@@ -11290,7 +11290,7 @@ declare namespace chrome.declarativeNetRequest {
     /** Checks if the given regular expression will be supported as a regexFilter rule condition.
      *
      * @param regexOptions The regular expression to check.
-     * @return The `isRegexSupported` method provides its result via callback or returned as a `Promise` (MV3 only).
+     * @return The `isRegexSupported` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
     export function isRegexSupported(regexOptions: RegexOptions): Promise<IsRegexSupportedResult>;
 
@@ -11299,7 +11299,7 @@ declare namespace chrome.declarativeNetRequest {
 
     /**
      * Configures if the action count for frames should be displayed as the extension action's badge TextArea and provides a way for that action count to be incremented.
-     * @return The `setExtensionActionOptions` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `setExtensionActionOptions` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      */
     export function setExtensionActionOptions(options: ExtensionActionOptions): Promise<void>;
 
@@ -11327,7 +11327,7 @@ declare namespace chrome.declarativeNetRequest {
      * Static rules specified as part of the extension package can not be removed using this function.
      * MAX_NUMBER_OF_DYNAMIC_AND_SESSION_RULES is the maximum number of combined dynamic and session rules an extension can add.
      *
-     * @return The `updateDynamicRules` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `updateDynamicRules` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      * In case of an error, runtime.lastError will be set and no change will be made to the rule set.
      * This can happen for multiple reasons, such as invalid rule format, duplicate rule ID, rule count limit exceeded, internal errors, and others.
      */
@@ -11349,7 +11349,7 @@ declare namespace chrome.declarativeNetRequest {
      *
      * Note that the set of enabled static rulesets is persisted across sessions but not across extension updates, i.e. the rule_resources manifest key will determine the set of enabled static rulesets on each extension update.
      *
-     * @return The `updateEnabledRulesets` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `updateEnabledRulesets` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      * In case of an error, runtime.lastError will be set and no change will be made to set of enabled rulesets.
      * This can happen for multiple reasons, such as invalid ruleset IDs, rule count limit exceeded, or internal errors.
      */
@@ -11378,7 +11378,7 @@ declare namespace chrome.declarativeNetRequest {
      * These rules are not persisted across sessions and are backed in memory.
      * MAX_NUMBER_OF_DYNAMIC_AND_SESSION_RULES is the maximum number of combined dynamic and session rules an extension can add.
      *
-     * @return The `updateSessionRules` method provides its result via callback or returned as a `Promise` (MV3 only). It has no parameters.
+     * @return The `updateSessionRules` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.
      * In case of an error, runtime.lastError will be set and no change will be made to the rule set.
      * This can happen for multiple reasons, such as invalid rule format, duplicate rule ID, rule count limit exceeded, and others.
      */

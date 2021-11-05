@@ -1,4 +1,4 @@
-import {RequestType} from "./MongoAdatok/RequestType.js";
+import {RequestType} from "./MongoLayr/RequestCommon/RequestType.js";
 import {DocData} from "../Data/Doc/Doc/DocData.js";
 import {Lekerdezes} from "./MongoAdatok/Lekerdezes.js";
 import {MongoMrk} from "./MongoMrk.js";
@@ -7,6 +7,8 @@ export class MongoMrkSeged {
 
     mongoMrk
 
+    lekerdezesMap: Map<string, Lekerdezes>
+    lekerdezesSzamlalomegy: boolean
     constructor(mongoMrk: MongoMrk) {
         this.mongoMrk = mongoMrk
 
@@ -14,8 +16,6 @@ export class MongoMrkSeged {
     }
 
 
-    lekerdezesMap: Map<string, Lekerdezes>
-    lekerdezesSzamlalomegy: boolean
 
     public async lekerdezesSzamlaloStart() {
         let self = this
@@ -44,7 +44,7 @@ export class MongoMrkSeged {
         docs.forEach(function (doc) {
             let lekerdezes = self.lekerdezesMap.get(doc._id)
 
-            lekerdezes.callback(doc)
+            lekerdezes.promise(doc)
             self.lekerdezesMap.delete(doc._id)
         })
     }
