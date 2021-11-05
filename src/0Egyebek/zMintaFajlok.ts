@@ -1,6 +1,6 @@
-import {Layouts} from "../Layr/Frame/Layouts/Layouts.js";
-import {ElementTypes} from "../Layr/Frame/NodeDiv/Elements/ElementTypes.js";
-import {DocData} from "../Layr/Background/Data/DocData/DocData.js";
+import {Layouts} from "../Layr/Frame/NodesManager/Node/Elements/Elements/GroupElement/Layouts/Layouts.js";
+import {ElementTypes} from "../Layr/Frame/NodesManager/Node/Elements/ElementTypes.js";
+import {DocObject} from "../Layr/Background/Data/Doc/Doc/DocData.js";
 
 
 let tesztdoctypescript = {
@@ -67,4 +67,4 @@ export class testDocFactory{
 }
 
 
-let docData=new DocData()
+let docData=new DocObject()

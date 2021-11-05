@@ -1,27 +1,34 @@
-import {Talca} from "../Frame/Talca/Talca.js";
-import {RootNodeDivManager} from "../Frame/RootNodeDivManager.js";
-import {MrkLibrary} from "../../MrkLibrary.js";
-import {ArangoMrk} from "./Arangodb/ArangoMrk.js";
-import {DocsManager} from "./DocsManager.js";
+import {MongoMrk} from "./LayrServerClient/MongoMrk.js";
+import {DocsConnectionsManager} from "./DocsConnectionsManager/DocsConnectionsManager.js";
 
+
+//@ts-ignore
+let layrBackgroundB:LayrBackground
+export {layrBackgroundB}
 
 export class LayrBackground {
-	pouchDB
-	arangoMrk: ArangoMrk
-	talca: Talca
-	docsManager:DocsManager
+    pouchDB
+    mongoMrk: MongoMrk
+    docsConnectionsManager: DocsConnectionsManager
 
 
+    constructor() {
 
-	constructor() {
-		// @ts-ignore
-		this.pouchDB = new PouchDB("MrkSUserData", {
-			revs_limit: 50,
-			auto_compaction: true
-		})
 
-		this.arangoMrk = new ArangoMrk()
-		this.docsManager=new DocsManager(this)
+        // @ts-ignore
+        window.layrBackgroundB = this
+        // @ts-ignore
+        layrBackgroundB = this
 
-	}
+
+        // @ts-ignore
+        this.pouchDB = new PouchDB("LayrPouchData", {
+            revs_limit: 50,
+            auto_compaction: true
+        })
+
+        this.docsConnectionsManager = new DocsConnectionsManager()
+        this.mongoMrk = new MongoMrk()
+
+    }
 }

@@ -1,23 +1,20 @@
 import {LayrBackground} from "../Background/LayrBackground.js";
-import {RootNodeDivManager} from "./RootNodeDivManager.js";
+import {NodesManager} from "./NodesManager/NodesManager.js";
 import {Talca} from "./Talca/Talca.js";
 
 export class LayrFrame {
 
 
-    layrBackground: LayrBackground | undefined
-    bkg: Window | null
-    nodeDivManager: RootNodeDivManager
+
+    nodeManager: NodesManager
     talca: Talca
 
 
     constructor() {
 
-        this.bkg = chrome.extension.getBackgroundPage()
-        // @ts-ignore
-        this.layrBackground = this.bkg.layr
+
         this.talca = new Talca(this)
-        this.nodeDivManager = new RootNodeDivManager()
+        this.nodeManager = new NodesManager()
     }
 
     createLayrFrame() {

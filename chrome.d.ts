@@ -473,28 +473,28 @@ declare namespace chrome.browser {
  * Permissions:  "bookmarks"
  */
 declare namespace chrome.bookmarks {
-    /** A node (either a bookmark or a folder) in the bookmark tree. Child nodes are ordered within their parent folder. */
+    /** A nodeObject (either a bookmark or a folder) in the bookmark tree. Child nodes are ordered within their parent folder. */
     export interface BookmarkTreeNode {
-        /** Optional. The 0-based position of this node within its parent folder.  */
+        /** Optional. The 0-based position of this nodeObject within its parent folder.  */
         index?: number | undefined;
-        /** Optional. When this node was created, in milliseconds since the epoch (new Date(dateAdded)).  */
+        /** Optional. When this nodeObject was created, in milliseconds since the epoch (new Date(dateAdded)).  */
         dateAdded?: number | undefined;
-        /** The TextArea displayed for the node. */
+        /** The TextArea displayed for the nodeObject. */
         title: string;
         /** Optional. The URL navigated to when a user clicks the bookmark. Omitted for folders.   */
         url?: string | undefined;
         /** Optional. When the contents of this folder last changed, in milliseconds since the epoch.   */
         dateGroupModified?: number | undefined;
-        /** The unique identifier for the node. IDs are unique within the current profile, and they remain valid even after the browser is restarted.  */
+        /** The unique identifier for the nodeObject. IDs are unique within the current profile, and they remain valid even after the browser is restarted.  */
         id: string;
-        /** Optional. The id of the parent folder. Omitted for the root node.   */
+        /** Optional. The id of the parent folder. Omitted for the root nodeObject.   */
         parentId?: string | undefined;
-        /** Optional. An ordered list of children of this node.  */
+        /** Optional. An ordered list of children of this nodeObject.  */
         children?: BookmarkTreeNode[] | undefined;
         /**
          * Optional.
          * Since Chrome 37.
-         * Indicates the reason why this node is unmodifiable. The managed value indicates that this node was configured by the system administrator or by the custodian of a supervised user. Omitted if the node can be modified by the user and the extension (default).
+         * Indicates the reason why this nodeObject is unmodifiable. The managed value indicates that this nodeObject was configured by the system administrator or by the custodian of a supervised user. Omitted if the nodeObject can be modified by the user and the extension (default).
          */
         unmodifiable?: any;
     }
@@ -715,7 +715,7 @@ declare namespace chrome.bookmarks {
     export function getChildren(id: string): Promise<BookmarkTreeNode[]>;
     /**
      * Since Chrome 14.
-     * Retrieves part of the Bookmarks hierarchy, starting at the specified node.
+     * Retrieves part of the Bookmarks hierarchy, starting at the specified nodeObject.
      * @param id The ID of the root of the subtree to retrieve.
      * @param callback The callback parameter should be a function that looks like this:
      * function(array of BookmarkTreeNode results) {...};
@@ -723,7 +723,7 @@ declare namespace chrome.bookmarks {
     export function getSubTree(id: string, callback: (results: BookmarkTreeNode[]) => void): void;
     /**
      * Since Chrome 14.
-     * Retrieves part of the Bookmarks hierarchy, starting at the specified node.
+     * Retrieves part of the Bookmarks hierarchy, starting at the specified nodeObject.
      * @param id The ID of the root of the subtree to retrieve.
      * @return The `getSubTree` method provides its result via callback or returned as a `Promise` (MV3 only).
      */
@@ -5334,7 +5334,7 @@ declare namespace chrome.networking.config {
 
     /**
      * Allows an extension to define network filters for the networks it can handle. A call to this function will remove all filters previously installed by the extension before setting the new list.
-     * @param networks Network filters to set. Every NetworkInfo must either have the SSID or HexSSID set. Other fields will be ignored.
+     * @param networks Network filters to set. Every NetworkInfo must either have the SSID or HexSSID set. Other fieldsData will be ignored.
      * @param callback Called back when this operation is finished.
      * The callback parameter should be a function that looks like this:
      * function() {...};
@@ -6049,7 +6049,7 @@ declare namespace chrome.privacy {
  * @since Chrome 13.
  */
 declare namespace chrome.proxy {
-    /** An object holding proxy auto-config information. Exactly one of the fields should be non-empty. */
+    /** An object holding proxy auto-config information. Exactly one of the fieldsData should be non-empty. */
     export interface PacScript {
         /** Optional. URL of the PAC file to be used. */
         url?: string | undefined;
@@ -9973,7 +9973,7 @@ declare namespace chrome.webNavigation {
     }
 
     export interface WebNavigationEventFilter {
-        /** Conditions that the URL being navigated to must satisfy. The 'schemes' and 'ports' fields of UrlFilter are ignored for this event. */
+        /** Conditions that the URL being navigated to must satisfy. The 'schemes' and 'ports' fieldsData of UrlFilter are ignored for this event. */
         url: chrome.events.UrlFilter[];
     }
 

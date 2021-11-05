@@ -36,7 +36,7 @@ export class Talca {
 
 	_optionsGombInit() {
 		this.elemek.options = document.createElement("div")
-		this.elemek.options.style.backgroundColor = "brown"
+		this.elemek.options.style.backgroundColor = "#5fc4d4"
 		this.elemek.options.style.width = "6ch"
 		this.elemek.options.style.height = "100%"
 		this.talcaElement.appendChild(this.elemek.options)
@@ -69,21 +69,21 @@ export class Talca {
 		elemek.mainDiv.style.height = "100%"
 
 		elemek.openButton = document.createElement("div")
-		elemek.openButton.style.backgroundColor = "darkorange"
+		elemek.openButton.style.backgroundColor = "#68864a"
 		elemek.openButton.style.height = "100%"
 		elemek.openButton.style.width = "6ch"
 		elemek.openButton.style.float = "right"
 		elemek.openButton.addEventListener("click", function () {
 			console.log("open1")
 
-			self.layrFrame.nodeDivManager.createRootNodeDiv(elemek.openInput.value)
+			self.layrFrame.nodeManager.loadRootNode(elemek.openInput.value)
 		})
 
 
 		elemek.mainDiv.appendChild(elemek.openButton)
 
 		elemek.openInput = document.createElement("input")
-		elemek.openInput.style.backgroundColor = "cornsilk"
+		elemek.openInput.style.backgroundColor = "#e5dec0"
 		elemek.openInput.style.height = "100%"
 		elemek.openInput.style.width = "50ch"
 		elemek.mainDiv.appendChild(elemek.openInput)

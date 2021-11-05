@@ -1,27 +1,27 @@
-import {DocData} from "../Layr/Background/Data/DocData/DocData.js";
-import {NodeData} from "../Layr/Background/Data/NodeData/NodeData.js";
-import {DocField} from "../Layr/Background/Data/DocData/DocField.js";
-import {MrkLibrary} from "../MrkLibrary.js";
-import {GroupElementData} from "../Layr/Frame/NodeDiv/Elements/Elements/GroupElement/GroupElementData.js";
-import {Layouts} from "../Layr/Frame/Layouts/Layouts.js";
-import {TextAreaElementData} from "../Layr/Frame/NodeDiv/Elements/Elements/TextAreaElement/TextAreaElementData.js";
-import {DocFieldsDefault} from "../Layr/Background/Data/DocData/DocFieldsDefault.js";
-import {ElementTypes} from "../Layr/Frame/NodeDiv/Elements/ElementTypes.js";
+import {DocObject} from "../Layr/Background/Data/Doc/Doc/DocData.js";
+import {NodeStyleData} from "../Layr/Frame/NodesManager/Node/Elements/Elements/GroupElement/NodeStyleData/NodeStyleData.js";
+import {FieldData} from "../Layr/Background/Data/Doc/Field/FieldData.js";
+import {MrkLibrary} from "../Layr/Global/MrkLibrary.js";
+import {GroupData} from "../Layr/Frame/NodesManager/Node/Elements/Elements/GroupElement/GroupData.js";
+import {Layouts} from "../Layr/Frame/NodesManager/Node/Elements/Elements/GroupElement/Layouts/Layouts.js";
+import {TextAreaElementData} from "../Layr/Frame/NodesManager/Node/Elements/Elements/TextAreaElement/TextAreaElementData.js";
+import {FieldsDefault} from "../Layr/Background/Data/Doc/Field/FieldsDefault.js";
+import {ElementTypes} from "../Layr/Frame/NodesManager/Node/Elements/ElementTypes.js";
 
 export class zSampleDataFactory {
-    static generateSampleDocDataset(DocokSzama): DocData[] {
+    static generateSampleDocDataset(DocokSzama): DocObject[] {
         //az elso paron nincsenek global nodeok
 
-        let docDataArray: DocData[] = []
+        let docDataArray: DocObject[] = []
         for (let i = 0; i < DocokSzama; i++) {
             let docData = this.docDataGenerator()
 
             //group legyen vagy ne
             if (Math.round(Math.random())) {
-	            let groupDocField = new DocField()
-	            groupDocField.name = DocFieldsDefault.group
+	            let groupDocField = new FieldData()
+	            groupDocField.name = FieldsDefault.group
 	            groupDocField.elementType = ElementTypes.Group
-	            groupDocField.data=new GroupElementData()
+	            groupDocField.data=new GroupData()
 
 
                 //nodeok
@@ -41,7 +41,7 @@ export class zSampleDataFactory {
 
 
     private static nodeGenerator(docURL) {
-        let nodeData = new NodeData()
+        let nodeData = new NodeStyleData()
         nodeData.nodeId = Math.floor(Math.random() * 100000000).toString()
         nodeData.docRelativeURL = docURL
 
@@ -52,32 +52,32 @@ export class zSampleDataFactory {
         nodeData.nodeLayoutsData.absolute.left = Math.floor(50 + Math.random() * 1000) + "px"
 
 
-        //nodeData.nodeLayoutsData.all.color = "#" + Math.floor(Math.random() * 16777215).toString(16)
+        //parentDocId.edgeStyleLayoutsData.all.color = "#" + Math.floor(Math.random() * 16777215).toString(16)
 
 
         return nodeData
     }
 
 
-    private static docDataGenerator(): DocData {
+    private static docDataGenerator(): DocObject {
 
-        let docData: DocData = new DocData()
+        let docData: DocObject = new DocObject()
 
         docData._key = (Math.random() * 100000000).toString()
-        let noteDocField = new DocField()
-        noteDocField.name = DocFieldsDefault.note
+        let noteDocField = new FieldData()
+        noteDocField.name = FieldsDefault.note
         noteDocField.elementType = ElementTypes.TextArea
         noteDocField.data = new TextAreaElementData()
         noteDocField.data.content = (Math.random() * 10000000000).toString()
         docData.docFields.push(noteDocField)
-        let titleDocField = new DocField()
-        titleDocField.name = DocFieldsDefault.title
+        let titleDocField = new FieldData()
+        titleDocField.name = FieldsDefault.title
         titleDocField.elementType = ElementTypes.TextArea
         titleDocField.data = new TextAreaElementData()
         titleDocField.data.content = (Math.random() * 1000000000).toString()
         docData.docFields.push(titleDocField)
-        let rankDocField = new DocField()
-        rankDocField.name = DocFieldsDefault.rank
+        let rankDocField = new FieldData()
+        rankDocField.name = FieldsDefault.rank
         rankDocField.elementType = ElementTypes.DropDownStatic
         rankDocField.data = new TextAreaElementData()
         rankDocField.data.content = Math.floor(Math.random() * 5)
