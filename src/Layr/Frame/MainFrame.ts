@@ -2,7 +2,6 @@ import {LayrFrame} from "./LayrFrame.js";
 import {SampleDataFactoryMongodb} from "../../0Egyebek/SampleDataFactoryMongodb.js";
 import {LayrBackground} from "../Background/LayrBackground.js";
 
-
 //let docdataset = SampleDataFactoryMongodb.generateSampleDataset(1000)
 //console.log(docdataset.connections)
 //console.log(docdataset.docs)
@@ -30,6 +29,10 @@ function LoadLibraries(callback: Function) {
         };
     })
 }
+
+
+console.log("1")
+console.log("2")
 //@ts-ignore
 let layrBackgroundF:LayrBackground =  chrome.extension.getBackgroundPage().layrBackgroundB
 

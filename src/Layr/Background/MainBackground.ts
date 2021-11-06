@@ -1,11 +1,14 @@
 import {LayrBackground, layrBackgroundB} from "./LayrBackground.js";
+
 let scriptek = [
     "0Libraries/polyfill.js",
     "0Libraries/pouchdb.js",
     "0Libraries/jquery.js",
     "0Libraries/arangojs.js",
-    "0Libraries/axios.js"
+    "0Libraries/axios.js",
+    "0Libraries/socketio.js"
 ]
+
 function LoadLibraries(callback:Function) {
     let betoltottscriptszam=0
     scriptek.forEach(function (scriptsrc,i) {
@@ -24,13 +27,9 @@ function LoadLibraries(callback:Function) {
 
 
 LoadLibraries(function () {
-  /*  // @ts-ignore
-    window.layrBackgroundF=new LayrBackground()
-    // @ts-ignore
-    layrBackgroundF=window.layrBackgroundF
-    // @ts-ignore*/
+
     let layrBackground=new LayrBackground()
-    console.log(layrBackgroundB)
+
 })
 
 

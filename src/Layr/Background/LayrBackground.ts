@@ -1,5 +1,6 @@
-import {MongoMrk} from "./LayrServerClient/MongoMrk.js";
+
 import {DocsConnectionsManager} from "./DocsConnectionsManager/DocsConnectionsManager.js";
+import {LayrClient} from "./LayrServerClient/LayrClient.js";
 
 
 //@ts-ignore
@@ -8,7 +9,7 @@ export {layrBackgroundB}
 
 export class LayrBackground {
     pouchDB
-    mongoMrk: MongoMrk
+    layrClient: LayrClient
     docsConnectionsManager: DocsConnectionsManager
 
 
@@ -28,7 +29,8 @@ export class LayrBackground {
         })
 
         this.docsConnectionsManager = new DocsConnectionsManager()
-        this.mongoMrk = new MongoMrk()
+        this.layrClient = new LayrClient()
+
 
     }
 }

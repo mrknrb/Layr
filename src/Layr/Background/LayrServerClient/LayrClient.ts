@@ -1,19 +1,37 @@
 import {RequestType} from "./RequestCommon/RequestType.js";
 import {RequestObject} from "./RequestObject.js";
-import {DocData} from "../../Data/Doc/Doc/DocData.js";
+import {DocData} from "../Data/Doc/Doc/DocData.js";
 import {RequestMessage} from "./RequestCommon/RequestMessage.js";
 
-export class MongoLayrClient {
+
+export class LayrClient {
+    socketio
     axiosClient
     requestMap: Map<Number, RequestObject>
     lekerdezesSzamlalomegy: boolean
+
     constructor() {
         //@ts-ignore
         this.axiosClient = axios
         this.requestMap = new Map<Number, RequestObject>()
 
+        this.socketioInit()
+
+
     }
 
+    socketioInit() {
+        //@ts-ignore
+        this.socketio = io("http://127.0.0.1:4562")
+        this.socketio.on("message", (message) => {
+            console.log("Server Message:",message)
+        });
+        this.socketio.on("connect", () => {
+            this.socketio.send("Connection Message From Client");
+        });
+        //@ts-ignore
+        window.socketio = this.socketio
+    }
 
     async newRequest(requestType: RequestType, requestData) {
         let request = new RequestObject(requestType, requestData)
@@ -21,6 +39,7 @@ export class MongoLayrClient {
         this.lekerdezesSzamlaloStart()
         return request.promise
     }
+
     private async lekerdezesSzamlaloStart() {
         let self = this
         if (!this.lekerdezesSzamlalomegy) {
@@ -32,9 +51,9 @@ export class MongoLayrClient {
                 let elkuldendoRequestsArray = []
 
                 self.requestMap.forEach(function (value, key) {
-                  if (! value.elkuldott) {
-                      elkuldendoRequestsArray.push(value.requestData)
-                  }
+                    if (!value.elkuldott) {
+                        elkuldendoRequestsArray.push(value.requestData)
+                    }
                 })
 
                 self.requestsSend(elkuldendoRequestsArray)
@@ -45,18 +64,19 @@ export class MongoLayrClient {
 
     private async requestsSend(elkuldendoRequestsArray) {
         let self = this
-        let requestMessage =new RequestMessage(elkuldendoRequestsArray)
+        let requestMessage = new RequestMessage(elkuldendoRequestsArray)
 
-        let docs = await this.requestCreator( elkuldendoRequestsArray)
+        let docs = await this.requestCreator(elkuldendoRequestsArray)
 
         docs.forEach(function (doc) {
-            let lekerdezes = self.requestMap.get(doc._id)
+            /*  let lekerdezes = self.requestMap.get(doc._id)
 
-            lekerdezes.promise(doc)
-            self.requestMap.delete(doc._id)
+              lekerdezes.promise(doc)
+              self.requestMap.delete(doc._id)*/
         })
     }
-    private async requestCreator( requestBody): Promise<DocData[]> {
+
+    private async requestCreator(requestBody): Promise<DocData[]> {
         let docs = await this.axiosClient.post(`http://localhost:8080/api/request`, requestBody)
         return docs.data
     }

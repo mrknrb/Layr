@@ -4,7 +4,7 @@
 
 let bckg=document.createElement("script")
 bckg.type="module"
-bckg.src="MainBackground.js";
+bckg.src="Layr/Background/MainBackground.js";
 document.body.appendChild(bckg)
 
 

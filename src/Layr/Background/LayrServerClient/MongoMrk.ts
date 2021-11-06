@@ -1,6 +1,6 @@
-import {Lekerdezes} from "./MongoAdatok/Lekerdezes.js";
+
 import {DocObject} from "../Data/Doc/Doc/DocObject.js";
-import {RequestType} from "./MongoLayr/RequestCommon/RequestType.js";
+import {RequestType} from "./RequestCommon/RequestType.js";
 import {DocData} from "../Data/Doc/Doc/DocData.js";
 import {MongoMrkSeged} from "./MongoMrkSeged.js";
 
@@ -24,7 +24,7 @@ export class MongoMrk {
     async getOneDoc(docId) {
 
       let requestPromise=  new Promise<DocData[]>((resolve, reject) => {
-          this.mongoMrkSeged.lekerdezesMap.set(docId, new Lekerdezes(docId, requestPromise))
+        //  this.mongoMrkSeged.lekerdezesMap.set(docId, new Lekerdezes(docId, requestPromise))
 
            this.mongoMrkSeged.lekerdezesSzamlaloStart()
       });

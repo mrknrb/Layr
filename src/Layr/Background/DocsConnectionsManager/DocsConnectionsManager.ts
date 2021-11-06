@@ -41,7 +41,7 @@ export class DocsConnectionsManager {
 
     private docDownloadAndLoad(docId: string, callback) {
         let self = this
-        layrBackgroundB.mongoMrk.getOneDoc(docId, function (docData:DocData) {
+        layrBackgroundB.layrClient.getOneDoc(docId, function (docData:DocData) {
             console.log(docData)
             let docObject = new DocObject(docData._id, docData)
             self.docObjectsMap.set(docData._id, docObject)

@@ -1,4 +1,4 @@
-import {RequestType} from "./MongoLayr/RequestCommon/RequestType.js";
+import {RequestType} from "./RequestCommon/RequestType.js";
 import {DocData} from "../Data/Doc/Doc/DocData.js";
 import {Lekerdezes} from "./MongoAdatok/Lekerdezes.js";
 import {MongoMrk} from "./MongoMrk.js";

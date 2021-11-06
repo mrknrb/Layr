@@ -28,6 +28,8 @@
     "storage",
     "https://www.google.hu/search?*",
     "https://www.google.com/search?*",
+    "https://localhost",
+    "http://localhost",
     "https://i.reddit.com/*",
     "http://*/*",
     "https://*/*",

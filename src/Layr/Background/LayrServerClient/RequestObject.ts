@@ -1,6 +1,5 @@
 import {RequestType} from "./RequestCommon/RequestType.js";
-import {DocData} from "../../Data/Doc/Doc/DocData.js";
-import {Lekerdezes} from "../MongoAdatok/Lekerdezes.js";
+import {DocData} from "../Data/Doc/Doc/DocData.js";
 import {RequestData} from "./RequestCommon/RequestData.js";
 
 export class RequestObject {
