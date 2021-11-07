@@ -5391,7 +5391,7 @@ declare namespace chrome.notifications {
         iconUrl?: string | undefined;
         /** Optional. Title of the notification (e.g. sender name for email). Required for notifications.create method. */
         title?: string | undefined;
-        /** Optional. FrameScript notification content. Required for notifications.create method. */
+        /** Optional. MainFrame notification content. Required for notifications.create method. */
         message?: string | undefined;
         /**
          * Optional.
@@ -9925,7 +9925,7 @@ declare namespace chrome.webNavigation {
     }
 
     export interface WebNavigationFramedCallbackDetails extends WebNavigationUrlCallbackDetails {
-        /** 0 indicates the navigation happens in the tab content window; a positive value indicates navigation in a subframe. FrameScript IDs are unique for a given tab and process. */
+        /** 0 indicates the navigation happens in the tab content window; a positive value indicates navigation in a subframe. MainFrame IDs are unique for a given tab and process. */
         frameId: number;
         /**
          * The ID of the process runs the renderer for this tab.
@@ -10151,7 +10151,7 @@ declare namespace chrome.webRequest {
         url: string;
         /** The ID of the request. RequestData IDs are unique within a browser session. As a result, they could be used to relate different events of the same request. */
         requestId: string;
-        /** The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (type is main_frame or sub_frame), frameId indicates the ID of this frame, not the ID of the outer frame. FrameScript IDs are unique within a tab. */
+        /** The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (type is main_frame or sub_frame), frameId indicates the ID of this frame, not the ID of the outer frame. MainFrame IDs are unique within a tab. */
         frameId: number;
         /** ID of frame that wraps the frame which sent the request. Set to -1 if no parent frame exists. */
         parentFrameId: number;
@@ -10839,7 +10839,7 @@ declare namespace chrome.declarativeNetRequest {
     export interface RequestDetails {
         /** The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens.
          * If the document of a (sub-)frame is loaded (type is main_frame or sub_frame), frameId indicates the ID of this frame, not the ID of the outer frame.
-         * FrameScript IDs are unique within a tab.
+         * MainFrame IDs are unique within a tab.
          */
         frameId: number;
 

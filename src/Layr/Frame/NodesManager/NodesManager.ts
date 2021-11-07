@@ -16,8 +16,8 @@ export class NodesManager {
 
     loadRootNode(docId: string) {
         let self = this
-
         layrBackgroundF.docsConnectionsManager.docLoad(docId, function (docDataObject: DocObject) {
+
             self.nodeObjectRoot ? self.nodeObjectRoot.removeNode() : null
             self.nodeObjectRoot = new NodeObjectRoot(docDataObject.docId)
 

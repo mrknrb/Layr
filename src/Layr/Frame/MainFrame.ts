@@ -31,8 +31,7 @@ function LoadLibraries(callback: Function) {
 }
 
 
-console.log("1")
-console.log("2")
+
 //@ts-ignore
 let layrBackgroundF:LayrBackground =  chrome.extension.getBackgroundPage().layrBackgroundB
 
@@ -44,9 +43,9 @@ window.layrBackgroundF =  chrome.extension.getBackgroundPage().layrBackgroundB
 
 let mainFrame = {}
 LoadLibraries(function () {
-    mainFrame = new FrameScript()
+    mainFrame = new MainFrame()
 })
-export class FrameScript {
+export class MainFrame {
     layrFrame: LayrFrame
     constructor() {
         this.layrFrame = new LayrFrame()
@@ -55,3 +54,4 @@ export class FrameScript {
         this.layrFrame.nodeManager.loadRootNode("61817e5f24b034523e70bcc6")
     }
 }
+console.log("MainFrame Betoltott")

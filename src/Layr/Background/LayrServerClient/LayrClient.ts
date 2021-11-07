@@ -1,44 +1,47 @@
 import {RequestType} from "./RequestCommon/RequestType.js";
 import {RequestObject} from "./RequestObject.js";
-import {DocData} from "../Data/Doc/Doc/DocData.js";
 import {RequestMessage} from "./RequestCommon/RequestMessage.js";
+import {ReplyData} from "./RequestCommon/ReplyData.js";
 
 
 export class LayrClient {
-    socketio
-    axiosClient
-    requestMap: Map<Number, RequestObject>
-    lekerdezesSzamlalomegy: boolean
+    private socketio
+    private requestMap: Map<Number, RequestObject>
+    private lekerdezesSzamlalomegy: boolean
 
     constructor() {
-        //@ts-ignore
-        this.axiosClient = axios
+
         this.requestMap = new Map<Number, RequestObject>()
 
         this.socketioInit()
-
+        this.replyInit()
 
     }
 
-    socketioInit() {
-        //@ts-ignore
-        this.socketio = io("http://127.0.0.1:4562")
-        this.socketio.on("message", (message) => {
-            console.log("Server Message:",message)
-        });
-        this.socketio.on("connect", () => {
-            this.socketio.send("Connection Message From Client");
-        });
-        //@ts-ignore
-        window.socketio = this.socketio
-    }
+    async newRequest(requestType: RequestType, requestBody) {
 
-    async newRequest(requestType: RequestType, requestData) {
-        let request = new RequestObject(requestType, requestData)
+
+        let request = new RequestObject(requestType, requestBody)
         this.requestMap.set(request.requestData.requestId, request)
         this.lekerdezesSzamlaloStart()
         return request.promise
     }
+
+    private socketioInit() {
+        //@ts-ignore
+        this.socketio = io("http://127.0.0.1:4562")
+        this.socketio.on("message", (message) => {
+            console.log("Server Message:", message)
+        });
+        this.socketio.on("connect", () => {
+            this.socketio.send("Connection Message From Client");
+        });
+
+
+        //@ts-ignore
+        window.socketio = this.socketio
+    }
+
 
     private async lekerdezesSzamlaloStart() {
         let self = this
@@ -63,22 +66,24 @@ export class LayrClient {
     }
 
     private async requestsSend(elkuldendoRequestsArray) {
-        let self = this
+
         let requestMessage = new RequestMessage(elkuldendoRequestsArray)
+        this.socketio.emit("request", requestMessage);
 
-        let docs = await this.requestCreator(elkuldendoRequestsArray)
 
-        docs.forEach(function (doc) {
-            /*  let lekerdezes = self.requestMap.get(doc._id)
-
-              lekerdezes.promise(doc)
-              self.requestMap.delete(doc._id)*/
-        })
     }
 
-    private async requestCreator(requestBody): Promise<DocData[]> {
-        let docs = await this.axiosClient.post(`http://localhost:8080/api/request`, requestBody)
-        return docs.data
+    private replyInit() {
+
+        this.socketio.on("requestReply", (replyDataArray: ReplyData[]) => {
+
+            console.log(replyDataArray);
+            replyDataArray.forEach((replyData) => {
+                this.requestMap.get(replyData.requestId).resolve(replyData.replyBody)
+            })
+
+
+        });
     }
 
 }
