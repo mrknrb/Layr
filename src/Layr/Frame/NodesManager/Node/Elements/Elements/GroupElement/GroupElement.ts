@@ -3,35 +3,31 @@ import {ElementBaseClass} from "../../ElementBaseClass.js";
 import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
 import {GroupElementStyle} from "./GroupElementStyle.js";
 import {GroupData} from "./GroupData.js";
-import {LayrBackground} from "../../../../../../Background/LayrBackground.js";
 import {NodeObjectNormal} from "../../../NodeObject/NodeObjectNormal.js";
-import {DocObject} from "../../../../../../Background/Data/Doc/Doc/DocObject.js";
 import {NodeObjectInterface} from "../../../NodeObject/NodeObjectInterface.js";
 import {MrkLibrary} from "../../../../../../Global/MrkLibrary.js";
 import {FieldObject} from "../../../../../../Background/Data/Doc/Field/FieldObject.js";
+import {ContextMElementClickable} from "../../../ContextMenu/ContextMenuElements/ContextMElementClickable/ContextMElementClickable.js";
 import {layrBackgroundF} from "../../../../../MainFrame.js";
+import {layrFrame} from "../../../../../LayrFrame.js";
 
 
 export class GroupElement extends ElementBaseClass {
     element: HTMLDivElement
     elementResizer: ElementResizer
     elementStyle: GroupElementStyle
-    fieldObject:FieldObject
-    groupElementData:GroupData
-    nodes: Map<string, NodeObjectNormal>
+    fieldObject: FieldObject
+    groupElementData: GroupData
 
     constructor(nodeDiv: NodeObjectInterface, elementData, elementSettings) {
         super(ElementTypes.Group, nodeDiv, elementData, elementSettings);
-        this.nodes = new Map<string, NodeObjectNormal>()
-        this.groupElementData=this.fieldObject.fieldData.data
-        //this.elementResizer = new ElementResizer(this)
-        //this.elementResizer.resizeActivate(ResizeTypes.autoXY)
+
+        this.groupElementData = this.fieldObject.fieldData.data
         this.elementInit()
     }
 
     protected elementInit() {
 
-        let self = this
         this.element = document.createElement("div")
         this.element.classList.add("LayrElement")
         this.element.style.border = `black`
@@ -47,8 +43,16 @@ export class GroupElement extends ElementBaseClass {
         })
         MrkLibrary.grabInit(this.element)
         this.nodeObject.mainElement.element.appendChild(this.element)
-        this.element.addEventListener("contextmenu", function (e) {
 
+
+        let contextMenuElementClickable = new ContextMElementClickable("Load Group",  (contextMenuElementClickable)=> {
+            //@ts-ignore
+          window. layrFrame.nodeManager.loadNormalNodesOfGroupNode(this.nodeObject)
+        })
+        this.contextMenu.contextMenuElementInsert(contextMenuElementClickable)
+
+        /*
+        this.element.addEventListener("contextmenu", function (e) {
             e.stopPropagation()
             e.preventDefault()
             self.refreshData()
@@ -57,7 +61,7 @@ export class GroupElement extends ElementBaseClass {
                 e.stopPropagation()
             })
 
-        })
+        })*/
     }
 
 
@@ -68,19 +72,19 @@ export class GroupElement extends ElementBaseClass {
             nodeDiv.removeNode()
         })
         this.nodes = new Map<string, NodeObjectNormal>()
+        /*
+                this.groupElementData.nodes.forEach(function (node) {
+                    let docUrlObject = new DocURLObject(self.nodeObject.hivatkozottDocDataObject.docId, node.docRelativeURL)
+                    layrBackgroundF.docsConnectionsManager.loadDocs(docUrlObject.UrlString, function (docResponse: DocObject) {
+                        //   console.log(docResponse)
 
-        this.groupElementData.nodes.forEach(function (node) {
-            let docUrlObject = new DocURLObject(self.nodeObject.hivatkozottDocDataObject.docId, node.docRelativeURL)
-            layrBackgroundF.docsConnectionsManager.loadDocs(docUrlObject.UrlString, function (docResponse: DocObject) {
-                //   console.log(docResponse)
+                        let nodeDiv: NodeObjectNormal = new NodeObjectNormal(self, node, docResponse)
+                        self.nodes.set(docResponse.docId, nodeDiv)
 
-                let nodeDiv: NodeObjectNormal = new NodeObjectNormal(self, node, docResponse)
-                self.nodes.set(docResponse.docId, nodeDiv)
+                    })
 
-            })
-
-        })
-
+                })
+        */
 
     }
 

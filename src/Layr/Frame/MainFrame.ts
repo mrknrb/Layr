@@ -1,5 +1,4 @@
 import {LayrFrame} from "./LayrFrame.js";
-import {SampleDataFactoryMongodb} from "../../0Egyebek/SampleDataFactoryMongodb.js";
 import {LayrBackground} from "../Background/LayrBackground.js";
 
 //let docdataset = SampleDataFactoryMongodb.generateSampleDataset(1000)
@@ -31,14 +30,12 @@ function LoadLibraries(callback: Function) {
 }
 
 
-
 //@ts-ignore
-let layrBackgroundF:LayrBackground =  chrome.extension.getBackgroundPage().layrBackgroundB
+let layrBackgroundF: LayrBackground = chrome.extension.getBackgroundPage().layrBackgroundB
 
 export {layrBackgroundF}
 //@ts-ignore
-window.layrBackgroundF =  layrBackgroundF
-
+window.layrBackgroundF = layrBackgroundF
 
 
 let mainFrame = {}
@@ -46,8 +43,10 @@ LoadLibraries(function () {
     mainFrame = new MainFrame()
 
 })
+
 export class MainFrame {
     layrFrame: LayrFrame
+
     constructor() {
         this.layrFrame = new LayrFrame()
         //@ts-ignore
@@ -55,16 +54,15 @@ export class MainFrame {
         this.testload()
 
     }
-   async testload(){
-       let rootnode=await this.layrFrame.nodeManager.loadRootNode("61817e5f24b034523e70bcc6")
-      await this.layrFrame.nodeManager.loadNormalNodesOfGroupNode(rootnode)
 
-   }
+    async testload() {
+        let rootnode = await this.layrFrame.nodeManager.loadRootNode("61817e5f24b034523e70bcc6")
+        // await this.layrFrame.nodeManager.loadNormalNodesOfGroupNode(rootnode)
+
+    }
 
 
 }
-
-
 
 
 console.log("MainFrame Betoltott")
