@@ -3,7 +3,7 @@ import {ElementBaseClass} from "../../ElementBaseClass.js";
 import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
 import {ResizeTypes} from "../../ElementResizer/ResizeTypes.js";
 import {TextAreaElementStyle} from "./TextAreaElementStyle.js";
-import {NodeInterface} from "../../../NodeObject/NodeInterface.js";
+import {NodeObjectInterface} from "../../../NodeObject/NodeObjectInterface.js";
 import {FieldObject} from "../../../../../../Background/Data/Doc/Field/FieldObject.js";
 import {TextAreaElementData} from "./TextAreaElementData.js";
 
@@ -16,7 +16,7 @@ export class TextAreaElement extends ElementBaseClass {
     fieldObject: FieldObject
     textAreaElementData:TextAreaElementData
 
-    constructor(nodeDiv: NodeInterface, docFieldObject, elementSettings) {
+    constructor(nodeDiv: NodeObjectInterface, docFieldObject, elementSettings) {
         super(ElementTypes.TextArea, nodeDiv, docFieldObject, elementSettings);
 
 

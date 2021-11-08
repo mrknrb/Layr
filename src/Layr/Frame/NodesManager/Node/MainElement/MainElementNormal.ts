@@ -14,30 +14,38 @@ export class MainElementNormal extends MainElementBase {
     }
 
     layoutApply() {
-      //let docObject=  this.nodeObject.layrBackgroundF.docsConnectionsManager.docObjectsMap.get(this.nodeObject.parentDocId)
-        let parentDocObject= LayrFind.doc(this.nodeObject.parentDocId)
+        let parentDocObject=  LayrFind.doc_ByNodeId_InFrame(this.nodeObject.parentNodeId,window)
 
-        let nodeStyleData = LayrFind.field_ByName_InDocObject("group",parentDocObject).fieldData.data.nodesStyle
+        let nodesStyleData = LayrFind.field_ByName_InDocObject("group",parentDocObject).fieldData.data.nodesStyle
 
-        let layout = LayrFind.field_ByName_InDocObject("group",parentDocObject).fieldData.data.layout
 
         this.layoutClean()
         this.layoutDefault()
         MrkLibrary.dragElement(this.elementOptionsButton, this.element, false)
         let s = this.element.style
-        let d = nodeStyleData.get(this.nodeObject.parentDocId).nodeLayoutsData
-        s.overflow = "hidden"
-        s.resize = "horizontal"
-        if (layout === Layouts.absolute) {
-            s.position = "absolute"
-            d.absolute.top ? s.top = d.absolute.top : null
-            d.absolute.left ? s.left = d.absolute.left : null
-            d.absolute.width ? s.width = d.absolute.width : null
-        } else if (layout === Layouts.static) {
-            s.position = "static"
-        }
-        LayrFind.node_ById_InFrame(this.nodeObject.parentNodeId,window).mainElement.element.appendChild(this.element)
 
+        let nodeStyleData =  nodesStyleData.find((nodeStyleData)=> nodeStyleData.docId==this.nodeObject.docId)
+       if (nodeStyleData){
+
+           let d=nodeStyleData.nodeStyleLayoutsData
+           let layout= nodeStyleData.layout
+
+           s.overflow = "hidden"
+           s.resize = "horizontal"
+           if (layout === Layouts.absolute) {
+               s.position = "absolute"
+               d.absolute.top ? s.top = d.absolute.top +"px": null
+               d.absolute.left ? s.left = d.absolute.left +"px" : null
+               d.absolute.width ? s.width = d.absolute.width +"px" : null
+               d.absolute.width ? s.width = d.absolute.height +"px" : null
+               console.log(d)
+           } else if (layout === Layouts.static) {
+               s.position = "static"
+           }
+
+       }
+        LayrFind.node_ById_InFrame(this.nodeObject.parentNodeId,window).elementsManager.elements.get("group").element.appendChild(this.element)
+        console.log(this.element)
     }
 
 }

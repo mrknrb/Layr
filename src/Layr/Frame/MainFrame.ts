@@ -37,13 +37,14 @@ let layrBackgroundF:LayrBackground =  chrome.extension.getBackgroundPage().layrB
 
 export {layrBackgroundF}
 //@ts-ignore
-window.layrBackgroundF =  chrome.extension.getBackgroundPage().layrBackgroundB
+window.layrBackgroundF =  layrBackgroundF
 
 
 
 let mainFrame = {}
 LoadLibraries(function () {
     mainFrame = new MainFrame()
+
 })
 export class MainFrame {
     layrFrame: LayrFrame
@@ -51,7 +52,19 @@ export class MainFrame {
         this.layrFrame = new LayrFrame()
         //@ts-ignore
         window.layrFrame = this.layrFrame
-        this.layrFrame.nodeManager.loadRootNode("61817e5f24b034523e70bcc6")
+        this.testload()
+
     }
+   async testload(){
+       let rootnode=await this.layrFrame.nodeManager.loadRootNode("61817e5f24b034523e70bcc6")
+      await this.layrFrame.nodeManager.loadNormalNodesOfGroupNode(rootnode)
+
+   }
+
+
 }
+
+
+
+
 console.log("MainFrame Betoltott")

@@ -1,13 +1,13 @@
 import {ElementTypes} from "../../ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
-import {NodeInterface} from "../../../NodeObject/NodeInterface.js";
+import {NodeObjectInterface} from "../../../NodeObject/NodeObjectInterface.js";
 
 
 export class DropDownStaticElement extends ElementBaseClass {
 
 	options: HTMLOptionElement[]
 
-	constructor(nodeDiv: NodeInterface, elementData, elementSettings) {
+	constructor(nodeDiv: NodeObjectInterface, elementData, elementSettings) {
 		super(ElementTypes.DropDownStatic, nodeDiv, elementData, elementSettings);
 		this.options = []
 		this.elementInit()

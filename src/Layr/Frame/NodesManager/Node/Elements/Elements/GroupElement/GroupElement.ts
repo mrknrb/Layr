@@ -6,7 +6,7 @@ import {GroupData} from "./GroupData.js";
 import {LayrBackground} from "../../../../../../Background/LayrBackground.js";
 import {NodeObjectNormal} from "../../../NodeObject/NodeObjectNormal.js";
 import {DocObject} from "../../../../../../Background/Data/Doc/Doc/DocObject.js";
-import {NodeInterface} from "../../../NodeObject/NodeInterface.js";
+import {NodeObjectInterface} from "../../../NodeObject/NodeObjectInterface.js";
 import {MrkLibrary} from "../../../../../../Global/MrkLibrary.js";
 import {FieldObject} from "../../../../../../Background/Data/Doc/Field/FieldObject.js";
 import {layrBackgroundF} from "../../../../../MainFrame.js";
@@ -20,7 +20,7 @@ export class GroupElement extends ElementBaseClass {
     groupElementData:GroupData
     nodes: Map<string, NodeObjectNormal>
 
-    constructor(nodeDiv: NodeInterface, elementData, elementSettings) {
+    constructor(nodeDiv: NodeObjectInterface, elementData, elementSettings) {
         super(ElementTypes.Group, nodeDiv, elementData, elementSettings);
         this.nodes = new Map<string, NodeObjectNormal>()
         this.groupElementData=this.fieldObject.fieldData.data
@@ -71,7 +71,7 @@ export class GroupElement extends ElementBaseClass {
 
         this.groupElementData.nodes.forEach(function (node) {
             let docUrlObject = new DocURLObject(self.nodeObject.hivatkozottDocDataObject.docId, node.docRelativeURL)
-            layrBackgroundF.docsConnectionsManager.docLoad(docUrlObject.UrlString, function (docResponse: DocObject) {
+            layrBackgroundF.docsConnectionsManager.loadDocs(docUrlObject.UrlString, function (docResponse: DocObject) {
                 //   console.log(docResponse)
 
                 let nodeDiv: NodeObjectNormal = new NodeObjectNormal(self, node, docResponse)

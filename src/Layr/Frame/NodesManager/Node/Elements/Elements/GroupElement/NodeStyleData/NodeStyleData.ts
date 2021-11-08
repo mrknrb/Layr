@@ -5,7 +5,7 @@ import {FieldhezElementStyle} from "./FieldhezElementStyle.js";
 
 export class NodeStyleData {
     constructor() {
-        this.nodeLayoutsData = new NodeStyleLayoutsData()
+        this.nodeStyleLayoutsData = new NodeStyleLayoutsData()
         this.fieldekhezElementStyleNodeSzinten = []
 
     }
@@ -13,6 +13,6 @@ export class NodeStyleData {
     connectionId: string
     docId: string
     layout: Layouts
-    nodeLayoutsData: NodeStyleLayoutsData
+    nodeStyleLayoutsData: NodeStyleLayoutsData
     fieldekhezElementStyleNodeSzinten: FieldhezElementStyle[]
 }

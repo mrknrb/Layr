@@ -3,9 +3,9 @@ import {LayrBackground} from "../../../../Background/LayrBackground.js";
 import {DocObject} from "../../../../Background/Data/Doc/Doc/DocObject.js";
 import {MainElementBase} from "../MainElement/MainElementBase.js";
 
-export interface NodeInterface {
+export interface NodeObjectInterface {
     docId: string
-    root: boolean  //root
+    nodeId:string //ha "0" a nodeid, akkor o a root
     mainElement:MainElementBase
     elementsManager: ElementsManager
 
@@ -14,7 +14,7 @@ export interface NodeInterface {
 
 
 
-    refresher()
+    init()
 
 
 

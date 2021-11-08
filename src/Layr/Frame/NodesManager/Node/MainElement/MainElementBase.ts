@@ -1,9 +1,9 @@
-import {NodeInterface} from "../NodeObject/NodeInterface.js";
+import {NodeObjectInterface} from "../NodeObject/NodeObjectInterface.js";
 
 
 export abstract class MainElementBase {
     element: HTMLDivElement
-    nodeObject: NodeInterface
+    nodeObject: NodeObjectInterface
     elementOptionsButton:HTMLDivElement
 
     constructor(nodeObject) {

@@ -24,3 +24,6 @@ export class LayrFrame {
 
 
 }
+//@ts-ignore
+let layrFrame:LayrFrame=window.layrFrame
+export {layrFrame}

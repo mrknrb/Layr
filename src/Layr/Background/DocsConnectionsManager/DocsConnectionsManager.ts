@@ -1,8 +1,9 @@
 import {layrBackgroundB} from "../LayrBackground.js";
 import {DocObject} from "../Data/Doc/Doc/DocObject.js";
 import {ConnectionObject} from "../Data/Connection/ConnectionObject.js";
-import {DocData} from "../Data/Doc/Doc/DocData.js";
 import {RequestType} from "../LayrServerClient/RequestCommon/RequestType.js";
+import {DocData} from "../Data/Doc/Doc/DocData.js";
+import {LayrFind} from "../../Global/LayrFind.js";
 
 export class DocsConnectionsManager {
 
@@ -16,38 +17,47 @@ export class DocsConnectionsManager {
     }
 
 
-   async docLoad(docId: string, callback) {
-        let self = this
-
-
-        let docObjectMeglevo = this.docObjectsMap.get(docId)
-        if (docObjectMeglevo == undefined) {
-         let docObject=  await  this.docDownloadAndLoad(docId)
-
-            let doc2 = self.docObjectsMap.get(docId)
-
-            if (doc2 == undefined) {
-                callback(null)
+    async loadDocs(docIds: string[]) {
+        let letoltendoDocIds: string[] = []
+        let betoltottDocObjects: DocObject[] = []
+        for await (const docId of docIds) {
+            let docObjectMeglevo = this.docObjectsMap.get(docId)
+            if (docObjectMeglevo == undefined) {
+                letoltendoDocIds.push(docId)
             } else {
-                callback(docObject)
+                betoltottDocObjects.push(docObjectMeglevo)
             }
-
-        } else {
-            callback(docObjectMeglevo)
         }
+        let mostBetoltottDocObjects = await this.docsDownloadAndLoad(letoltendoDocIds)
+        return betoltottDocObjects.concat(mostBetoltottDocObjects)
     }
 
+    async loadDocs_ByDocChildConnections(parentDocId: string) {
 
-    private async docDownloadAndLoad(docId: string):Promise<DocObject> {
-        let self = this
-        let docsData= await layrBackgroundB.layrClient.newRequest(RequestType.getDocs, [docId])
+        let docsData = await layrBackgroundB.layrClient.newRequest(RequestType.getDocs_ByDocsChildConnections, parentDocId)
 
-        let docData=docsData[0]
-        let docObject = new DocObject(docData._id, docData)
-        self.docObjectsMap.set(docData._id, docObject)
 
-        return docObject
+        return await this.docObjectsSaver(docsData)
 
+
+    }
+
+    private async docsDownloadAndLoad(docIds: string[]): Promise<DocObject[]> {
+
+        let docsData = await layrBackgroundB.layrClient.newRequest(RequestType.getDocs, docIds)
+        return await this.docObjectsSaver(docsData)
+
+    }
+
+    private async docObjectsSaver(docsData: DocData[]) {
+        let betoltottDocObjects: DocObject[] = []
+        for await (const docData of docsData) {
+            let docObject = new DocObject(docData._id, docData)
+            this.docObjectsMap.set(docData._id, docObject)
+            betoltottDocObjects.push(docObject)
+        }
+
+        return betoltottDocObjects
     }
 
 

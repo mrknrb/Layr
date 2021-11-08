@@ -1,35 +1,34 @@
 import {Layouts} from "../Elements/Elements/GroupElement/Layouts/Layouts.js";
 import {MainElementRoot} from "../MainElement/MainElementRoot.js";
-import {NodeInterface} from "./NodeInterface.js";
+import {NodeObjectInterface} from "./NodeObjectInterface.js";
 import {ElementsManager} from "../Elements/ElementsManager.js";
 import {layrBackgroundF} from "../../../MainFrame.js";
 
-export class NodeObjectRoot implements NodeInterface {
+export class NodeObjectRoot implements NodeObjectInterface {
     docId: string;
-    root: boolean;
+    nodeId: string;
     mainElement: MainElementRoot
     elementsManager: ElementsManager;
+
 
     constructor(docId: string) {
 
         this.mainElement = new MainElementRoot(this)
         this.elementsManager = new ElementsManager(this)
         this.docId = docId
+        this.nodeId="0"
 
-        this.root = true
-
-        this.refresher()
+        this.init()
 
     }
 
-    refresher() {
-        let self = this
-        layrBackgroundF.docsConnectionsManager.docLoad(this.docId, function () {
-            self.mainElement.layoutApply(Layouts.root)
+    init() {
+        this.mainElement.layoutApply(Layouts.root)
 
-            self.elementsManager.elementsRefresh()
-            self.elementsManager.elementToFullScreen("group")
-        })
+        this.elementsManager.elementsRefresh()
+        this.elementsManager.elementToFullScreen("group")
+
+
 
     }
 
@@ -37,6 +36,7 @@ export class NodeObjectRoot implements NodeInterface {
     removeNode() {
         this.mainElement.element.remove()
     }
+
 
 
 }

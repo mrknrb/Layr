@@ -1,14 +1,14 @@
 import {DocFieldekhezElementStyleDefault} from "./DocFieldekhezElementStyleDefault.js";
 import {ElementBaseClass} from "./ElementBaseClass.js";
 import {ElementTypesClassFinder} from "./ElementTypesClassFinder.js";
-import {NodeInterface} from "../NodeObject/NodeInterface.js";
+import {NodeObjectInterface} from "../NodeObject/NodeObjectInterface.js";
 import {LayrFind} from "../../../../Global/LayrFind.js";
 
 export class ElementsManager {
     elements: Map<string, any>
-    nodeObject: NodeInterface
+    nodeObject: NodeObjectInterface
 
-    constructor(nodeObject: NodeInterface) {
+    constructor(nodeObject: NodeObjectInterface) {
         this.nodeObject = nodeObject
         this.elements = new Map<string, any>()
     }

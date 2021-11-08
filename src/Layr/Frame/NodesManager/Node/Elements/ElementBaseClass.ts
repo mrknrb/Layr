@@ -1,19 +1,19 @@
 import {ElementTypes} from "./ElementTypes.js";
 import {ContextMenu} from "../ContextMenu/ContextMenu.js";
-import {NodeInterface} from "../NodeObject/NodeInterface.js";
+import {NodeObjectInterface} from "../NodeObject/NodeObjectInterface.js";
 import {FieldObject} from "../../../../Background/Data/Doc/Field/FieldObject.js";
 
 
 export abstract class ElementBaseClass {
     elementType: ElementTypes
     element: HTMLElement
-    nodeObject: NodeInterface
+    nodeObject: NodeObjectInterface
     fieldObject:FieldObject
     elementStyle
     contextMenu: ContextMenu
 
 
-    constructor(elementType: ElementTypes, nodeObject: NodeInterface, fieldObject, elementStyle) {
+    constructor(elementType: ElementTypes, nodeObject: NodeObjectInterface, fieldObject, elementStyle) {
 
         this.elementType = elementType
         this.nodeObject = nodeObject

@@ -46,10 +46,10 @@ export class zSampleDataFactory {
         nodeData.docRelativeURL = docURL
 
         nodeData.layout = Layouts.absolute
-        nodeData.nodeLayoutsData.absolute.width = Math.floor(50 + Math.random() * 100) + "px"
-        nodeData.nodeLayoutsData.absolute.height = Math.floor(50 + Math.random() * 100) + "px"
-        nodeData.nodeLayoutsData.absolute.top = Math.floor(50 + Math.random() * 1000) + "px"
-        nodeData.nodeLayoutsData.absolute.left = Math.floor(50 + Math.random() * 1000) + "px"
+        nodeData.nodeStyleLayoutsData.absolute.width = Math.floor(50 + Math.random() * 100) + "px"
+        nodeData.nodeStyleLayoutsData.absolute.height = Math.floor(50 + Math.random() * 100) + "px"
+        nodeData.nodeStyleLayoutsData.absolute.top = Math.floor(50 + Math.random() * 1000) + "px"
+        nodeData.nodeStyleLayoutsData.absolute.left = Math.floor(50 + Math.random() * 1000) + "px"
 
 
         //parentDocId.edgeStyleLayoutsData.all.color = "#" + Math.floor(Math.random() * 16777215).toString(16)
