@@ -6,7 +6,9 @@ import {GroupData} from "./GroupData.js";
 import {NodeObjectInterface} from "../../../NodeObject/NodeObjectInterface.js";
 import {MrkLibrary} from "../../../../../../Global/MrkLibrary.js";
 import {FieldObject} from "../../../../../../Background/Data/Doc/Field/FieldObject.js";
-import {ContextMElementClickable} from "../../../ContextMenu/ContextMenuElements/ContextMElementClickable/ContextMElementClickable.js";
+import {GroupElementStates} from "./GroupElementStates.js";
+import {TypedEvent} from "../../../../../../../0Libraries/TypedEvents.js";
+import {GroupContextMButtonsManager} from "./GroupContextMButtonsManager.js";
 
 
 export class GroupElement extends ElementBaseClass {
@@ -15,12 +17,18 @@ export class GroupElement extends ElementBaseClass {
     elementStyle: GroupElementStyle
     fieldObject: FieldObject
     groupElementData: GroupData
+    groupElementStates:GroupElementStates
+    groupElementEventLoaded:TypedEvent<any>
+    groupContextMButtonsManager:GroupContextMButtonsManager
 
     constructor(nodeDiv: NodeObjectInterface, elementData, elementSettings) {
         super(ElementTypes.Group, nodeDiv, elementData, elementSettings);
-
+        this.groupElementEventLoaded=new TypedEvent<any>()
         this.groupElementData = this.fieldObject.fieldData.data
+        this.groupElementStates=GroupElementStates.NotLoaded
+        this.groupContextMButtonsManager=new GroupContextMButtonsManager(this)
         this.elementInit()
+
     }
 
     protected elementInit() {
@@ -41,13 +49,10 @@ export class GroupElement extends ElementBaseClass {
         MrkLibrary.grabInit(this.element)
         this.nodeObject.mainElement.element.appendChild(this.element)
 
-
-        let contextMenuElementClickable = new ContextMElementClickable("Load Group", (contextMenuElementClickable) => {
-            //@ts-ignore
-            window.layrFrame.nodeManager.loadNormalNodesOfGroupNode(this.nodeObject)
-            this.contextMenu.contextMenuElementRemove(contextMenuElementClickable.contextMenuElementId)
+        this.groupContextMButtonsManager.NonLoadedButtonsInit()
+        this.groupElementEventLoaded.on( ()=> {
+            this.groupContextMButtonsManager.LoadedButtonsInit()
         })
-        this.contextMenu.contextMenuElementInsert(contextMenuElementClickable, "GroupElement")
 
     }
 

@@ -3,7 +3,7 @@ import {DocObject} from "../Data/Doc/Doc/DocObject.js";
 import {ConnectionObject} from "../Data/Connection/ConnectionObject.js";
 import {RequestType} from "../LayrServerClient/RequestCommon/RequestType.js";
 import {DocData} from "../Data/Doc/Doc/DocData.js";
-import {LayrFind} from "../../Global/LayrFind.js";
+import {RequestData_getDocs} from "../LayrServerClient/RequestCommon/RequestDataTypes.js";
 
 export class DocsConnectionsManager {
 
@@ -35,11 +35,17 @@ export class DocsConnectionsManager {
     async loadDocs_ByDocChildConnections(parentDocId: string) {
 
         let docsData = await layrBackgroundB.layrClient.newRequest(RequestType.getDocs_ByDocsChildConnections, parentDocId)
-
-
         return await this.docObjectsSaver(docsData)
+    }
 
+    async insertNewDoc_AsParentDocChild(parentDocId: string) {
+        let newDoc = new DocData()
+        return await this.insertDocs_AsParentDocChildren(parentDocId, [newDoc])
+    }
 
+    async insertDocs_AsParentDocChildren(parentDocId: string, docDataArray: DocData[]) {
+        let docsData = await layrBackgroundB.layrClient.newRequest(RequestType.insertDocs_AsParentDocChildren, {parentDocId:parentDocId,docDataArray:docDataArray})
+        return await this.docObjectsSaver(docsData)
     }
 
     private async docsDownloadAndLoad(docIds: string[]): Promise<DocObject[]> {

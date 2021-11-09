@@ -1,10 +1,11 @@
 import {RequestType} from "./RequestType.js";
 
-export class RequestData {
+export  class RequestData {
 
     requestId:Number
-    requestType: RequestType
+    requestType: string
     requestBody: any
+
 
 
 }

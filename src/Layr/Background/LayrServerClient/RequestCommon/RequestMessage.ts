@@ -1,3 +1,4 @@
+import {RequestDataBaseClass} from "./RequestDataBaseClass.js";
 import {RequestData} from "./RequestData.js";
 
 export class RequestMessage {

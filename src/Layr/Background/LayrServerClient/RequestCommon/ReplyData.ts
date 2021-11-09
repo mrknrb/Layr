@@ -1,8 +1,8 @@
-import {RequestData} from "./RequestData.js";
+import {RequestDataBaseClass} from "./RequestDataBaseClass.js";
 
 export class ReplyData {
 
-    constructor(requestData:RequestData,replyBody:any) {
+    constructor(requestData:RequestDataBaseClass, replyBody:any) {
         this.requestId=requestData.requestId
         this.replyBody=replyBody
 

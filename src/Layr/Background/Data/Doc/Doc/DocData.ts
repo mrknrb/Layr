@@ -11,7 +11,6 @@ export class DocData {
     tags: string[]
 
     constructor() {
-        this.ownElementsStyle=[]
         this.fieldsData = []
         this.ownElementsStyle = []
         this.tags=[]

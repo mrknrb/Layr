@@ -2057,7 +2057,7 @@ declare namespace chrome.declarativeContent {
 }
 
 ////////////////////
-// Declarative Web RequestData
+// Declarative Web RequestDataBaseClass
 ////////////////////
 declare namespace chrome.declarativeWebRequest {
     export interface HeaderFilter {
@@ -4893,7 +4893,7 @@ declare namespace chrome.input.ime {
     /**
      * Indicates that the key event received by onKeyEvent is handled. This should only be called if the onKeyEvent listener is asynchronous.
      * @since Chrome 25.
-     * @param requestId RequestData id of the event that was handled. This should come from keyEvent.requestId
+     * @param requestId RequestDataBaseClass id of the event that was handled. This should come from keyEvent.requestId
      * @param response True if the keystroke was handled, false if not
      */
     export function keyEventHandled(requestId: string, response: boolean): void;
@@ -6349,7 +6349,7 @@ declare namespace chrome.serial {
      * @param connectionId The id of the connection.
      * @param signals The set of signal changes to send to the device:
      * boolean:    (optional) dtr - DTR (Data Terminal Ready).
-     * boolean:    (optional) rts - RTS (RequestData To Send).
+     * boolean:    (optional) rts - RTS (RequestDataBaseClass To Send).
      * @param callback Called once the control signals have been set.
      * The promise parameter should be a function that looks like this:
      * function(boolean result) {...};
@@ -10042,7 +10042,7 @@ declare namespace chrome.webNavigation {
 }
 
 ////////////////////
-// Web RequestData
+// Web RequestDataBaseClass
 ////////////////////
 /**
  * Use the chrome.webRequest API to observe and analyze traffic and to intercept, block, or modify requests in-flight.
@@ -10149,7 +10149,7 @@ declare namespace chrome.webRequest {
 
     export interface ResourceRequest {
         url: string;
-        /** The ID of the request. RequestData IDs are unique within a browser session. As a result, they could be used to relate different events of the same request. */
+        /** The ID of the request. RequestDataBaseClass IDs are unique within a browser session. As a result, they could be used to relate different events of the same request. */
         requestId: string;
         /** The value 0 indicates that the request happens in the main frame; a positive value indicates the ID of a subframe in which the request happens. If the document of a (sub-)frame is loaded (type is main_frame or sub_frame), frameId indicates the ID of this frame, not the ID of the outer frame. MainFrame IDs are unique within a tab. */
         frameId: number;
@@ -10858,7 +10858,7 @@ declare namespace chrome.declarativeNetRequest {
         partentFrameId: number;
 
         /** The ID of the request.
-         * RequestData IDs are unique within a browser session.
+         * RequestDataBaseClass IDs are unique within a browser session.
          */
         requestId: string;
 

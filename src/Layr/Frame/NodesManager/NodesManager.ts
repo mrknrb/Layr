@@ -41,5 +41,10 @@ export class NodesManager {
         return nodeObjectsArray
     }
 
+    async newNodeObjectWithNewDoc() {
+
+
+    }
+
 
 }

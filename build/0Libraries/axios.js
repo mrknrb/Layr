@@ -80,7 +80,7 @@
         } var w = a(e.baseURL, e.url); function E() { if (g) {
             var r = "getAllResponseHeaders" in g ? u(g.getAllResponseHeaders()) : null, i = { data: v && "text" !== v && "json" !== v ? g.response : g.responseText, status: g.status, statusText: g.statusText, headers: r, config: e, request: g };
             o((function (e) { t(e), y(); }), (function (e) { n(e), y(); }), i), g = null;
-        } } if (g.open(e.method.toUpperCase(), s(w, e.params, e.paramsSerializer), !0), g.timeout = e.timeout, "onloadend" in g ? g.onloadend = E : g.onreadystatechange = function () { g && 4 === g.readyState && (0 !== g.status || g.responseURL && 0 === g.responseURL.indexOf("file:")) && setTimeout(E); }, g.onabort = function () { g && (n(f("RequestData aborted", e, "ECONNABORTED", g)), g = null); }, g.onerror = function () { n(f("Network Error", e, null, g)), g = null; }, g.ontimeout = function () { var t = e.timeout ? "timeout of " + e.timeout + "ms exceeded" : "timeout exceeded", r = e.transitional || l.transitional; e.timeoutErrorMessage && (t = e.timeoutErrorMessage), n(f(t, e, r.clarifyTimeoutError ? "ETIMEDOUT" : "ECONNABORTED", g)), g = null; }, r.isStandardBrowserEnv()) {
+        } } if (g.open(e.method.toUpperCase(), s(w, e.params, e.paramsSerializer), !0), g.timeout = e.timeout, "onloadend" in g ? g.onloadend = E : g.onreadystatechange = function () { g && 4 === g.readyState && (0 !== g.status || g.responseURL && 0 === g.responseURL.indexOf("file:")) && setTimeout(E); }, g.onabort = function () { g && (n(f("RequestDataBaseClass aborted", e, "ECONNABORTED", g)), g = null); }, g.onerror = function () { n(f("Network Error", e, null, g)), g = null; }, g.ontimeout = function () { var t = e.timeout ? "timeout of " + e.timeout + "ms exceeded" : "timeout exceeded", r = e.transitional || l.transitional; e.timeoutErrorMessage && (t = e.timeoutErrorMessage), n(f(t, e, r.clarifyTimeoutError ? "ETIMEDOUT" : "ECONNABORTED", g)), g = null; }, r.isStandardBrowserEnv()) {
             var S = (e.withCredentials || c(w)) && e.xsrfCookieName ? i.read(e.xsrfCookieName) : void 0;
             S && (m[e.xsrfHeaderName] = S);
         } "setRequestHeader" in g && r.forEach(m, (function (e, t) { void 0 === h && "content-type" === t.toLowerCase() ? delete m[t] : g.setRequestHeader(t, e); })), r.isUndefined(e.withCredentials) || (g.withCredentials = !!e.withCredentials), v && "json" !== v && (g.responseType = e.responseType), "function" == typeof e.onDownloadProgress && g.addEventListener("progress", e.onDownloadProgress), "function" == typeof e.onUploadProgress && g.upload && g.upload.addEventListener("progress", e.onUploadProgress), (e.cancelToken || e.signal) && (d = function (e) { g && (n(!e || e && e.type ? new p("canceled") : e), g.abort(), g = null); }, e.cancelToken && e.cancelToken.subscribe(d), e.signal && (e.signal.aborted ? d() : e.signal.addEventListener("abort", d))), h || (h = null), g.send(h); })); };
@@ -148,7 +148,7 @@
     }, function (e, t, n) {
         "use strict";
         var r = n(7);
-        e.exports = function (e, t, n) { var o = n.config.validateStatus; n.status && o && !o(n.status) ? t(r("RequestData failed with status code " + n.status, n.config, null, n.request, n)) : e(n); };
+        e.exports = function (e, t, n) { var o = n.config.validateStatus; n.status && o && !o(n.status) ? t(r("RequestDataBaseClass failed with status code " + n.status, n.config, null, n.request, n)) : e(n); };
     }, function (e, t, n) {
         "use strict";
         var r = n(0);
