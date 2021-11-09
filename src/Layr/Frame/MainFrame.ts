@@ -56,8 +56,8 @@ export class MainFrame {
     }
 
     async testload() {
-        let rootnode = await this.layrFrame.nodeManager.loadRootNode("61817e5f24b034523e70bcc6")
-        // await this.layrFrame.nodeManager.loadNormalNodesOfGroupNode(rootnode)
+        let rootnode = await this.layrFrame.nodesManager.loadRootNode("61817e5f24b034523e70bcc6")
+        // await this.layrFrame.nodesManager.loadNormalNodesOfGroupNode(rootnode)
 
     }
 

@@ -3,7 +3,8 @@ import {DocObject} from "../Data/Doc/Doc/DocObject.js";
 import {ConnectionObject} from "../Data/Connection/ConnectionObject.js";
 import {RequestType} from "../LayrServerClient/RequestCommon/RequestType.js";
 import {DocData} from "../Data/Doc/Doc/DocData.js";
-import {RequestData_getDocs} from "../LayrServerClient/RequestCommon/RequestDataTypes.js";
+import {RequestData_getDocs} from "../../../0Egyebek/RequestDataTypes.js";
+import {ConnectionData} from "../Data/Connection/ConnectionData.js";
 
 export class DocsConnectionsManager {
 
@@ -39,13 +40,16 @@ export class DocsConnectionsManager {
     }
 
     async insertNewDoc_AsParentDocChild(parentDocId: string) {
+        console.log(parentDocId)
         let newDoc = new DocData()
-        return await this.insertDocs_AsParentDocChildren(parentDocId, [newDoc])
+      let docs= await this.insertDocs_AsParentDocChildren(parentDocId, [newDoc])
+        return  docs[0]
     }
 
     async insertDocs_AsParentDocChildren(parentDocId: string, docDataArray: DocData[]) {
-        let docsData = await layrBackgroundB.layrClient.newRequest(RequestType.insertDocs_AsParentDocChildren, {parentDocId:parentDocId,docDataArray:docDataArray})
-        return await this.docObjectsSaver(docsData)
+        let docsConnsData:{docs: DocData[], connections: ConnectionData[]} = await layrBackgroundB.layrClient.newRequest(RequestType.insertDocs_AsParentDocChildren, {parentDocId:parentDocId,docDataArray:docDataArray})
+        await this.connectionObjectsSaver(docsConnsData.connections)
+        return await this.docObjectsSaver(docsConnsData.docs)
     }
 
     private async docsDownloadAndLoad(docIds: string[]): Promise<DocObject[]> {
@@ -62,9 +66,16 @@ export class DocsConnectionsManager {
             this.docObjectsMap.set(docData._id, docObject)
             betoltottDocObjects.push(docObject)
         }
-
         return betoltottDocObjects
     }
-
+    private async connectionObjectsSaver(connectionsData: ConnectionData[]) {
+        let betoltottConnectionObjects: ConnectionObject[] = []
+        for await (const connectionData of connectionsData) {
+            let connectionObject = new ConnectionObject(connectionData._id, connectionData)
+            this.connectionObjectsMap.set(connectionData._id, connectionObject)
+            betoltottConnectionObjects.push(connectionObject)
+        }
+        return betoltottConnectionObjects
+    }
 
 }

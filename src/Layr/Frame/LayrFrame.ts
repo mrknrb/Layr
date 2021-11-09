@@ -6,7 +6,7 @@ export class LayrFrame {
 
 
 
-    nodeManager: NodesManager
+    nodesManager: NodesManager
     talca: Talca
 
 
@@ -14,7 +14,7 @@ export class LayrFrame {
 
 
         this.talca = new Talca(this)
-        this.nodeManager = new NodesManager()
+        this.nodesManager = new NodesManager()
     }
 
     createLayrFrame() {

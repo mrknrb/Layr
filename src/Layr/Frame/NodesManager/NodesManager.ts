@@ -2,6 +2,7 @@ import {NodeObjectRoot} from "./Node/NodeObject/NodeObjectRoot.js";
 import {NodeObjectNormal} from "./Node/NodeObject/NodeObjectNormal.js";
 import {layrBackgroundF} from "../MainFrame.js";
 import {NodeObjectInterface} from "./Node/NodeObject/NodeObjectInterface.js";
+import {LayrFind} from "../../Global/LayrFind.js";
 
 
 export class NodesManager {
@@ -41,9 +42,15 @@ export class NodesManager {
         return nodeObjectsArray
     }
 
-    async newNodeObjectWithNewDoc() {
+    async newNodeObjectWithNewDoc(parentNodeObject: NodeObjectInterface) {
+        let parentDoc = LayrFind.doc_ByNodeId_InFrame(parentNodeObject.nodeId, window)
+        let docObject = await layrBackgroundF.docsConnectionsManager.insertNewDoc_AsParentDocChild(parentDoc.docData._id)
+
+        let nodeObjectNormal = new NodeObjectNormal(docObject.docId, parentNodeObject.nodeId)
+        this.nodeObjectsMap.set(nodeObjectNormal.nodeId, nodeObjectNormal)
 
 
+        return nodeObjectNormal
     }
 
 

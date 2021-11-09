@@ -2,8 +2,6 @@ import {RequestType} from "./RequestCommon/RequestType.js";
 import {RequestObject} from "./RequestObject.js";
 import {RequestMessage} from "./RequestCommon/RequestMessage.js";
 import {ReplyData} from "./RequestCommon/ReplyData.js";
-import {RequestDataBaseClass} from "./RequestCommon/RequestDataBaseClass.js";
-import {RequestData} from "./RequestCommon/RequestData.js";
 
 
 export class LayrClient {
@@ -20,10 +18,10 @@ export class LayrClient {
 
     }
 
-    async newRequest(requestType:RequestType,requestBody:any) {
+    async newRequest(requestType: RequestType, requestBody: any) {
 
 
-        let request = new RequestObject(requestType,requestBody)
+        let request = new RequestObject(requestType, requestBody)
         this.requestMap.set(request.requestData.requestId, request)
         this.lekerdezesSzamlaloStart()
         return request.promise
@@ -58,6 +56,7 @@ export class LayrClient {
                 self.requestMap.forEach(function (value, key) {
                     if (!value.elkuldott) {
                         elkuldendoRequestsArray.push(value.requestData)
+                        value.elkuldott=true
                     }
                 })
 
@@ -70,9 +69,8 @@ export class LayrClient {
     private async requestsSend(elkuldendoRequestsArray) {
 
         let requestMessage = new RequestMessage(elkuldendoRequestsArray)
-        console.log(requestMessage)
-        this.socketio.emit("request", requestMessage);
 
+        this.socketio.emit("request", requestMessage);
 
 
     }
@@ -81,9 +79,10 @@ export class LayrClient {
 
         this.socketio.on("requestReply", (replyDataArray: ReplyData[]) => {
 
-            console.log(replyDataArray);
+            console.log("replyDataArray: ",replyDataArray);
             replyDataArray.forEach((replyData) => {
                 this.requestMap.get(replyData.requestId).resolve(replyData.replyBody)
+                this.requestMap.delete(replyData.requestId)
             })
 
 

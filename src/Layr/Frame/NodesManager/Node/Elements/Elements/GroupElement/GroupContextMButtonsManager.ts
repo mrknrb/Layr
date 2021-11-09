@@ -1,13 +1,15 @@
 import {GroupElement} from "./GroupElement.js";
 import {ContextMElementClickable} from "../../../ContextMenu/ContextMenuElements/ContextMElementClickable/ContextMElementClickable.js";
+import {LayrFrame} from "../../../../../LayrFrame.js";
 
 export class GroupContextMButtonsManager {
 
     groupElement: GroupElement
-
+    layrFrame:LayrFrame
     constructor(groupElement: GroupElement) {
         this.groupElement = groupElement
-
+        //@ts-ignore
+        this. layrFrame=window.layrFrame
     }
 
     NonLoadedButtonsInit() {
@@ -21,8 +23,8 @@ export class GroupContextMButtonsManager {
 
     loadGroupInit() {
         let contextMenuElementClickable = new ContextMElementClickable("Load Group", (contextMenuElementClickable) => {
-            //@ts-ignore
-            window.layrFrame.nodeManager.loadNormalNodesOfGroupNode(this.groupElement.nodeObject)
+
+            this. layrFrame.nodesManager.loadNormalNodesOfGroupNode(this.groupElement.nodeObject)
             this.groupElement.contextMenu.contextMenuElementRemove(contextMenuElementClickable.contextMenuElementId)
             this.groupElement.groupElementEventLoaded.emit(true)
 
@@ -33,9 +35,8 @@ export class GroupContextMButtonsManager {
     NewNodeContextInit() {
 
         let contextMenuElementNewNode = new ContextMElementClickable("New Node", (contextMenuElementClickable) => {
-            //@ts-ignore
-            window.layrFrame.nodeManager.loadNormalNodesOfGroupNode(this.groupElement.nodeObject)
-            this.groupElement.contextMenu.contextMenuElementRemove(contextMenuElementClickable.contextMenuElementId)
+
+            this. layrFrame.nodesManager.newNodeObjectWithNewDoc(this.groupElement.nodeObject)
 
         })
         this.groupElement.contextMenu.contextMenuElementInsert(contextMenuElementNewNode, "GroupElement")

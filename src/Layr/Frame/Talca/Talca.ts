@@ -76,7 +76,7 @@ export class Talca {
 		elemek.openButton.addEventListener("click", function () {
 			console.log("open1")
 
-			self.layrFrame.nodeManager.loadRootNode(elemek.openInput.value)
+			self.layrFrame.nodesManager.loadRootNode(elemek.openInput.value)
 		})
 
 

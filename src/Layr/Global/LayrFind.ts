@@ -34,16 +34,16 @@ export class LayrFind {
             // @ts-ignore
             layrFrame = window.layrFrame
         }
-       // console.log(layrFrame.nodeManager.nodeObjectsMap.get(nodeId))
-       // console.log(layrFrame.nodeManager)
-        return layrFrame.nodeManager.nodeObjectsMap.get(nodeId)
+       // console.log(layrFrame.nodesManager.nodeObjectsMap.get(nodeId))
+       // console.log(layrFrame.nodesManager)
+        return layrFrame.nodesManager.nodeObjectsMap.get(nodeId)
     }
 
     static nodes_ByDocId_InAllFrames(docId: string) {
 
     }
 
-    static doc_ByNodeId_InFrame(nodeId: string, windowHaNincsDefault: Window | null): DocObject {
+    static doc_ByNodeId_InFrame(nodeId: string, windowHaNincsDefault: Window | any): DocObject {
 
         let parentNode = this.node_ById_InFrame(nodeId, windowHaNincsDefault)
         return this.doc(parentNode.docId)

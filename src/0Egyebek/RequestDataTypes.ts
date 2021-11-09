@@ -1,6 +1,6 @@
 import {RequestDataBaseClass} from "./RequestDataBaseClass.js";
-import {RequestType} from "./RequestType.js";
-import {DocData} from "../../Data/Doc/Doc/DocData.js";
+import {RequestType} from "../Layr/Background/LayrServerClient/RequestCommon/RequestType.js";
+import {DocData} from "../Layr/Background/Data/Doc/Doc/DocData.js";
 
 export class RequestData_insertDocs_AsParentDocChildren extends RequestDataBaseClass {
     requestId: Number;

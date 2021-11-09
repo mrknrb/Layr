@@ -1,4 +1,4 @@
-import {RequestType} from "./RequestType.js";
+import {RequestType} from "../Layr/Background/LayrServerClient/RequestCommon/RequestType.js";
 
 export abstract class RequestDataBaseClass {
 
