@@ -1,32 +1,59 @@
 import {ElementBaseClass} from "../Elements/ElementBaseClass.js";
 import {ContextMenuElementBase} from "./ContextMenuElementBase.js";
+import {ContextMenuElementGroup} from "./ContextMenuElementGroup.js";
 
 export class ContextMenu {
     elementClass: ElementBaseClass
     contextMenuMainElement: HTMLDivElement
     contextMenuElements: Map<string, ContextMenuElementBase>
+    contextMenuElementGroups: Map<string, ContextMenuElementGroup>
 
     constructor(elementClass: ElementBaseClass) {
         this.elementClass = elementClass
         this.contextMenuElements = new Map<string, ContextMenuElementBase>()
+        this.contextMenuElementGroups = new Map<string, ContextMenuElementGroup>()
         this.contextMenuInit()
         this.contextMenuRightClickInit()
 
     }
 
-    contextMenuInit(){
+    contextMenuInit() {
 
         this.contextMenuMainElement = document.createElement("div")
         let style = this.contextMenuMainElement.style
 
-        style.backgroundColor = "red"
-        style.width = "100px"
-        style.height = "100px"
+        style.backgroundColor = "#e1e1e1"
+        style.border = "solid"
+        style.borderWidth = "1px"
+        style.width = "120px"
+        style.height = "fit-content"
+        style.minHeight = "20px"
         style.position = "fixed"
         style.zIndex = "10001"
-
+        style.overflowX = "hidden"
+        style.overflowY = "auto"
     }
 
+    GetOrSetContextMenuElementGroup(groupName: string) {
+        let group = this.contextMenuElementGroups.get(groupName)
+        if (!group) {
+            group = new ContextMenuElementGroup(groupName)
+            this.contextMenuMainElement.appendChild(group.groupElement)
+            this.contextMenuElementGroups.set(groupName,group)
+        }
+        return group
+    }
+
+    ContextMenuElementGroupsDeleteIfEmpty() {
+
+        this.contextMenuElementGroups.forEach((group, key) => {
+
+            if (group.isGroupElementEmpty()) {
+                group.deleteGroupElement()
+                this.contextMenuElementGroups.delete(key)
+            }
+        })
+    }
 
     public contextMenuVisible(event: MouseEvent) {
         let style = this.contextMenuMainElement.style
@@ -42,10 +69,10 @@ export class ContextMenu {
         if (tullogasAlul < 0) {
             style.top = event.clientY + tullogasAlul + "px"
         }
-        //  this.elementClass.element.parentElement.insertBefore(this.contextMenuMainElement, this.elementClass.element)
-        console.log(this.contextMenuMainElement)
+
     }
-    contextMenuInVisible(){
+
+    contextMenuInVisible() {
         this.contextMenuMainElement.remove()
 
         document.body.removeEventListener('click', function (event) {
@@ -64,7 +91,7 @@ export class ContextMenu {
                 var handler = function (event) {
                     // @ts-ignore
                     if (!event.path.find(element => element == self.contextMenuMainElement)) {
-                       self. contextMenuInVisible()
+                        self.contextMenuInVisible()
                     }
                 }
                 document.body.addEventListener('click', handler, true);
@@ -74,10 +101,25 @@ export class ContextMenu {
         }, 0);
     }
 
-    contextMenuElementInsert(contextMenuElement: ContextMenuElementBase) {
+    contextMenuElementInsert(contextMenuElement: ContextMenuElementBase, contextMenuElementGroupName: string) {
+        let group = this.GetOrSetContextMenuElementGroup(contextMenuElementGroupName)
+
+        group.newElement(contextMenuElement)
+
         contextMenuElement.contextMenu = this
         this.contextMenuElements.set(contextMenuElement.contextMenuElementId, contextMenuElement)
-        console.log(this.contextMenuMainElement)
-        this.contextMenuMainElement.appendChild(contextMenuElement.element)
+
     }
+
+    contextMenuElementRemove(contextMenuElementId: string) {
+        let contextMenuElement = this.contextMenuElements.get(contextMenuElementId)
+        contextMenuElement.element.remove()
+
+       this. ContextMenuElementGroupsDeleteIfEmpty()
+
+        this.contextMenuElements.delete(contextMenuElementId)
+
+
+    }
+
 }

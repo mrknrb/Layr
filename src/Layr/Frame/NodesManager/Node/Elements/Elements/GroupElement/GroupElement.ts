@@ -3,13 +3,10 @@ import {ElementBaseClass} from "../../ElementBaseClass.js";
 import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
 import {GroupElementStyle} from "./GroupElementStyle.js";
 import {GroupData} from "./GroupData.js";
-import {NodeObjectNormal} from "../../../NodeObject/NodeObjectNormal.js";
 import {NodeObjectInterface} from "../../../NodeObject/NodeObjectInterface.js";
 import {MrkLibrary} from "../../../../../../Global/MrkLibrary.js";
 import {FieldObject} from "../../../../../../Background/Data/Doc/Field/FieldObject.js";
 import {ContextMElementClickable} from "../../../ContextMenu/ContextMenuElements/ContextMElementClickable/ContextMElementClickable.js";
-import {layrBackgroundF} from "../../../../../MainFrame.js";
-import {layrFrame} from "../../../../../LayrFrame.js";
 
 
 export class GroupElement extends ElementBaseClass {
@@ -45,46 +42,17 @@ export class GroupElement extends ElementBaseClass {
         this.nodeObject.mainElement.element.appendChild(this.element)
 
 
-        let contextMenuElementClickable = new ContextMElementClickable("Load Group",  (contextMenuElementClickable)=> {
+        let contextMenuElementClickable = new ContextMElementClickable("Load Group", (contextMenuElementClickable) => {
             //@ts-ignore
-          window. layrFrame.nodeManager.loadNormalNodesOfGroupNode(this.nodeObject)
+            window.layrFrame.nodeManager.loadNormalNodesOfGroupNode(this.nodeObject)
+            this.contextMenu.contextMenuElementRemove(contextMenuElementClickable.contextMenuElementId)
         })
-        this.contextMenu.contextMenuElementInsert(contextMenuElementClickable)
+        this.contextMenu.contextMenuElementInsert(contextMenuElementClickable, "GroupElement")
 
-        /*
-        this.element.addEventListener("contextmenu", function (e) {
-            e.stopPropagation()
-            e.preventDefault()
-            self.refreshData()
-            self.element.removeEventListener("contextmenu", function (e) {
-                e.preventDefault()
-                e.stopPropagation()
-            })
-
-        })*/
     }
 
 
     refreshData() {
-
-        let self = this
-        this.nodes.forEach(function (nodeDiv) {
-            nodeDiv.removeNode()
-        })
-        this.nodes = new Map<string, NodeObjectNormal>()
-        /*
-                this.groupElementData.nodes.forEach(function (node) {
-                    let docUrlObject = new DocURLObject(self.nodeObject.hivatkozottDocDataObject.docId, node.docRelativeURL)
-                    layrBackgroundF.docsConnectionsManager.loadDocs(docUrlObject.UrlString, function (docResponse: DocObject) {
-                        //   console.log(docResponse)
-
-                        let nodeDiv: NodeObjectNormal = new NodeObjectNormal(self, node, docResponse)
-                        self.nodes.set(docResponse.docId, nodeDiv)
-
-                    })
-
-                })
-        */
 
     }
 

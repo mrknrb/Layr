@@ -38,14 +38,14 @@ export class MainElementNormal extends MainElementBase {
                d.absolute.left ? s.left = d.absolute.left +"px" : null
                d.absolute.width ? s.width = d.absolute.width +"px" : null
                d.absolute.width ? s.width = d.absolute.height +"px" : null
-               console.log(d)
+
            } else if (layout === Layouts.static) {
                s.position = "static"
            }
 
        }
         LayrFind.node_ById_InFrame(this.nodeObject.parentNodeId,window).elementsManager.elements.get("group").element.appendChild(this.element)
-        console.log(this.element)
+
     }
 
 }
