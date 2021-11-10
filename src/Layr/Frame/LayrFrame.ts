@@ -1,9 +1,7 @@
-import {LayrBackground} from "../Background/LayrBackground.js";
 import {NodesManager} from "./NodesManager/NodesManager.js";
 import {Talca} from "./Talca/Talca.js";
 
 export class LayrFrame {
-
 
 
     nodesManager: NodesManager
@@ -11,7 +9,6 @@ export class LayrFrame {
 
 
     constructor() {
-
 
         this.talca = new Talca(this)
         this.nodesManager = new NodesManager()
@@ -24,6 +21,8 @@ export class LayrFrame {
 
 
 }
+
 //@ts-ignore
-let layrFrame:LayrFrame=window.layrFrame
+let layrFrame: LayrFrame = window.layrFrame
+
 export {layrFrame}

@@ -1,12 +1,11 @@
 import {MainElementNormal} from "../MainElement/MainElementNormal.js";
 import {NodeObjectInterface} from "./NodeObjectInterface.js";
-import {LayrBackground} from "../../../../Background/LayrBackground.js";
 import {ElementsManager} from "../Elements/ElementsManager.js";
-import {layrBackgroundF} from "../../../MainFrame.js";
 
 export class NodeObjectNormal implements NodeObjectInterface {
 
     docId: string;
+    connectionId:string
     nodeId:string
     parentNodeId: string
 
@@ -14,9 +13,10 @@ export class NodeObjectNormal implements NodeObjectInterface {
     elementsManager: ElementsManager;
 
 
-    constructor(docId: string,  parentNodeId: string) {
+    constructor(docId: string, connectionId:string, parentNodeId: string) {
 
         this.docId = docId
+        this.connectionId=connectionId
         this.nodeId=Math.random().toString()
         this.parentNodeId = parentNodeId
         this.mainElement = new MainElementNormal(this)

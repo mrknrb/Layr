@@ -2,13 +2,12 @@ import {LayrFrame} from "../Frame/LayrFrame.js";
 import {ConnectionObject} from "../Background/Data/Connection/ConnectionObject.js";
 import {DocObject} from "../Background/Data/Doc/Doc/DocObject.js";
 import {NodeObjectInterface} from "../Frame/NodesManager/Node/NodeObject/NodeObjectInterface.js";
-import {layrBackgroundF} from "../Frame/MainFrame.js";
 
 export class LayrFind {
 
     static doc(docId: string): DocObject {
-
-        return layrBackgroundF.docsConnectionsManager.docObjectsMap.get(docId)
+        // @ts-ignore
+        return window.layrBackground.docsConnectionsManager.docObjectsMap.get(docId)
     }
 
     static docs(docIds: string[]): DocObject[] {
@@ -22,8 +21,8 @@ export class LayrFind {
     }
 
     static connection(connectionId): ConnectionObject {
-
-        return layrBackgroundF.docsConnectionsManager.connectionObjectsMap.get(connectionId)
+        // @ts-ignore
+        return window.layrBackground.docsConnectionsManager.connectionObjectsMap.get(connectionId)
 
     }
 

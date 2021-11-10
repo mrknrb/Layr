@@ -52,6 +52,9 @@ export class TextAreaElement extends ElementBaseClass {
         this.element.addEventListener("keyup", function (e) {
             self.textAreaElementData.content=self.element.value
             self.fieldObject.fieldEvents.onFieldChange.emit()
+
+            //B
+            self.fieldObject.fieldDataUpdateMongo()
         })
     }
     dataChangeUpdateInit() {

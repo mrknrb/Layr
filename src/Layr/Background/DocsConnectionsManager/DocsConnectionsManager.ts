@@ -3,8 +3,10 @@ import {DocObject} from "../Data/Doc/Doc/DocObject.js";
 import {ConnectionObject} from "../Data/Connection/ConnectionObject.js";
 import {RequestType} from "../LayrServerClient/RequestCommon/RequestType.js";
 import {DocData} from "../Data/Doc/Doc/DocData.js";
-import {RequestData_getDocs} from "../../../0Egyebek/RequestDataTypes.js";
 import {ConnectionData} from "../Data/Connection/ConnectionData.js";
+import {DocsConnsData} from "./DocsConnsData.js";
+import {DocsConnsObjects} from "./DocsConnsObjects.js";
+import {LayrFind} from "../../Global/LayrFind.js";
 
 export class DocsConnectionsManager {
 
@@ -35,22 +37,41 @@ export class DocsConnectionsManager {
 
     async loadDocs_ByDocChildConnections(parentDocId: string) {
 
-        let docsData = await layrBackgroundB.layrClient.newRequest(RequestType.getDocs_ByDocsChildConnections, parentDocId)
-        return await this.docObjectsSaver(docsData)
+        let docsConnsData: DocsConnsData= await layrBackgroundB.layrClient.newRequest(RequestType.getDocs_ByDocsChildConnections, parentDocId)
+
+        return this.docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData)
+
     }
 
     async insertNewDoc_AsParentDocChild(parentDocId: string) {
-        console.log(parentDocId)
+
         let newDoc = new DocData()
-      let docs= await this.insertDocs_AsParentDocChildren(parentDocId, [newDoc])
-        return  docs[0]
+        let docsConnsObjects = await this.insertDocs_AsParentDocChildren(parentDocId, [newDoc])
+        return docsConnsObjects
     }
 
     async insertDocs_AsParentDocChildren(parentDocId: string, docDataArray: DocData[]) {
-        let docsConnsData:{docs: DocData[], connections: ConnectionData[]} = await layrBackgroundB.layrClient.newRequest(RequestType.insertDocs_AsParentDocChildren, {parentDocId:parentDocId,docDataArray:docDataArray})
-        await this.connectionObjectsSaver(docsConnsData.connections)
-        return await this.docObjectsSaver(docsConnsData.docs)
+        let docsConnsData:DocsConnsData = await layrBackgroundB.layrClient.newRequest(RequestType.insertDocs_AsParentDocChildren, {
+            parentDocId: parentDocId,
+            docDataArray: docDataArray
+        })
+
+        return  this.docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData)
+
+
     }
+    async updateDoc(docId: string, OriginalDocFunction:(docDataOffline:DocData,ModifiedDocFunction:(docDataModified:DocData)=>any)=>any) {
+
+      let mentettDoc= await LayrFind.doc(docId)
+
+        let modifiedDocFunction= async (docDataModified:DocData)=>{
+            let sikerultBool= await layrBackgroundB.layrClient.newRequest(RequestType.updateDocs,[docDataModified])
+            return sikerultBool
+        }
+       OriginalDocFunction(mentettDoc.docData,modifiedDocFunction)
+    }
+
+
 
     private async docsDownloadAndLoad(docIds: string[]): Promise<DocObject[]> {
 
@@ -62,12 +83,13 @@ export class DocsConnectionsManager {
     private async docObjectsSaver(docsData: DocData[]) {
         let betoltottDocObjects: DocObject[] = []
         for await (const docData of docsData) {
-            let docObject = new DocObject(docData._id, docData)
+            let docObject = new DocObject( docData)
             this.docObjectsMap.set(docData._id, docObject)
             betoltottDocObjects.push(docObject)
         }
         return betoltottDocObjects
     }
+
     private async connectionObjectsSaver(connectionsData: ConnectionData[]) {
         let betoltottConnectionObjects: ConnectionObject[] = []
         for await (const connectionData of connectionsData) {
@@ -77,5 +99,15 @@ export class DocsConnectionsManager {
         }
         return betoltottConnectionObjects
     }
+
+    private async docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData:DocsConnsData) {
+        let docObjects = await this.docObjectsSaver(docsConnsData.docsData)
+        let connectionObjects = await this.connectionObjectsSaver(docsConnsData.connectionsData)
+
+        return new DocsConnsObjects(docObjects,connectionObjects)
+    }
+
+
+
 
 }

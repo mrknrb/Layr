@@ -6034,7 +6034,7 @@ declare namespace chrome.privacy {
 
     /** Settings that enable or disable features that require third-party network services provided by Google and your default search provider. */
     export var services: Services;
-    /** Settings that influence Chrome's handling of network connections in general. */
+    /** Settings that influence Chrome's handling of network connectionsData in general. */
     export var network: Network;
     /** Settings that determine what information Chrome makes available to websites. */
     export var websites: Websites;
@@ -6053,7 +6053,7 @@ declare namespace chrome.proxy {
     export interface PacScript {
         /** Optional. URL of the PAC file to be used. */
         url?: string | undefined;
-        /** Optional. If true, an invalid PAC script will prevent the network stack from falling back to direct connections. Defaults to false. */
+        /** Optional. If true, an invalid PAC script will prevent the network stack from falling back to direct connectionsData. Defaults to false. */
         mandatory?: boolean | undefined;
         /** Optional. A PAC script. */
         data?: string | undefined;
@@ -6211,7 +6211,7 @@ declare namespace chrome.serial {
 
     export interface ConnectionOptions {
         /** Optional. Flag indicating whether or not the connection should be left open when the application is suspended (see Manage App Lifecycle: https://developer.chrome.com/apps/app_lifecycle).
-         *  The default value is "false." When the application is loaded, any serial connections previously opened with persistent=true can be fetched with getConnections. */
+         *  The default value is "false." When the application is loaded, any serial connectionsData previously opened with persistent=true can be fetched with getConnections. */
         peristent?: boolean | undefined;
         /** Optional. An application-defined string to associate with the connection. */
         name?: string | undefined;
@@ -6308,8 +6308,8 @@ declare namespace chrome.serial {
 
     /**
      * @since Chrome 33.
-     * @description Retrieves the list of currently opened serial port connections owned by the application.
-     * @param callback Called with the list of connections when available.
+     * @description Retrieves the list of currently opened serial port connectionsData owned by the application.
+     * @param callback Called with the list of connectionsData when available.
      * The promise parameter should be a function that looks like this:
      * function(array of ConnectionInfo connectionInfos) {...};
      */

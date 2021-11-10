@@ -1,10 +1,10 @@
-
 import {DocsConnectionsManager} from "./DocsConnectionsManager/DocsConnectionsManager.js";
 import {LayrClient} from "./LayrServerClient/LayrClient.js";
 
 
 //@ts-ignore
 let layrBackgroundB:LayrBackground
+
 export {layrBackgroundB}
 
 export class LayrBackground {
@@ -17,7 +17,7 @@ export class LayrBackground {
 
 
         // @ts-ignore
-        window.layrBackgroundB = this
+        window.layrBackground = this
         // @ts-ignore
         layrBackgroundB = this
 

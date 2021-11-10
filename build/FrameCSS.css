@@ -38,3 +38,7 @@ border:none;
     line-height: 0px;
 
 }
+
+.ContextMenuElementHoverHighlight:hover {
+    background-color: #d0d0d0;
+}

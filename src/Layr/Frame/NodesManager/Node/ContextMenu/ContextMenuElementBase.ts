@@ -16,6 +16,8 @@ export abstract class ContextMenuElementBase {
         this.element.style.borderTop = "solid"
         this.element.style.borderWidth = "1px"
         this.element.style.borderColor = "#6c6c6c"
+        this.element.className="ContextMenuElementHoverHighlight"
+
     }
 
 

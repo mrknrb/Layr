@@ -1,9 +1,10 @@
 import {LayrFrame} from "./LayrFrame.js";
-import {LayrBackground} from "../Background/LayrBackground.js";
+import {layrBackgroundF} from "./LayrBackgroundFInitClass.js";
 
+console.log("indulF")
 //let docdataset = SampleDataFactoryMongodb.generateSampleDataset(1000)
-//console.log(docdataset.connections)
-//console.log(docdataset.docs)
+//console.log(docdataset.connectionsData)
+//console.log(docdataset.docsData)
 
 
 let scriptek = [
@@ -13,7 +14,6 @@ let scriptek = [
     "0Libraries/arangojs.js",
     "0Libraries/axios.js"
 ]
-
 function LoadLibraries(callback: Function) {
     let betoltottscriptszam = 0
     scriptek.forEach(function (scriptsrc, i) {
@@ -29,14 +29,7 @@ function LoadLibraries(callback: Function) {
     })
 }
 
-
-//@ts-ignore
-let layrBackgroundF: LayrBackground = chrome.extension.getBackgroundPage().layrBackgroundB
-
-export {layrBackgroundF}
-//@ts-ignore
-window.layrBackgroundF = layrBackgroundF
-
+let backgroundF=layrBackgroundF
 
 let mainFrame = {}
 LoadLibraries(function () {

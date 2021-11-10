@@ -1,5 +1,6 @@
 import {LayrBackground, layrBackgroundB} from "./LayrBackground.js";
 
+console.log("indulB")
 let scriptek = [
     "0Libraries/polyfill.js",
     "0Libraries/pouchdb.js",
@@ -8,7 +9,6 @@ let scriptek = [
     "0Libraries/axios.js",
     "0Libraries/socketio.js"
 ]
-
 function LoadLibraries(callback:Function) {
     let betoltottscriptszam=0
     scriptek.forEach(function (scriptsrc,i) {
