@@ -1,36 +1,45 @@
 import {NodeObjectInterface} from "../NodeObject/NodeObjectInterface.js";
+import {ContextMenu} from "../ContextMenu/ContextMenu.js";
 
 
 export abstract class MainElementBase {
     element: HTMLDivElement
+    elementKeret: HTMLDivElement
     nodeObject: NodeObjectInterface
-    elementOptionsButton:HTMLDivElement
+    elementOptionsButton: HTMLDivElement
+    contextMenu: ContextMenu
 
     constructor(nodeObject) {
         this.nodeObject = nodeObject
         this.elementInit()
-       this. elementOptionsButtonInit()
+        this.elementOptionsButtonInit()
+
+        this.contextMenu = new ContextMenu(this.element)
+
     }
 
+
+
     private elementInit() {
-        let self=this
+        let self = this
         this.element = document.createElement("div")
         this.element.classList.add("LayrMainElement")
 
         this.element.addEventListener("contextmenu", function (e) {
             e.preventDefault()
             e.stopPropagation()
+
         })
         this.element.addEventListener("mousedown", function (e) {
             e.stopPropagation()
         })
 
         this.element.addEventListener("mouseenter", function (e) {
-            self.elementOptionsButton.style.display="block"
+            self.elementOptionsButton.style.display = "block"
         })
 
         this.element.addEventListener("mouseleave", function (e) {
-            self.elementOptionsButton.style.display="none"
+            self.elementOptionsButton.style.display = "none"
         })
     }
 
@@ -46,16 +55,17 @@ export abstract class MainElementBase {
               
                 `
     }
-    elementOptionsButtonInit(){
-        this.elementOptionsButton=document.createElement("div")
-        this.elementOptionsButton.style.height ="10px"
-        this.elementOptionsButton.style.width ="20px"
-        this.elementOptionsButton.style.backgroundColor ="#004d40"
-        this.elementOptionsButton.style.position="absolute"
-        this.elementOptionsButton.style.right="0%"
-        this.elementOptionsButton.style.top="0%"
-        this.elementOptionsButton.style.borderRadius="0 0 0px 10px"
-        this.elementOptionsButton.style.display="none"
+
+    elementOptionsButtonInit() {
+        this.elementOptionsButton = document.createElement("div")
+        this.elementOptionsButton.style.height = "25px"
+        this.elementOptionsButton.style.width = "25px"
+        this.elementOptionsButton.style.backgroundColor = "rgba(0,77,64,0.71)"
+        this.elementOptionsButton.style.position = "absolute"
+        this.elementOptionsButton.style.right = "0px"
+        this.elementOptionsButton.style.top = "0px"
+        this.elementOptionsButton.style.borderRadius = "0px 0px 0px 10px"
+        this.elementOptionsButton.style.display = "none"
 
         this.element.appendChild(this.elementOptionsButton)
     }

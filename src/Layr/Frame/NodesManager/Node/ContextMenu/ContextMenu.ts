@@ -3,13 +3,13 @@ import {ContextMenuElementBase} from "./ContextMenuElementBase.js";
 import {ContextMenuElementGroup} from "./ContextMenuElementGroup.js";
 
 export class ContextMenu {
-    elementClass: ElementBaseClass
+    htmlElement: HTMLElement
     contextMenuMainElement: HTMLDivElement
     contextMenuElements: Map<string, ContextMenuElementBase>
     contextMenuElementGroups: Map<string, ContextMenuElementGroup>
 
-    constructor(elementClass: ElementBaseClass) {
-        this.elementClass = elementClass
+    constructor(htmlElementOnClick: HTMLElement) {
+        this.htmlElement = htmlElementOnClick
         this.contextMenuElements = new Map<string, ContextMenuElementBase>()
         this.contextMenuElementGroups = new Map<string, ContextMenuElementGroup>()
         this.contextMenuInit()
@@ -84,7 +84,7 @@ export class ContextMenu {
     private contextMenuRightClickInit() {
         let self = this
         setTimeout(function () {
-            self.elementClass.element?.addEventListener("contextmenu", function (event) {
+            self.htmlElement.addEventListener("contextmenu", function (event) {
                 self.contextMenuVisible(event)
                 event.preventDefault()
                 event.stopPropagation()

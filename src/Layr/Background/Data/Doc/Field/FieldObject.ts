@@ -13,19 +13,15 @@ export class FieldObject {
         this.docObject = docObject
         this.fieldData = fieldData
         this.fieldEvents = new FieldEvents()
-
-       // this.fieldEvents.onFieldChange.on(this.fieldDataUpdateMongo)
-        console.log(this)
+        this.fieldDataUpdateMongo()
     }
 
     fieldDataUpdateMongo() {
-        console.log(this)
-        layrBackgroundB.docsConnectionsManager.updateDoc(this.docObject.docData._id, (docDataOriginal, ModifiedDocFunction) => {
-            ModifiedDocFunction(this.docObject.docData)
+        let self = this
+        this.fieldEvents.onFieldChange.on(() => {
+            layrBackgroundB.docsConnectionsManager.updateDoc(self.docObject.docData._id, (docDataOriginal, ModifiedDocFunction) => {
+                ModifiedDocFunction(self.docObject.docData)
+            })
         })
-
-
     }
-
-
 }

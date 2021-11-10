@@ -13,13 +13,13 @@ export abstract class ElementBaseClass {
     contextMenu: ContextMenu
 
 
-    constructor(elementType: ElementTypes, nodeObject: NodeObjectInterface, fieldObject, elementStyle) {
-
+    constructor(elementType:ElementTypes, nodeObject: NodeObjectInterface, fieldObject, elementStyle,element: HTMLElement) {
+        this.element=element
         this.elementType = elementType
         this.nodeObject = nodeObject
         this.fieldObject = fieldObject
         this.elementStyle = elementStyle
-        this.contextMenu = new ContextMenu(this)
+        this.contextMenu = new ContextMenu(this.element)
     }
 
     public abstract deleteElement()

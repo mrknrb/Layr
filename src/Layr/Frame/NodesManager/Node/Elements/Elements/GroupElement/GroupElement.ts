@@ -22,7 +22,7 @@ export class GroupElement extends ElementBaseClass {
     groupContextMButtonsManager:GroupContextMButtonsManager
 
     constructor(nodeDiv: NodeObjectInterface, elementData, elementSettings) {
-        super(ElementTypes.Group, nodeDiv, elementData, elementSettings);
+        super(ElementTypes.Group, nodeDiv, elementData, elementSettings,document.createElement("div"));
         this.groupElementEventLoaded=new TypedEvent<any>()
         this.groupElementData = this.fieldObject.fieldData.data
         this.groupElementStates=GroupElementStates.NotLoaded
@@ -33,7 +33,6 @@ export class GroupElement extends ElementBaseClass {
 
     protected elementInit() {
 
-        this.element = document.createElement("div")
         this.element.classList.add("LayrElement")
         this.element.style.border = `black`
         this.element.style.width = "calc(100% - 3px)"//"100%" //addig van ez így, amíg a nagyitasnal nem fedi le a mainelementet

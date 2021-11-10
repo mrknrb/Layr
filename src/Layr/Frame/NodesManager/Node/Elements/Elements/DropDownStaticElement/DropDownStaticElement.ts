@@ -8,7 +8,7 @@ export class DropDownStaticElement extends ElementBaseClass {
 	options: HTMLOptionElement[]
 
 	constructor(nodeDiv: NodeObjectInterface, elementData, elementSettings) {
-		super(ElementTypes.DropDownStatic, nodeDiv, elementData, elementSettings);
+		super(ElementTypes.DropDownStatic, nodeDiv, elementData, elementSettings, document.createElement("select"));
 		this.options = []
 		this.elementInit()
 		this.nodeObject.mainElement.element.appendChild(this.element)
@@ -16,11 +16,8 @@ export class DropDownStaticElement extends ElementBaseClass {
 
 
 	protected elementInit() {
-		this.element = document.createElement("select")
-
 		this.element.classList.add("LayrElement")
 		this.dataRefresh()
-
 	}
 
 	dataRefresh() {

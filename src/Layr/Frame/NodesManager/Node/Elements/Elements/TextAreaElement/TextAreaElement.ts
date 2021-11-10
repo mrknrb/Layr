@@ -17,20 +17,17 @@ export class TextAreaElement extends ElementBaseClass {
     textAreaElementData:TextAreaElementData
 
     constructor(nodeDiv: NodeObjectInterface, docFieldObject, elementSettings) {
-        super(ElementTypes.TextArea, nodeDiv, docFieldObject, elementSettings);
-
-
+        super(ElementTypes.TextArea, nodeDiv, docFieldObject, elementSettings,document.createElement("textarea"));
         this.textAreaElementData=this.fieldObject.fieldData.data
-        this.elementInit()
         this.elementResizer = new ElementResizer(this)
         this.elementResizer.resizeActivate(ResizeTypes.autoY)
+        this.elementInit()
         this.dataChangeSaveInit()
        this. dataChangeUpdateInit()
     }
 
     protected elementInit() {
         let self = this
-        this.element = document.createElement("textarea")
         this.element.classList.add("LayrElement")
         this.element.style.resize = "none"
         this.element.style.width = "calc(100% - 3px)"
@@ -54,7 +51,7 @@ export class TextAreaElement extends ElementBaseClass {
             self.fieldObject.fieldEvents.onFieldChange.emit()
 
             //B
-            self.fieldObject.fieldDataUpdateMongo()
+           // self.fieldObject.fieldDataUpdateMongo()
         })
     }
     dataChangeUpdateInit() {

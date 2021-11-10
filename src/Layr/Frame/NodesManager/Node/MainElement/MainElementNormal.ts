@@ -20,7 +20,7 @@ export class MainElementNormal extends MainElementBase {
         this.layoutDefault()
         MrkLibrary.dragElement(this.elementOptionsButton, this.element, false)
         let s = this.element.style
-        s.overflow = "hidden"
+
         s.resize = "horizontal"
         s.position = "relative"
 
