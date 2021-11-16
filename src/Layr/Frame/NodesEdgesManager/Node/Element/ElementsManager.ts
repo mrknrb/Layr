@@ -5,7 +5,7 @@ import {NodeObjectInterface} from "../NodeObject/NodeObjectInterface.js";
 import {LayrFind} from "../../../../Global/LayrFind.js";
 
 export class ElementsManager {
-    elements: Map<string, any>
+    elements: Map<string, ElementBaseClass>
     nodeObject: NodeObjectInterface
 
     constructor(nodeObject: NodeObjectInterface) {

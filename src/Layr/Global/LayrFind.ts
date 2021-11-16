@@ -47,14 +47,14 @@ export class LayrFind {
         return layrFrame.nodesManager.nodesEdgesDataStorage.nodeNodeIdMap.get(nodeId);
     }
 
-    static nodes_ByDocId_Global(docId:string) {
+    static nodes_ByDocId_Global(docId:string):NodeObjectInterface[] {
        let nodes=[]
         LayrFind.getLayrBackground().layrFrameManager.layrFrameObjects.forEach(function (layrFrameSave) {
             nodes.push( layrFrameSave.layrFrame.nodesManager.nodesEdgesDataStorage.nodeDocIdMap.get(docId))
         })
         return nodes
     }
-    static nodes_ByConnId_Global(connId:string) {
+    static nodes_ByConnId_Global(connId:string):NodeObjectInterface[] {
         let nodes=[]
         LayrFind.getLayrBackground().layrFrameManager.layrFrameObjects.forEach(function (layrFrameSave) {
             nodes.push( layrFrameSave.layrFrame.nodesManager.nodesEdgesDataStorage.nodeConnIdMap.get(connId))

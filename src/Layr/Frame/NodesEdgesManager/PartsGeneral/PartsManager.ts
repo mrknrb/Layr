@@ -1,15 +1,20 @@
 import {PartBase} from "./PartBase.js";
 
 export class PartsManager {
-    parts: PartBase[]
+    parts: Map<string, PartBase>
 
     constructor() {
-        this.parts= []
+        this.parts = new Map<string, PartBase>()
     }
 
-    addParts(newParts: PartBase[]) {
-        this.parts.push(... newParts)
-    }
 
+
+
+
+    /*
+        addParts(newParts: PartBase[]) {
+            this.parts.push(... newParts)
+        }
+    */
 
 }

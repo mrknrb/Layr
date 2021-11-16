@@ -2,6 +2,7 @@ import {FieldData} from "./FieldData.js";
 import {FieldEvents} from "./FieldEvents.js";
 import {DocObject} from "../Doc/DocObject.js";
 import {layrBackgroundB} from "../../../LayrBackground.js";
+import {LayrFind} from "../../../../Global/LayrFind.js";
 
 
 export class FieldObject {
@@ -13,10 +14,11 @@ export class FieldObject {
         this.docObject = docObject
         this.fieldData = fieldData
         this.fieldEvents = new FieldEvents()
-        this.fieldDataUpdateMongo()
+        this.fieldDataUpdateMongoInit()
+        this.fieldDataUpdateNodesSyncInit()
     }
 
-    fieldDataUpdateMongo() {
+    fieldDataUpdateMongoInit() {
         let self = this
         this.fieldEvents.onFieldChange.on(() => {
             layrBackgroundB.docsConnectionsManager.updateDoc(self.docObject.docData._id, (docDataOriginal, ModifiedDocFunction) => {
@@ -24,4 +26,17 @@ export class FieldObject {
             })
         })
     }
+
+    fieldDataUpdateNodesSyncInit(){
+        let self = this
+        this.fieldEvents.onFieldChange.on((partSyncMessageObject) => {
+           let nodes= LayrFind.nodes_ByDocId_Global(this.docObject.docData._id)
+            nodes.forEach((node, index) => {
+                node.elementsManager.elements.get(partSyncMessageObject.elementId_nullHaNincsIlyesmi).partsManager.parts.get(partSyncMessageObject.partClassName).loadData()
+            })
+        })
+
+
+    }
+
 }

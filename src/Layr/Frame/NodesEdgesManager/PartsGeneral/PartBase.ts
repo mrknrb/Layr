@@ -6,18 +6,24 @@ export abstract class PartBase {
 
     protected constructor() {
         this.onSaveEvent = new TypedEvent<any>()
+
     }
 
+   abstract saveEventTriggerInit()
 
-    save() {
+    getPartClassName() {
+        return this.constructor.name
+    }
+
+    saveValueAndSaveEvent() {
         this.saveValue()
         this.onSaveEvent.emit(null)
     }
 
-    abstract load()
+    abstract loadData()
 
     protected abstract saveValue()//A Data szerint szetszedett szinten hasznald
 
-    protected abstract onChangeEventDefaultFunction()
+    protected abstract onSaveEventDefaultFunction()
 
 }

@@ -4,7 +4,7 @@ import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
 import {TextAreaElementStyle} from "./TextAreaElementStyle.js";
 import {NodeObjectInterface} from "../../../NodeObject/NodeObjectInterface.js";
 import {PartsManager} from "../../../../PartsGeneral/PartsManager.js";
-import {TextAreaParts} from "./Parts/TextAreaParts.js";
+import {TextAreaPartsManager} from "./Parts/TextAreaPartsManager.js";
 
 
 export class TextAreaElement extends ElementBaseClass {
@@ -15,8 +15,8 @@ export class TextAreaElement extends ElementBaseClass {
 
     constructor(nodeObject: NodeObjectInterface, fieldId: string) {
         super(ElementTypes.TextArea, nodeObject, fieldId, document.createElement("textarea"));
-        this.partsManager = new PartsManager()
-        this.partsManager.addParts(TextAreaParts)
+
+        this.partsManager = new TextAreaPartsManager(this) as PartsManager
         let elementStyle = this.getElementStyle() as TextAreaElementStyle
         this.elementResizer = new ElementResizer(this)
         this.elementResizer.resizeActivate(elementStyle.resizeType)
@@ -29,7 +29,7 @@ export class TextAreaElement extends ElementBaseClass {
         let self = this
         this.element.addEventListener("keyup", function (e) {
             self.getFieldObject().fieldData.data.content = self.element.value
-            self.getFieldObject().fieldEvents.onFieldChange.emit()
+           // self.getFieldObject().fieldEvents.onFieldChange.emit()
         })
     }
 

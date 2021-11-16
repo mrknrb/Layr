@@ -18,12 +18,9 @@ export class MainElementContextMManager {
     NewNodeContextInit() {
         let contextMenuElementNewNode = new ContextMElementClickable(this.contextMenu, "New Element", (contextElement) => {
            let doc= LayrFind.doc(this.nodeObject.docId)
-            doc
-            self.getFieldObject().fieldData.data.content = self.element.value
-            self.getFieldObject().fieldEvents.onFieldChange.emit()
 
         })
-        this.contextMenu.contextMenuElementInsert(contextMenuElementNewNode, "GroupElement")
+        this.contextMenu.contextMenuElementInsert(contextMenuElementNewNode, "Node")
     }
 
     elementChange_fieldDataUpdate_Init() {
