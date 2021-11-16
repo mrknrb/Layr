@@ -1,13 +1,22 @@
 import {LayrFrame} from "../Frame/LayrFrame.js";
 import {ConnectionObject} from "../Background/Data/Connection/ConnectionObject.js";
 import {DocObject} from "../Background/Data/Doc/Doc/DocObject.js";
-import {NodeObjectInterface} from "../Frame/NodesManager/Node/NodeObject/NodeObjectInterface.js";
+import {NodeObjectInterface} from "../Frame/NodesEdgesManager/Node/NodeObject/NodeObjectInterface.js";
+import {LayrBackground} from "../Background/LayrBackground.js";
+import {ElementTypes} from "../Frame/NodesEdgesManager/Node/Element/Adatok/ElementTypes.js";
+import {FieldObject} from "../Background/Data/Doc/Field/FieldObject.js";
+import {ElementBaseClass} from "../Frame/NodesEdgesManager/Node/Element/ElementBaseClass.js";
 
 export class LayrFind {
 
-    static doc(docId: string): DocObject {
+   private static getLayrBackground(): LayrBackground {
         // @ts-ignore
-        return window.layrBackground.docsConnectionsManager.docObjectsMap.get(docId)
+        return window.layrBackground
+    }
+
+    static doc(docId: string): DocObject {
+
+        return LayrFind.getLayrBackground().docsConnectionsManager.docObjectsMap.get(docId)
     }
 
     static docs(docIds: string[]): DocObject[] {
@@ -21,38 +30,75 @@ export class LayrFind {
     }
 
     static connection(connectionId): ConnectionObject {
-        // @ts-ignore
-        return window.layrBackground.docsConnectionsManager.connectionObjectsMap.get(connectionId)
+        return LayrFind.getLayrBackground().docsConnectionsManager.connectionObjectsMap.get(connectionId)
 
     }
 
-    static node_ById_InFrame(nodeId, windowHaNincsDefault: Window | null): NodeObjectInterface {
+    static node_ById_InFrame(nodeId:string, documentHaNincsDefault: Document | null): NodeObjectInterface {
         // @ts-ignore
-        let layrFrame: LayrFrame = windowHaNincsDefault.layrFrame
-        if (!windowHaNincsDefault) {
+        let layrFrame: LayrFrame ={}
+        if (documentHaNincsDefault===null) {
             // @ts-ignore
-            layrFrame = window.layrFrame
+            layrFrame = document.layrFrame
+        }else{
+            // @ts-ignore
+            layrFrame=  documentHaNincsDefault.layrFrame
         }
-       // console.log(layrFrame.nodesManager.nodeObjectsMap.get(nodeId))
-       // console.log(layrFrame.nodesManager)
-        return layrFrame.nodesManager.nodeObjectsMap.get(nodeId)
+        return layrFrame.nodesManager.nodesEdgesDataStorage.nodeNodeIdMap.get(nodeId);
     }
 
+    static nodes_ByDocId_Global(docId:string) {
+       let nodes=[]
+        LayrFind.getLayrBackground().layrFrameManager.layrFrameObjects.forEach(function (layrFrameSave) {
+            nodes.push( layrFrameSave.layrFrame.nodesManager.nodesEdgesDataStorage.nodeDocIdMap.get(docId))
+        })
+        return nodes
+    }
+    static nodes_ByConnId_Global(connId:string) {
+        let nodes=[]
+        LayrFind.getLayrBackground().layrFrameManager.layrFrameObjects.forEach(function (layrFrameSave) {
+            nodes.push( layrFrameSave.layrFrame.nodesManager.nodesEdgesDataStorage.nodeConnIdMap.get(connId))
+        })
+        return nodes
+    }
     static nodes_ByDocId_InAllFrames(docId: string) {
 
     }
 
-    static doc_ByNodeId_InFrame(nodeId: string, windowHaNincsDefault: Window | any): DocObject {
+    static doc_ByNodeId_InFrame(nodeId: string, documentHaNincsDefault: Document | any): DocObject {
 
-        let parentNode = this.node_ById_InFrame(nodeId, windowHaNincsDefault)
-        return this.doc(parentNode.docId)
+        let node = this.node_ById_InFrame(nodeId, documentHaNincsDefault)
+        return this.doc(node.docId)
     }
 
-    static field_ByName_InDocObject(fieldName: string, docObject: DocObject) {
+    static field_ById_InDocObject(fieldId: string, docObject: DocObject) {
+
+
         return docObject.fieldObjects.find(function (fieldObject) {
-            return fieldObject.fieldData.fieldName === fieldName;
+            return fieldObject.fieldData.fieldId === fieldId;
         })
 
+    }
+
+    static fieldObject_ByFieldId_DocId(fieldId: string, docId: string): FieldObject {
+        return LayrFind.field_ById_InDocObject(fieldId, LayrFind.doc(docId))
+    }
+
+
+    static field_GroupType_InDocObject(docObject: DocObject) {
+        return docObject.fieldObjects.find(function (fieldObject) {
+            return fieldObject.fieldData.elementType === ElementTypes.Group;
+        })
+    }
+
+    static elements_ByType(elements: Map<string, ElementBaseClass>, elementType: ElementTypes) {
+        let elementArray: ElementBaseClass[] = []
+        elements.forEach(element => {
+            if (element.getFieldObject().fieldData.elementType == elementType) {
+                elementArray.push(element)
+            }
+        })
+        return elementArray
     }
 
 

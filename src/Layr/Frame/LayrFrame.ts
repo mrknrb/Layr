@@ -1,17 +1,19 @@
-import {NodesManager} from "./NodesManager/NodesManager.js";
+import {NodesEdgesManager} from "./NodesEdgesManager/NodesEdgesManager.js";
 import {Talca} from "./Talca/Talca.js";
 
 export class LayrFrame {
 
-
-    nodesManager: NodesManager
+layrFrameId:string
+    nodesManager: NodesEdgesManager
     talca: Talca
-
+document:Document
 
     constructor() {
 
+        this.layrFrameId=Math.random().toString()
         this.talca = new Talca(this)
-        this.nodesManager = new NodesManager()
+        this.nodesManager = new NodesEdgesManager()
+        this.document=document
     }
 
     createLayrFrame() {
@@ -23,6 +25,6 @@ export class LayrFrame {
 }
 
 //@ts-ignore
-let layrFrame: LayrFrame = window.layrFrame
+let layrFrame: LayrFrame = document.layrFrame
 
 export {layrFrame}

@@ -1,7 +1,6 @@
 import {TypedEvent} from "../../../../../0Libraries/TypedEvents.js";
-import {DocObject} from "../Doc/DocObject.js";
-import {NodeObjectInterface} from "../../../../Frame/NodesManager/Node/NodeObject/NodeObjectInterface.js";
-import {NodeEvents} from "../../../../Frame/NodesManager/Node/NodeObject/NodeEvents.js";
+import {NodeObjectInterface} from "../../../../Frame/NodesEdgesManager/Node/NodeObject/NodeObjectInterface.js";
+import {NodeEvents} from "../../../../Frame/NodesEdgesManager/Node/NodeObject/NodeEvents.js";
 
 export class FieldEvents {
 

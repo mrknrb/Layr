@@ -1,5 +1,5 @@
 import {TypedEvent} from "../../../../../0Libraries/TypedEvents.js";
-import {NodeObjectInterface} from "../../../../Frame/NodesManager/Node/NodeObject/NodeObjectInterface.js";
+import {NodeObjectInterface} from "../../../../Frame/NodesEdgesManager/Node/NodeObject/NodeObjectInterface.js";
 import {DocObject} from "./DocObject.js";
 
 export class DocEvents {
@@ -8,6 +8,6 @@ export class DocEvents {
 
     constructor() {
         this.onDelete = new TypedEvent<NodeObjectInterface>();
-        this. onDocChange=new TypedEvent<DocObject>()
+        this.onDocChange = new TypedEvent<DocObject>()
     }
 }

@@ -1,5 +1,5 @@
 import {LayrFrame} from "./LayrFrame.js";
-import {layrBackgroundF} from "./LayrBackgroundFInitClass.js";
+import {layrBackgroundF} from "../../0Egyebek/LayrBackgroundFInitClass.js";
 
 console.log("indulF")
 //let docdataset = SampleDataFactoryMongodb.generateSampleDataset(1000)
@@ -14,6 +14,7 @@ let scriptek = [
     "0Libraries/arangojs.js",
     "0Libraries/axios.js"
 ]
+
 function LoadLibraries(callback: Function) {
     let betoltottscriptszam = 0
     scriptek.forEach(function (scriptsrc, i) {
@@ -29,7 +30,7 @@ function LoadLibraries(callback: Function) {
     })
 }
 
-let backgroundF=layrBackgroundF
+let backgroundF = layrBackgroundF
 
 let mainFrame = {}
 LoadLibraries(function () {
@@ -41,9 +42,11 @@ export class MainFrame {
     layrFrame: LayrFrame
 
     constructor() {
+
         this.layrFrame = new LayrFrame()
         //@ts-ignore
-        window.layrFrame = this.layrFrame
+        document.layrFrame = this.layrFrame
+        layrBackgroundF.layrFrameManager.newFrame(this.layrFrame)
         this.testload()
 
     }
@@ -51,11 +54,5 @@ export class MainFrame {
     async testload() {
         let rootnode = await this.layrFrame.nodesManager.loadRootNode("61817e5f24b034523e70bcc6")
         // await this.layrFrame.nodesManager.loadNormalNodesOfGroupNode(rootnode)
-
     }
-
-
 }
-
-
-console.log("MainFrame Betoltott")

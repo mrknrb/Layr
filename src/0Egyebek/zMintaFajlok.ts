@@ -1,6 +1,6 @@
-import {Layouts} from "../Layr/Frame/NodesManager/Node/Elements/Elements/GroupElement/Layouts/Layouts.js";
-import {ElementTypes} from "../Layr/Frame/NodesManager/Node/Elements/ElementTypes.js";
-import {DocObject} from "../Layr/Background/Data/Doc/Doc/DocData.js";
+import {Layouts} from "../Layr/Frame/NodesEdgesManager/Node/Element/Elements/GroupElement/Layouts/Layouts.js";
+import {ElementTypes} from "../Layr/Frame/NodesEdgesManager/Node/Element/Adatok/ElementTypes.js";
+import {DocObject} from "../Layr/Background/Data/Doc/Doc/DocObject.js";
 
 
 let tesztdoctypescript = {

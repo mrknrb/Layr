@@ -1,4 +1,4 @@
-import {NodeGroupData} from "../../../Frame/NodesManager/Node/Elements/Elements/GroupElement/NodeGroupData.js";
+import {NodeGroupData} from "./NodeGroupData.js";
 
 export class ConnectionData {
 
@@ -15,7 +15,7 @@ export class ConnectionData {
         this.to = to
         this.type = type
         this.tags = []
-        this.nodeGroupData=new NodeGroupData()
+        this.nodeGroupData = new NodeGroupData()
 
     }
 

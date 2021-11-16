@@ -1,12 +1,13 @@
-import {DocObject} from "../Layr/Background/Data/Doc/Doc/DocData.js";
-import {NodeStyleData} from "../Layr/Frame/NodesManager/Node/Elements/Elements/GroupElement/NodeStyleData/NodeStyleData.js";
+
+import {NodeStyleData} from "../Layr/Background/Data/Connection/NodeStyleData/NodeStyleData.js";
 import {FieldData} from "../Layr/Background/Data/Doc/Field/FieldData.js";
 import {MrkLibrary} from "../Layr/Global/MrkLibrary.js";
-import {GroupData} from "../Layr/Frame/NodesManager/Node/Elements/Elements/GroupElement/GroupData.js";
-import {Layouts} from "../Layr/Frame/NodesManager/Node/Elements/Elements/GroupElement/Layouts/Layouts.js";
-import {TextAreaElementData} from "../Layr/Frame/NodesManager/Node/Elements/Elements/TextAreaElement/TextAreaElementData.js";
+import {GroupData} from "../Layr/Frame/NodesEdgesManager/Node/Element/Elements/GroupElement/GroupData.js";
+import {Layouts} from "../Layr/Frame/NodesEdgesManager/Node/Element/Elements/GroupElement/Layouts/Layouts.js";
+import {TextAreaElementData} from "../Layr/Frame/NodesEdgesManager/Node/Element/Elements/TextAreaElement/TextAreaElementData.js";
 import {FieldsDefault} from "../Layr/Background/Data/Doc/Field/FieldsDefault.js";
-import {ElementTypes} from "../Layr/Frame/NodesManager/Node/Elements/ElementTypes.js";
+import {ElementTypes} from "../Layr/Frame/NodesEdgesManager/Node/Element/Adatok/ElementTypes.js";
+import {DocObject} from "../Layr/Background/Data/Doc/Doc/DocObject.js";
 
 export class zSampleDataFactory {
     static generateSampleDocDataset(DocokSzama): DocObject[] {

@@ -56,7 +56,7 @@ export class LayrClient {
                 self.requestMap.forEach(function (value, key) {
                     if (!value.elkuldott) {
                         elkuldendoRequestsArray.push(value.requestData)
-                        value.elkuldott=true
+                        value.elkuldott = true
                     }
                 })
 
@@ -79,7 +79,7 @@ export class LayrClient {
 
         this.socketio.on("requestReply", (replyDataArray: ReplyData[]) => {
 
-            console.log("replyDataArray: ",replyDataArray);
+            console.log("replyDataArray: ", replyDataArray);
             replyDataArray.forEach((replyData) => {
                 this.requestMap.get(replyData.requestId).resolve(replyData.replyBody)
                 this.requestMap.delete(replyData.requestId)

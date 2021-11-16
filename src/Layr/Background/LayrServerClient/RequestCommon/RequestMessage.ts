@@ -1,4 +1,3 @@
-
 import {RequestData} from "./RequestData.js";
 
 export class RequestMessage {
@@ -6,10 +5,11 @@ export class RequestMessage {
 
     requestIdentifier
     requestToken
-    requestDataArray:RequestData[]
-    constructor( requestDataArray:RequestData[]) {
+    requestDataArray: RequestData[]
 
-        this.requestDataArray=requestDataArray
+    constructor(requestDataArray: RequestData[]) {
+
+        this.requestDataArray = requestDataArray
     }
 
 

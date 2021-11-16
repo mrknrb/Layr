@@ -3,11 +3,12 @@ import {DocData} from "../Data/Doc/Doc/DocData.js";
 
 export class DocsConnsData {
 
-    constructor(docsData:DocData[],connectionsData:ConnectionData[]) {
-        this.docsData=docsData
-        this.connectionsData=connectionsData
+    constructor(docsData: DocData[], connectionsData: ConnectionData[]) {
+        this.docsData = docsData
+        this.connectionsData = connectionsData
 
     }
-    docsData:DocData[]
-    connectionsData:ConnectionData[]
+
+    docsData: DocData[]
+    connectionsData: ConnectionData[]
 }

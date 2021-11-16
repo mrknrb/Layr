@@ -2,9 +2,9 @@ import {RequestData} from "./RequestData.js";
 
 export class ReplyData {
 
-    constructor(requestData:RequestData, replyBody:any) {
-        this.requestId=requestData.requestId
-        this.replyBody=replyBody
+    constructor(requestData: RequestData, replyBody: any) {
+        this.requestId = requestData.requestId
+        this.replyBody = replyBody
 
     }
 

@@ -12,8 +12,8 @@ export class DocObject {
         this.docData = docData
         this.docEvents = new DocEvents()
         this.fieldObjects = []
-        docData.fieldsData.forEach( (field) =>{
-            self.fieldObjects.push(new FieldObject(field,this))
+        docData.fieldsData.forEach((field) => {
+            self.fieldObjects.push(new FieldObject(field, this))
         })
     }
 

@@ -1,9 +1,10 @@
 import {DocsConnectionsManager} from "./DocsConnectionsManager/DocsConnectionsManager.js";
 import {LayrClient} from "./LayrServerClient/LayrClient.js";
+import {LayrFramesManager} from "./LayrFramesManager/LayrFramesManager.js";
 
 
 //@ts-ignore
-let layrBackgroundB:LayrBackground
+let layrBackgroundB: LayrBackground
 
 export {layrBackgroundB}
 
@@ -11,7 +12,7 @@ export class LayrBackground {
     pouchDB
     layrClient: LayrClient
     docsConnectionsManager: DocsConnectionsManager
-
+    layrFrameManager: LayrFramesManager
 
     constructor() {
 
@@ -30,7 +31,7 @@ export class LayrBackground {
 
         this.docsConnectionsManager = new DocsConnectionsManager()
         this.layrClient = new LayrClient()
-
+        this.layrFrameManager = new LayrFramesManager()
 
     }
 }

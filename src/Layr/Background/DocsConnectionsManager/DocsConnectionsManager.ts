@@ -37,7 +37,7 @@ export class DocsConnectionsManager {
 
     async loadDocs_ByDocChildConnections(parentDocId: string) {
 
-        let docsConnsData: DocsConnsData= await layrBackgroundB.layrClient.newRequest(RequestType.getDocs_ByDocsChildConnections, parentDocId)
+        let docsConnsData: DocsConnsData = await layrBackgroundB.layrClient.newRequest(RequestType.getDocs_ByDocsChildConnections, parentDocId)
 
         return this.docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData)
 
@@ -51,26 +51,26 @@ export class DocsConnectionsManager {
     }
 
     async insertDocs_AsParentDocChildren(parentDocId: string, docDataArray: DocData[]) {
-        let docsConnsData:DocsConnsData = await layrBackgroundB.layrClient.newRequest(RequestType.insertDocs_AsParentDocChildren, {
+        let docsConnsData: DocsConnsData = await layrBackgroundB.layrClient.newRequest(RequestType.insertDocs_AsParentDocChildren, {
             parentDocId: parentDocId,
             docDataArray: docDataArray
         })
 
-        return  this.docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData)
+        return this.docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData)
 
 
     }
-    async updateDoc(docId: string, OriginalDocFunction:(docDataOffline:DocData,ModifiedDocFunction:(docDataModified:DocData)=>any)=>any) {
 
-      let mentettDoc= await LayrFind.doc(docId)
+    async updateDoc(docId: string, OriginalDocFunction: (docDataOffline: DocData, ModifiedDocFunction: (docDataModified: DocData) => any) => any) {
 
-        let modifiedDocFunction= async (docDataModified:DocData)=>{
-            let sikerultBool= await layrBackgroundB.layrClient.newRequest(RequestType.updateDocs,[docDataModified])
+        let mentettDoc = await LayrFind.doc(docId)
+
+        let modifiedDocFunction = async (docDataModified: DocData) => {
+            let sikerultBool = await layrBackgroundB.layrClient.newRequest(RequestType.updateDocs, [docDataModified])
             return sikerultBool
         }
-       OriginalDocFunction(mentettDoc.docData,modifiedDocFunction)
+        OriginalDocFunction(mentettDoc.docData, modifiedDocFunction)
     }
-
 
 
     private async docsDownloadAndLoad(docIds: string[]): Promise<DocObject[]> {
@@ -83,7 +83,7 @@ export class DocsConnectionsManager {
     private async docObjectsSaver(docsData: DocData[]) {
         let betoltottDocObjects: DocObject[] = []
         for await (const docData of docsData) {
-            let docObject = new DocObject( docData)
+            let docObject = new DocObject(docData)
             this.docObjectsMap.set(docData._id, docObject)
             betoltottDocObjects.push(docObject)
         }
@@ -93,21 +93,19 @@ export class DocsConnectionsManager {
     private async connectionObjectsSaver(connectionsData: ConnectionData[]) {
         let betoltottConnectionObjects: ConnectionObject[] = []
         for await (const connectionData of connectionsData) {
-            let connectionObject = new ConnectionObject(connectionData._id, connectionData)
+            let connectionObject = new ConnectionObject(connectionData)
             this.connectionObjectsMap.set(connectionData._id, connectionObject)
             betoltottConnectionObjects.push(connectionObject)
         }
         return betoltottConnectionObjects
     }
 
-    private async docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData:DocsConnsData) {
+    private async docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData: DocsConnsData) {
         let docObjects = await this.docObjectsSaver(docsConnsData.docsData)
         let connectionObjects = await this.connectionObjectsSaver(docsConnsData.connectionsData)
 
-        return new DocsConnsObjects(docObjects,connectionObjects)
+        return new DocsConnsObjects(docObjects, connectionObjects)
     }
-
-
 
 
 }

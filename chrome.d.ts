@@ -715,7 +715,7 @@ declare namespace chrome.bookmarks {
     export function getChildren(id: string): Promise<BookmarkTreeNode[]>;
     /**
      * Since Chrome 14.
-     * Retrieves part of the Bookmarks hierarchy, starting at the specified nodeObject.
+     * Retrieves parts of the Bookmarks hierarchy, starting at the specified nodeObject.
      * @param id The ID of the root of the subtree to retrieve.
      * @param callback The promise parameter should be a function that looks like this:
      * function(array of BookmarkTreeNode results) {...};
@@ -723,7 +723,7 @@ declare namespace chrome.bookmarks {
     export function getSubTree(id: string, callback: (results: BookmarkTreeNode[]) => void): void;
     /**
      * Since Chrome 14.
-     * Retrieves part of the Bookmarks hierarchy, starting at the specified nodeObject.
+     * Retrieves parts of the Bookmarks hierarchy, starting at the specified nodeObject.
      * @param id The ID of the root of the subtree to retrieve.
      * @return The `getSubTree` method provides its result via promise or returned as a `Promise` (MV3 only).
      */
@@ -2975,7 +2975,7 @@ declare namespace chrome.enterprise.platformKeys {
      */
     export function removeCertificate(tokenId: string, certificate: ArrayBuffer, callback?: () => void): void;
     /**
-     * Challenges a hardware-backed Enterprise Machine Key and emits the response as part of a remote attestation protocol. Only useful on Chrome OS and in conjunction with the Verified Access Web API which both issues challenges and verifies responses. A successful verification by the Verified Access Web API is a strong signal of all of the following:
+     * Challenges a hardware-backed Enterprise Machine Key and emits the response as parts of a remote attestation protocol. Only useful on Chrome OS and in conjunction with the Verified Access Web API which both issues challenges and verifies responses. A successful verification by the Verified Access Web API is a strong signal of all of the following:
      *
      * * The current device is a legitimate Chrome OS device.
      * * The current device is managed by the domain specified during verification.
@@ -2998,7 +2998,7 @@ declare namespace chrome.enterprise.platformKeys {
     ): void;
     export function challengeMachineKey(challenge: ArrayBuffer, callback: (response: ArrayBuffer) => void): void;
     /**
-     * Challenges a hardware-backed Enterprise User Key and emits the response as part of a remote attestation protocol. Only useful on Chrome OS and in conjunction with the Verified Access Web API which both issues challenges and verifies responses. A successful verification by the Verified Access Web API is a strong signal of all of the following:
+     * Challenges a hardware-backed Enterprise User Key and emits the response as parts of a remote attestation protocol. Only useful on Chrome OS and in conjunction with the Verified Access Web API which both issues challenges and verifies responses. A successful verification by the Verified Access Web API is a strong signal of all of the following:
      *
      * * The current device is a legitimate Chrome OS device.
      * * The current device is managed by the domain specified during verification.
@@ -10033,7 +10033,7 @@ declare namespace chrome.webNavigation {
     export var onTabReplaced: WebNavigationReplacementEvent;
     /** Fired when a navigation is about to occur. */
     export var onBeforeNavigate: WebNavigationParentedEvent;
-    /** Fired when a navigation is committed. The document (and the resources it refers to, such as images and subframes) might still be downloading, but at least part of the document has been received from the server and the browser has decided to switch to the new document. */
+    /** Fired when a navigation is committed. The document (and the resources it refers to, such as images and subframes) might still be downloading, but at least parts of the document has been received from the server and the browser has decided to switch to the new document. */
     export var onCommitted: WebNavigationTransitionalEvent;
     /** Fired when the page's DOM is fully constructed, but the referenced resources may not finish loading. */
     export var onDOMContentLoaded: WebNavigationFramedEvent;
@@ -10782,7 +10782,7 @@ declare namespace chrome.declarativeNetRequest {
      */
     export const MAX_NUMBER_OF_REGEX_RULES: number;
 
-    /** The maximum number of static Rulesets an extension can specify as part of the "rule_resources" manifest key. */
+    /** The maximum number of static Rulesets an extension can specify as parts of the "rule_resources" manifest key. */
     export const MAX_NUMBER_OF_STATIC_RULESETS: number;
 
     /** Ruleset ID for the session-scoped rules added by the extension. */
@@ -11309,7 +11309,7 @@ declare namespace chrome.declarativeNetRequest {
      * Notes:
      * This update happens as a single atomic operation: either all specified rules are added and removed, or an error is returned.
      * These rules are persisted across browser sessions and across extension updates.
-     * Static rules specified as part of the extension package can not be removed using this function.
+     * Static rules specified as parts of the extension package can not be removed using this function.
      * MAX_NUMBER_OF_DYNAMIC_AND_SESSION_RULES is the maximum number of combined dynamic and session rules an extension can add.
      *
      * @param callback Called once the update is complete or has failed.
@@ -11324,7 +11324,7 @@ declare namespace chrome.declarativeNetRequest {
      * Notes:
      * This update happens as a single atomic operation: either all specified rules are added and removed, or an error is returned.
      * These rules are persisted across browser sessions and across extension updates.
-     * Static rules specified as part of the extension package can not be removed using this function.
+     * Static rules specified as parts of the extension package can not be removed using this function.
      * MAX_NUMBER_OF_DYNAMIC_AND_SESSION_RULES is the maximum number of combined dynamic and session rules an extension can add.
      *
      * @return The `updateDynamicRules` method provides its result via promise or returned as a `Promise` (MV3 only). It has no parameters.

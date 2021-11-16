@@ -1,6 +1,5 @@
 import {FieldData} from "../Field/FieldData.js";
-import {FieldhezElementStyle} from "../../../../Frame/NodesManager/Node/Elements/Elements/GroupElement/NodeStyleData/FieldhezElementStyle.js";
-import {GroupData} from "../../../../Frame/NodesManager/Node/Elements/Elements/GroupElement/GroupData.js";
+import {FieldhezElementStyle} from "../../Connection/NodeStyleData/FieldhezElementStyle.js";
 
 export class DocData {
 
@@ -13,6 +12,6 @@ export class DocData {
     constructor() {
         this.fieldsData = []
         this.ownElementsStyle = []
-        this.tags=[]
+        this.tags = []
     }
 }
