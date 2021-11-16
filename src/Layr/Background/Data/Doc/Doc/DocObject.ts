@@ -17,4 +17,12 @@ export class DocObject {
         })
     }
 
+    newField(){
+       // fieldObjects(new FieldObject(field, this))
+
+
+    }
+
+
+
 }

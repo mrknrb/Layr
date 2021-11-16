@@ -54,21 +54,35 @@ export class ContextMenu {
         })
     }
 
-    public contextMenuVisible(event: MouseEvent) {
+    public contextMenuVisible(coordinateX: number, coordinateY: number) {
+
         let style = this.contextMenuMainElement.style
-        style.left = event.clientX + "px"
-        style.top = event.clientY + "px"
+        style.left = coordinateX + "px"
+        style.top = coordinateY + "px"
         document.body.appendChild(this.contextMenuMainElement)
-        let tullogasJobb = window.innerWidth - (event.clientX + this.contextMenuMainElement.getBoundingClientRect().width)
+        let tullogasJobb = window.innerWidth - (coordinateX + this.contextMenuMainElement.getBoundingClientRect().width)
 
         if (tullogasJobb < 0) {
-            style.left = event.clientX + tullogasJobb + "px"
+            style.left = coordinateX + tullogasJobb + "px"
         }
-        let tullogasAlul = window.innerHeight - (event.clientY + this.contextMenuMainElement.getBoundingClientRect().height)
+        let tullogasAlul = window.innerHeight - (coordinateY + this.contextMenuMainElement.getBoundingClientRect().height)
         if (tullogasAlul < 0) {
-            style.top = event.clientY + tullogasAlul + "px"
+            style.top = coordinateY + tullogasAlul + "px"
         }
 
+    }
+
+    private contextMenuRightClickInit() {
+        let self = this
+        setTimeout(() => {
+            self.htmlElement.addEventListener("contextmenu", (event) => {
+                let coordinateY = event.clientY
+                let coordinateX = event.clientX
+                event.preventDefault()
+                event.stopPropagation()
+                this.contextMenuActivate(coordinateX, coordinateY)
+            })
+        }, 0);
     }
 
     contextMenuInVisible() {
@@ -80,24 +94,18 @@ export class ContextMenu {
         }, true);
     }
 
-    private contextMenuRightClickInit() {
-        let self = this
-        setTimeout(function () {
-            self.htmlElement.addEventListener("contextmenu", function (event) {
-                self.contextMenuVisible(event)
-                event.preventDefault()
-                event.stopPropagation()
-                var handler = function (event) {
-                    // @ts-ignore
-                    if (!event.path.find(element => element == self.contextMenuMainElement)) {
-                        self.contextMenuInVisible()
-                    }
-                }
-                document.body.addEventListener('click', handler, true);
-                document.body.addEventListener('contextmenu', handler, true);
+    contextMenuActivate(coordinateX: number, coordinateY: number) {
+        this.contextMenuVisible(coordinateX, coordinateY)
 
-            })
-        }, 0);
+        var handler = (event) => {
+            // @ts-ignore
+            if (!event.path.find(element => element == self.contextMenuMainElement)) {
+                this.contextMenuInVisible()
+            }
+        }
+        document.body.addEventListener('click', handler, true);
+        document.body.addEventListener('contextmenu', handler, true);
+
     }
 
     contextMenuElementInsert(contextMenuElement: ContextMenuElementBase, contextMenuElementGroupName: string) {

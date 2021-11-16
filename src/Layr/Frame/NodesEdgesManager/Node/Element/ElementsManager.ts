@@ -14,13 +14,9 @@ export class ElementsManager {
     }
 
     elementsInit() {
-        let self = this
         let docFieldObjects = LayrFind.doc(this.nodeObject.docId).fieldObjects
-        docFieldObjects.forEach(function (docFieldObject) {
-            let docFieldDefaultSettings = DocFieldekhezElementStyleDefault.find(docFieldDefaultSettings => docFieldDefaultSettings.docFieldName == docFieldObject.fieldData.fieldName);
-            let element = ElementTypesClassFinder[docFieldObject.fieldData.elementType]
-            let elementObject: ElementBaseClass = new element(self.nodeObject, docFieldObject.fieldData.fieldId) as ElementBaseClass
-            self.elements.set(docFieldObject.fieldData.fieldId, elementObject)
+        docFieldObjects.forEach((docFieldObject) => {
+            this.elementLoad(docFieldObject)
         })
     }
 
@@ -42,4 +38,14 @@ export class ElementsManager {
         element.elementInsertFullScreen()
     }
 
+    elementLoad(docFieldObject) {
+        let elementClass = ElementTypesClassFinder[docFieldObject.fieldData.elementType]
+        let elementObject: ElementBaseClass = new elementClass(this.nodeObject, docFieldObject.fieldData.fieldId) as ElementBaseClass
+        this.elements.set(docFieldObject.fieldData.fieldId, elementObject)
+    }
+
+    newElement() {
+        LayrFind.doc(this.nodeObject.docId)
+
+    }
 }
