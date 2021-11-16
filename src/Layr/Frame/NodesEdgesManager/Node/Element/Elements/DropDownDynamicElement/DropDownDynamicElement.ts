@@ -1,10 +1,10 @@
 import {ElementTypes} from "../../Adatok/ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
-import {NodeObjectInterface} from "../../../NodeObject/NodeObjectInterface.js";
+import {NodeObjectBase} from "../../../NodeObject/NodeObjectBase.js";
 
 export class DropDownDynamicElement extends ElementBaseClass {
 
-    constructor(nodeObject: NodeObjectInterface, elementData) {
+    constructor(nodeObject: NodeObjectBase, elementData) {
         super(ElementTypes.DropDownDynamic, nodeObject, elementData);
     }
 

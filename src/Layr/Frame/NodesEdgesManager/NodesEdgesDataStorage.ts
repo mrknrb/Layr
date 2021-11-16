@@ -1,12 +1,12 @@
-import {NodeObjectInterface} from "./Node/NodeObject/NodeObjectInterface.js";
+import {NodeObjectBase} from "./Node/NodeObject/NodeObjectBase.js";
 import {EdgeObject} from "./Edge/EdgeObject.js";
 import {NodeObjectNormal} from "./Node/NodeObject/NodeObjectNormal.js";
 
 export class NodesEdgesDataStorage {
 
-    nodeNodeIdMap: Map<string, NodeObjectInterface>
-    nodeDocIdMap: Map<string, NodeObjectInterface[]>
-    nodeConnIdMap: Map<string, NodeObjectInterface[]>
+    nodeNodeIdMap: Map<string, NodeObjectBase>
+    nodeDocIdMap: Map<string, NodeObjectBase[]>
+    nodeConnIdMap: Map<string, NodeObjectBase[]>
 
 
     edgeEdgeIdMap: Map<string, EdgeObject>
@@ -15,15 +15,15 @@ export class NodesEdgesDataStorage {
 
 
     constructor() {
-        this.nodeDocIdMap = new Map<string, NodeObjectInterface[]>()
-        this.nodeConnIdMap = new Map<string, NodeObjectInterface[]>()
-        this.nodeNodeIdMap = new Map<string, NodeObjectInterface>()
+        this.nodeDocIdMap = new Map<string, NodeObjectBase[]>()
+        this.nodeConnIdMap = new Map<string, NodeObjectBase[]>()
+        this.nodeNodeIdMap = new Map<string, NodeObjectBase>()
 
         this.edgeEdgeIdMap = new Map<string, EdgeObject>()
         this.edgeConnIdMap = new Map<string, EdgeObject[]>()
     }
 
-    insertNode(nodeObjectInterface: NodeObjectInterface) {
+    insertNode(nodeObjectInterface: NodeObjectBase) {
         this.nodeNodeIdMap.set(nodeObjectInterface.nodeId, nodeObjectInterface)
 
         let nodesByDocId = this.nodeDocIdMap.get(nodeObjectInterface.docId)
@@ -44,7 +44,7 @@ export class NodesEdgesDataStorage {
         }
     }
 
-    deleteNodeByNodeId(nodeObjectInterface: NodeObjectInterface) {
+    deleteNodeByNodeId(nodeObjectInterface: NodeObjectBase) {
         this.nodeNodeIdMap.delete(nodeObjectInterface.nodeId)
         let nodesByDocId = this.nodeDocIdMap.get(nodeObjectInterface.docId)
         nodesByDocId.forEach((value, key) => {

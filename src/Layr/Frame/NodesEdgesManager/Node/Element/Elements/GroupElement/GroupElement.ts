@@ -2,7 +2,7 @@ import {ElementTypes} from "../../Adatok/ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
 import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
 import {GroupElementStyle} from "./GroupElementStyle.js";
-import {NodeObjectInterface} from "../../../NodeObject/NodeObjectInterface.js";
+import {NodeObjectBase} from "../../../NodeObject/NodeObjectBase.js";
 import {MrkLibrary} from "../../../../../../Global/MrkLibrary.js";
 import {GroupElementStates} from "./GroupElementStates.js";
 import {TypedEvent} from "../../../../../../../0Libraries/TypedEvents.js";
@@ -20,7 +20,7 @@ export class GroupElement extends ElementBaseClass {
 
     groupContextMButtonsManager: GroupContextMButtonsManager
 
-    constructor(nodeObject: NodeObjectInterface, fieldId) {
+    constructor(nodeObject: NodeObjectBase, fieldId) {
         super(ElementTypes.Group, nodeObject, fieldId, document.createElement("div"));
        // let elementStyle=ElementStyleFinder.findElementStyleByPriority(this)as TextAreaElementStyle
         console.log( this.getElementStyle())

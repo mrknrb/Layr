@@ -1,7 +1,7 @@
 import {LayrFrame} from "../Frame/LayrFrame.js";
 import {ConnectionObject} from "../Background/Data/Connection/ConnectionObject.js";
 import {DocObject} from "../Background/Data/Doc/Doc/DocObject.js";
-import {NodeObjectInterface} from "../Frame/NodesEdgesManager/Node/NodeObject/NodeObjectInterface.js";
+import {NodeObjectBase} from "../Frame/NodesEdgesManager/Node/NodeObject/NodeObjectBase.js";
 import {LayrBackground} from "../Background/LayrBackground.js";
 import {ElementTypes} from "../Frame/NodesEdgesManager/Node/Element/Adatok/ElementTypes.js";
 import {FieldObject} from "../Background/Data/Doc/Field/FieldObject.js";
@@ -34,7 +34,7 @@ export class LayrFind {
 
     }
 
-    static node_ById_InFrame(nodeId:string, documentHaNincsDefault: Document | null): NodeObjectInterface {
+    static node_ById_InFrame(nodeId:string, documentHaNincsDefault: Document | null): NodeObjectBase {
         // @ts-ignore
         let layrFrame: LayrFrame ={}
         if (documentHaNincsDefault===null) {
@@ -47,14 +47,14 @@ export class LayrFind {
         return layrFrame.nodesManager.nodesEdgesDataStorage.nodeNodeIdMap.get(nodeId);
     }
 
-    static nodes_ByDocId_Global(docId:string):NodeObjectInterface[] {
+    static nodes_ByDocId_Global(docId:string):NodeObjectBase[] {
        let nodes=[]
         LayrFind.getLayrBackground().layrFrameManager.layrFrameObjects.forEach(function (layrFrameSave) {
             nodes.push( layrFrameSave.layrFrame.nodesManager.nodesEdgesDataStorage.nodeDocIdMap.get(docId))
         })
         return nodes
     }
-    static nodes_ByConnId_Global(connId:string):NodeObjectInterface[] {
+    static nodes_ByConnId_Global(connId:string):NodeObjectBase[] {
         let nodes=[]
         LayrFind.getLayrBackground().layrFrameManager.layrFrameObjects.forEach(function (layrFrameSave) {
             nodes.push( layrFrameSave.layrFrame.nodesManager.nodesEdgesDataStorage.nodeConnIdMap.get(connId))

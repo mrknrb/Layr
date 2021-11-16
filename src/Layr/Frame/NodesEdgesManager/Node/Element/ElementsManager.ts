@@ -1,14 +1,14 @@
 import {DocFieldekhezElementStyleDefault} from "./Adatok/DocFieldekhezElementStyleDefault.js";
 import {ElementBaseClass} from "./ElementBaseClass.js";
 import {ElementTypesClassFinder} from "./Adatok/ElementTypesClassFinder.js";
-import {NodeObjectInterface} from "../NodeObject/NodeObjectInterface.js";
 import {LayrFind} from "../../../../Global/LayrFind.js";
+import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
 
 export class ElementsManager {
     elements: Map<string, ElementBaseClass>
-    nodeObject: NodeObjectInterface
+    nodeObject: NodeObjectBase
 
-    constructor(nodeObject: NodeObjectInterface) {
+    constructor(nodeObject: NodeObjectBase) {
         this.nodeObject = nodeObject
         this.elements = new Map<string, any>()
     }

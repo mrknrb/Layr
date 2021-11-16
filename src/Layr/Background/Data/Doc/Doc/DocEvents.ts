@@ -1,13 +1,13 @@
 import {TypedEvent} from "../../../../../0Libraries/TypedEvents.js";
-import {NodeObjectInterface} from "../../../../Frame/NodesEdgesManager/Node/NodeObject/NodeObjectInterface.js";
+import {NodeObjectBase} from "../../../../Frame/NodesEdgesManager/Node/NodeObject/NodeObjectBase.js";
 import {DocObject} from "./DocObject.js";
 
 export class DocEvents {
     onDocChange: TypedEvent<DocObject>
-    onDelete: TypedEvent<NodeObjectInterface>
+    onDelete: TypedEvent<NodeObjectBase>
 
     constructor() {
-        this.onDelete = new TypedEvent<NodeObjectInterface>();
+        this.onDelete = new TypedEvent<NodeObjectBase>();
         this.onDocChange = new TypedEvent<DocObject>()
     }
 }

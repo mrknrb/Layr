@@ -1,6 +1,6 @@
 import {NodeObjectRoot} from "./Node/NodeObject/NodeObjectRoot.js";
 import {NodeObjectNormal} from "./Node/NodeObject/NodeObjectNormal.js";
-import {NodeObjectInterface} from "./Node/NodeObject/NodeObjectInterface.js";
+import {NodeObjectBase} from "./Node/NodeObject/NodeObjectBase.js";
 import {LayrFind} from "../../Global/LayrFind.js";
 import {layrBackgroundF} from "../../../0Egyebek/LayrBackgroundFInitClass.js";
 import {NodesEdgesDataStorage} from "./NodesEdgesDataStorage.js";
@@ -8,7 +8,7 @@ import {NodesEdgesDataStorage} from "./NodesEdgesDataStorage.js";
 
 export class NodesEdgesManager {
 
-    nodeObjectsMap: Map<string, NodeObjectInterface>
+    nodeObjectsMap: Map<string, NodeObjectBase>
     nodesEdgesDataStorage: NodesEdgesDataStorage
 
 
@@ -16,7 +16,7 @@ export class NodesEdgesManager {
 
         this.nodesEdgesDataStorage = new NodesEdgesDataStorage()
 
-        this.nodeObjectsMap = new Map<string, NodeObjectInterface>()
+        this.nodeObjectsMap = new Map<string, NodeObjectBase>()
     }
 
     getNodeObjectRoot() {
@@ -36,7 +36,7 @@ export class NodesEdgesManager {
         return this.getNodeObjectRoot()
     }
 
-    async loadNormalNodesOfGroupNode(parentNodeObject: NodeObjectInterface) {
+    async loadNormalNodesOfGroupNode(parentNodeObject: NodeObjectBase) {
 
         let docConnObjects = await layrBackgroundF.docsConnectionsManager.loadDocs_ByDocChildConnections(parentNodeObject.docId)
         let nodeObjectsArray: NodeObjectNormal[] = []
@@ -52,7 +52,7 @@ export class NodesEdgesManager {
         return nodeObjectsArray
     }
 
-    async newNodeObjectWithNewDoc(parentNodeObject: NodeObjectInterface) {
+    async newNodeObjectWithNewDoc(parentNodeObject: NodeObjectBase) {
         let parentDoc = LayrFind.doc_ByNodeId_InFrame(parentNodeObject.nodeId, document)
 
         let docConnsObjects = await layrBackgroundF.docsConnectionsManager.insertNewDoc_AsParentDocChild(parentDoc.docData._id)

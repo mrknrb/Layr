@@ -1,6 +1,6 @@
 import {ElementTypes} from "../../Adatok/ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
-import {NodeObjectInterface} from "../../../NodeObject/NodeObjectInterface.js";
+import {NodeObjectBase} from "../../../NodeObject/NodeObjectBase.js";
 import {DropDownStaticElementStyle} from "./DropDownStaticElementStyle.js";
 
 
@@ -8,7 +8,7 @@ export class DropDownStaticElement extends ElementBaseClass {
 
     options: HTMLOptionElement[]
 
-    constructor(nodeObject: NodeObjectInterface, fieldId: string) {
+    constructor(nodeObject: NodeObjectBase, fieldId: string) {
         super(ElementTypes.DropDownStatic, nodeObject, fieldId, document.createElement("select"));
         this.options = []
         this.elementInit()

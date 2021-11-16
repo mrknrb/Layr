@@ -7,12 +7,10 @@ export class ContextMenu {
     contextMenuElements: Map<string, ContextMenuElementBase>
     contextMenuElementGroups: Map<string, ContextMenuElementGroup>
 
-    constructor(htmlElementOnClick: HTMLElement) {
-        this.htmlElement = htmlElementOnClick
+    constructor() {
         this.contextMenuElements = new Map<string, ContextMenuElementBase>()
         this.contextMenuElementGroups = new Map<string, ContextMenuElementGroup>()
         this.contextMenuInit()
-        this.contextMenuRightClickInit()
 
     }
 
@@ -72,7 +70,9 @@ export class ContextMenu {
 
     }
 
-    private contextMenuRightClickInit() {
+    public contextMenuRightClickInit(htmlElementOnClick: HTMLElement) {
+
+        this.htmlElement = htmlElementOnClick
         let self = this
         setTimeout(() => {
             self.htmlElement.addEventListener("contextmenu", (event) => {

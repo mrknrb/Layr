@@ -1,6 +1,6 @@
 import {ElementTypes} from "./Adatok/ElementTypes.js";
 import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
-import {NodeObjectInterface} from "../NodeObject/NodeObjectInterface.js";
+import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
 import {FieldObject} from "../../../../Background/Data/Doc/Field/FieldObject.js";
 import {LayrFind} from "../../../../Global/LayrFind.js";
 import {NodeObjectNormal} from "../NodeObject/NodeObjectNormal.js";
@@ -15,19 +15,19 @@ import {PartsManager} from "../../PartsGeneral/PartsManager.js";
 export abstract class ElementBaseClass {
     elementType: ElementTypes
     element: HTMLElement
-    nodeObject: NodeObjectInterface
+    nodeObject: NodeObjectBase
     fieldId: string
     contextMenu: ContextMenu
 
     partsManager: PartsManager
 
-    constructor(elementType: ElementTypes, nodeObject: NodeObjectInterface, fieldId: string, element: HTMLElement) {
+    constructor(elementType: ElementTypes, nodeObject: NodeObjectBase, fieldId: string, element: HTMLElement) {
         this.element = element
         this.elementType = elementType
         this.nodeObject = nodeObject
         this.fieldId = fieldId
-        this.contextMenu = new ContextMenu(this.element)
-
+        this.contextMenu = new ContextMenu()
+        this.contextMenu. contextMenuRightClickInit(this.element)
     }
 
     public abstract deleteElement()

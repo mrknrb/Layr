@@ -1,8 +1,8 @@
 import {MainElementNormal} from "../MainElement/MainElementNormal.js";
-import {NodeObjectInterface} from "./NodeObjectInterface.js";
+import {NodeObjectBase} from "./NodeObjectBase.js";
 import {ElementsManager} from "../Element/ElementsManager.js";
 
-export class NodeObjectNormal implements NodeObjectInterface {
+export class NodeObjectNormal implements NodeObjectBase {
 
     docId: string;
     connectionId: string

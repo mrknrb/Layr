@@ -1,4 +1,4 @@
-import {NodeObjectInterface} from "../NodeObject/NodeObjectInterface.js";
+import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
 import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
 import {MainElementContextMManager} from "./MainElementContextMManager.js";
 
@@ -6,7 +6,7 @@ import {MainElementContextMManager} from "./MainElementContextMManager.js";
 export abstract class MainElementBase {
     element: HTMLDivElement
     elementKeret: HTMLDivElement
-    nodeObject: NodeObjectInterface
+    nodeObject: NodeObjectBase
     elementOptionsButton: HTMLDivElement
     contextMenuManager:MainElementContextMManager
     constructor(nodeObject) {

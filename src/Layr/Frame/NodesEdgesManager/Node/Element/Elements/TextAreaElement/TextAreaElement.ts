@@ -2,7 +2,7 @@ import {ElementTypes} from "../../Adatok/ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
 import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
 import {TextAreaElementStyle} from "./TextAreaElementStyle.js";
-import {NodeObjectInterface} from "../../../NodeObject/NodeObjectInterface.js";
+import {NodeObjectBase} from "../../../NodeObject/NodeObjectBase.js";
 import {PartsManager} from "../../../../PartsGeneral/PartsManager.js";
 import {TextAreaPartsManager} from "./Parts/TextAreaPartsManager.js";
 
@@ -13,7 +13,7 @@ export class TextAreaElement extends ElementBaseClass {
     elementResizer: ElementResizer
     partsManager: PartsManager
 
-    constructor(nodeObject: NodeObjectInterface, fieldId: string) {
+    constructor(nodeObject: NodeObjectBase, fieldId: string) {
         super(ElementTypes.TextArea, nodeObject, fieldId, document.createElement("textarea"));
 
         this.partsManager = new TextAreaPartsManager(this) as PartsManager
