@@ -1,8 +1,7 @@
 import {MainElementNormal} from "../MainElement/MainElementNormal.js";
 import {NodeObjectBase} from "./NodeObjectBase.js";
-import {ElementsManager} from "../Element/ElementsManager.js";
 
-export class NodeObjectNormal implements NodeObjectBase {
+export class NodeObjectNormal extends NodeObjectBase {
 
     docId: string;
     connectionId: string
@@ -10,17 +9,15 @@ export class NodeObjectNormal implements NodeObjectBase {
     parentNodeId: string
 
     mainElement: MainElementNormal
-    elementsManager: ElementsManager;
 
 
     constructor(docId: string, connectionId: string, parentNodeId: string) {
-
+        super()
         this.docId = docId
         this.connectionId = connectionId
         this.nodeId = Math.random().toString()
         this.parentNodeId = parentNodeId
         this.mainElement = new MainElementNormal(this)
-        this.elementsManager = new ElementsManager(this)
 
         this.init()
     }

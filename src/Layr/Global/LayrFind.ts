@@ -48,9 +48,14 @@ export class LayrFind {
     }
 
     static nodes_ByDocId_Global(docId:string):NodeObjectBase[] {
-       let nodes=[]
+       let nodes:NodeObjectBase[]=[]
         LayrFind.getLayrBackground().layrFrameManager.layrFrameObjects.forEach(function (layrFrameSave) {
-            nodes.push( layrFrameSave.layrFrame.nodesManager.nodesEdgesDataStorage.nodeDocIdMap.get(docId))
+            layrFrameSave.layrFrame.nodesManager.nodesEdgesDataStorage.nodeDocIdMap.get(docId).forEach((nodeObject) => {
+
+                nodes.push(nodeObject)
+
+            })
+
         })
         return nodes
     }

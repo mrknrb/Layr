@@ -9,7 +9,7 @@ import {ElementStyleFinder} from "./Adatok/ElementStyleFinder.js";
 import {ElementTypesClassFinder} from "./Adatok/ElementTypesClassFinder.js";
 import {ElementStyleBase} from "../../../../Background/Data/Connection/NodeStyleData/ElementStyleBase.js";
 import {ElementResizer} from "./ElementResizer/ElementResizer.js";
-import {PartsManager} from "../../PartsGeneral/PartsManager.js";
+import {PartsManagerBase} from "../../PartsGeneral/PartsManagerBase.js";
 
 
 export abstract class ElementBaseClass {
@@ -19,15 +19,15 @@ export abstract class ElementBaseClass {
     fieldId: string
     contextMenu: ContextMenu
 
-    partsManager: PartsManager
+    partsManager: PartsManagerBase
 
     constructor(elementType: ElementTypes, nodeObject: NodeObjectBase, fieldId: string, element: HTMLElement) {
         this.element = element
         this.elementType = elementType
         this.nodeObject = nodeObject
         this.fieldId = fieldId
-        this.contextMenu = new ContextMenu()
-        this.contextMenu. contextMenuRightClickInit(this.element)
+        this.contextMenu = new ContextMenu(false,this.element)
+
     }
 
     public abstract deleteElement()

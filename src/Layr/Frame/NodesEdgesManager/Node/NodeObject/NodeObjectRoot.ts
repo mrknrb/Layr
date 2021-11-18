@@ -1,21 +1,17 @@
 import {MainElementRoot} from "../MainElement/MainElementRoot.js";
 import {NodeObjectBase} from "./NodeObjectBase.js";
-import {ElementsManager} from "../Element/ElementsManager.js";
 
-export class NodeObjectRoot implements NodeObjectBase {
+export class NodeObjectRoot extends NodeObjectBase {
     docId: string;
     nodeId: string;
     mainElement: MainElementRoot
-    elementsManager: ElementsManager;
 
 
     constructor(docId: string) {
-
+        super()
         this.mainElement = new MainElementRoot(this)
-        this.elementsManager = new ElementsManager(this)
         this.docId = docId
         this.nodeId = "0"
-
         this.init()
 
     }

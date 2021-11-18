@@ -1,6 +1,7 @@
+import {PartBaseRegi} from "./PartBaseRegi.js";
 import {PartBase} from "./PartBase.js";
 
-export class PartsManager {
+export abstract class PartsManagerBase {
     parts: Map<string, PartBase>
 
     constructor() {

@@ -1,5 +1,5 @@
 import {FieldData} from "../Background/Data/Doc/Field/FieldData.js";
-import {DocData} from "../Background/Data/Doc/Doc/DocData.js";
+import {fieldData} from "../Background/Data/Doc/Doc/DocData.js";
 
 export class MrkLibrary {
     static dragElement(draggingElement, moveableElement, kikapcsolas) {
@@ -104,7 +104,7 @@ export class MrkLibrary {
         return template.content.firstChild;
     }
 
-    static docFieldKereso(docFieldName: string, docData: DocData) {
+    static docFieldKereso(docFieldName: string, docData: fieldData) {
         let docFieldKeresett = new FieldData()
         docData.fieldsData.forEach(function (docField) {
             if (docField.fieldName == docFieldName) {

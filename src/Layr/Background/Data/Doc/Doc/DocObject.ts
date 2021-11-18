@@ -1,28 +1,48 @@
 import {DocEvents} from "./DocEvents.js";
 import {FieldObject} from "../Field/FieldObject.js";
-import {DocData} from "./DocData.js";
+import {fieldData} from "./DocData.js";
+import {FieldData} from "../Field/FieldData.js";
+import {ElementTypes} from "../../../../Frame/NodesEdgesManager/Node/Element/Adatok/ElementTypes.js";
+import {layrBackgroundB} from "../../../LayrBackground.js";
 
 export class DocObject {
-    docData: DocData
+    docData: fieldData
     fieldObjects: FieldObject[]
     docEvents: DocEvents
 
-    constructor(docData: DocData) {
+    constructor(docData: fieldData) {
         let self = this
         this.docData = docData
         this.docEvents = new DocEvents()
         this.fieldObjects = []
+
         docData.fieldsData.forEach((field) => {
-            self.fieldObjects.push(new FieldObject(field, this))
+            this.createFieldObject(field)
         })
     }
 
-    newField(){
-       // fieldObjects(new FieldObject(field, this))
+    newField(fieldName: string, elementType: string) {
+        console.log("newField")
 
+        let newFieldData = new FieldData()
 
+        newFieldData.fieldName = fieldName
+        newFieldData.elementType = elementType as ElementTypes
+        this.docData.fieldsData.push(newFieldData)
+        let fieldObject = this.createFieldObject(newFieldData)
+        layrBackgroundB.docsConnectionsManager.updateDoc(this.docData._id, (docDataOriginal, ModifiedDocFunction) => {
+            console.log(this.docData)
+            ModifiedDocFunction(this.docData)
+        })
+        this.docEvents.onDocChange.emit(this)
+        return fieldObject
     }
 
+    private createFieldObject(fieldData: FieldData) {
+        let fieldObject = new FieldObject(fieldData, this)
+        this.fieldObjects.push(fieldObject)
+        return fieldObject
+    }
 
 
 }

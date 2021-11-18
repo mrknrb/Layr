@@ -2,7 +2,7 @@ import {layrBackgroundB} from "../LayrBackground.js";
 import {DocObject} from "../Data/Doc/Doc/DocObject.js";
 import {ConnectionObject} from "../Data/Connection/ConnectionObject.js";
 import {RequestType} from "../LayrServerClient/RequestCommon/RequestType.js";
-import {DocData} from "../Data/Doc/Doc/DocData.js";
+import {fieldData} from "../Data/Doc/Doc/DocData.js";
 import {ConnectionData} from "../Data/Connection/ConnectionData.js";
 import {DocsConnsData} from "./DocsConnsData.js";
 import {DocsConnsObjects} from "./DocsConnsObjects.js";
@@ -45,12 +45,12 @@ export class DocsConnectionsManager {
 
     async insertNewDoc_AsParentDocChild(parentDocId: string) {
 
-        let newDoc = new DocData()
+        let newDoc = new fieldData()
         let docsConnsObjects = await this.insertDocs_AsParentDocChildren(parentDocId, [newDoc])
         return docsConnsObjects
     }
 
-    async insertDocs_AsParentDocChildren(parentDocId: string, docDataArray: DocData[]) {
+    async insertDocs_AsParentDocChildren(parentDocId: string, docDataArray: fieldData[]) {
         let docsConnsData: DocsConnsData = await layrBackgroundB.layrClient.newRequest(RequestType.insertDocs_AsParentDocChildren, {
             parentDocId: parentDocId,
             docDataArray: docDataArray
@@ -61,11 +61,11 @@ export class DocsConnectionsManager {
 
     }
 
-    async updateDoc(docId: string, OriginalDocFunction: (docDataOffline: DocData, ModifiedDocFunction: (docDataModified: DocData) => any) => any) {
+    async updateDoc(docId: string, OriginalDocFunction: (docDataOffline: fieldData, ModifiedDocFunction: (docDataModified: fieldData) => any) => any) {
 
         let mentettDoc = await LayrFind.doc(docId)
 
-        let modifiedDocFunction = async (docDataModified: DocData) => {
+        let modifiedDocFunction = async (docDataModified: fieldData) => {
             let sikerultBool = await layrBackgroundB.layrClient.newRequest(RequestType.updateDocs, [docDataModified])
             return sikerultBool
         }
@@ -80,7 +80,7 @@ export class DocsConnectionsManager {
 
     }
 
-    private async docObjectsSaver(docsData: DocData[]) {
+    private async docObjectsSaver(docsData: fieldData[]) {
         let betoltottDocObjects: DocObject[] = []
         for await (const docData of docsData) {
             let docObject = new DocObject(docData)

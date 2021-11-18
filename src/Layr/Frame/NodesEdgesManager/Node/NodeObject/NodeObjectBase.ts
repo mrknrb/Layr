@@ -10,6 +10,9 @@ export abstract class NodeObjectBase {
 
     constructor() {
 
+        this.elementsManager = new ElementsManager(this)
+
+
 
     }
 

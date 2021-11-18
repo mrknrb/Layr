@@ -2,21 +2,25 @@ import {ContextMenuElementBase} from "./ContextMenuElementBase.js";
 import {ContextMenuElementGroup} from "./ContextMenuElementGroup.js";
 
 export class ContextMenu {
-    htmlElement: HTMLElement
+    htmlElementController: HTMLElement
     contextMenuMainElement: HTMLDivElement
     contextMenuElements: Map<string, ContextMenuElementBase>
     contextMenuElementGroups: Map<string, ContextMenuElementGroup>
+    private mouseOverNow: boolean
 
-    constructor() {
+    constructor(subContextMenu: boolean, htmlElementController: HTMLElement) {
+        this.htmlElementController = htmlElementController
         this.contextMenuElements = new Map<string, ContextMenuElementBase>()
         this.contextMenuElementGroups = new Map<string, ContextMenuElementGroup>()
         this.contextMenuInit()
-
+        this.mouseOverNowInit()
+        subContextMenu ? this.contextMenuHoverInit() : this.contextMenuRightClickInit()
     }
 
     contextMenuInit() {
 
         this.contextMenuMainElement = document.createElement("div")
+        this.contextMenuMainElement.className = "ContextMenuLayr"
         let style = this.contextMenuMainElement.style
 
         style.backgroundColor = "#e1e1e1"
@@ -70,21 +74,6 @@ export class ContextMenu {
 
     }
 
-    public contextMenuRightClickInit(htmlElementOnClick: HTMLElement) {
-
-        this.htmlElement = htmlElementOnClick
-        let self = this
-        setTimeout(() => {
-            self.htmlElement.addEventListener("contextmenu", (event) => {
-                let coordinateY = event.clientY
-                let coordinateX = event.clientX
-                event.preventDefault()
-                event.stopPropagation()
-                this.contextMenuActivate(coordinateX, coordinateY)
-            })
-        }, 0);
-    }
-
     contextMenuInVisible() {
         this.contextMenuMainElement.remove()
 
@@ -98,8 +87,8 @@ export class ContextMenu {
         this.contextMenuVisible(coordinateX, coordinateY)
 
         var handler = (event) => {
-            // @ts-ignore
-            if (!event.path.find(element => element == self.contextMenuMainElement)) {
+
+            if (!event.path.find(element => element.className == "ContextMenuLayr")) {
                 this.contextMenuInVisible()
             }
         }
@@ -127,6 +116,46 @@ export class ContextMenu {
         this.contextMenuElements.delete(contextMenuElementId)
 
 
+    }
+
+    private mouseOverNowInit() {
+        this.contextMenuMainElement.addEventListener("mouseenter", (event) => {
+            this.mouseOverNow = true
+        })
+        this.contextMenuMainElement.addEventListener("mouseleave", (event) => {
+            this.mouseOverNow = false
+        })
+    }
+
+
+    private contextMenuHoverInit() {
+        let self = this
+        setTimeout(() => {
+            self.htmlElementController.addEventListener("mouseenter", (event) => {
+                let elementBounding = self.htmlElementController.getBoundingClientRect()
+                let coordinateX = elementBounding.right - 10
+                let coordinateY = elementBounding.top
+                self.contextMenuActivate(coordinateX, coordinateY)
+            })
+            self.htmlElementController.addEventListener("mouseleave", (event) => {
+                if (!self.mouseOverNow) self.contextMenuInVisible()
+            })
+
+        }, 0);
+    }
+
+    private contextMenuRightClickInit() {
+
+        let self = this
+        setTimeout(() => {
+            self.htmlElementController.addEventListener("contextmenu", (event) => {
+                let coordinateY = event.clientY
+                let coordinateX = event.clientX
+                event.preventDefault()
+                event.stopPropagation()
+                this.contextMenuActivate(coordinateX, coordinateY)
+            })
+        }, 0);
     }
 
 }

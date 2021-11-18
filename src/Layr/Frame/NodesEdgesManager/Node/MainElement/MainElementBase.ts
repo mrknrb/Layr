@@ -1,5 +1,4 @@
 import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
-import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
 import {MainElementContextMManager} from "./MainElementContextMManager.js";
 
 
@@ -8,13 +7,17 @@ export abstract class MainElementBase {
     elementKeret: HTMLDivElement
     nodeObject: NodeObjectBase
     elementOptionsButton: HTMLDivElement
-    contextMenuManager:MainElementContextMManager
+    contextMenuManager: MainElementContextMManager
+
     constructor(nodeObject) {
         this.nodeObject = nodeObject
         this.elementInit()
         this.elementOptionsButtonInit()
+        setTimeout(() => {
+            this.contextMenuManager = new MainElementContextMManager(this.nodeObject)
 
-        this.contextMenuManager = new MainElementContextMManager(this)
+
+        }, 300)
 
     }
 
@@ -66,7 +69,6 @@ export abstract class MainElementBase {
 
         this.element.appendChild(this.elementOptionsButton)
     }
-
 
 
 }

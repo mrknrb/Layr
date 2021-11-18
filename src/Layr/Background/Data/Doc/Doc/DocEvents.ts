@@ -3,11 +3,14 @@ import {NodeObjectBase} from "../../../../Frame/NodesEdgesManager/Node/NodeObjec
 import {DocObject} from "./DocObject.js";
 
 export class DocEvents {
-    onDocChange: TypedEvent<DocObject>
+
     onDelete: TypedEvent<NodeObjectBase>
+    onDocChange: TypedEvent<DocObject>
+    onFieldObjectCreate: TypedEvent<DocObject>
 
     constructor() {
         this.onDelete = new TypedEvent<NodeObjectBase>();
         this.onDocChange = new TypedEvent<DocObject>()
+        this.onFieldObjectCreate=new TypedEvent<DocObject>()
     }
 }

@@ -8,6 +8,7 @@ export class FieldData {
 
     constructor() {
         this.fieldId = Math.random().toString()
+        this.data={}
     }
 
 

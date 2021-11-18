@@ -6,7 +6,7 @@ export abstract class ContextMenuElementBase {
     contextMenu: ContextMenu
     elementName: string
     contextMenuElementId: string
-
+value:string
     protected constructor(contextMenu: ContextMenu, elementName: string) {
 
         this.contextMenu = contextMenu

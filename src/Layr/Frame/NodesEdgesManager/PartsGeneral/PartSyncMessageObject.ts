@@ -7,6 +7,4 @@ export class PartSyncMessageObject {
         this.partClassName=partClassName
         this.elementId_nullHaNincsIlyesmi=fieldId_szeru_nullHaNincsIlyesmi
     }
-
-
 }

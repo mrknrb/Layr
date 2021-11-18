@@ -1,27 +1,47 @@
 import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
-import {ContextMElementClickable} from "../../../ContextMenu/ContextMenuElements/ContextMElementClickable/ContextMElementClickable.js";
-import {LayrFind} from "../../../../Global/LayrFind.js";
 import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
-import {ContextMElementSubContextM} from "../../../ContextMenu/ContextMenuElements/ContextMElementSubContextM/ContextMElementSubContextM.js";
+import {ContextMElementSubContextM} from "../../../ContextMenu/ContextMenuElements/ContextMElementSubContextM.js";
+import {ContextMElementInputText} from "../../../ContextMenu/ContextMenuElements/ContextMElementInputText.js";
+import {ContextMElementDropDownStatic} from "../../../ContextMenu/ContextMenuElements/ContextMElementDropDownStatic.js";
+import {ElementTypes} from "../Element/Adatok/ElementTypes.js";
+import {ContextMElementClickable} from "../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 
 export class MainElementContextMManager {
 
 
     contextMenu: ContextMenu
-    nodeObject:NodeObjectBase
-    constructor(nodeObject) {
-        this.nodeObject=nodeObject
-        this.contextMenu = new ContextMenu()
-        this.contextMenu.contextMenuRightClickInit(nodeObject.element)
+    nodeObject: NodeObjectBase
 
-      this.  NewNodeContextInit()
+    constructor(nodeObject:NodeObjectBase) {
+        this.nodeObject = nodeObject
+        this.contextMenu = new ContextMenu(false, this.nodeObject.mainElement.element)
+
+        this.NewNodeContextInit()
     }
 
     NewNodeContextInit() {
-      let subContextMenu= new ContextMenu()
 
-        let contextMenuElementNewNode = new ContextMElementSubContextM(this.contextMenu, "New Element",subContextMenu )
+let self=this
+        let contextMenuElementNewNode = new ContextMElementSubContextM(this.contextMenu, "New Element")
         this.contextMenu.contextMenuElementInsert(contextMenuElementNewNode, "Node")
+        let subContextMenu = new ContextMenu(true, contextMenuElementNewNode.element)
+        let subContextMenuElementNewNodeName = new ContextMElementInputText(this.contextMenu, "Field Name:")
+        subContextMenu.contextMenuElementInsert(subContextMenuElementNewNodeName, "Node")
+        let options: string[] = []
+        for (const elementType in ElementTypes) {
+            options.push(elementType.toString())
+        }
+
+        let subContextMenuElementDropDownStatic = new ContextMElementDropDownStatic(this.contextMenu, "Field Type:", options)
+        subContextMenu.contextMenuElementInsert(subContextMenuElementDropDownStatic, "Node")
+
+        let contextMenuElementClickable = new ContextMElementClickable(this.contextMenu, "New element")
+        subContextMenu.contextMenuElementInsert(contextMenuElementClickable, "Node")
+        contextMenuElementClickable.clickEvent.on(event => {
+            self.nodeObject.elementsManager.newElement(subContextMenuElementNewNodeName.value, subContextMenuElementDropDownStatic.value)
+            self.contextMenu.contextMenuInVisible()
+            subContextMenu.contextMenuInVisible()
+        })
 
 
         /*

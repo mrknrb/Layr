@@ -1,20 +1,21 @@
-import {ContextMenuElementBase} from "../../ContextMenuElementBase.js";
-import {ContextMenu} from "../../ContextMenu.js";
+import {ContextMenuElementBase} from "../ContextMenuElementBase.js";
+import {ContextMenu} from "../ContextMenu.js";
+import {TypedEvent} from "../../../../0Libraries/TypedEvents.js";
 
 export class ContextMElementClickable extends ContextMenuElementBase {
 
     elementName: string
     element: HTMLDivElement
-    onClickCallback: (clicked: ContextMElementClickable) => any
+    clickEvent: TypedEvent<ContextMElementClickable>
 
-    constructor(contextMenu: ContextMenu, elementName: string, onClickCallback: (clicked: ContextMElementClickable) => any) {
+    constructor(contextMenu: ContextMenu, elementName: string) {
         super(contextMenu, elementName);
-        this.onClickCallback = onClickCallback
         this.elementInitClickable()
+        this.clickEvent=new TypedEvent<ContextMElementClickable>()
     }
 
     elementInitClickable() {
-
+let self=this
         this.element.style.width = "100%"
         this.element.style.height = "fit-content"
         let textElement = document.createElement("b")
@@ -26,8 +27,7 @@ export class ContextMElementClickable extends ContextMenuElementBase {
 
         this.element.appendChild(textElement)
         this.element.addEventListener("click", (event) => {
-            this.onClickCallback(this)
-            this.contextMenu.contextMenuInVisible()
+            self.clickEvent.emit(this)
         })
     }
 

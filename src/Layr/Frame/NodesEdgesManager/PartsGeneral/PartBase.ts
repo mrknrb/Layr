@@ -1,29 +1,43 @@
-import {TypedEvent} from "../../../../0Libraries/TypedEvents.js";
+import {ElementBaseClass} from "../Node/Element/ElementBaseClass.js";
+import {TextAreaElement} from "../Node/Element/Elements/TextAreaElement/TextAreaElement.js";
 
 export abstract class PartBase {
-    onSaveEvent: TypedEvent<any>
 
 
-    protected constructor() {
-        this.onSaveEvent = new TypedEvent<any>()
+     elementObject: ElementBaseClass
 
+    protected constructor(elementObject: ElementBaseClass) {
+        this.elementObject = elementObject
+        this.saveValueTriggerInit()
     }
 
-   abstract saveEventTriggerInit()
+    saveMain() {
 
-    getPartClassName() {
+        this.saveValue(this.getDataObject())
+        this.changeSync()
+    }
+    loadMain() {
+
+        this.loadData(this.getDataObject())
+    }
+
+    protected  getPartClassName() {
         return this.constructor.name
     }
 
-    saveValueAndSaveEvent() {
-        this.saveValue()
-        this.onSaveEvent.emit(null)
-    }
+    //eggyel lejjebb hasznalatos
+    protected  abstract getDataObject()
 
-    abstract loadData()
 
-    protected abstract saveValue()//A Data szerint szetszedett szinten hasznald
+    protected  abstract changeSync()
 
-    protected abstract onSaveEventDefaultFunction()
+    //kettovel lejjebb hasznalatos
+    protected  abstract saveValueTriggerInit()
+
+
+  protected  abstract loadData(object: any)
+
+    protected abstract saveValue(object: any)
+
 
 }

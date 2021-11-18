@@ -23,7 +23,7 @@ export class GroupElement extends ElementBaseClass {
     constructor(nodeObject: NodeObjectBase, fieldId) {
         super(ElementTypes.Group, nodeObject, fieldId, document.createElement("div"));
        // let elementStyle=ElementStyleFinder.findElementStyleByPriority(this)as TextAreaElementStyle
-        console.log( this.getElementStyle())
+
         this.groupElementEventLoaded = new TypedEvent<any>()
         this.groupElementStates = GroupElementStates.NotLoaded
         this.groupContextMButtonsManager = new GroupContextMButtonsManager(this)

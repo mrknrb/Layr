@@ -3,20 +3,19 @@ import {ElementBaseClass} from "../../ElementBaseClass.js";
 import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
 import {TextAreaElementStyle} from "./TextAreaElementStyle.js";
 import {NodeObjectBase} from "../../../NodeObject/NodeObjectBase.js";
-import {PartsManager} from "../../../../PartsGeneral/PartsManager.js";
-import {TextAreaPartsManager} from "./Parts/TextAreaPartsManager.js";
+import {PartsManagerBase} from "../../../../PartsGeneral/PartsManagerBase.js";
+import {TextAreaPartsManager} from "./TextAreaPartsManager/TextAreaPartsManager.js";
 
 
 export class TextAreaElement extends ElementBaseClass {
 
     element: HTMLTextAreaElement
     elementResizer: ElementResizer
-    partsManager: PartsManager
+    partsManager: PartsManagerBase
 
     constructor(nodeObject: NodeObjectBase, fieldId: string) {
         super(ElementTypes.TextArea, nodeObject, fieldId, document.createElement("textarea"));
-
-        this.partsManager = new TextAreaPartsManager(this) as PartsManager
+        this.partsManager = new TextAreaPartsManager(this) as PartsManagerBase
         let elementStyle = this.getElementStyle() as TextAreaElementStyle
         this.elementResizer = new ElementResizer(this)
         this.elementResizer.resizeActivate(elementStyle.resizeType)
@@ -39,7 +38,9 @@ export class TextAreaElement extends ElementBaseClass {
 
     elementsRefresh() {
 
-        this.element.value = this.getFieldObject().fieldData.data.content
+        this.element.value = this.getFieldObject().fieldData.data?.content
+
+
     }
 
     deleteElement() {
