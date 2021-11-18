@@ -1,7 +1,6 @@
 import {PartBase} from "../PartBase.js";
 import {ElementBaseClass} from "../../Node/Element/ElementBaseClass.js";
 import {LayrFind} from "../../../../Global/LayrFind.js";
-import {SyncDataObject} from "../SyncDataObject.js";
 import {FieldData} from "../../../../Background/Data/Doc/Field/FieldData.js";
 import {FieldObject} from "../../../../Background/Data/Doc/Field/FieldObject.js";
 

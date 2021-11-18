@@ -13,10 +13,12 @@ export class TextAreaContentPart extends PartBaseElement_Field {
         super(elementObject);
     }
 
-    protected  saveValueTriggerInit() {
+    protected  partInit() {
 
-        this.masterObject.element.addEventListener("keydown", () => {
+        this.masterObject.element.addEventListener("keyup", () => {
+
             this.saveValue()
+
         })
     }
 

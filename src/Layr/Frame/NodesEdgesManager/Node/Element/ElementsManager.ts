@@ -14,7 +14,10 @@ export class ElementsManager {
         this.nodeObject = nodeObject
         this.elements = new Map<string, any>()
     }
+    getElement(fieldId:string) {
+        return this.elements.get(fieldId)
 
+    }
     elementsInit() {
         let docFieldObjects = LayrFind.doc(this.nodeObject.docId).fieldObjects
         docFieldObjects.forEach((fieldObject) => {
@@ -46,17 +49,5 @@ export class ElementsManager {
         this.elements.set(fieldObject.fieldData.fieldId, elementObject)
     }
 
-    newElement(fieldName: string, elementType: string) {
-        let doc=LayrFind.doc(this.nodeObject.docId)
-        let fieldObject = doc.newField(fieldName, elementType)
-        this.elementLoad(fieldObject)
-    }
-
-    tesztfun(){
-      let a=new  NodeNewElementPart(this.nodeObject)
-       a.saveValue({fieldName:"lofasz",elementType:ElementTypes.Group})
-
-
-    }
 
 }

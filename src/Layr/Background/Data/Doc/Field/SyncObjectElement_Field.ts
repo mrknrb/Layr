@@ -1,7 +1,5 @@
 import {SyncObjectBase} from "../../../../Frame/NodesEdgesManager/PartsGeneral/SyncObjectBase.js";
-import {DocObject} from "../Doc/DocObject.js";
 import {LayrFind} from "../../../../Global/LayrFind.js";
-import {ElementBaseClass} from "../../../../Frame/NodesEdgesManager/Node/Element/ElementBaseClass.js";
 import {FieldObject} from "./FieldObject.js";
 
 export class SyncObjectElement_Field extends SyncObjectBase {
@@ -13,16 +11,18 @@ export class SyncObjectElement_Field extends SyncObjectBase {
     }
 
     partSyncStart(syncData: SyncData) {
-        this.fieldObject.docDataMongoUpdate()
+        this.fieldObject.fieldDataMongoUpdate()
         this.findPartAndLoad(syncData)
 
     }
 
 
     findPartAndLoad(syncData: SyncData) {
-        let nodes = LayrFind.nodes_ByDocId_Global(this.fieldObject.docData._id)
+        let nodes = LayrFind.nodes_ByDocId_Global(this.fieldObject.docObject.docData._id)
         nodes.forEach((node, index) => {
-            node.nodePartsManager.getPart(syncData.partClassName).loadData(syncData.loadData)
+            let element = node.elementsManager.getElement(syncData.fieldId)
+
+            element.partsManager.getPart(syncData.partClassName).loadData(syncData.loadData)
         })
     }
 }
@@ -30,6 +30,6 @@ export class SyncObjectElement_Field extends SyncObjectBase {
 
 interface SyncData {
     partClassName: string,
-    fieldId:string,
+    fieldId: string,
     loadData?: any
 }

@@ -52,7 +52,6 @@ export abstract class MainElementBase {
     }
 
     protected layoutDefault() {
-        // background-color: #e0f7fa;
         this.element.style.cssText += `   `
     }
 

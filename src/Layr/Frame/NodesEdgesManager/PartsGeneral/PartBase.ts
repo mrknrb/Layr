@@ -4,8 +4,11 @@ export abstract class PartBase {
     protected abstract masterObject: any
 
     protected constructor() {
+        setTimeout(() => {
+            this.partInit()
+        },50)
 
-        this.saveValueTriggerInit()
+
     }
 
     /*
@@ -27,10 +30,10 @@ export abstract class PartBase {
     protected abstract getDataObject()
 
 
-    protected abstract valueSync(fieldId_szeru_nullHaNincsIlyesmi?:any)
+    protected abstract valueSync(fieldId_szeru_nullHaNincsIlyesmi?: any)
 
     //kettovel lejjebb hasznalatos
-    protected abstract saveValueTriggerInit()
+    protected abstract partInit()
 
 
     abstract loadData(data?: any)
