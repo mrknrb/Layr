@@ -3,23 +3,24 @@ import {FieldEvents} from "./FieldEvents.js";
 import {DocObject} from "../Doc/DocObject.js";
 import {layrBackgroundB} from "../../../LayrBackground.js";
 import {LayrFind} from "../../../../Global/LayrFind.js";
-import {PartSyncMessageObject} from "../../../../Frame/NodesEdgesManager/PartsGeneral/PartSyncMessageObject.js";
+import {SyncObjectElement_Field} from "./SyncObjectElement_Field.js";
 
 
 export class FieldObject {
     fieldData: FieldData
     fieldEvents: FieldEvents
     docObject: DocObject
-
+    syncObjectElement_Field:SyncObjectElement_Field
     constructor(fieldData: FieldData, docObject: DocObject) {
         this.docObject = docObject
         this.fieldData = fieldData
         this.fieldEvents = new FieldEvents()
-        this.fieldDataMongoUpdateInit()
-        this.fieldDataUpdateNodesSyncInit()
+        this.syncObjectElement_Field=new SyncObjectElement_Field(this)
+       // this.fieldDataMongoUpdateInit()
+       // this.fieldDataUpdateNodesSyncInit()
     }
 
-
+/*
     private fieldDataMongoUpdateInit() {
         let self = this
         this.fieldEvents.onFieldChange.on(() => {
@@ -32,10 +33,10 @@ export class FieldObject {
             this.elementPartSyncWithOthers(partSyncMessageObject)
         })
     }
-
-    elementPartChangeSync(partSyncMessageObject: PartSyncMessageObject) {
+*/
+    elementPartChangeSync(elementId:string,partClassName:string,loadData) {
         this.fieldDataMongoUpdate()
-        this.elementPartSyncWithOthers(partSyncMessageObject)
+        this.elementPartSyncWithOthers(elementId,partClassName,loadData)
     }
 
 
@@ -45,10 +46,10 @@ export class FieldObject {
         })
     }
 
-    elementPartSyncWithOthers(partSyncMessageObject: PartSyncMessageObject) {
+    elementPartSyncWithOthers(elementId:string,partClassName:string,loadData?:any) {
             let nodes = LayrFind.nodes_ByDocId_Global(this.docObject.docData._id)
             nodes.forEach((node, index) => {
-                node.elementsManager.elements.get(partSyncMessageObject.elementId_nullHaNincsIlyesmi).partsManager.parts.get(partSyncMessageObject.partClassName).loadMain()
+                node.elementsManager.elements.get(elementId).partsManager.parts.get(partClassName).loadData(loadData)
             })
     }
 }
@@ -56,7 +57,7 @@ export class FieldObject {
 /*
 //teszt alternativ megoldas a masik helyett------------------------------------
 async tesztFieldGetAndChange(part: PartBase, firstFunction: (fieldData: FieldData, secondFunction: () => any) => any) {
-    let partSyncMessageObject = new PartSyncMessageObject(part.constructor.name, part.elementObject.fieldId)
+    let partSyncMessageObject = new SyncDataObject(part.constructor.name, part.object.fieldId)
     let secondFunction = async () => {
         this.fieldDataMongoUpdate()
         this.elementPartSyncWithOthers(partSyncMessageObject)

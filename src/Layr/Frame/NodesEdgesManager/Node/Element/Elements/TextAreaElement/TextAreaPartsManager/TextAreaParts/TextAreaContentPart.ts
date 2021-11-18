@@ -1,35 +1,39 @@
 import {TextAreaElement} from "../../TextAreaElement.js";
-import {PartBaseField} from "../../../../../../PartsGeneral/PartBaseTypes/PartBaseField.js";
+import {PartBaseElement_Field} from "../../../../../../PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
 import {FieldData} from "../../../../../../../../Background/Data/Doc/Field/FieldData.js";
 import {FieldObject} from "../../../../../../../../Background/Data/Doc/Field/FieldObject.js";
+import {ElementTypes} from "../../../../Adatok/ElementTypes.js";
 
-export class TextAreaContentPart extends PartBaseField {
+export class TextAreaContentPart extends PartBaseElement_Field {
 
 
-    elementObject: TextAreaElement
+    protected  masterObject: TextAreaElement
 
     constructor(elementObject: TextAreaElement) {
         super(elementObject);
     }
 
-    saveValueTriggerInit() {
+    protected  saveValueTriggerInit() {
 
-        this.elementObject.element.addEventListener("keydown", () => {
-            this.saveMain()
+        this.masterObject.element.addEventListener("keydown", () => {
+            this.saveValue()
         })
     }
 
-    loadData(fieldObject:FieldObject) {
-        this.elementObject.element.value = fieldObject.fieldData.data.content
+    loadData() {
+        this.masterObject.element.value = this.getDataObject().fieldData.data.content
     }
 
 
-    saveValue(fieldObject: FieldObject) {
-        if (!fieldObject.fieldData.data.content) {
-            fieldObject.fieldData.data.content = ""
+    saveValue() {
+        if (!this.getDataObject().fieldData.data.content) {
+            this.getDataObject().fieldData.data.content = ""
         }
-        fieldObject.fieldData.data.content = this.elementObject.element.value
+        this.getDataObject().fieldData.data.content = this.masterObject.element.value
+        this.valueSync()
     }
+
+
 
 
 }

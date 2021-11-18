@@ -1,43 +1,42 @@
-import {ElementBaseClass} from "../Node/Element/ElementBaseClass.js";
-import {TextAreaElement} from "../Node/Element/Elements/TextAreaElement/TextAreaElement.js";
-
 export abstract class PartBase {
 
 
-     elementObject: ElementBaseClass
+    protected abstract masterObject: any
 
-    protected constructor(elementObject: ElementBaseClass) {
-        this.elementObject = elementObject
+    protected constructor() {
+
         this.saveValueTriggerInit()
     }
 
-    saveMain() {
+    /*
+        saveMain(data?: any) {
 
-        this.saveValue(this.getDataObject())
-        this.changeSync()
-    }
-    loadMain() {
+            this.saveValue(data)
+            this.valueSync()
+        }
 
-        this.loadData(this.getDataObject())
-    }
-
-    protected  getPartClassName() {
+        loadMain(data?: any) {
+            this.loadData(data)
+        }
+    */
+    protected getPartClassName() {
         return this.constructor.name
     }
 
     //eggyel lejjebb hasznalatos
-    protected  abstract getDataObject()
+    protected abstract getDataObject()
 
 
-    protected  abstract changeSync()
+    protected abstract valueSync(fieldId_szeru_nullHaNincsIlyesmi?:any)
 
     //kettovel lejjebb hasznalatos
-    protected  abstract saveValueTriggerInit()
+    protected abstract saveValueTriggerInit()
 
 
-  protected  abstract loadData(object: any)
+    abstract loadData(data?: any)
 
-    protected abstract saveValue(object: any)
+    abstract saveValue(data?: any)
 
+    //a vegere mindig oda kell tenni a changeSyncet. azert csinaltam igy , mert a savemainnel az argumentet nem lehet meghatarozni es  kulsos iranybol nem lehet elmenteni
 
 }

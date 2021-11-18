@@ -30,7 +30,7 @@ export class MrkLibrary {
             pos2 = pos4 - e.clientY
             pos3 = e.clientX
             pos4 = e.clientY
-            // set the elementObject's new position:
+            // set the object's new position:
             moveableElement.style.top = moveableElement.offsetTop - pos2 + "px"
             moveableElement.style.left = moveableElement.offsetLeft - pos1 + "px"
 
@@ -75,7 +75,7 @@ export class MrkLibrary {
             const dx = e.clientX - pos.x
             const dy = e.clientY - pos.y
 
-            // Move the elementObject
+            // Move the object
             elementDiv.scrollTop = pos.top - dy
             elementDiv.scrollLeft = pos.left - dx
         }

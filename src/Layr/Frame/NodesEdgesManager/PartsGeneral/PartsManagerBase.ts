@@ -1,4 +1,3 @@
-import {PartBaseRegi} from "./PartBaseRegi.js";
 import {PartBase} from "./PartBase.js";
 
 export abstract class PartsManagerBase {
@@ -8,8 +7,9 @@ export abstract class PartsManagerBase {
         this.parts = new Map<string, PartBase>()
     }
 
-
-
+    getPart(className: string) {
+        return this.parts.get(className)
+    }
 
 
     /*
