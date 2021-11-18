@@ -9,9 +9,6 @@ export class NodePartsManager extends PartsManagerBase{
    parts:NodePartsClassList
     constructor(nodeObjectBase: NodeObjectBase) {
         super()
-       // let part = new NodeNewElementPart(nodeObjectBase)
        this.parts=new NodePartsClassList(nodeObjectBase)
     }
-
-
 }

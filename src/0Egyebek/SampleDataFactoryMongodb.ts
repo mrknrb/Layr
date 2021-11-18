@@ -1,4 +1,4 @@
-import {fieldData} from "../Layr/Background/Data/Doc/Doc/DocData.js";
+import {DocData} from "../Layr/Background/Data/Doc/Doc/DocData.js";
 import {FieldData} from "../Layr/Background/Data/Doc/Field/FieldData.js";
 import {FieldsDefault} from "../Layr/Background/Data/Doc/Field/FieldsDefault.js";
 import {ElementTypes} from "../Layr/Frame/NodesEdgesManager/Node/Element/Adatok/ElementTypes.js";
@@ -66,7 +66,7 @@ export class SampleDataFactoryMongodb {
 
     private static docDataGenerator() {
 
-        let docData :fieldData= new fieldData()
+        let docData :DocData= new DocData()
         docData.fieldsData=[]
 
         let noteDocField = new FieldData()

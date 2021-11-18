@@ -20,10 +20,10 @@ export class TextAreaElement extends ElementBaseClass {
         this.elementResizer = new ElementResizer(this)
         this.elementResizer.resizeActivate(elementStyle.resizeType)
         this.elementInit()
-        this.elementChange_fieldDataUpdate_Init()
-        this.fieldDataChange_ElementUpdate_Init()
+        //this.elementChange_fieldDataUpdate_Init()
+      //  this.fieldDataChange_ElementUpdate_Init()
     }
-
+/*
     elementChange_fieldDataUpdate_Init() {
         let self = this
         this.element.addEventListener("keyup", function (e) {
@@ -35,10 +35,10 @@ export class TextAreaElement extends ElementBaseClass {
     fieldDataChange_ElementUpdate_Init() {
         this.getFieldObject().fieldEvents.onFieldChange.on(() => this.element.value = this.getFieldObject().fieldData.data.content)
     }
-
+*/
     elementsRefresh() {
 
-        this.element.value = this.getFieldObject().fieldData.data?.content
+       // this.element.value = this.getFieldObject().fieldData.data?.content
 
 
     }

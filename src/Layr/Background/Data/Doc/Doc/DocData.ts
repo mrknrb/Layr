@@ -1,7 +1,7 @@
 import {FieldData} from "../Field/FieldData.js";
 import {FieldhezElementStyle} from "../../Connection/NodeStyleData/FieldhezElementStyle.js";
 
-export class fieldData {
+export class DocData {
 
 
     _id: string

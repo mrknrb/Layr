@@ -1,5 +1,6 @@
 import {MainElementNormal} from "../MainElement/MainElementNormal.js";
 import {NodeObjectBase} from "./NodeObjectBase.js";
+import {NodePartsManager} from "./NodeParts/NodePartsManager.js";
 
 export class NodeObjectNormal extends NodeObjectBase {
 
@@ -20,6 +21,7 @@ export class NodeObjectNormal extends NodeObjectBase {
         this.mainElement = new MainElementNormal(this)
 
         this.init()
+        this.nodePartsManager = new NodePartsManager(this)
     }
 
 

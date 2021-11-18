@@ -15,11 +15,12 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
     }
 
     protected partInit() {
+
         this.contextInit()
+
     }
 
     contextInit() {
-        console.log(this)
         let contextMenu = this.masterObject.mainElement.contextMenuManager.contextMenu
         let contextMenuElementNewNode = new ContextMElementSubContextM(contextMenu, "New Element")
         contextMenu.contextMenuElementInsert(contextMenuElementNewNode, "Node")
@@ -48,7 +49,9 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
 
 
     }
+    partRemove() {
 
+    }
     loadData(fieldId: string) {
         this.masterObject.elementsManager.elementLoad(this.getDataObject().fieldObjects.find(fieldObj => fieldObj.fieldData.fieldId == fieldId))
     }
@@ -59,4 +62,6 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
         this.valueSync(fieldObject.fieldData.fieldId)
 
     }
+
+
 }

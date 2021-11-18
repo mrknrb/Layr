@@ -1,4 +1,4 @@
-import {fieldData} from "../Data/Doc/Doc/DocData.js";
+import {DocData} from "../Data/Doc/Doc/DocData.js";
 import {RequestData} from "./RequestCommon/RequestData.js";
 import {RequestType} from "./RequestCommon/RequestType.js";
 
@@ -16,7 +16,7 @@ export class RequestObject {
         this.requestData.requestId = Math.random()
         this.requestData.requestType = requestType
         this.requestData.requestBody = requestBody
-        this.promise = new Promise<fieldData[]>((resolve, reject) => {
+        this.promise = new Promise<DocData[]>((resolve, reject) => {
 
             this.resolve = resolve
             this.reject = reject

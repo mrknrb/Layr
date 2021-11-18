@@ -16,7 +16,10 @@ export class MainElementContextMManager {
 
     constructor(nodeObject: NodeObjectBase) {
         this.nodeObject = nodeObject
-        this.contextMenu = new ContextMenu(false, this.nodeObject.mainElement.element)
+setTimeout(()=>{
+    this.contextMenu = new ContextMenu(false, this.nodeObject.mainElement.element)
+
+},0)
 
        // this.NewNodeContextInit()
     }

@@ -7,8 +7,6 @@ export abstract class PartBase {
         setTimeout(() => {
             this.partInit()
         },50)
-
-
     }
 
     /*
@@ -39,7 +37,7 @@ export abstract class PartBase {
     abstract loadData(data?: any)
 
     abstract saveValue(data?: any)
-
+abstract partRemove()
     //a vegere mindig oda kell tenni a changeSyncet. azert csinaltam igy , mert a savemainnel az argumentet nem lehet meghatarozni es  kulsos iranybol nem lehet elmenteni
 
 }

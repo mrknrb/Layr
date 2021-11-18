@@ -1,6 +1,6 @@
 import {DocEvents} from "./DocEvents.js";
 import {FieldObject} from "../Field/FieldObject.js";
-import {fieldData} from "./DocData.js";
+import {DocData} from "./DocData.js";
 import {FieldData} from "../Field/FieldData.js";
 import {ElementTypes} from "../../../../Frame/NodesEdgesManager/Node/Element/Adatok/ElementTypes.js";
 import {layrBackgroundB} from "../../../LayrBackground.js";
@@ -8,11 +8,11 @@ import {LayrFind} from "../../../../Global/LayrFind.js";
 import {SyncObjectNode_Doc} from "./SyncObjectNode_Doc.js";
 
 export class DocObject {
-    docData: fieldData
+    docData: DocData
     fieldObjects: FieldObject[]
     docEvents: DocEvents
     syncObjectNode_Doc:SyncObjectNode_Doc
-    constructor(docData: fieldData) {
+    constructor(docData: DocData) {
         let self = this
         this.docData = docData
         this.docEvents = new DocEvents()

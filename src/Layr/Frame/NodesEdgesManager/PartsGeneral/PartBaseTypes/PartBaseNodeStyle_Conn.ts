@@ -3,25 +3,39 @@ import {ElementBaseClass} from "../../Node/Element/ElementBaseClass.js";
 import {LayrFind} from "../../../../Global/LayrFind.js";
 import {FieldData} from "../../../../Background/Data/Doc/Field/FieldData.js";
 import {FieldObject} from "../../../../Background/Data/Doc/Field/FieldObject.js";
+import {NodeObjectBase} from "../../Node/NodeObject/NodeObjectBase.js";
 
 export abstract class PartBaseNodeStyle_Conn extends PartBase {
-    protected constructor(elementObject: ElementBaseClass) {
-        super(elementObject);
+
+
+    protected  masterObject: NodeObjectBase
+    protected constructor(masterObject: NodeObjectBase) {
+        super();
+        this.masterObject=masterObject
     }
 
     getDataObject() {
-        return LayrFind.connection(this.masterObject.nodeObject.docId)
+        return LayrFind.connection(this.masterObject.nodeId)
 
     }
 
 
-    valueSync() {
-        let partSyncMessageObject = new SyncDataObject(this.getPartClassName(), null)
-        this.getDataObject().nodeStyleObject.
+
+    protected  valueSync(loadData?:any) {
+
+        this. getDataObject().syncObjectNode_Doc.partSyncStart({partClassName:this.getPartClassName(),loadData:loadData})
+
+
     }
 
 
-    protected abstract saveValue(fieldObject: FieldObject)
 
-    protected abstract loadData(fieldObject: FieldObject)
+
+
+
+
+    abstract saveValue(data?:any)
+
+    abstract loadData(data?:any)
+
 }

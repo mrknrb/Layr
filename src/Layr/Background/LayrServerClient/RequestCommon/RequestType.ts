@@ -9,6 +9,12 @@ export enum RequestType {
 
     insertDocs_AsParentDocChildren = "insertDocs_AsParentDocChildren",
 
-    GET_CONNECTIONS = "GET_CONNECTIONS",
-    DELETE_CONNECTIONS = "DELETE_CONNECTIONS"
+
+    getCons = "getCons",
+    deleteCons = "deleteCons",
+    insertCons = "insertCons",
+    updateCons = "updateCons",
+
+
+
 }

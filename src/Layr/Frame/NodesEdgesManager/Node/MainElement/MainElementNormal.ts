@@ -16,7 +16,6 @@ export class MainElementNormal extends MainElementBase {
     layoutApply() {
         this.layoutClean()
         this.layoutDefault()
-        MrkLibrary.dragElement(this.elementOptionsButton, this.element, false)
         let s = this.element.style
 
         s.resize = "horizontal"

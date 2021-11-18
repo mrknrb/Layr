@@ -1,14 +1,14 @@
 import {ConnectionData} from "../Data/Connection/ConnectionData.js";
-import {fieldData} from "../Data/Doc/Doc/DocData.js";
+import {DocData} from "../Data/Doc/Doc/DocData.js";
 
 export class DocsConnsData {
 
-    constructor(docsData: fieldData[], connectionsData: ConnectionData[]) {
+    constructor(docsData: DocData[], connectionsData: ConnectionData[]) {
         this.docsData = docsData
         this.connectionsData = connectionsData
 
     }
 
-    docsData: fieldData[]
+    docsData: DocData[]
     connectionsData: ConnectionData[]
 }

@@ -14,7 +14,7 @@ export class TextAreaContentPart extends PartBaseElement_Field {
     }
 
     protected  partInit() {
-
+        this.loadData()
         this.masterObject.element.addEventListener("keyup", () => {
 
             this.saveValue()
@@ -33,6 +33,9 @@ export class TextAreaContentPart extends PartBaseElement_Field {
         }
         this.getDataObject().fieldData.data.content = this.masterObject.element.value
         this.valueSync()
+    }
+
+    partRemove() {
     }
 
 

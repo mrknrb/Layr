@@ -56,13 +56,13 @@ export class FieldObject {
 
 /*
 //teszt alternativ megoldas a masik helyett------------------------------------
-async tesztFieldGetAndChange(part: PartBase, firstFunction: (fieldData: FieldData, secondFunction: () => any) => any) {
+async tesztFieldGetAndChange(part: PartBase, firstFunction: (DocData: FieldData, secondFunction: () => any) => any) {
     let partSyncMessageObject = new SyncDataObject(part.constructor.name, part.object.fieldId)
     let secondFunction = async () => {
         this.fieldDataMongoUpdate()
         this.elementPartSyncWithOthers(partSyncMessageObject)
     }
-    firstFunction(this.fieldData, secondFunction)
+    firstFunction(this.DocData, secondFunction)
 }
 
 //------------------------------------------------------------------------

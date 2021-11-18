@@ -13,11 +13,9 @@ export abstract class MainElementBase {
         this.nodeObject = nodeObject
         this.elementInit()
         this.elementOptionsButtonInit()
-        setTimeout(() => {
-            this.contextMenuManager = new MainElementContextMManager(this.nodeObject)
 
+        this.contextMenuManager = new MainElementContextMManager(this.nodeObject)
 
-        }, 300)
 
     }
 

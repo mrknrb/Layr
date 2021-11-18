@@ -1,8 +1,10 @@
 import {FieldData} from "../Background/Data/Doc/Field/FieldData.js";
-import {fieldData} from "../Background/Data/Doc/Doc/DocData.js";
+import {DocData} from "../Background/Data/Doc/Doc/DocData.js";
+import {TypedEvent} from "../../0Libraries/TypedEvents.js";
 
 export class MrkLibrary {
     static dragElement(draggingElement, moveableElement, kikapcsolas) {
+        let megmozdultEvent= new TypedEvent()
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0
         if (kikapcsolas) {
             draggingElement.onmousedown = null
@@ -41,10 +43,14 @@ export class MrkLibrary {
         }
 
         function closeDragElement() {
+
             // stop moving when mouse button is released:
             document.onmouseup = null
             document.onmousemove = null
+            megmozdultEvent.emit("")
         }
+
+        return megmozdultEvent
     }
 
     static grabInit(elementDiv) {
@@ -104,7 +110,7 @@ export class MrkLibrary {
         return template.content.firstChild;
     }
 
-    static docFieldKereso(docFieldName: string, docData: fieldData) {
+    static docFieldKereso(docFieldName: string, docData: DocData) {
         let docFieldKeresett = new FieldData()
         docData.fieldsData.forEach(function (docField) {
             if (docField.fieldName == docFieldName) {
