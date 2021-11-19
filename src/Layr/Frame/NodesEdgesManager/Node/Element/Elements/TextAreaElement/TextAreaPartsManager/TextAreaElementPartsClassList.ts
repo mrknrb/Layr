@@ -1,5 +1,5 @@
-import {TextAreaContentPart} from "./TextAreaContentPart.js";
-import {TextAreaElement} from "../../TextAreaElement.js";
+import {TextAreaContentPart} from "./TextAreaParts/TextAreaContentPart.js";
+import {TextAreaElement} from "../TextAreaElement.js";
 
 export class TextAreaElementPartsClassList {
     TextAreaContentPart: TextAreaContentPart

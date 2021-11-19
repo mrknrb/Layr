@@ -1,6 +1,6 @@
-import {PartBaseElementStyle_Conn} from "../../../PartsGeneral/PartBaseTypes/PartBaseElementStyle_Conn.js";
-import {NodeObjectNormal} from "../NodeObjectNormal.js";
-import {MrkLibrary} from "../../../../../Global/MrkLibrary.js";
+import {PartBaseElementStyle_Conn} from "../../../../PartsGeneral/PartBaseTypes/PartBaseElementStyle_Conn.js";
+import {NodeObjectNormal} from "../../NodeObjectNormal.js";
+import {MrkLibrary} from "../../../../../../Global/MrkLibrary.js";
 
 export class NodeSizeChangePart extends PartBaseElementStyle_Conn {
     masterObject: NodeObjectNormal
@@ -9,7 +9,7 @@ export class NodeSizeChangePart extends PartBaseElementStyle_Conn {
         super(masterObject);
     }
 
-    protected partInit() {
+    activate() {
         this.loadData(true)
         // @ts-ignore
         var ro = new ResizeObserver(entries => {
@@ -43,7 +43,7 @@ export class NodeSizeChangePart extends PartBaseElementStyle_Conn {
 
     }
 
-    partRemove() {
+    deactivate() {
 
 
     }

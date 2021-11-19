@@ -5,7 +5,7 @@ import {ContextMElementInputText} from "../../../ContextMenu/ContextMenuElements
 import {ContextMElementDropDownStatic} from "../../../ContextMenu/ContextMenuElements/ContextMElementDropDownStatic.js";
 import {ElementTypes} from "../Element/Adatok/ElementTypes.js";
 import {ContextMElementClickable} from "../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
-import {NodeNewElementPart} from "../NodeObject/NodeParts/NodeNewElementPart.js";
+import {NodeNewElementPart} from "../NodeObject/NodeParts/Parts/NodeNewElementPart.js";
 import {NodePartsClassList} from "../NodeObject/NodeParts/NodePartsClassList.js";
 
 export class MainElementContextMManager {

@@ -5,21 +5,11 @@ export abstract class PartBase {
 
     protected constructor() {
         setTimeout(() => {
-            this.partInit()
-        },50)
+            this.activate()
+        }, 50)
     }
 
-    /*
-        saveMain(data?: any) {
 
-            this.saveValue(data)
-            this.valueSync()
-        }
-
-        loadMain(data?: any) {
-            this.loadData(data)
-        }
-    */
     protected getPartClassName() {
         return this.constructor.name
     }
@@ -31,13 +21,15 @@ export abstract class PartBase {
     protected abstract valueSync(fieldId_szeru_nullHaNincsIlyesmi?: any)
 
     //kettovel lejjebb hasznalatos
-    protected abstract partInit()
-
+    abstract activate()
+    abstract deactivate()
 
     abstract loadData(data?: any)
 
     abstract saveValue(data?: any)
-abstract partRemove()
+
+
+
     //a vegere mindig oda kell tenni a changeSyncet. azert csinaltam igy , mert a savemainnel az argumentet nem lehet meghatarozni es  kulsos iranybol nem lehet elmenteni
 
 }

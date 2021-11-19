@@ -1,6 +1,6 @@
 import {TextAreaElement} from "../TextAreaElement.js";
 import {PartsManagerBase} from "../../../../../PartsGeneral/PartsManagerBase.js";
-import {TextAreaElementPartsClassList} from "./TextAreaParts/TextAreaElementPartsClassList.js";
+import {TextAreaElementPartsClassList} from "./TextAreaElementPartsClassList.js";
 
 
 export class TextAreaPartsManager extends PartsManagerBase {

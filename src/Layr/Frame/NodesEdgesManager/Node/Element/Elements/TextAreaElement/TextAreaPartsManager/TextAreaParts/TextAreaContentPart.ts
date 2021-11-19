@@ -13,7 +13,7 @@ export class TextAreaContentPart extends PartBaseElement_Field {
         super(elementObject);
     }
 
-    protected  partInit() {
+    activate() {
         this.loadData()
         this.masterObject.element.addEventListener("keyup", () => {
 
@@ -35,7 +35,7 @@ export class TextAreaContentPart extends PartBaseElement_Field {
         this.valueSync()
     }
 
-    partRemove() {
+    deactivate() {
     }
 
 

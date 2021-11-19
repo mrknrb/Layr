@@ -1,6 +1,6 @@
-import {PartBaseElementStyle_Conn} from "../../../PartsGeneral/PartBaseTypes/PartBaseElementStyle_Conn.js";
-import {NodeObjectNormal} from "../NodeObjectNormal.js";
-import {MrkLibrary} from "../../../../../Global/MrkLibrary.js";
+import {PartBaseElementStyle_Conn} from "../../../../PartsGeneral/PartBaseTypes/PartBaseElementStyle_Conn.js";
+import {NodeObjectNormal} from "../../NodeObjectNormal.js";
+import {MrkLibrary} from "../../../../../../Global/MrkLibrary.js";
 
 export class NodeAbsolutePositionChangePart extends PartBaseElementStyle_Conn {
     masterObject: NodeObjectNormal
@@ -9,7 +9,7 @@ export class NodeAbsolutePositionChangePart extends PartBaseElementStyle_Conn {
         super(masterObject);
     }
 
-    protected partInit() {
+    activate() {
         this.loadData()
         let megmozdultEvent = MrkLibrary.dragElement(this.masterObject.mainElement.elementOptionsButton, this.masterObject.mainElement.element, false)
         megmozdultEvent.on(() => {
@@ -38,7 +38,7 @@ export class NodeAbsolutePositionChangePart extends PartBaseElementStyle_Conn {
 
     }
 
-    partRemove() {
+    deactivate() {
 
         MrkLibrary.dragElement(this.masterObject.mainElement.elementOptionsButton, this.masterObject.mainElement.element, true)
 

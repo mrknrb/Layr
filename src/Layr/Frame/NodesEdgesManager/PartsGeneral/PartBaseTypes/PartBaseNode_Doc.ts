@@ -20,8 +20,6 @@ export abstract class PartBaseNode_Doc extends PartBase{
     protected  valueSync(loadData?:any) {
 
         this. getDataObject().syncObjectNode_Doc.partSyncStart({partClassName:this.getPartClassName(),loadData:loadData})
-
-
     }
 
 

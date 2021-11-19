@@ -3,7 +3,7 @@ import {ElementTypesClassFinder} from "./Adatok/ElementTypesClassFinder.js";
 import {LayrFind} from "../../../../Global/LayrFind.js";
 import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
 import {FieldObject} from "../../../../Background/Data/Doc/Field/FieldObject.js";
-import {NodeNewElementPart} from "../NodeObject/NodeParts/NodeNewElementPart.js";
+import {NodeNewElementPart} from "../NodeObject/NodeParts/Parts/NodeNewElementPart.js";
 import {ElementTypes} from "./Adatok/ElementTypes.js";
 
 export class ElementsManager {

@@ -1,11 +1,11 @@
-import {PartBaseNode_Doc} from "../../../PartsGeneral/PartBaseTypes/PartBaseNode_Doc.js";
-import {NodeObjectBase} from "../NodeObjectBase.js";
-import {ElementTypes} from "../../Element/Adatok/ElementTypes.js";
-import {ContextMElementSubContextM} from "../../../../ContextMenu/ContextMenuElements/ContextMElementSubContextM.js";
-import {ContextMenu} from "../../../../ContextMenu/ContextMenu.js";
-import {ContextMElementInputText} from "../../../../ContextMenu/ContextMenuElements/ContextMElementInputText.js";
-import {ContextMElementDropDownStatic} from "../../../../ContextMenu/ContextMenuElements/ContextMElementDropDownStatic.js";
-import {ContextMElementClickable} from "../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
+import {PartBaseNode_Doc} from "../../../../PartsGeneral/PartBaseTypes/PartBaseNode_Doc.js";
+import {NodeObjectBase} from "../../NodeObjectBase.js";
+import {ElementTypes} from "../../../Element/Adatok/ElementTypes.js";
+import {ContextMElementSubContextM} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementSubContextM.js";
+import {ContextMenu} from "../../../../../ContextMenu/ContextMenu.js";
+import {ContextMElementInputText} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementInputText.js";
+import {ContextMElementDropDownStatic} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementDropDownStatic.js";
+import {ContextMElementClickable} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 
 export class NodeNewElementPart extends PartBaseNode_Doc {
     masterObject: NodeObjectBase
@@ -14,7 +14,7 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
         super(masterObject);
     }
 
-    protected partInit() {
+    activate() {
 
         this.contextInit()
 
@@ -49,7 +49,7 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
 
 
     }
-    partRemove() {
+    deactivate() {
 
     }
     loadData(fieldId: string) {
