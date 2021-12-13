@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+
+
+    .div-table {
+        display: table;
+        width: auto;
+        background-color: #eee;
+        border: 1px solid #666666;
+        border-spacing: 2px;
+
+    }
+
+    .div-table-row {
+        display: table-row;
+        width: auto;
+        clear: both;
+    }
+
+    .div-table-col {
+        float: left; /* fix for  buggy browsers */
+        display: table-column;
+        width: 100px;
+        background-color: #ccc;
+    }
+
+    #tt {
+        background-color: grey;
+        width: 40px;
+        height: 20px;
+        transition: background-color ease-in-out 200ms;
+        border-radius: 13px;
+        border: 3px #2d2d2d;
+        border-style: solid;
+    }
+
+    #tt:hover {
+        background-color: #5e5e5e
+    }
+
+    #gg {
+        border-radius: 10px;
+    }
+
+
+</style>
+
+
+<div id="tt">
+    <div id="gg" style="width: 20px;height: 20px;background-color: rgba(38,38,38,0.71)">
+
+
+    </div>
+
+
+</div>
+
+<script>
+    let a = false
+    document.querySelector("#tt").style.transition = "background-color ease-in-out 200ms"
+
+    document.querySelector("#gg").style.transition = "margin-left ease-in-out 200ms"
+    document.querySelector("#tt").addEventListener("click", evt => {
+        if (a) {
+            document.querySelector("#tt").style.backgroundColor = ""
+            document.querySelector("#gg").style.marginLeft = "0px"
+            //document.querySelector("#gg").style.marginRight = "auto"
+            a = false
+        } else {
+            document.querySelector("#tt").style.backgroundColor = "green"
+            // document.querySelector("#gg").style.marginRight = "0px"
+            document.querySelector("#gg").style.marginLeft = "20px"
+            a = true
+        }
+    })
+
+
+</script>
+
+
+<form id="form1">
+    <div class="div-table">
+        <div class="div-table-row">
+            <div class="div-table-col" align="center">Customer ID</div>
+            <div class="div-table-col">Customer Name</div>
+            <div class="div-table-col">Customer Address</div>
+        </div>
+        <div class="div-table-row">
+            <div class="div-table-col">001</div>
+            <div class="div-table-col">002</div>
+            <div class="div-table-col">003</div>
+        </div>
+        <div class="div-table-row">
+            <div class="div-table-col">xxx</div>
+            <div class="div-table-col">yyy</div>
+            <div class="div-table-col">www</div>
+        </div>
+        <div class="div-table-row">
+            <div class="div-table-col">ttt</div>
+            <div class="div-table-col">uuu</div>
+            <div class="div-table-col">kkk</div>
+        </div>
+
+    </div>
+</form>
+
+
+</body>
+</html>
