@@ -16,17 +16,25 @@ const loadedSelectorDataNames = {
 }
 const loadedSelectorData: SMPSelectorDataStatic =
     {
-        defaultState: loadedSelectorDataNames.states.NotLoaded,
+        defaultState: loadedSelectorDataNames.states.Loaded,
         selectorName: loadedSelectorDataNames.selector,
         defaultSelectorActive: true,
         states: [
             {
                 stateName: loadedSelectorDataNames.states.Loaded,
                 masterObjectParts: [
-                    {
-                        searchType: SMPSearchType.ChildNodePart,
-                        partName: NodeLayoutAbsolutePart.partName
-                    }
+                    // {
+                    //     searchType: SMPSearchType.ChildNodePart,
+                    //     partName: NodeLayoutAbsolutePart.partName
+                    // }
+                ]
+            }, {
+                stateName: loadedSelectorDataNames.states.NotLoaded,
+                masterObjectParts: [
+                    // {
+                    //     searchType: SMPSearchType.ChildNodePart,
+                    //     partName: NodeLayoutAbsolutePart.partName
+                    // }
                 ]
             }
         ]
@@ -57,18 +65,18 @@ const layoutSelectorData: SMPSelectorDataStatic =
             {
                 stateName: layoutSelectorDataNames.states.Absolute,
                 masterObjectParts: [
-                    {
-                        searchType: SMPSearchType.ChildNodePart,
-                        partName: NodeLayoutAbsolutePart.partName
-                    }
+                    // {
+                    //     searchType: SMPSearchType.ChildNodePart,
+                    //     partName: NodeLayoutAbsolutePart.partName
+                    // }
                 ]
             }, {
                 stateName: layoutSelectorDataNames.states.List,
                 masterObjectParts: [
-                    {
-                        searchType: SMPSearchType.ChildNodePart,
-                        partName: NodeLayoutListPart.partName
-                    }
+                    // {
+                    //     searchType: SMPSearchType.ChildNodePart,
+                    //     partName: NodeLayoutListPart.partName
+                    // }
                 ]
             }
 

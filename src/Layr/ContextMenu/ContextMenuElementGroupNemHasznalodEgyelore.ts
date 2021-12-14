@@ -1,6 +1,6 @@
 import {ContextMenuElementBase} from "./ContextMenuElementBase.js";
 
-export class ContextMenuElementGroup {
+export class ContextMenuElementGroupNemHasznalodEgyelore {
     groupName: string
     groupElement: HTMLDivElement
     private groupNameText: HTMLElement
@@ -20,7 +20,6 @@ export class ContextMenuElementGroup {
         this.groupElement.style.height = "fit-content"
         this.groupElement.style.borderBottom = "solid"
         this.groupElement.style.borderWidth = "3px"
-        this.groupElement.className="groupElement"
         if (this.groupName != "withoutGroup") {
 
             this.groupNameText = document.createElement("i")

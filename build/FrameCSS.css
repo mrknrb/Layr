@@ -16,10 +16,7 @@ textarea, select {
 }
 
 .LayrElement {
-
     margin-bottom: 2px;
-
-
 }
 
 .LayrElement:last-child {
@@ -43,5 +40,27 @@ textarea, select {
 }
 
 .ContextMenuElementHoverHighlight:hover {
-    background-color: #d0d0d0;
+    background-color: #a1a1a1;
+}
+
+.ContextMenuElement {
+    width: 100%;
+    height: fit-content;
+}
+
+.ContextMenuLayr {
+    background-color: rgba(225, 225, 225, 0.6);
+    width: 20ch;
+    height: fit-content;
+    z-index: 10001;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+
+.ContextMenuLayrFloating {
+    background-color: rgb(225, 225, 225);
+    border: solid #2d2d2d 1px;
+    min-height: 2ch;
+
 }

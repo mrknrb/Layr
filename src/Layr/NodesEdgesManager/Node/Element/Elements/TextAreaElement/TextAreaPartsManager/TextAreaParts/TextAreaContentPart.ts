@@ -31,5 +31,6 @@ export class TextAreaContentPart extends PartBaseElement_Field {
     }
 
     deactivate() {
+        this.masterObject.element.value=""
     }
 }

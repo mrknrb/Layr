@@ -1,6 +1,7 @@
 import {ContextMenuElementBase} from "../ContextMenuElementBase.js";
 import {ContextMenu} from "../ContextMenu.js";
 import {TypedEvent} from "../../../0Libraries/TypedEvents.js";
+import {LayrCSSClassesEnum} from "../../../0Egyebek/LayrCSSClassesEnum.js";
 
 export class ContextMElementDropDownStatic extends ContextMenuElementBase {
 
@@ -20,14 +21,8 @@ export class ContextMElementDropDownStatic extends ContextMenuElementBase {
     elementInitClickable(optionsArray: string[]) {
 
         this.element = document.createElement("div")
-        this.element.style.borderTop = "solid"
-        this.element.style.borderWidth = "1px"
-        this.element.style.borderColor = "#6c6c6c"
-        this.element.className = "ContextMenuElementHoverHighlight"
+        this.element.classList.add(LayrCSSClassesEnum.ContextMenuElement)
 
-
-        this.element.style.width = "100%"
-        this.element.style.height = "fit-content"
 
         let textElement = document.createElement("i")
         textElement.style.userSelect = "none";

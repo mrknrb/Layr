@@ -1,4 +1,5 @@
 import {ContextMenuElementBase} from "../ContextMenuElementBase.js";
+import {LayrCSSClassesEnum} from "../../../0Egyebek/LayrCSSClassesEnum.js";
 
 export class ContextMElementSubContextMButton extends ContextMenuElementBase {
 
@@ -13,15 +14,13 @@ export class ContextMElementSubContextMButton extends ContextMenuElementBase {
     elementInitSubContextMenu() {
 
         this.element = document.createElement("div")
-        this.element.style.borderTop = "solid"
-        this.element.style.borderWidth = "1px"
-        this.element.style.borderColor = "#6c6c6c"
-        this.element.className = "ContextMenuElementHoverHighlight"
 
-        this.element.style.width = "100%"
-        this.element.style.height = "fit-content"
+        this.element.classList.add(LayrCSSClassesEnum.ContextMenuElementHoverHighlight)
+        this.element.classList.add(LayrCSSClassesEnum.ContextMenuElement)
+
+
         let textElement = document.createElement("b")
-        textElement.style.fontSize="1ch"
+       // textElement.style.fontSize = "1ch"
         textElement.style.userSelect = "none";
         textElement.style.cursor = "default"
         textElement.style.margin = "2px"

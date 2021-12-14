@@ -1,16 +1,16 @@
 import {ContextMenuElementBase} from "./ContextMenuElementBase.js";
-import {ContextMenuElementGroup} from "./ContextMenuElementGroup.js";
+import {TypedEvent} from "../../0Libraries/TypedEvents.js";
 
 export class ContextMenu extends ContextMenuElementBase {
     htmlElementController: HTMLElement
     contextMenuElements: Map<string, ContextMenuElementBase>
-   // contextMenuElementGroups: Map<string, ContextMenuElementGroup>
+    // contextMenuElementGroups: Map<string, ContextMenuElementGroupNemHasznalodEgyelore>
     private mouseOverNow: boolean
 
     constructor() {
         super();
         this.contextMenuElements = new Map<string, ContextMenuElementBase>()
-       // this.contextMenuElementGroups = new Map<string, ContextMenuElementGroup>()
+        // this.contextMenuElementGroups = new Map<string, ContextMenuElementGroupNemHasznalodEgyelore>()
         this.contextMenuInit()
         this.mouseOverNowInit()
     }
@@ -18,52 +18,47 @@ export class ContextMenu extends ContextMenuElementBase {
     contextMenuInit() {
 
         this.element = document.createElement("div")
-        this.element.className = "ContextMenuLayr"
-        let style = this.element.style
+        this.element.classList.add("ContextMenuLayr")
+        this.element.classList.add("ContextMenuElement")
 
-        style.backgroundColor = "#e1e1e1"
-        style.border = "solid"
-        style.borderWidth = "1px"
-        style.width = "120px"
-        style.height = "fit-content"
-        style.minHeight = "20px"
 
-        style.zIndex = "10001"
-        style.overflowX = "hidden"
-        style.overflowY = "auto"
-    }
-/*
-    GetOrSetContextMenuElementGroup(groupName?: string) {
-        let groupName2
-        if (!groupName) {
-            groupName2 = "withoutGroup"
-        } else {
-            groupName2 = groupName
-        }
-        let group = this.contextMenuElementGroups.get(groupName2)
-        if (!group) {
-            group = new ContextMenuElementGroup(groupName2)
-            this.contextMenuMainElement.appendChild(group.groupElement)
-            this.contextMenuElementGroups.set(groupName2, group)
-        }
-        return group
     }
 
-    private ContextMenuElementGroupsDeleteIfEmpty() {
-
-        this.contextMenuElementGroups.forEach((group, key) => {
-
-            if (group.isGroupElementEmpty()) {
-                group.deleteGroupElement()
-                this.contextMenuElementGroups.delete(key)
+    /*
+        GetOrSetContextMenuElementGroup(groupName?: string) {
+            let groupName2
+            if (!groupName) {
+                groupName2 = "withoutGroup"
+            } else {
+                groupName2 = groupName
             }
-        })
-    }
-*/
+            let group = this.contextMenuElementGroups.get(groupName2)
+            if (!group) {
+                group = new ContextMenuElementGroupNemHasznalodEgyelore(groupName2)
+                this.contextMenuMainElement.appendChild(group.groupElement)
+                this.contextMenuElementGroups.set(groupName2, group)
+            }
+            return group
+        }
+
+        private ContextMenuElementGroupsDeleteIfEmpty() {
+
+            this.contextMenuElementGroups.forEach((group, key) => {
+
+                if (group.isGroupElementEmpty()) {
+                    group.deleteGroupElement()
+                    this.contextMenuElementGroups.delete(key)
+                }
+            })
+        }
+    */
     public contextMenuAppearInCoordinates(coordinateX: number, coordinateY: number) {
 
         let style = this.element.style
         style.display = "block"
+
+
+
         style.left = coordinateX + "px"
         style.top = coordinateY + "px"
         let tullogasJobb = window.innerWidth - (coordinateX + this.element.getBoundingClientRect().width)
@@ -95,25 +90,24 @@ export class ContextMenu extends ContextMenuElementBase {
     contextMenuActivate(coordinateX: number, coordinateY: number) {
         this.contextMenuAppearInCoordinates(coordinateX, coordinateY)
 
-        var handler = (event) => {
-
-            if (!event.path.find(element => element.className == "ContextMenuLayr")) {
-                this.contextMenuInVisible()
-            }
+        // @ts-ignore
+        let backgroundClickEvent: TypedEvent<any> = document.backgroundClickEvent
+        let handler = () => {
+            this.contextMenuInVisible()
+            //yx majd nezd meg lehet teljesitmenyigenyes
+            //  backgroundClickEvent.off(handler)
         }
-        document.body.addEventListener('click', handler, true);
-        document.body.addEventListener('contextmenu', handler, true);
-
+        backgroundClickEvent.on(handler)
     }
 
     contextMenuElementInsert(contextMenuElement: ContextMenuElementBase) {
         //yx a groupos reszt egyelore kiszedem
-   // , contextMenuElementGroupName?: string
+        // , contextMenuElementGroupName?: string
         /*
         let group = this.GetOrSetContextMenuElementGroup(contextMenuElementGroupName)
         group.newElement(contextMenuElement)
         */
-      this.element.appendChild( contextMenuElement.element)
+        this.element.appendChild(contextMenuElement.element)
 
         contextMenuElement.parentContextMenu = this
         this.contextMenuElements.set(contextMenuElement.contextMenuElementId, contextMenuElement)
@@ -123,7 +117,7 @@ export class ContextMenu extends ContextMenuElementBase {
     contextMenuElementRemove(contextMenuElementId: string) {
         let contextMenuElement = this.contextMenuElements.get(contextMenuElementId)
         contextMenuElement.element.remove()
-       // this.ContextMenuElementGroupsDeleteIfEmpty()
+        // this.ContextMenuElementGroupsDeleteIfEmpty()
         this.contextMenuElements.delete(contextMenuElementId)
     }
 
@@ -143,12 +137,14 @@ export class ContextMenu extends ContextMenuElementBase {
     }
 
 
-     contextMenuHoverInit(htmlElementController:HTMLElement) {
-        this.htmlElementController=htmlElementController
+    contextMenuHoverInit(htmlElementController: HTMLElement) {
+
+        this.element.classList.add("ContextMenuLayrFloating")
+        this.htmlElementController = htmlElementController
         this.element.style.position = "fixed"
         // htmlElementController.appendChild(this.element)
-       document.body.appendChild(this.element)
-         this.contextMenuInVisible()
+        document.body.appendChild(this.element)
+        this.contextMenuInVisible()
         let self = this
         setTimeout(() => {
             self.htmlElementController.addEventListener("mouseenter", (event) => {
@@ -158,25 +154,21 @@ export class ContextMenu extends ContextMenuElementBase {
                 self.contextMenuActivate(coordinateX, coordinateY)
             })
             self.htmlElementController.addEventListener("mouseleave", (event) => {
-                setTimeout(()=>{
+                setTimeout(() => {
                     if (!self.mouseOverNow) self.contextMenuInVisible()
-                },30)
+                }, 30)
             })
-            self.element.addEventListener("mouseleave", (event) => {
-                   self.contextMenuInVisible()
-            })
-
-
         }, 0);
     }
 
-     contextMenuRightClickInit(htmlElementController:HTMLElement) {
+    contextMenuRightClickInit(htmlElementController: HTMLElement) {
 
-         this.htmlElementController=htmlElementController
+        this.element.classList.add("ContextMenuLayrFloating")
+        this.htmlElementController = htmlElementController
         this.element.style.position = "fixed"
-         this.contextMenuInVisible()
+        this.contextMenuInVisible()
         // htmlElementController.appendChild(this.element)
-          document.body.appendChild(this.element)
+        document.body.appendChild(this.element)
         let self = this
         setTimeout(() => {
             self.htmlElementController.addEventListener("contextmenu", (event) => {
@@ -188,6 +180,7 @@ export class ContextMenu extends ContextMenuElementBase {
             })
         }, 0);
     }
+
     /*
       contextMenuInsertedInit() {
          // this.htmlElementController.appendChild(this.contextMenuMainElement)

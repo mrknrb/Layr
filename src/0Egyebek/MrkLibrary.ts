@@ -152,6 +152,33 @@ export class MrkLibrary {
         }
     }
 
+  static  contextMenuInvisibleIfBackGroundClickInit(){
+        let backgroundClickEvent= new TypedEvent()
+
+        // @ts-ignore
+      document.backgroundClickEvent=backgroundClickEvent
+        var handler = (event) => {
+            if (!event.path.find((element: any) => {
+                if (element == document || element == window) {
+
+                } else {
+                    return  element.classList.contains("ContextMenuLayr")
+                }
+            })) {
+
+                backgroundClickEvent.emit(true)
+            }
+        }
+        document.body.addEventListener('click', handler, true);
+        document.body.addEventListener('contextmenu', handler, true);
+    }
+
+
+
+
+
+
+
 
 }
 

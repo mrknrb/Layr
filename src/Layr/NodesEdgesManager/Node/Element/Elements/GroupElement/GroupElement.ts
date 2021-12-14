@@ -5,6 +5,9 @@ import {MrkLibrary} from "../../../../../../0Egyebek/MrkLibrary.js";
 import {SMPManager} from "../../../../../SMP/SMPLayr/SMPManager.js";
 import {GroupElementStaticData} from "./GroupElementSMPManager/GroupElementStaticData.js";
 import {GroupElementPartsClassArray} from "./GroupElementSMPManager/GroupElementPartsClassArray.js";
+import {SMPSavePart_ElementType} from "../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_ElementType.js";
+import {TextAreaElementPartsClassArray} from "../TextAreaElement/TextAreaPartsManager/TextAreaElementPartsClassArray.js";
+import {TextAreaStaticData} from "../TextAreaElement/TextAreaPartsManager/TextAreaStaticData.js";
 
 
 export class GroupElement extends ElementBaseClass {
@@ -40,6 +43,7 @@ export class GroupElement extends ElementBaseClass {
 
     private smpManagerInit() {
         this.smpManager = new SMPManager({
+            smpSavePart: SMPSavePart_ElementType,
             masterObject: this,
             PartsClassArray: GroupElementPartsClassArray,
             SMPStaticData: GroupElementStaticData
