@@ -8,7 +8,7 @@ import {SMPSavePart_NodeType} from "../../../../SMP/SMPLayr/SMPSavePart_Types/SM
 export const NodePartsClassList =
     [
         SMPSavePart_NodeType,
-      // NodeNewElementPart
+      NodeNewElementPart
       //  NodeLayoutAbsolutePart,
        // NodeSizeChangePart
 

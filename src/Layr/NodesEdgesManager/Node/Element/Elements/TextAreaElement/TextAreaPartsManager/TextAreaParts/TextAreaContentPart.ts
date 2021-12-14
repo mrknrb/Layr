@@ -21,7 +21,6 @@ export class TextAreaContentPart extends PartBaseElement_Field {
     }
 
     loadData() {
-        console.log(this.getPartData())
         this.masterObject.element.value = this.getPartData().data
     }
 
@@ -33,6 +32,4 @@ export class TextAreaContentPart extends PartBaseElement_Field {
 
     deactivate() {
     }
-
-
 }

@@ -24,7 +24,8 @@ export abstract class ElementBaseClass implements SMPMasterObjectInterface {
         this.elementType = elementType
         this.nodeObject = nodeObject
         this.fieldId = fieldId
-        this.contextMenu = new ContextMenu( this.element, ContextMenuTypes.rightClickMenu)
+        this.contextMenu = new ContextMenu( )
+        this.contextMenu.contextMenuRightClickInit(this.element)
     }
 
     public abstract deleteElement()

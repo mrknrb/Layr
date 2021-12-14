@@ -1,7 +1,10 @@
+import {NodeObjectBase} from "../../NodesEdgesManager/Node/NodeObject/NodeObjectBase.js";
+import {ContextMenu} from "../../ContextMenu/ContextMenu.js";
+
 export abstract class PartBase {
 
     static partName: string
-
+    partContextMenu: ContextMenu
     getPartName() {
 
         // @ts-ignore
@@ -47,8 +50,9 @@ export abstract class PartBase {
     }
 
     protected saveValueDefault(saveValue: any) {
-        let dataObject = this.getPartData()
 
+
+        let dataObject= this.getPartData()
         /*
         if (!dataObject[this.selectorName]) dataObject[this.selectorName] = {}
 

@@ -1,11 +1,11 @@
 import {PartBaseElement_Field} from "../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
 import {TextAreaElement} from "../../TextAreaElement.js";
 
-export class TextAreaTestPart extends PartBaseElement_Field {
+export class TextAreaTestPartRed extends PartBaseElement_Field {
 
 
 protected masterObject: TextAreaElement
-static partName = "TextAreaTestPart"
+static partName = "TextAreaTestPartRed"
 
     constructor(masterObject: TextAreaElement) {
         super(masterObject);
@@ -16,10 +16,7 @@ static partName = "TextAreaTestPart"
       //  this.loadData()
         this.masterObject.element.style.backgroundColor="red"
 
-        this.masterObject.element.addEventListener("keyup", () => {
 
-            this.saveValue()
-        })
     }
 
     loadData() {
@@ -33,6 +30,7 @@ static partName = "TextAreaTestPart"
     }
 
     deactivate() {
+        this.masterObject.element.style.backgroundColor="transparent"
     }
 
 

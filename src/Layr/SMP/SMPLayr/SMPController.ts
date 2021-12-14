@@ -13,14 +13,44 @@ export class SMPController {
     }
 
     async activatedekAktivalasa() {
-
         let selectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent(SelectorArrayFilterByEnum.activated)
-
         for await (const selector of selectors) {
             await selector.activateSelector(true)
         }
     }
 
+    changeSelectorState(selectorAndStateName: SMPSelectorAndStateName) {
+        let changedSelector = this.smManager.smpSelectorDataDynamicMap.get(selectorAndStateName.selectorName)
+
+        let kikapcsolandoSelectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent(SelectorArrayFilterByEnum.active, {
+            selectorName: selectorAndStateName.selectorName,
+            stateName: changedSelector.activatedState
+        })
+        changedSelector.changeState(selectorAndStateName.stateName)
+        this.activateSelectorsArray(kikapcsolandoSelectors,false)
+        let aktivalandoSelectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent(SelectorArrayFilterByEnum.activated, {
+            selectorName: selectorAndStateName.selectorName,
+            stateName: selectorAndStateName.stateName
+        })
+        this.activateSelectorsArray(aktivalandoSelectors,true)
+
+        this.smManager.smpSavePart.saveValue()
+    }
+
+    activateSelectorsArray(selectorArray: SMPSelectorDataDynamic[], activate: boolean) {
+        console.log(selectorArray)
+        if(selectorArray.length==0) return
+        if (activate) {
+            for (let i = 0; i < selectorArray.length; i++) {
+                selectorArray[i].activateSelector(activate)
+            }
+        } else {
+            for (let i = selectorArray.length-1; i > -1; i--) {
+                selectorArray[i].activateSelector(activate)
+            }
+        }
+
+    }
 
     //yx publikus magas szintu functionok
 
@@ -29,10 +59,8 @@ export class SMPController {
         this.smManager.smpSelectorDataDynamicMap.forEach((smSelectorDataDynamic) => {
             let instanceParentNames = smSelectorDataDynamic.smpSelectorDataStatic.parentSelectorAndStateName
             if ((!selectorAndStateName_UresHaNincsParent && instanceParentNames) || (selectorAndStateName_UresHaNincsParent && !instanceParentNames)) {
-
             } else if (!selectorAndStateName_UresHaNincsParent && !instanceParentNames) {
                 childrenSelectors.push(smSelectorDataDynamic)
-
             } else if (selectorAndStateName_UresHaNincsParent.stateName == instanceParentNames.stateName && selectorAndStateName_UresHaNincsParent.selectorName == instanceParentNames.selectorName) {
                 childrenSelectors.push(smSelectorDataDynamic)
             }
@@ -81,7 +109,7 @@ export class SMPController {
     }
 
 
-    //yx felfele vannak a jok
+    //yx felfele vannak a mukodoek
 
 
     private startController() {

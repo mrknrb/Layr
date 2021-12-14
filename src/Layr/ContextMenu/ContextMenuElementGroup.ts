@@ -20,18 +20,21 @@ export class ContextMenuElementGroup {
         this.groupElement.style.height = "fit-content"
         this.groupElement.style.borderBottom = "solid"
         this.groupElement.style.borderWidth = "3px"
+        this.groupElement.className="groupElement"
+        if (this.groupName != "withoutGroup") {
 
-        this.groupNameText = document.createElement("i")
-        this.groupNameText.style.fontSize = "9px"
-        this.groupNameText.innerText = this.groupName
-        this.groupNameText.style.userSelect = "none";
-        this.groupNameText.style.cursor = "default"
-        this.groupNameText.style.marginLeft = "8px"
-        this.groupElement.appendChild(this.groupNameText)
-
+            this.groupNameText = document.createElement("i")
+            this.groupNameText.style.fontSize = "9px"
+            this.groupNameText.innerText = this.groupName
+            this.groupNameText.style.userSelect = "none";
+            this.groupNameText.style.cursor = "default"
+            this.groupNameText.style.marginLeft = "8px"
+            this.groupElement.appendChild(this.groupNameText)
+        }
         this.groupElementContainer = document.createElement("div")
         this.groupElementContainer.style.width = "100%"
         this.groupElementContainer.style.height = "fit-content"
+        this.groupElement.className="groupElementContainer"
         this.groupElement.appendChild(this.groupElementContainer)
 
     }

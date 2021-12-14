@@ -18,13 +18,17 @@ export class SMPSavePart_NodeType extends PartBaseNode_Doc {
     }
 
     loadData() {
-
-
         if (!this.getPartData()) {
-            this. smpManager.smpSelectorDataSaveObjects ={}
-        } else {
-            this. smpManager.smpSelectorDataSaveObjects = this.getPartData()
+            this.smpManager.smpSelectorDataSaveObjects = {}
+            return
         }
+        if (!this.getPartData().data) {
+
+            this.smpManager.smpSelectorDataSaveObjects = {}
+            return
+        }
+        this.smpManager.smpSelectorDataSaveObjects = this.getPartData().data
+
     }
 
     saveValue() {

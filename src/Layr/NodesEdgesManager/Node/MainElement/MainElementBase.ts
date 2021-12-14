@@ -14,7 +14,8 @@ export abstract class MainElementBase {
         this.elementOptionsButtonInit()
 
 
-        this.contextMenu = new ContextMenu(this.element, ContextMenuTypes.rightClickMenu)
+        this.contextMenu = new ContextMenu()
+        this.contextMenu.contextMenuRightClickInit(this.element)
 
     }
 

@@ -9,14 +9,22 @@ export class ContextMElementDropDownStatic extends ContextMenuElementBase {
     changeEvent: TypedEvent<string>
     options: string[]
 
-    constructor(elementName: string, contextMenu: ContextMenu, optionsArray: string[]) {
-        super(elementName, contextMenu);
+    constructor(elementName: string, optionsArray: string[]) {
+        super();
+        this.elementName = elementName
         this.changeEvent = new TypedEvent<string>()
         this.options = optionsArray
         this.elementInitClickable(optionsArray)
     }
 
     elementInitClickable(optionsArray: string[]) {
+
+        this.element = document.createElement("div")
+        this.element.style.borderTop = "solid"
+        this.element.style.borderWidth = "1px"
+        this.element.style.borderColor = "#6c6c6c"
+        this.element.className = "ContextMenuElementHoverHighlight"
+
 
         this.element.style.width = "100%"
         this.element.style.height = "fit-content"

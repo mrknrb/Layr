@@ -17,19 +17,23 @@ export class SMPPartDataDynamic {
     }
 
     activatePart(activate: boolean) {
+        this.getPart().setActive(activate)
+    }
 
+    getPart() {
         if (this.smpPartDataStatic.searchType == SMPSearchType.OwnMasterObjectPart) {
-            let master = this.smpStateDataDynamic.smpSelectorDataDynamic.smpManager.masterObjectParts.getObject(this.smpPartDataStatic.partName)
-
-            master.setActive(activate)
-        }else if (this.smpPartDataStatic.searchType == SMPSearchType.ChildNodePart) {
+            return this.smpStateDataDynamic.smpSelectorDataDynamic.smpManager.masterObjectParts.getObject(this.smpPartDataStatic.partName) as PartBase
+        } else if (this.smpPartDataStatic.searchType == SMPSearchType.ChildNodePart) {
             let nodeId = this.smpStateDataDynamic.smpSelectorDataDynamic.smpManager.masterObject.nodeId
             LayrFind.nodes_ByParentNodeId_InFrame(nodeId).forEach(node => {
                 //yx ugyanaz mint a getpart csak nem partmanagerbol jon
-                let part: PartBase = node.smpManager.masterObjectParts.getObject(this.smpPartDataStatic.partName)
+                return node.smpManager.masterObjectParts.getObject(this.smpPartDataStatic.partName) as PartBase
 
-                part.setActive(activate)
+
             })
         }
+
     }
+
+
 }

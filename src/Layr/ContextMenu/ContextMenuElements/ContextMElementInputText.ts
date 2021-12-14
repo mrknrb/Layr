@@ -9,14 +9,20 @@ export class ContextMElementInputText extends ContextMenuElementBase {
     keyDownEvent: TypedEvent<string>
 
 
-    constructor(elementName: string, contextMenu: ContextMenu) {
-        super(elementName, contextMenu);
+    constructor(elementName: string) {
+        super();
+        this.elementName = elementName
         this.keyDownEvent = new TypedEvent<string>()
         this.elementInitClickable()
     }
 
     elementInitClickable() {
 
+        this.element = document.createElement("div")
+        this.element.style.borderTop = "solid"
+        this.element.style.borderWidth = "1px"
+        this.element.style.borderColor = "#6c6c6c"
+        this.element.className = "ContextMenuElementHoverHighlight"
         this.element.style.width = "100%"
         this.element.style.height = "fit-content"
 

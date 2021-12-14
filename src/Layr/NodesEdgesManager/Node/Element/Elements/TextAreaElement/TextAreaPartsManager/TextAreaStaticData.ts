@@ -3,7 +3,9 @@ import {SMPSearchType} from "../../../../../../SMP/SMPLayr/SMPEnums/SMPSearchTyp
 import {NodeLayoutAbsolutePart} from "../../../../NodeObject/NodeSMPManager/Parts/NodeLayoutAbsolutePart.js";
 import {NodeLayoutListPart} from "../../../../NodeObject/NodeSMPManager/Parts/NodeLayoutListPart.js";
 import {TextAreaContentPart} from "./TextAreaParts/TextAreaContentPart.js";
-import {TextAreaTestPart} from "./TextAreaParts/TextAreaTestPart.js";
+import {TextAreaTestPartRed} from "./TextAreaParts/TextAreaTestPartRed.js";
+import {TextAreaTestPartBoldFonts} from "./TextAreaParts/TextAreaTestPartBoldFonts.js";
+import {TextAreaTestPartBlue} from "./TextAreaParts/TextAreaTestPartBlue.js";
 
 
 const loadedSelectorDataNames = {
@@ -28,7 +30,14 @@ const loadedSelectorData: SMPSelectorDataStatic =
                     {
                         searchType: SMPSearchType.OwnMasterObjectPart,
                         partName: TextAreaContentPart.partName
+                    },  {
+                        searchType: SMPSearchType.OwnMasterObjectPart,
+                        partName: TextAreaTestPartBoldFonts.partName
                     }
+                ]
+            },  {
+                stateName: loadedSelectorDataNames.states.NotLoaded,
+                masterObjectParts: [
                 ]
             }
         ]
@@ -36,7 +45,7 @@ const loadedSelectorData: SMPSelectorDataStatic =
     //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 const testSelectorDataNames = {
 
-    selector: "testSelector",
+    selector: "Colorselector",
     states: {
         red: "red",
         blue: "blue"
@@ -55,7 +64,15 @@ const testSelectorData: SMPSelectorDataStatic =
                 masterObjectParts: [
                     {
                         searchType: SMPSearchType.OwnMasterObjectPart,
-                        partName: TextAreaTestPart.partName
+                        partName: TextAreaTestPartRed.partName
+                    }
+                ]
+            },  {
+                stateName: testSelectorDataNames.states.blue,
+                masterObjectParts: [
+                    {
+                        searchType: SMPSearchType.OwnMasterObjectPart,
+                        partName: TextAreaTestPartBlue.partName
                     }
                 ]
             }

@@ -16,7 +16,7 @@ const loadedSelectorDataNames = {
 }
 const loadedSelectorData: SMPSelectorDataStatic =
     {
-        defaultState: loadedSelectorDataNames.states.NotLoaded,
+        defaultState: loadedSelectorDataNames.states.Loaded,
         selectorName: loadedSelectorDataNames.selector,
         defaultSelectorActive: true,
         states: [
@@ -25,7 +25,7 @@ const loadedSelectorData: SMPSelectorDataStatic =
                 masterObjectParts: [
                     {
                         searchType: SMPSearchType.OwnMasterObjectPart,
-                        partName: SMPSavePart_NodeType.partName
+                        partName: NodeNewElementPart.partName
                     }
                 ]
             },  {
@@ -38,5 +38,5 @@ const loadedSelectorData: SMPSelectorDataStatic =
 
 export const NodeSMPStaticData = [
 
-   // loadedSelectorData
+   loadedSelectorData
 ]

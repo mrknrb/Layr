@@ -31,19 +31,21 @@ export class SMPManager {
         this.smpSavePart = this.masterObjectParts.getPartObject_ByName("SMPSave")
 
         this.smpSavePart.setActive(true)
+        console.log(this.smpSelectorDataSaveObjects)
         this.smpSelectorDataDynamicMap = new Map<string, SMPSelectorDataDynamic>()
         this.smpController = new SMPController(this)
 
         this.smpSelectorDataInit()
-        this.contextMenuInit()
-
+       // this.contextMenuInsert()
+        this.contextMenuInsert()
         this.smpController.activatedekAktivalasa()
+
     }
 
     smpSelectorDataInit() {
 
         this.smpSelectorDataStaticArray.forEach(selectorDataStatic => {
-
+            console.log(this.smpSelectorDataSaveObjects)
             let smpSelectorDataSave = this.smpSelectorDataSaveObjects[selectorDataStatic.selectorName]
             /*let smpSelectorDataSave = this.smpSelectorDataSaveObjects.find(smSelectorDataSave => {
                 return smSelectorDataSave.selectorName == selectorDataStatic.selectorName
@@ -58,14 +60,9 @@ export class SMPManager {
         })
     }
 
-    contextMenuInit() {
+    contextMenuInsert() {
         this.smpSelectorDataDynamicMap.forEach(selector => {
-            let parentselector = selector.getParentSelector()
-            if (!parentselector) {
-                this.masterObject.contextMenu.contextMenuElementInsert(selector.contextMenuElementSelector, "")
-            } else {
-                parentselector.contextMenuElementSelector.contextMenuElementInsert(selector.contextMenuElementSelector, "")
-            }
+            selector.selectorContextMenu.insertContextMenu()
         })
     }
 

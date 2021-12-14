@@ -1,11 +1,15 @@
 import {TextAreaContentPart} from "./TextAreaParts/TextAreaContentPart.js";
 import {SMPSavePart_NodeType} from "../../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_NodeType.js";
 import {SMPSavePart_ElementType} from "../../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_ElementType.js";
-import {TextAreaTestPart} from "./TextAreaParts/TextAreaTestPart.js";
+import {TextAreaTestPartRed} from "./TextAreaParts/TextAreaTestPartRed.js";
+import {TextAreaTestPartBoldFonts} from "./TextAreaParts/TextAreaTestPartBoldFonts.js";
+import {TextAreaTestPartBlue} from "./TextAreaParts/TextAreaTestPartBlue.js";
 
 
 export let TextAreaElementPartsClassArray = [
     SMPSavePart_ElementType,
     TextAreaContentPart,
-    TextAreaTestPart
+    TextAreaTestPartRed,
+    TextAreaTestPartBlue,
+    TextAreaTestPartBoldFonts
 ]

@@ -3,6 +3,8 @@ import {SMPPartDataDynamic} from "./SMPPartDataDynamic.js";
 import {SMPStateDataSave} from "../SMPSelectorSaveData/SMPStateDataSave.js";
 import {SMPSelectorDataDynamic} from "./SMPSelectorDataDynamic.js";
 import {ContextMenu} from "../../../../ContextMenu/ContextMenu.js";
+import {SMPStateContextMenu} from "../../SMPEgyebek/SMPStateContextMenu.js";
+import {PartBase} from "../../../PartsGeneral/PartBase.js";
 
 export class SMPStateDataDynamic {
     smpSelectorDataDynamic: SMPSelectorDataDynamic
@@ -10,6 +12,7 @@ export class SMPStateDataDynamic {
     smStateDataSave: SMPStateDataSave
     SMPPartDataDynamicArray: SMPPartDataDynamic[]
     stateContextMenu: ContextMenu
+    smpStateContextMenu: SMPStateContextMenu
 
     constructor(smpStateDataStatic: SMPStateDataStatic, smStateDataSave: SMPStateDataSave, smpSelectorDataDynamic: SMPSelectorDataDynamic) {
         this.SMPPartDataDynamicArray = []
@@ -22,6 +25,7 @@ export class SMPStateDataDynamic {
         })
         // console.log(smpStateDataStatic.masterObjectParts)
         //  console.log(this)
+        //  this.smpStateContextMenu=new SMPStateContextMenu(this)
     }
 
     getChildSelector() {
@@ -36,16 +40,36 @@ export class SMPStateDataDynamic {
         return childSelectorsArray
     }
 
+    searchGetAllParts() {
+        let parts: PartBase[] = []
+        this.SMPPartDataDynamicArray.forEach(partData => {
+            parts.push(partData.getPart())
+        })
+        return parts
+    }
+
     activateState(activate: boolean) {
 
         if (activate) {
+            this.smpStateContextMenu.stateContextMenu.contextMenuVisible()
             for (let i = 0; i < this.SMPPartDataDynamicArray.length; i++) {
                 this.SMPPartDataDynamicArray[i].activatePart(activate)
             }
         } else {
-            for (let i = this.SMPPartDataDynamicArray.length; i >= 0; i--) {
+            this.smpStateContextMenu.stateContextMenu.contextMenuInVisible()
+            for (let i = this.SMPPartDataDynamicArray.length - 1; i > -1; i--) {
                 this.SMPPartDataDynamicArray[i].activatePart(activate)
             }
         }
     }
+
+    createContextMenu(contextMenuHead: ContextMenu, contextMenuBody: ContextMenu) {
+        this.smpStateContextMenu = new SMPStateContextMenu(this, contextMenuHead, contextMenuBody)
+
+
+        return this.smpStateContextMenu
+
+    }
+
+
 }

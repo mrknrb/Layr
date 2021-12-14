@@ -2,53 +2,52 @@ import {PartBaseNode_Doc} from "../../../../../SMP/PartsGeneral/PartBaseTypes/Pa
 import {NodeObjectBase} from "../../NodeObjectBase.js";
 import {ElementTypes} from "../../../Element/Adatok/ElementTypes.js";
 import {ContextMElementSubContextMButton} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementSubContextMButton.js";
-import {ContextMenu, ContextMenuTypes} from "../../../../../ContextMenu/ContextMenu.js";
+import {ContextMenu} from "../../../../../ContextMenu/ContextMenu.js";
 import {ContextMElementInputText} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementInputText.js";
 import {ContextMElementDropDownStatic} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementDropDownStatic.js";
 import {ContextMElementClickable} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 
 export class NodeNewElementPart extends PartBaseNode_Doc {
     masterObject: NodeObjectBase
+    static partName = "NodeNewElementPart"
 
-    static partName="NodeNewElementPart"
     constructor(masterObject: NodeObjectBase) {
         super(masterObject);
+        this.contextInit()
     }
 
     activate() {
 
-        this.contextInit()
-
     }
 
     contextInit() {
-        let contextMenu = this.masterObject.contextMenu
-        let contextMenuElementNewNode = new ContextMElementSubContextMButton( "New Element",contextMenu)
-        contextMenu.contextMenuElementInsert(contextMenuElementNewNode, "Node")
-        let subContextMenu = new ContextMenu(contextMenuElementNewNode.element, ContextMenuTypes.hoverMenu)
-        let subContextMenuElementNewNodeName = new ContextMElementInputText("Field Name:", contextMenu)
-        subContextMenu.contextMenuElementInsert(subContextMenuElementNewNodeName, "Node")
+        this.partContextMenu=new ContextMenu()
+        let contextMenuElementNewNode = new ContextMElementSubContextMButton("New Element")
+        this.partContextMenu.contextMenuElementInsert(contextMenuElementNewNode)
+        let subContextMenu = new ContextMenu()
+        subContextMenu.contextMenuHoverInit(contextMenuElementNewNode.element)
+
+        let subContextMenuElementNewNodeName = new ContextMElementInputText("Field Name:")
+        subContextMenu.contextMenuElementInsert(subContextMenuElementNewNodeName)
         let options: string[] = []
         for (const elementType in ElementTypes) {
             options.push(elementType.toString())
         }
 
-        let subContextMenuElementDropDownStatic = new ContextMElementDropDownStatic("Field Type:", contextMenu, options)
-        subContextMenu.contextMenuElementInsert(subContextMenuElementDropDownStatic, "Node")
+        let subContextMenuElementDropDownStatic = new ContextMElementDropDownStatic("Field Type:", options)
+        subContextMenu.contextMenuElementInsert(subContextMenuElementDropDownStatic)
 
-        let contextMenuElementClickable = new ContextMElementClickable("New element", contextMenu)
-        subContextMenu.contextMenuElementInsert(contextMenuElementClickable, "Node")
+        let contextMenuElementClickable = new ContextMElementClickable("New element")
+        subContextMenu.contextMenuElementInsert(contextMenuElementClickable)
         contextMenuElementClickable.clickEvent.on(event => {
 
             this.saveValue({
                 elementType: subContextMenuElementDropDownStatic.value,
                 fieldName: subContextMenuElementNewNodeName.value
             })
-            contextMenu.contextMenuInVisible()
+            this.partContextMenu.contextMenuInVisible()
             subContextMenu.contextMenuInVisible()
         })
-
-
     }
 
     deactivate() {
