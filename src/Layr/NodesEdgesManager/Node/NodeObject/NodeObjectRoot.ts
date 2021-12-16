@@ -20,19 +20,21 @@ export class NodeObjectRoot extends NodeObjectBase {
         this.init()
         this.smpManagerInit()
     }
+
     protected smpManagerInit() {
 
         this.smpManager = new SMPManager({
-            smpSavePart:  SMPSavePart_NodeType,
+            smpSavePart: SMPSavePart_NodeType,
             masterObject: this,
             PartsClassArray: NodeRootPartsClassList,
             SMPStaticData: NodeRootSMPStaticData
         })
     }
+
     init() {
         this.mainElement.layoutApply()
         this.elementsManager.elementsRefresh()
-       // this.elementsManager.elementToFullScreen("3542453745834")
+        // this.elementsManager.elementToFullScreen("3542453745834")
 
     }
 

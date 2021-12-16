@@ -18,12 +18,12 @@ export class OptionsManager {
     }
 
     loadOptions(optionsElementStaticData: OptionsElementStaticDataType[]) {
-        let self=this
+        let self = this
         optionsElementStaticData.forEach((optionsElementData) => {
             let optionsElement = new OptionElement(this.layrUI, optionsElementData)
             this.optionsElementObjects.set(optionsElementData.optionName, optionsElement)
             optionsElement.optionActivateEvent.on(optionName => {
-                self. optionActivate(optionName)
+                self.optionActivate(optionName)
             })
         })
     }

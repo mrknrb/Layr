@@ -1,5 +1,4 @@
 import {ContextMenuElementBase} from "../ContextMenuElementBase.js";
-import {ContextMenu} from "../ContextMenu.js";
 import {TypedEvent} from "../../../0Libraries/TypedEvents.js";
 
 export class ContextMElementClickable extends ContextMenuElementBase {
@@ -20,8 +19,8 @@ export class ContextMElementClickable extends ContextMenuElementBase {
 
         this.element = document.createElement("div")
 
-        this.element.classList.add( "ContextMenuElement")
-        this.element.classList.add  ("ContextMenuElementHoverHighlight")
+        this.element.classList.add("ContextMenuElement")
+        this.element.classList.add("ContextMenuElementHoverHighlight")
 
 
         let textElement = document.createElement("b")

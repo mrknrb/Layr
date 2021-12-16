@@ -1,10 +1,10 @@
-import {NodeObjectBase} from "../../NodesEdgesManager/Node/NodeObject/NodeObjectBase.js";
 import {ContextMenu} from "../../ContextMenu/ContextMenu.js";
 
 export abstract class PartBase {
 
     static partName: string
     partContextMenu: ContextMenu
+
     getPartName() {
 
         // @ts-ignore
@@ -61,7 +61,7 @@ export abstract class PartBase {
 */
         // if (!dataObject.parts) dataObject.parts = {}
 
-            this.getPartData().data = saveValue
+        this.getPartData().data = saveValue
 
 
         this.valueSync()

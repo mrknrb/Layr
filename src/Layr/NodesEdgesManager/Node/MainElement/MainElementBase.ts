@@ -1,5 +1,5 @@
 import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
-import {ContextMenu, ContextMenuTypes} from "../../../ContextMenu/ContextMenu.js";
+import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
 
 
 export abstract class MainElementBase {

@@ -5,7 +5,8 @@ import {PartBaseNodeCData_Conn} from "../../../../../SMP/PartsGeneral/PartBaseTy
 export class NodeLayoutListPart extends PartBaseNodeCData_Conn {
     masterObject: NodeObjectNormal
 
-    static partName="NodeLayoutListPart"
+    static partName = "NodeLayoutListPart"
+
     constructor(masterObject: NodeObjectNormal) {
         super(masterObject);
     }

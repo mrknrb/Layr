@@ -160,7 +160,7 @@ export class MrkLibrary {
         let mouseDownListener = (e) => {
             if (e.offsetX > element.clientWidth - BORDER_SIZE) {
 
-                resizeInProgress=true
+                resizeInProgress = true
                 m_pos = e.x;
                 document.addEventListener("mousemove", resize, false);
             }
@@ -176,7 +176,7 @@ export class MrkLibrary {
         let mouseDownListener2 = (e) => {
             if (e.offsetY > element.clientHeight - BORDER_SIZE) {
 
-                resizeInProgress=true
+                resizeInProgress = true
                 m_pos2 = e.y;
                 document.addEventListener("mousemove", resize2, false);
             }
@@ -210,7 +210,7 @@ export class MrkLibrary {
                 document.removeEventListener("mousemove", resize2, false);
             }
             if (resizeInProgress) {
-                resizeInProgress=false
+                resizeInProgress = false
                 resizeEvent.emit(true)
             }
 
@@ -257,10 +257,10 @@ export class MrkLibrary {
             mousePositionMrk = ev
         })
     }
-   static emptyObjectCheck(obj){
-       return Object.keys(obj).length === 0&& Object.getPrototypeOf(obj)=== Object.prototype
-    }
 
+    static emptyObjectCheck(obj) {
+        return Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype
+    }
 
 
 }

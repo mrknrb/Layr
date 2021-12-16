@@ -35,7 +35,7 @@ export class SMPManager {
         this.smpController = new SMPController(this)
 
         this.smpSelectorDataInit()
-       // this.contextMenuInsert()
+        // this.contextMenuInsert()
         this.contextMenuInsert()
         this.smpController.activatedekAktivalasa()
 

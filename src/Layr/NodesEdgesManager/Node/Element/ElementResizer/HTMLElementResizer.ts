@@ -1,4 +1,3 @@
-import {ElementBaseClass} from "../ElementBaseClass.js";
 import {ResizeTypes} from "./ResizeTypes.js";
 
 export class HTMLElementResizer {
@@ -13,7 +12,7 @@ export class HTMLElementResizer {
         // @ts-ignore
         this.resizeObserver = new ResizeObserver(function () {
 
-                self.adjustSize()
+            self.adjustSize()
 
         }).observe(this.element)
     }
@@ -26,7 +25,7 @@ export class HTMLElementResizer {
         } else if (resizeType == ResizeTypes.autoX) {
 
             this.element.style.resize = "none"
-        }else if (resizeType == ResizeTypes.autoXY) {
+        } else if (resizeType == ResizeTypes.autoXY) {
 
             this.element.style.resize = "none"
         } else if (resizeType == ResizeTypes.manual) {
@@ -46,7 +45,7 @@ export class HTMLElementResizer {
         if (this.ActiveResizeType == ResizeTypes.autoX || this.ActiveResizeType == ResizeTypes.autoXY) {
             this.element.style.width = "100px"
 
-            this.element.style.width = (this.element.scrollWidth ) + "px"
+            this.element.style.width = (this.element.scrollWidth) + "px"
         }
     }
 

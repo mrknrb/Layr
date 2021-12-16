@@ -1,11 +1,6 @@
 import {LayrFrame} from "./LayrFrame.js";
 import {LayrLogoKozepen} from "../0Egyebek/LayrLogoKozepen.js";
-import {MrkLibrary, ResizeType} from "../0Egyebek/MrkLibrary.js";
-
-console.log("indulF")
-//let docdataset = SampleDataFactoryMongodb.generateSampleDataset(1000)
-//console.log(docdataset.connectionsData)
-//console.log(docdataset.docsData)
+import {MrkLibrary} from "../0Egyebek/MrkLibrary.js";
 
 let layrLogoKozepenAnimacio = new LayrLogoKozepen()
 layrLogoKozepenAnimacio.feltunik()

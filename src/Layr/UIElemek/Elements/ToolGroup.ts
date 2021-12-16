@@ -8,16 +8,18 @@ export class ToolGroup {
     optionElement: OptionElement
     toolGroupData: ToolGroupStaticDataType
     toolElements: Map<string, ToolElementBaseClass>
-toolGroupDiv:HTMLDivElement
-    toolGroupMainDiv:HTMLDivElement
+    toolGroupDiv: HTMLDivElement
+    toolGroupMainDiv: HTMLDivElement
+
     constructor(optionElement: OptionElement, toolGroupData: ToolGroupStaticDataType) {
         this.optionElement = optionElement
         this.toolGroupData = toolGroupData
         this.toolElements = new Map<string, ToolElementBaseClass>()
-       // this.toolGroupMainDivInit()
+        // this.toolGroupMainDivInit()
         this.toolGroupContentDivInit()
         this.toolGroupInit()
     }
+
     /*
     toolGroupMainDivInit(){
         this.toolGroupMainDiv=document.createElement("div")
@@ -28,15 +30,13 @@ toolGroupDiv:HTMLDivElement
     }
 */
 
-    toolGroupContentDivInit(){
-        this.toolGroupDiv=document.createElement("div")
+    toolGroupContentDivInit() {
+        this.toolGroupDiv = document.createElement("div")
         this.toolGroupDiv.classList.add("toolGroupContentDiv")
-        let htmlElementResizer= new HTMLElementResizer(this.toolGroupDiv)
+        let htmlElementResizer = new HTMLElementResizer(this.toolGroupDiv)
         htmlElementResizer.resizeActivate(ResizeTypes.autoX)
         this.optionElement.toolGroupsContainer.appendChild(this.toolGroupDiv)
     }
-
-
 
 
     toolGroupInit() {
@@ -45,9 +45,6 @@ toolGroupDiv:HTMLDivElement
             this.toolElements.set(ToolElementClass.name, toolElement2)
         })
     }
-
-
-
 
 
 }

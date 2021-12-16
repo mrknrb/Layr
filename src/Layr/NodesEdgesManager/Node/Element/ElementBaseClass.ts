@@ -1,5 +1,5 @@
 import {ElementTypes} from "./Adatok/ElementTypes.js";
-import {ContextMenu, ContextMenuTypes} from "../../../ContextMenu/ContextMenu.js";
+import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
 import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
 import {FieldObject} from "../../../DocsConnsManager/Data/Doc/Field/FieldObject.js";
 import {LayrFind} from "../../../../0Egyebek/LayrFind.js";
@@ -24,7 +24,7 @@ export abstract class ElementBaseClass implements SMPMasterObjectInterface {
         this.elementType = elementType
         this.nodeObject = nodeObject
         this.fieldId = fieldId
-        this.contextMenu = new ContextMenu( )
+        this.contextMenu = new ContextMenu()
         this.contextMenu.contextMenuRightClickInit(this.element)
         this.nodeObject.elementsManager.elementCreatedEvent.emit(this)
     }
@@ -36,12 +36,12 @@ export abstract class ElementBaseClass implements SMPMasterObjectInterface {
     eventsInit() {
     }
 
-    elementInsertFullScreenOrNode(fullScreen:boolean) {
-        if(fullScreen){
+    elementInsertFullScreenOrNode(fullScreen: boolean) {
+        if (fullScreen) {
             document.querySelector("#workScreenDiv").appendChild(this.element)
             this.element.style.height = "100%"
             this.element.style.width = "100%"
-        }else{
+        } else {
             this.nodeObject.mainElement.element.appendChild(this.element)
         }
     }
@@ -54,7 +54,6 @@ export abstract class ElementBaseClass implements SMPMasterObjectInterface {
         let nodeObject = this.nodeObject as NodeObjectNormal
         return LayrFind.conn(nodeObject.connId).nodeCDataObject
     }
-
 
 
     getElementCData() {

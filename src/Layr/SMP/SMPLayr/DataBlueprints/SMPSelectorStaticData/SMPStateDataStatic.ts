@@ -1,5 +1,3 @@
-
-
 export class SMPStateDataStatic {
     constructor() {
         this.masterObjectPartNames = []

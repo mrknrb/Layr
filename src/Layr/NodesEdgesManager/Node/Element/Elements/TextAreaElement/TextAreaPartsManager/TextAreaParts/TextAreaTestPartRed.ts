@@ -4,8 +4,8 @@ import {TextAreaElement} from "../../TextAreaElement.js";
 export class TextAreaTestPartRed extends PartBaseElement_Field {
 
 
-protected masterObject: TextAreaElement
-static partName = "TextAreaTestPartRed"
+    protected masterObject: TextAreaElement
+    static partName = "TextAreaTestPartRed"
 
     constructor(masterObject: TextAreaElement) {
         super(masterObject);
@@ -13,7 +13,7 @@ static partName = "TextAreaTestPartRed"
 
     activate() {
 
-       this.masterObject.element.style.color="red"
+        this.masterObject.element.style.color = "red"
 
 
     }
@@ -28,7 +28,7 @@ static partName = "TextAreaTestPartRed"
     }
 
     deactivate() {
-        this.masterObject.element.style.color="black"
+        this.masterObject.element.style.color = "black"
     }
 
 

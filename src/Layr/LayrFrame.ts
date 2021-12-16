@@ -1,10 +1,8 @@
 import {NodesEdgesManager} from "./NodesEdgesManager/NodesEdgesManager.js";
-import {OptionsBar} from "./UIElemek/Views/OptionsBar.js";
 import {LayrClient} from "./LayrServerClient/LayrClient.js";
 import {DocsConnsManager} from "./DocsConnsManager/DocsConnsManager.js";
 import {MrkLibrary} from "../0Egyebek/MrkLibrary.js";
 import {LayrUI} from "./UIElemek/LayrUI.js";
-
 
 
 let layrFrame: LayrFrame
@@ -22,8 +20,8 @@ export class LayrFrame {
 
     constructor() {
         // @ts-ignore
-        document.layrFrame=this
-        layrFrame=this
+        document.layrFrame = this
+        layrFrame = this
         MrkLibrary.contextMenuInvisibleIfBackGroundClickInit()
         this.layrFrameId = Math.random().toString()
         this.layrUI = new LayrUI(this)

@@ -1,5 +1,4 @@
 import {SMPSelectorDataDynamic} from "./DataBlueprints/SMPSelectorDynamicData/SMPSelectorDataDynamic.js";
-import {SMPStateDataDynamic} from "./DataBlueprints/SMPSelectorDynamicData/SMPStateDataDynamic.js";
 import {SMPManager} from "./SMPManager.js";
 import {SMPSelectorAndStateName} from "./SMPEgyebek/SMPSelectorAndStateName.js";
 
@@ -35,7 +34,7 @@ export class SMPController {
         this.activateSelectorsArray(kikapcsolandoSelectors, false)
         changedSelector.activateSelector(false)
         changedSelector.changeActivatedState_OnlyData(selectorAndStateName.stateName)
-        changedSelector.activateSelector(true,true)
+        changedSelector.activateSelector(true, true)
 
         let aktivalandoSelectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent({
             selectorArrayFilterByEnum: SelectorArrayFilterByEnum.activated,
@@ -124,7 +123,7 @@ export class SMPController {
     }
 
     selectorActivatedCheck(selector: SMPSelectorDataDynamic, selectorDontLoadSaveEllenereIs?: boolean): boolean {
-       if (selector.smpSelectorDataStatic.selectorDontLoadSave && !selectorDontLoadSaveEllenereIs) return selector.smpSelectorDataStatic.defaultSelectorActive
+        if (selector.smpSelectorDataStatic.selectorDontLoadSave && !selectorDontLoadSaveEllenereIs) return selector.smpSelectorDataStatic.defaultSelectorActive
         if (selector.smpSelectorDataSave.selectorActivated === undefined) return selector.smpSelectorDataStatic.defaultSelectorActive
         return selector.smpSelectorDataSave.selectorActivated
 
@@ -170,14 +169,15 @@ export class SMPController {
 
 
     }
-/*
-    private getActivePartsFromSelectorsChildren(selectorName: string, stateName: string) {
-        let selectors = this.getActiveSelectorsFromSelectorsChildren(selectorName, stateName)
-        let activeStates = this.getActiveStatesFromSelectors(selectors)
-        this.getPartsNamesFromStates(activeStates)
 
-    }
-*/
+    /*
+        private getActivePartsFromSelectorsChildren(selectorName: string, stateName: string) {
+            let selectors = this.getActiveSelectorsFromSelectorsChildren(selectorName, stateName)
+            let activeStates = this.getActiveStatesFromSelectors(selectors)
+            this.getPartsNamesFromStates(activeStates)
+
+        }
+    */
 
     private getActiveSelectorsFromSelectorsChildren(selectorName: string, stateName: string) {
         let remainingSelectors = new Map<string, SMPSelectorDataDynamic>()
@@ -217,21 +217,23 @@ export class SMPController {
         })
         return useableSelectors2
     }
-/*
-    private getPartsNamesFromStates(smStateDataDynamic: SMPStateDataDynamic[]) {
-        let partsMap = new Map<string, SMPPartDataStatic>()
-        smStateDataDynamic.forEach(value => {
-            value.masterObjectParts.forEach(value1 => {
-                partsMap.set(value1.smpPartDataStatic.partName, value1.smpPartDataStatic)
+
+    /*
+        private getPartsNamesFromStates(smStateDataDynamic: SMPStateDataDynamic[]) {
+            let partsMap = new Map<string, SMPPartDataStatic>()
+            smStateDataDynamic.forEach(value => {
+                value.masterObjectParts.forEach(value1 => {
+                    partsMap.set(value1.smpPartDataStatic.partName, value1.smpPartDataStatic)
+                })
             })
-        })
-        let partStaticDataArray = []
-        partsMap.forEach(value => {
-            partStaticDataArray.push(value)
-        })
-        return partStaticDataArray
-    }
-*/
+            let partStaticDataArray = []
+            partsMap.forEach(value => {
+                partStaticDataArray.push(value)
+            })
+            return partStaticDataArray
+        }
+    */
+
     /*
         getPartsFromPartStaticDataArray(SMPartsDataStaticArray: SMPPartDataStatic[]) {
             let parts: PartBase[] = []

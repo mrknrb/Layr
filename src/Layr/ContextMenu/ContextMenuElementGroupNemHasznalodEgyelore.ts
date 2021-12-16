@@ -33,7 +33,7 @@ export class ContextMenuElementGroupNemHasznalodEgyelore {
         this.groupElementContainer = document.createElement("div")
         this.groupElementContainer.style.width = "100%"
         this.groupElementContainer.style.height = "fit-content"
-        this.groupElement.className="groupElementContainer"
+        this.groupElement.className = "groupElementContainer"
         this.groupElement.appendChild(this.groupElementContainer)
 
     }

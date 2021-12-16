@@ -4,7 +4,6 @@ import {WorkScreen} from "./Views/WorkScreen.js";
 import {MenuBar} from "./Views/MenuBar.js";
 import {ToolBar} from "./Views/ToolBar.js";
 import {OptionsManager} from "./OptionsManager.js";
-import {OptionsElementStaticData} from "./StaticData/OptionsElementStaticData.js";
 
 export class LayrUI {
     layrFrame: LayrFrame
@@ -14,12 +13,13 @@ export class LayrUI {
     menuBar: MenuBar
     toolbar: ToolBar
     optionsManager: OptionsManager
+
     constructor(layrFrame: LayrFrame) {
         this.layrFrame = layrFrame
         this.OptionsBar = new OptionsBar(this)
         this.workScreen = new WorkScreen(this)
         this.menuBar = new MenuBar(this)
         this.toolbar = new ToolBar(this)
-        this.optionsManager=new OptionsManager(this)
+        this.optionsManager = new OptionsManager(this)
     }
 }

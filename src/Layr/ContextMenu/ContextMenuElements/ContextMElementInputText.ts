@@ -1,5 +1,4 @@
 import {ContextMenuElementBase} from "../ContextMenuElementBase.js";
-import {ContextMenu} from "../ContextMenu.js";
 import {TypedEvent} from "../../../0Libraries/TypedEvents.js";
 import {LayrCSSClassesEnum} from "../../../0Egyebek/LayrCSSClassesEnum.js";
 

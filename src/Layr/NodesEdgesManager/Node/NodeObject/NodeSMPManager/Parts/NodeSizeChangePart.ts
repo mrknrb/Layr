@@ -4,7 +4,8 @@ import {PartBaseNodeCData_Conn} from "../../../../../SMP/PartsGeneral/PartBaseTy
 export class NodeSizeChangePart extends PartBaseNodeCData_Conn {
     masterObject: NodeObjectNormal
 
-    static partName="NodeSizeChangePart"
+    static partName = "NodeSizeChangePart"
+
     constructor(masterObject: NodeObjectNormal) {
         super(masterObject);
     }

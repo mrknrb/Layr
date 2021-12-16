@@ -25,27 +25,23 @@ export class OptionElement {
     toolGroupsContainerInit() {
         this.toolGroupsContainer = document.createElement("div")
         this.toolGroupsContainer.classList.add("toolGroupsContainer")
-       // this.toolGroupsContainer.style.height = "100%"
-      //  this.toolGroupsContainer.style.width = "100%"
-       // this.toolGroupsContainer.style.overflow="auto"
-     this.toolGroupsContainer.style.display = "none"
-       // this.toolGroupsContainer.style.flexDirection = "row"
+        // this.toolGroupsContainer.style.height = "100%"
+        //  this.toolGroupsContainer.style.width = "100%"
+        // this.toolGroupsContainer.style.overflow="auto"
+        this.toolGroupsContainer.style.display = "none"
+        // this.toolGroupsContainer.style.flexDirection = "row"
         this.toolGroupsContainer.style.backgroundColor = MrkLibrary.randomColor()
         this.layrUI.toolbar.toolBarElement.appendChild(this.toolGroupsContainer)
     }
 
 
-
-
-
     optionElementInit() {
         this.menuElement = new MenuElement(this)
 
-            this.optionsElementData.toolGroupElements.forEach(toolGroupData => {
-                let toolGroup = new ToolGroup(this, toolGroupData)
-                this.toolGroupObjects.set(toolGroupData.toolGroupName, toolGroup)
-            })
-
+        this.optionsElementData.toolGroupElements.forEach(toolGroupData => {
+            let toolGroup = new ToolGroup(this, toolGroupData)
+            this.toolGroupObjects.set(toolGroupData.toolGroupName, toolGroup)
+        })
 
 
     }
@@ -53,10 +49,10 @@ export class OptionElement {
     OptionElementActivate(activate: boolean) {
         if (activate) {
             this.menuElement.MenuElementActivateColor(activate)
-            this.toolGroupsContainer.style.display="flex"
+            this.toolGroupsContainer.style.display = "flex"
         } else {
             this.menuElement.MenuElementActivateColor(activate)
-            this.toolGroupsContainer.style.display="none"
+            this.toolGroupsContainer.style.display = "none"
         }
 
     }

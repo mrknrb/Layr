@@ -13,9 +13,7 @@ const OptionsElementFile: OptionsElementStaticDataType = {
 }
 const OptionsElementEdit: OptionsElementStaticDataType = {
     toolGroupElements: [{
-        toolGroupName: "basics", toolElements: [
-
-        ]
+        toolGroupName: "basics", toolElements: []
     }],
     optionName: "Edit"
 
@@ -23,9 +21,7 @@ const OptionsElementEdit: OptionsElementStaticDataType = {
 }
 const OptionsElementHelp: OptionsElementStaticDataType = {
     toolGroupElements: [{
-        toolGroupName: "starter", toolElements: [
-
-        ]
+        toolGroupName: "starter", toolElements: []
     }],
     optionName: "Help"
 

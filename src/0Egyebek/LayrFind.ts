@@ -1,4 +1,3 @@
-
 import {ConnObject} from "../Layr/DocsConnsManager/Data/Conn/ConnObject.js";
 import {DocObject} from "../Layr/DocsConnsManager/Data/Doc/Doc/DocObject.js";
 import {NodeObjectBase} from "../Layr/NodesEdgesManager/Node/NodeObject/NodeObjectBase.js";
@@ -31,12 +30,11 @@ export class LayrFind {
     static node_ById_InFrame(nodeId: string): NodeObjectBase {
 
 
-
         return layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeNodeIdMap.get(nodeId);
     }
 
     static nodes_ByDocId_Global(docId: string): NodeObjectBase[] {
-        return   layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeDocIdMap.get(docId)
+        return layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeDocIdMap.get(docId)
     }
 
     static nodes_ByParentNodeId_InFrame(nodeId: string,): NodeObjectNormal[] {

@@ -3,10 +3,11 @@ import {PartBase} from "../Layr/SMP/PartsGeneral/PartBase.js";
 import {SMPMasterObjectInterface} from "../Layr/SMP/SMPLayr/SMPMasterObjectInterface.js";
 import {SMPManager} from "../Layr/SMP/SMPLayr/SMPManager.js";
 
-export class MrkObjectListPartsType extends MrkObjectList{
+export class MrkObjectListPartsType extends MrkObjectList {
 
     objects: { className: string, object: PartBase }[]
-    constructor(classList: any[], masterobject:SMPMasterObjectInterface, smpManager:SMPManager, objectsArg3?) {
+
+    constructor(classList: any[], masterobject: SMPMasterObjectInterface, smpManager: SMPManager, objectsArg3?) {
         super(classList, masterobject, smpManager, objectsArg3);
     }
 
@@ -17,9 +18,6 @@ export class MrkObjectListPartsType extends MrkObjectList{
         })
         return objectData.object
     }
-
-
-
 
 
 }

@@ -5,6 +5,7 @@ export class FieldData {
     fieldName: string
     elementType: ElementTypes
     partsData: any
+
     constructor() {
         this.fieldId = Math.random().toString()
         this.partsData = {}

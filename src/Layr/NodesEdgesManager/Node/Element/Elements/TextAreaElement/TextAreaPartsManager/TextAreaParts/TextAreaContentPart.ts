@@ -23,7 +23,7 @@ export class TextAreaContentPart extends PartBaseElement_Field {
 
     loadData() {
 
-        if (MrkLibrary.emptyObjectCheck( this.getPartData().data) ) return
+        if (MrkLibrary.emptyObjectCheck(this.getPartData().data)) return
 
         this.masterObject.element.value = this.getPartData().data
 

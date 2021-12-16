@@ -34,8 +34,8 @@ export class MenuElement {
         if (activate) {
 
             this.menuDivElement.animate([
-                {backgroundColor : ""},
-                {backgroundColor :"#313131"}
+                {backgroundColor: ""},
+                {backgroundColor: "#313131"}
             ], {
                 duration: 100,
             }).onfinish = () => {

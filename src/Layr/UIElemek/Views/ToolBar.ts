@@ -1,10 +1,11 @@
 import {LayrUI} from "../LayrUI.js";
 
 export class ToolBar {
-    layrUI:LayrUI
-    toolBarElement:HTMLDivElement
-    constructor(layrUI:LayrUI) {
-        this.layrUI=layrUI
+    layrUI: LayrUI
+    toolBarElement: HTMLDivElement
+
+    constructor(layrUI: LayrUI) {
+        this.layrUI = layrUI
         this.toolBarInit()
     }
 
@@ -13,7 +14,7 @@ export class ToolBar {
         this.toolBarElement.style.backgroundColor = "#7d7d7d"
 
         this.toolBarElement.style.flexGrow = "1"
-        this.toolBarElement.style.borderBottom="solid"
+        this.toolBarElement.style.borderBottom = "solid"
         this.toolBarElement.style.borderBottomWidth = "1px"
         this.toolBarElement.style.borderBottomColor = "rgba(0,0,0,0.44)"
         //kozepre helyezi oket
@@ -22,8 +23,8 @@ export class ToolBar {
         //  this.menuBarElement.style.alignContent = "center"
         // this.menuBarElement.style.flexDirection = "row"
         //  this.menuBarElement.style.justifyContent = "center"
-//yx hack
-        this.toolBarElement.style.height="12ch"
+        //yx hack
+        this.toolBarElement.style.height = "12ch"
 
         this.layrUI.OptionsBar.optionsBarElement.appendChild(this.toolBarElement)
     }

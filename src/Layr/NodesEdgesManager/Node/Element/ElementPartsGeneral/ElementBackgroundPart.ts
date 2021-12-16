@@ -56,7 +56,7 @@ export class ElementBackgroundPart extends PartBaseElement_Field {
     }
 
     setBackgroundColor(color) {
-        this.masterObject.element.style.backgroundColor=color
+        this.masterObject.element.style.backgroundColor = color
     }
 
     saveValue() {

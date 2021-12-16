@@ -5,12 +5,13 @@ import {SMPManager} from "../SMPManager.js";
 export class SMPSavePart_NodeType extends PartBaseNode_Doc {
     //yx ez lehet, hogy valtozni fog a jovoben CData-ra, de egyelore mivel a root-al csak igy lehet, igy ezt hasznalom
     protected masterObject: NodeObjectBase
-    smpManager:SMPManager
-    static partName ="SMPSave"
-    constructor(masterObject,smpManager:SMPManager) {
+    smpManager: SMPManager
+    static partName = "SMPSave"
+
+    constructor(masterObject, smpManager: SMPManager) {
         super(masterObject);
-      //  console.log(masterObject,smpManager)
-       this. smpManager=smpManager
+        //  console.log(masterObject,smpManager)
+        this.smpManager = smpManager
     }
 
     activate() {
@@ -32,7 +33,7 @@ export class SMPSavePart_NodeType extends PartBaseNode_Doc {
     }
 
     saveValue() {
-        this.saveValueDefault(this. smpManager.smpSelectorDataSaveObjects)
+        this.saveValueDefault(this.smpManager.smpSelectorDataSaveObjects)
     }
 
     deactivate() {

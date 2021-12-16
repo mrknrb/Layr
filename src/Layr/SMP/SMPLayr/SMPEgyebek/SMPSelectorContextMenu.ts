@@ -1,9 +1,6 @@
 import {SMPSelectorDataDynamic} from "../DataBlueprints/SMPSelectorDynamicData/SMPSelectorDataDynamic.js";
 import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
 import {ContextMElementSubContextMButton} from "../../../ContextMenu/ContextMenuElements/ContextMElementSubContextMButton.js";
-import {ContextMElementClickable} from "../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
-import {SMPStateContextMenu} from "./SMPStateContextMenu.js";
-import {SMPSelectorAndStateName} from "./SMPSelectorAndStateName.js";
 
 export class SMPSelectorContextMenu {
     smpSelector: SMPSelectorDataDynamic
@@ -41,10 +38,10 @@ export class SMPSelectorContextMenu {
 
     createStatesMenu() {
         this.smpSelector.smpStateDataDynamicMap.forEach(state => {
-            state.createContextMenu(this.contextMenuHead,this.contextMenuBody)
+            state.createContextMenu(this.contextMenuHead, this.contextMenuBody)
 
         })
-      //  this.contextMenuStatesActivatedVisible()
+        //  this.contextMenuStatesActivatedVisible()
     }
 
     contextMenuStatesButtonsAllInvisible() {

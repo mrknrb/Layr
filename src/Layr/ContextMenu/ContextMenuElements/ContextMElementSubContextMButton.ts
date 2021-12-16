@@ -20,7 +20,7 @@ export class ContextMElementSubContextMButton extends ContextMenuElementBase {
 
 
         let textElement = document.createElement("b")
-       // textElement.style.fontSize = "1ch"
+        // textElement.style.fontSize = "1ch"
         textElement.style.userSelect = "none";
         textElement.style.cursor = "default"
         textElement.style.margin = "2px"

@@ -12,7 +12,7 @@ export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
 
     activate() {
         let style = this.masterObject.mainElement.element.style
-        style.position="absolute"
+        style.position = "absolute"
 
 
         this.loadData()
@@ -21,9 +21,9 @@ export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
                 this.saveValue()
             }
         )
-        let resizeEvent = MrkLibrary.resizeElement(this.masterObject.mainElement.element,4,ResizeType.horizontal)
+        let resizeEvent = MrkLibrary.resizeElement(this.masterObject.mainElement.element, 4, ResizeType.horizontal)
         resizeEvent.on(() => {
-            console.log("fasza")
+                console.log("fasza")
                 this.saveValue()
             }
         )
@@ -36,10 +36,10 @@ export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
         let style = this.masterObject.mainElement.element.style
         let absoluteLayoutData: absoluteLayoutInterface = this.getPartData().data
 
-       absoluteLayoutData.left? style.left = absoluteLayoutData.left /*+ "px"*/ :style.left ="0px"
-        absoluteLayoutData.top? style.top = absoluteLayoutData.top /*+ "px"*/:style.top ="0px"
-       // absoluteLayoutData.height? style.height = absoluteLayoutData.height /*+ "px"*/:style.height ="20px"
-        absoluteLayoutData.width? style.width = absoluteLayoutData.width /*+ "px"*/:style.width ="80px"
+        absoluteLayoutData.left ? style.left = absoluteLayoutData.left /*+ "px"*/ : style.left = "0px"
+        absoluteLayoutData.top ? style.top = absoluteLayoutData.top /*+ "px"*/ : style.top = "0px"
+        // absoluteLayoutData.height? style.height = absoluteLayoutData.height /*+ "px"*/:style.height ="20px"
+        absoluteLayoutData.width ? style.width = absoluteLayoutData.width /*+ "px"*/ : style.width = "80px"
 
     }
 
@@ -51,7 +51,7 @@ export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
             //height: style.height,
             width: style.width
         }
-      //
+        //
         return saveValue
     }
 
@@ -70,7 +70,7 @@ export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
 interface absoluteLayoutInterface {
     top: string,
     left: string,
-   // height: string,
+    // height: string,
     width: string,
 
 }

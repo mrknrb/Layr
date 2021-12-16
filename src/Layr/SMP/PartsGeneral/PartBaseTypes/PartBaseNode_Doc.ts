@@ -16,13 +16,14 @@ export abstract class PartBaseNode_Doc extends PartBase {
 
     protected getPartData() {
 
-        if(!this.getMasterDataObject().docData.partsData) this.getMasterDataObject().docData.partsData={}
-        if(!this.getMasterDataObject().docData.partsData[this. getPartName ()]) this.getMasterDataObject().docData.partsData[this. getPartName ()]={}
-        if(!this.getMasterDataObject().docData.partsData[this. getPartName ()].data) this.getMasterDataObject().docData.partsData[this. getPartName ()].data={}
+        if (!this.getMasterDataObject().docData.partsData) this.getMasterDataObject().docData.partsData = {}
+        if (!this.getMasterDataObject().docData.partsData[this.getPartName()]) this.getMasterDataObject().docData.partsData[this.getPartName()] = {}
+        if (!this.getMasterDataObject().docData.partsData[this.getPartName()].data) this.getMasterDataObject().docData.partsData[this.getPartName()].data = {}
 
-        return this.getMasterDataObject().docData.partsData[this. getPartName ()]
+        return this.getMasterDataObject().docData.partsData[this.getPartName()]
 
     }
+
     protected valueSync(loadData?: any) {
 
         this.getMasterDataObject().syncObjectNode_Doc.partSyncStart({

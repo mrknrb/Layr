@@ -13,9 +13,9 @@ export class TextAreaTestPartBlue extends PartBaseElement_Field {
 
     activate() {
 
-        this.masterObject.element.style.color="blue"
+        this.masterObject.element.style.color = "blue"
         //  this.loadData()
-       // this.masterObject.element.style.backgroundColor="blue"
+        // this.masterObject.element.style.backgroundColor="blue"
 
 
     }
@@ -26,11 +26,11 @@ export class TextAreaTestPartBlue extends PartBaseElement_Field {
 
 
     saveValue() {
-      //  this.saveValueDefault(this.masterObject.element.value)
-     //  this.valueSync()
+        //  this.saveValueDefault(this.masterObject.element.value)
+        //  this.valueSync()
     }
 
     deactivate() {
-        this.masterObject.element.style.color="black"
+        this.masterObject.element.style.color = "black"
     }
 }

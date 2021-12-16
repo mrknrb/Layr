@@ -1,8 +1,7 @@
 import {FieldhezElementCData} from "../../../../../DocsConnsManager/Data/Conn/NodeCData/FieldhezElementCData.js";
-import {SMPSave} from "../../../../../DocsConnsManager/Data/SMPSave.js";
 
 
-export class GroupData  {
+export class GroupData {
 
     constructor() {
 

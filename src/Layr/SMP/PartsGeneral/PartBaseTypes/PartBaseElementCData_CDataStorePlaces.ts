@@ -14,10 +14,12 @@ export abstract class PartBaseElementCData_CDataStorePlaces extends PartBase {
     protected getMasterDataObject() {
         return LayrFind.conn(this.masterObject.nodeObject)
     }
+
     protected getPartData() {
 
 
     }
+
     protected valueSync(loadData?: any) {
 
         this.getMasterDataObject().syncObjectNodeCData_Conn.partSyncStart({

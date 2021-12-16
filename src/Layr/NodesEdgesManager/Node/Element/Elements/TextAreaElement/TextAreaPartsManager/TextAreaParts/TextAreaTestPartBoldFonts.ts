@@ -14,7 +14,7 @@ export class TextAreaTestPartBoldFonts extends PartBaseElement_Field {
     activate() {
 
         //  this.loadData()
-        this.masterObject.element.style.fontWeight="900"
+        this.masterObject.element.style.fontWeight = "900"
 
 
     }
@@ -30,7 +30,7 @@ export class TextAreaTestPartBoldFonts extends PartBaseElement_Field {
     }
 
     deactivate() {
-        this.masterObject.element.style.fontWeight="normal"
+        this.masterObject.element.style.fontWeight = "normal"
     }
 
 

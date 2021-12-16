@@ -1,4 +1,3 @@
-import {OptionElement} from "./OptionElement.js";
 import {ToolGroup} from "./ToolGroup.js";
 
 export abstract class ToolElementBaseClass {
@@ -8,6 +7,7 @@ export abstract class ToolElementBaseClass {
     constructor(toolGroup: ToolGroup) {
         this.toolGroup = toolGroup
     }
-   abstract toolHTMLElementInit()
+
+    abstract toolHTMLElementInit()
 
 }

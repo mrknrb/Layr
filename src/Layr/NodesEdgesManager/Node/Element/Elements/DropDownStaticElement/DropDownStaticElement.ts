@@ -75,7 +75,7 @@ export class DropDownStaticElement extends ElementBaseClass {
 
     protected elementInit() {
         this.element.classList.add("LayrElement")
-      //  this.dataRefresh()
+        //  this.dataRefresh()
     }
 
 

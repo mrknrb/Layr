@@ -13,14 +13,19 @@ export abstract class PartBaseNodeCData_Conn extends PartBase {
     }
 
     getMasterDataObject() {
-       return LayrFind.conn(this.masterObject.connId)
+        return LayrFind.conn(this.masterObject.connId)
     }
+
     protected getPartData() {
-        if(!this.getMasterDataObject().connData.data) this.getMasterDataObject().connData.data={nodeCDataParts:{},edgeCDataParts:{},elementsCDataParts:[]}
-        if(!this.getMasterDataObject().connData.data.nodeCDataParts) this.getMasterDataObject().connData.data.nodeCDataParts={}
-        if(!this.getMasterDataObject().connData.data.nodeCDataParts[this. getPartName ()]) this.getMasterDataObject().connData.data.nodeCDataParts[this. getPartName ()]={}
-        if(!this.getMasterDataObject().connData.data.nodeCDataParts[this. getPartName ()].data) this.getMasterDataObject().connData.data.nodeCDataParts[this. getPartName ()].data={}
-        return this.getMasterDataObject().connData.data.nodeCDataParts[this. getPartName ()]
+        if (!this.getMasterDataObject().connData.data) this.getMasterDataObject().connData.data = {
+            nodeCDataParts: {},
+            edgeCDataParts: {},
+            elementsCDataParts: []
+        }
+        if (!this.getMasterDataObject().connData.data.nodeCDataParts) this.getMasterDataObject().connData.data.nodeCDataParts = {}
+        if (!this.getMasterDataObject().connData.data.nodeCDataParts[this.getPartName()]) this.getMasterDataObject().connData.data.nodeCDataParts[this.getPartName()] = {}
+        if (!this.getMasterDataObject().connData.data.nodeCDataParts[this.getPartName()].data) this.getMasterDataObject().connData.data.nodeCDataParts[this.getPartName()].data = {}
+        return this.getMasterDataObject().connData.data.nodeCDataParts[this.getPartName()]
     }
 
     protected valueSync(loadData?: any) {

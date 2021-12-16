@@ -15,15 +15,11 @@ export abstract class ContextMenuElementBase {
     }
 
 
-
     elementVisible(visible: boolean) {
         visible ? this.element.style.display = "" : this.element.style.display = "none"
 
 
     }
-
-
-
 
 
 }

@@ -8,9 +8,10 @@ import {TypedEvent} from "../../../../0Libraries/TypedEvents.js";
 export class ElementsManager {
     elements: Map<string, ElementBaseClass>
     nodeObject: NodeObjectBase
-elementCreatedEvent:TypedEvent<ElementBaseClass>
+    elementCreatedEvent: TypedEvent<ElementBaseClass>
+
     constructor(nodeObject: NodeObjectBase) {
-        this.elementCreatedEvent=new TypedEvent<ElementBaseClass>()
+        this.elementCreatedEvent = new TypedEvent<ElementBaseClass>()
         this.nodeObject = nodeObject
         this.elements = new Map<string, any>()
     }
@@ -44,7 +45,7 @@ elementCreatedEvent:TypedEvent<ElementBaseClass>
 
         let element = this.elements.get(fieldId)
         this.elements.forEach(element => {
-            if(element.element.parentElement==document.querySelector("#workScreenDiv")) {
+            if (element.element.parentElement == document.querySelector("#workScreenDiv")) {
                 element.elementInsertFullScreenOrNode(false)
             }
         })

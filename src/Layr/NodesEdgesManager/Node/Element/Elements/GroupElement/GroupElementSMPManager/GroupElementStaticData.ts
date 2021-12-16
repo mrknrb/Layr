@@ -20,7 +20,7 @@ const loadedSelectorData: SMPSelectorDataStatic =
         defaultState: loadedSelectorDataNames.states.NotLoaded,
         selectorName: loadedSelectorDataNames.selector,
         defaultSelectorActive: false,
-        selectorDontLoadSave:true,
+        selectorDontLoadSave: true,
         states: [
             {
                 stateName: loadedSelectorDataNames.states.Loaded,
@@ -31,9 +31,7 @@ const loadedSelectorData: SMPSelectorDataStatic =
                 ]
             }, {
                 stateName: loadedSelectorDataNames.states.NotLoaded,
-                masterObjectPartNames: [
-
-                ]
+                masterObjectPartNames: []
             }
         ]
     }
@@ -61,10 +59,9 @@ const layoutSelectorData: SMPSelectorDataStatic =
                 stateName: loadedSelectorDataNames.states.Loaded
             }
         ,
-        states: [  {
+        states: [{
             stateName: layoutSelectorDataNames.states.Nothing,
-            masterObjectPartNames: [
-            ]
+            masterObjectPartNames: []
         },
             {
                 stateName: layoutSelectorDataNames.states.Absolute,
@@ -73,9 +70,7 @@ const layoutSelectorData: SMPSelectorDataStatic =
                 ]
             }, {
                 stateName: layoutSelectorDataNames.states.List,
-                masterObjectPartNames: [
-
-                ]
+                masterObjectPartNames: []
             }
 
         ]

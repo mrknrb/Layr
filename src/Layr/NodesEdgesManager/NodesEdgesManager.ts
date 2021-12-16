@@ -4,8 +4,6 @@ import {NodeObjectBase} from "./Node/NodeObject/NodeObjectBase.js";
 import {LayrFind} from "../../0Egyebek/LayrFind.js";
 import {NodesEdgesDataStorage} from "./NodesEdgesDataStorage.js";
 import {layrFrame} from "../LayrFrame.js";
-import {EdgeObject} from "./Edge/EdgeObject.js";
-import {ConnObject} from "../DocsConnsManager/Data/Conn/ConnObject.js";
 
 
 export class NodesEdgesManager {

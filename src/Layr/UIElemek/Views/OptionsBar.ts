@@ -5,7 +5,7 @@ import {MrkLibrary, ResizeType} from "../../../0Egyebek/MrkLibrary.js";
 export class OptionsBar {
     layrUI: LayrUI
     layrFrame: LayrFrame
-    topMenuElement:HTMLElement
+    topMenuElement: HTMLElement
     optionsBarElement: HTMLElement
     optionsBarRootNodeContainerElement: HTMLElement
 
@@ -18,7 +18,7 @@ export class OptionsBar {
         this.optionsBarInit()
     }
 
-    topMenuInit(){
+    topMenuInit() {
         this.topMenuElement = document.createElement("div")
         this.topMenuElement.style.backgroundColor = "#101010"
 
@@ -39,10 +39,10 @@ export class OptionsBar {
 
     optionsBarRootNodeContainerInit() {
         this.optionsBarRootNodeContainerElement = document.createElement("div")
-        this.optionsBarRootNodeContainerElement.id="optionsBarRootNodeContainer"
+        this.optionsBarRootNodeContainerElement.id = "optionsBarRootNodeContainer"
         this.optionsBarRootNodeContainerElement.style.backgroundColor = "#848484"
-       // this.optionsBarRootNodeContainerElement.style.overflowY="scroll"
-        this.optionsBarRootNodeContainerElement.style.overflowX="hidden"
+        // this.optionsBarRootNodeContainerElement.style.overflowY="scroll"
+        this.optionsBarRootNodeContainerElement.style.overflowX = "hidden"
         this.optionsBarRootNodeContainerElement.style.height = "100%"
         this.optionsBarRootNodeContainerElement.style.width = "50ch"
         this.optionsBarRootNodeContainerElement.style.borderRight = "solid 10px rgb(213,213,213)"
@@ -59,7 +59,7 @@ export class OptionsBar {
         this.optionsBarElement.style.top = "0"
         this.optionsBarElement.style.zIndex = "9999"
         this.optionsBarElement.style.left = "0"
-        this.optionsBarElement.style.flexGrow="1"
+        this.optionsBarElement.style.flexGrow = "1"
         this.optionsBarElement.style.display = "flex"
         this.optionsBarElement.style.alignContent = "center"
         this.optionsBarElement.style.flexDirection = "column"

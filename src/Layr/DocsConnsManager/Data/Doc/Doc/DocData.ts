@@ -9,6 +9,7 @@ export class DocData {
     fieldsData: FieldData[]
     tags: string[]
     partsData: Object
+
     constructor() {
         this.fieldsData = []
         this.ownElementsCData = []

@@ -44,13 +44,16 @@ export const NodeLayoutSelectorDataNames = {
         List: "List"
     }
 }
- const NodeLayoutSelectorData: SMPSelectorDataStatic =
+const NodeLayoutSelectorData: SMPSelectorDataStatic =
     {
         defaultState: NodeLayoutSelectorDataNames.states.Nothing,
         selectorName: NodeLayoutSelectorDataNames.selector,
-        parentSelectorAndStateName:{selectorName:loadedSelectorDataNames.selector,stateName:loadedSelectorDataNames.states.Loaded},
+        parentSelectorAndStateName: {
+            selectorName: loadedSelectorDataNames.selector,
+            stateName: loadedSelectorDataNames.states.Loaded
+        },
         defaultSelectorActive: true,
-        selectorDontLoadSave:true,
+        selectorDontLoadSave: true,
         states: [
             {
                 stateName: NodeLayoutSelectorDataNames.states.Nothing,

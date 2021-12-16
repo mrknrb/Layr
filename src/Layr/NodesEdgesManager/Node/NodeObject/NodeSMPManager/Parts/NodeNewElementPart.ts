@@ -20,7 +20,7 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
     }
 
     contextInit() {
-        this.partContextMenu=new ContextMenu()
+        this.partContextMenu = new ContextMenu()
         let contextMenuElementNewNode = new ContextMElementSubContextMButton("New Element")
         this.partContextMenu.contextMenuElementInsert(contextMenuElementNewNode)
         let subContextMenu = new ContextMenu()

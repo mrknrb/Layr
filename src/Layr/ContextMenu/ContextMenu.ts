@@ -58,7 +58,6 @@ export class ContextMenu extends ContextMenuElementBase {
         style.display = "block"
 
 
-
         style.left = coordinateX + "px"
         style.top = coordinateY + "px"
         let tullogasJobb = window.innerWidth - (coordinateX + this.element.getBoundingClientRect().width)

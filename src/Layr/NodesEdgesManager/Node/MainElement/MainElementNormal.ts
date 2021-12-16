@@ -1,8 +1,5 @@
 import {MainElementBase} from "./MainElementBase.js";
 import {NodeObjectNormal} from "../NodeObject/NodeObjectNormal.js";
-import {LayrFind} from "../../../../0Egyebek/LayrFind.js";
-import {GroupData} from "../Element/Elements/GroupElement/GroupData.js";
-import {ElementTypes} from "../Element/Adatok/ElementTypes.js";
 
 export class MainElementNormal extends MainElementBase {
     nodeObject: NodeObjectNormal

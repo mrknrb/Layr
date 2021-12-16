@@ -1,4 +1,3 @@
-
 import {PartBase} from "../../../PartsGeneral/PartBase.js";
 import {SMPStateDataDynamic} from "./SMPStateDataDynamic.js";
 

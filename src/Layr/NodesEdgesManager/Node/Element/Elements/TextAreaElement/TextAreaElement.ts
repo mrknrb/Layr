@@ -1,6 +1,5 @@
 import {ElementTypes} from "../../Adatok/ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
-import {HTMLElementResizer} from "../../ElementResizer/HTMLElementResizer.js";
 import {NodeObjectBase} from "../../../NodeObject/NodeObjectBase.js";
 import {SMPManager} from "../../../../../SMP/SMPLayr/SMPManager.js";
 import {TextAreaElementPartsClassArray} from "./TextAreaPartsManager/TextAreaElementPartsClassArray.js";

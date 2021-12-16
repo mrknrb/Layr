@@ -91,16 +91,10 @@ const testSelectorData2: SMPSelectorDataStatic =
         states: [
             {
                 stateName: testSelectorDataNames2.states.test1,
-                masterObjectPartNames: [
-
-
-                ]
+                masterObjectPartNames: []
             }, {
                 stateName: testSelectorDataNames2.states.test2,
-                masterObjectPartNames: [
-
-
-                ]
+                masterObjectPartNames: []
             }
         ]
     }
