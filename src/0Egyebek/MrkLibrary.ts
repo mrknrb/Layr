@@ -3,7 +3,7 @@ import {DocData} from "../Layr/DocsConnsManager/Data/Doc/Doc/DocData.js";
 import {TypedEvent} from "../0Libraries/TypedEvents.js";
 
 export class MrkLibrary {
-    static dragElement(draggingElement, moveableElement, kikapcsolas) {
+    static dragElement(draggingElement: HTMLElement, moveableElement: HTMLElement, kikapcsolas?: boolean) {
         let megmozdultEvent = new TypedEvent()
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0
         if (kikapcsolas) {
@@ -155,10 +155,13 @@ export class MrkLibrary {
 
 
     static resizeElement(element: HTMLElement, BORDER_SIZE: number = 4, resizeType: ResizeType) {
+        let resizeEvent = new TypedEvent()
         element.classList.add("resizeRight")
         let m_pos;
         let mouseDownListener = (e) => {
             if (e.offsetX > element.clientWidth - BORDER_SIZE) {
+
+                resizeInProgress=true
                 m_pos = e.x;
                 document.addEventListener("mousemove", resize, false);
             }
@@ -173,6 +176,8 @@ export class MrkLibrary {
         let m_pos2;
         let mouseDownListener2 = (e) => {
             if (e.offsetY > element.clientHeight - BORDER_SIZE) {
+
+                resizeInProgress=true
                 m_pos2 = e.y;
                 document.addEventListener("mousemove", resize2, false);
             }
@@ -184,7 +189,7 @@ export class MrkLibrary {
             //element.style.width = (parseInt(getComputedStyle(element, '').width) - dx) + "px";
             element.style.height = (element.clientHeight - dx) + "px"
         }
-
+        let resizeInProgress = false
 
         element.addEventListener("mousedown", function (e) {
             if (resizeType == ResizeType.horizontal || resizeType == ResizeType.both) {
@@ -193,6 +198,8 @@ export class MrkLibrary {
             if (resizeType == ResizeType.vertical || resizeType == ResizeType.both) {
                 mouseDownListener2(e)
             }
+
+
         }, false);
 
         document.addEventListener("mouseup", function () {
@@ -203,7 +210,10 @@ export class MrkLibrary {
             if (resizeType == ResizeType.vertical || resizeType == ResizeType.both) {
                 document.removeEventListener("mousemove", resize2, false);
             }
-
+            if (resizeInProgress) {
+                resizeInProgress=false
+                resizeEvent.emit(true)
+            }
 
         }, false);
         element.addEventListener("mousemove", function (e) {
@@ -224,22 +234,21 @@ export class MrkLibrary {
                 }
             }
             if (resizeType == ResizeType.both) {
-                if (e.offsetX > element.clientWidth - BORDER_SIZE&&(e.offsetY > element.clientHeight - BORDER_SIZE)) {
+                if (e.offsetX > element.clientWidth - BORDER_SIZE && (e.offsetY > element.clientHeight - BORDER_SIZE)) {
                     element.style.cursor = "se-resize"
-                } else  if (e.offsetX > element.clientWidth - BORDER_SIZE) {
+                } else if (e.offsetX > element.clientWidth - BORDER_SIZE) {
                     element.style.cursor = "w-resize"
-                } else  if (e.offsetY > element.clientHeight - BORDER_SIZE) {
+                } else if (e.offsetY > element.clientHeight - BORDER_SIZE) {
                     element.style.cursor = "n-resize"
-                }else{
+                } else {
                     element.style.cursor = ""
 
                 }
 
 
-
             }
         }, false);
-
+        return resizeEvent
 
     }
 

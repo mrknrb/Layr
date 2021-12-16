@@ -1,7 +1,6 @@
-
 import {PartBaseElement_Field} from "../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
 import {GroupElement} from "../../GroupElement.js";
-import {layrFrame, LayrFrame} from "../../../../../../../LayrFrame.js";
+import {layrFrame} from "../../../../../../../LayrFrame.js";
 
 export class GroupElementNodesLoader extends PartBaseElement_Field {
 
@@ -18,24 +17,23 @@ export class GroupElementNodesLoader extends PartBaseElement_Field {
         this.loadData()
 
 
-
-
-
     }
 
     loadData() {
-       // this.masterObject.element = this.getPartData().data
+        // this.masterObject.element = this.getPartData().data
+        let nodes = layrFrame.nodesEdgesManager.loadNormalNodesOfGroupNode(this.masterObject.nodeObject)
+        nodes.then(value => {
+            value.forEach(value1 => {
+                this.masterObject.element.appendChild(value1.mainElement.element)
+            })
 
-        layrFrame.nodesEdgesManager.loadNormalNodesOfGroupNode(this.masterObject.nodeObject)
-
-
-
+        })
     }
 
 
     saveValue() {
-       // this.saveValueDefault("")
-       // this.valueSync()
+        // this.saveValueDefault("")
+        // this.valueSync()
     }
 
     deactivate() {

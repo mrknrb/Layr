@@ -10,8 +10,9 @@ export const NodeNormalPartsClassList =
     [
         SMPSavePart_NodeType,
         NodeNewElementPart,
+        NodeLayoutAbsolutePart,
         //NodeFullScreenElementPart
-        //  NodeLayoutAbsolutePart,
+
         // NodeSizeChangePart
 
     ]

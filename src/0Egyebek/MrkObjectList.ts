@@ -43,7 +43,6 @@ export class MrkObjectList {
     getObject(ObjectClassName: string) {
         let objectData = this.objects.find(object => {
            return object.className === ObjectClassName
-
         })
         return objectData.object
     }

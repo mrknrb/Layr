@@ -18,6 +18,8 @@ export abstract class PartBaseNode_Doc extends PartBase {
 
         if(!this.getMasterDataObject().docData.partsData) this.getMasterDataObject().docData.partsData={}
         if(!this.getMasterDataObject().docData.partsData[this. getPartName ()]) this.getMasterDataObject().docData.partsData[this. getPartName ()]={}
+        if(!this.getMasterDataObject().docData.partsData[this. getPartName ()].data) this.getMasterDataObject().docData.partsData[this. getPartName ()].data={}
+
         return this.getMasterDataObject().docData.partsData[this. getPartName ()]
 
     }

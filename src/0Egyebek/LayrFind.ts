@@ -6,6 +6,7 @@ import {ElementTypes} from "../Layr/NodesEdgesManager/Node/Element/Adatok/Elemen
 import {FieldObject} from "../Layr/DocsConnsManager/Data/Doc/Field/FieldObject.js";
 import {ElementBaseClass} from "../Layr/NodesEdgesManager/Node/Element/ElementBaseClass.js";
 import {layrFrame} from "../Layr/LayrFrame.js";
+import {NodeObjectNormal} from "../Layr/NodesEdgesManager/Node/NodeObject/NodeObjectNormal.js";
 
 export class LayrFind {
 
@@ -35,17 +36,12 @@ export class LayrFind {
     }
 
     static nodes_ByDocId_Global(docId: string): NodeObjectBase[] {
-
-
-
-
         return   layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeDocIdMap.get(docId)
     }
 
-    static nodes_ByParentNodeId_InFrame(nodeId: string,): NodeObjectBase[] {
+    static nodes_ByParentNodeId_InFrame(nodeId: string,): NodeObjectNormal[] {
 
-
-        return layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeParentNodeIdMap.get(nodeId);
+        return layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeParentNodeIdMap.get(nodeId) as NodeObjectNormal[]
     }
 
     static nodes_ByConnId_Global(connId: string): NodeObjectBase[] {

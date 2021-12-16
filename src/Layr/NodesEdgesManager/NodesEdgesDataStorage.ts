@@ -20,8 +20,6 @@ export class NodesEdgesDataStorage {
         this.nodeParentNodeIdMap = new Map<string, NodeObjectBase[]>()
         this.nodeDocIdMap = new Map<string, NodeObjectBase[]>()
         this.nodeConnIdMap = new Map<string, NodeObjectBase[]>()
-
-
         this.edgeEdgeIdMap = new Map<string, EdgeObject>()
         this.edgeConnIdMap = new Map<string, EdgeObject[]>()
     }
@@ -32,13 +30,14 @@ export class NodesEdgesDataStorage {
             this.nodeNodeIdMap.set(nodeObjectBase.nodeId, nodeObjectBase)
             //      yx                                                             nodeParentNodeIdMap
             if (nodeObjectBase.constructor.name == NodeObjectNormal.name) {
+                console.log("ttttt")
                 let nodeObjectNormal = nodeObjectBase as NodeObjectNormal
                 let nodesByParentNodeId = this.nodeParentNodeIdMap.get(nodeObjectNormal.parentNodeId)
                 if (!nodesByParentNodeId) {
-                    nodesByParentNodeId = []
-                    this.nodeDocIdMap.set(nodeObjectNormal.docId, nodesByParentNodeId)
+
+                    this.nodeParentNodeIdMap.set(nodeObjectNormal.parentNodeId, [])
                 }
-                nodesByParentNodeId.push(nodeObjectNormal)
+                this.nodeParentNodeIdMap.get(nodeObjectNormal.parentNodeId).push(nodeObjectNormal)
             }
             //   yx                                                                nodeDocIdMap
             let nodesByDocId = this.nodeDocIdMap.get(nodeObjectBase.docId)

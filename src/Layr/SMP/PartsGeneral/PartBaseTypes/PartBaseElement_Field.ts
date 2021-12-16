@@ -20,6 +20,8 @@ export abstract class PartBaseElement_Field extends PartBase {
         //yx nem tudom, hogy mukodik-e
         if (!this.getMasterDataObject().fieldData.partsData) this.getMasterDataObject().fieldData.partsData = {}
         if (!this.getMasterDataObject().fieldData.partsData[this.getPartName()]) this.getMasterDataObject().fieldData.partsData[this.getPartName()] = {}
+        if (!this.getMasterDataObject().fieldData.partsData[this.getPartName()].data) this.getMasterDataObject().fieldData.partsData[this.getPartName()].data = {}
+
         return this.getMasterDataObject().fieldData.partsData[this.getPartName()]
     }
 

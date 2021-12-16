@@ -4,11 +4,12 @@ import {NodeObjectBase} from "./Node/NodeObject/NodeObjectBase.js";
 import {LayrFind} from "../../0Egyebek/LayrFind.js";
 import {NodesEdgesDataStorage} from "./NodesEdgesDataStorage.js";
 import {layrFrame} from "../LayrFrame.js";
+import {EdgeObject} from "./Edge/EdgeObject.js";
+import {ConnObject} from "../DocsConnsManager/Data/Conn/ConnObject.js";
 
 
 export class NodesEdgesManager {
 
-    nodeObjectsMap: Map<string, NodeObjectBase>
     nodesEdgesDataStorage: NodesEdgesDataStorage
 
 
@@ -16,7 +17,6 @@ export class NodesEdgesManager {
 
         this.nodesEdgesDataStorage = new NodesEdgesDataStorage()
 
-        this.nodeObjectsMap = new Map<string, NodeObjectBase>()
     }
 
     getNodeObjectRoot() {
@@ -41,11 +41,12 @@ export class NodesEdgesManager {
 
         let docConnObjects = await layrFrame.docsConnsManager.loadDocs_ByDocChildConns(parentNodeObject.docId)
         let nodeObjectsArray: NodeObjectNormal[] = []
-        for await(let connectionObject of docConnObjects.connObjects) {
+        for await(let connObject of docConnObjects.connObjects) {
             let docObject = docConnObjects.docObjects.find(function (docObject) {
-                return docObject.docData._id == connectionObject.connData.to
+                return docObject.docData._id == connObject.connData.to
             })
-            let nodeObjectNormal = new NodeObjectNormal(docObject.docData._id, connectionObject.connData._id, parentNodeObject.nodeId)
+            let nodeObjectNormal = new NodeObjectNormal(docObject.docData._id, connObject.connData._id, parentNodeObject.nodeId)
+
             this.nodesEdgesDataStorage.insertNode(nodeObjectNormal)
             nodeObjectsArray.push(nodeObjectNormal)
         }

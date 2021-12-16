@@ -6,7 +6,7 @@ import {MrkLibrary} from "../0Egyebek/MrkLibrary.js";
 import {LayrUI} from "./UIElemek/LayrUI.js";
 
 
-//@ts-ignore
+
 let layrFrame: LayrFrame
 
 export {layrFrame}

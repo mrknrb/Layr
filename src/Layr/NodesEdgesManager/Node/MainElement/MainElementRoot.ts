@@ -8,8 +8,8 @@ export class MainElementRoot extends MainElementBase {
     }
 
     layoutApply() {
-        this.layoutClean()
-        this.layoutDefault()
+        //this.layoutClean()
+       // this.layoutDefault()
         let s = this.element.style
 
         document.querySelector("#optionsBarRootNodeContainer").appendChild(this.element)

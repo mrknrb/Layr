@@ -80,7 +80,7 @@ export class DocsConnsManager {
             let sikerultBool = await layrFrame.layrClient.newRequest(RequestType.updateCons, [conDataModified])
             return sikerultBool
         }
-        OriginalConFunction(mentettCon.connectionData, modifiedConFunction)
+        OriginalConFunction(mentettCon.connData, modifiedConFunction)
     }
 
     private async docsDownloadAndLoad(docIds: string[]): Promise<DocObject[]> {

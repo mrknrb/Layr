@@ -23,7 +23,7 @@ export class GroupElement extends ElementBaseClass {
 
         this.element.classList.add("LayrElement")
         this.element.style.border = `black`
-        this.element.style.width = "calc(100% - 3px)"//"100%" //addig van ez így, amíg a nagyitasnal nem fedi le a mainelementet
+        this.element.style.width = "calc(100%)"
         this.element.style.height = "50px"
         this.element.style.backgroundColor = "#90a4ae"
         this.element.style.overflow = "auto"

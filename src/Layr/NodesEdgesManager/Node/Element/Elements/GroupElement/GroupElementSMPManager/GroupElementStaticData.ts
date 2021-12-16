@@ -1,6 +1,7 @@
 import {SMPSelectorDataStatic} from "../../../../../../SMP/SMPLayr/DataBlueprints/SMPSelectorStaticData/SMPSelectorDataStatic.js";
 import {ElementBackgroundPart} from "../../../ElementPartsGeneral/ElementBackgroundPart.js";
 import {GroupElementNodesLoader} from "./GroupElementParts/GroupElementNodesLoader.js";
+import {GroupElementPartAbsoluteLayout} from "./GroupElementParts/GroupElementPartAbsoluteLayout.js";
 
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
@@ -43,6 +44,7 @@ const layoutSelectorDataNames = {
 
     selector: "LayoutSelector",
     states: {
+        Nothing: "Nothing",
         Absolute: "Absolute",
         List: "List",
         Tree: "Tree"
@@ -51,7 +53,7 @@ const layoutSelectorDataNames = {
 const layoutSelectorData: SMPSelectorDataStatic =
     {
         selectorName: "LayoutSelector",
-        defaultState: layoutSelectorDataNames.states.Absolute,
+        defaultState: layoutSelectorDataNames.states.Nothing,
         defaultSelectorActive: true,
         parentSelectorAndStateName:
             {
@@ -59,11 +61,15 @@ const layoutSelectorData: SMPSelectorDataStatic =
                 stateName: loadedSelectorDataNames.states.Loaded
             }
         ,
-        states: [
+        states: [  {
+            stateName: layoutSelectorDataNames.states.Nothing,
+            masterObjectPartNames: [
+            ]
+        },
             {
                 stateName: layoutSelectorDataNames.states.Absolute,
                 masterObjectPartNames: [
-
+                    GroupElementPartAbsoluteLayout.partName
                 ]
             }, {
                 stateName: layoutSelectorDataNames.states.List,
