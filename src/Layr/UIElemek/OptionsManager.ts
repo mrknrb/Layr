@@ -13,7 +13,7 @@ export class OptionsManager {
         this.layrUI = layrUI
         this.optionsElementObjects = new Map<string, OptionElement>()
         this.loadOptions(OptionsElementStaticData)
-
+        this.optionActivate("File")
 
     }
 
