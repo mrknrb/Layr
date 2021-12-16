@@ -18,6 +18,8 @@ export class SyncObjectNode_Doc extends SyncObjectBase {
 
     findPartAndLoad(syncData: SyncData) {
         let nodes = LayrFind.nodes_ByDocId_Global(this.docObject.docData._id)
+        if (!nodes) return
+
         nodes.forEach((node, index) => {
             node.smpManager.masterObjectParts.getObject(syncData.partClassName).loadData(syncData.loadData)
         })

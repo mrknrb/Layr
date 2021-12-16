@@ -44,6 +44,11 @@ export class MrkObjectList {
         let objectData = this.objects.find(object => {
            return object.className === ObjectClassName
         })
+        if(!objectData){
+
+            console.error(`LayrError: Nincs ilyen part: ${ObjectClassName}`);
+            return null
+        }
         return objectData.object
     }
     addObjects(classList: any[], objectsArg1?, objectsArg2?, objectsArg3?) {

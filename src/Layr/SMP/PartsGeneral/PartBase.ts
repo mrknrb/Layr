@@ -52,7 +52,6 @@ export abstract class PartBase {
     protected saveValueDefault(saveValue: any) {
 
 
-        let dataObject= this.getPartData()
         /*
         if (!dataObject[this.selectorName]) dataObject[this.selectorName] = {}
 
@@ -62,7 +61,7 @@ export abstract class PartBase {
 */
         // if (!dataObject.parts) dataObject.parts = {}
 
-        dataObject.data = saveValue
+            this.getPartData().data = saveValue
 
 
         this.valueSync()

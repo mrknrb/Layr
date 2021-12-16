@@ -1,5 +1,6 @@
 import {TextAreaElement} from "../../TextAreaElement.js";
 import {PartBaseElement_Field} from "../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
+import {MrkLibrary} from "../../../../../../../../0Egyebek/MrkLibrary.js";
 
 export class TextAreaContentPart extends PartBaseElement_Field {
 
@@ -21,7 +22,12 @@ export class TextAreaContentPart extends PartBaseElement_Field {
     }
 
     loadData() {
+
+        if (MrkLibrary.emptyObjectCheck( this.getPartData().data) ) return
+
         this.masterObject.element.value = this.getPartData().data
+
+
     }
 
 
@@ -31,6 +37,6 @@ export class TextAreaContentPart extends PartBaseElement_Field {
     }
 
     deactivate() {
-        this.masterObject.element.value=""
+        this.masterObject.element.value = ""
     }
 }

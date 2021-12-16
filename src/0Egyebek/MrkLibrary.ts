@@ -156,7 +156,6 @@ export class MrkLibrary {
 
     static resizeElement(element: HTMLElement, BORDER_SIZE: number = 4, resizeType: ResizeType) {
         let resizeEvent = new TypedEvent()
-        element.classList.add("resizeRight")
         let m_pos;
         let mouseDownListener = (e) => {
             if (e.offsetX > element.clientWidth - BORDER_SIZE) {
@@ -258,6 +257,12 @@ export class MrkLibrary {
             mousePositionMrk = ev
         })
     }
+   static emptyObjectCheck(obj){
+       return Object.keys(obj).length === 0&& Object.getPrototypeOf(obj)=== Object.prototype
+    }
+
+
+
 }
 
 
