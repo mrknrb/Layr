@@ -1,8 +1,8 @@
 import {SMPSelectorDataStatic} from "../../../../../../SMP/SMPLayr/DataBlueprints/SMPSelectorStaticData/SMPSelectorDataStatic.js";
-import {SMPSearchType} from "../../../../../../SMP/SMPLayr/SMPEnums/SMPSearchType.js";
-import {NodeLayoutAbsolutePart} from "../../../../NodeObject/NodeSMPManager/Parts/NodeLayoutAbsolutePart.js";
-import {NodeLayoutListPart} from "../../../../NodeObject/NodeSMPManager/Parts/NodeLayoutListPart.js";
+import {ElementBackgroundPart} from "../../../ElementPartsGeneral/ElementBackgroundPart.js";
+import {GroupElementNodesLoader} from "./GroupElementParts/GroupElementNodesLoader.js";
 
+//yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
 const loadedSelectorDataNames = {
 
@@ -16,31 +16,29 @@ const loadedSelectorDataNames = {
 }
 const loadedSelectorData: SMPSelectorDataStatic =
     {
-        defaultState: loadedSelectorDataNames.states.Loaded,
+        defaultState: loadedSelectorDataNames.states.NotLoaded,
         selectorName: loadedSelectorDataNames.selector,
-        defaultSelectorActive: true,
+        defaultSelectorActive: false,
+        selectorDontLoadSave:true,
         states: [
             {
                 stateName: loadedSelectorDataNames.states.Loaded,
-                masterObjectParts: [
-                    // {
-                    //     searchType: SMPSearchType.ChildNodePart,
-                    //     partName: NodeLayoutAbsolutePart.partName
-                    // }
+                masterObjectPartNames: [
+                    ElementBackgroundPart.partName,
+                    GroupElementNodesLoader.partName
+
                 ]
             }, {
                 stateName: loadedSelectorDataNames.states.NotLoaded,
-                masterObjectParts: [
-                    // {
-                    //     searchType: SMPSearchType.ChildNodePart,
-                    //     partName: NodeLayoutAbsolutePart.partName
-                    // }
+                masterObjectPartNames: [
+
                 ]
             }
         ]
     }
 
 
+//yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 const layoutSelectorDataNames = {
 
     selector: "LayoutSelector",
@@ -64,25 +62,20 @@ const layoutSelectorData: SMPSelectorDataStatic =
         states: [
             {
                 stateName: layoutSelectorDataNames.states.Absolute,
-                masterObjectParts: [
-                    // {
-                    //     searchType: SMPSearchType.ChildNodePart,
-                    //     partName: NodeLayoutAbsolutePart.partName
-                    // }
+                masterObjectPartNames: [
+
                 ]
             }, {
                 stateName: layoutSelectorDataNames.states.List,
-                masterObjectParts: [
-                    // {
-                    //     searchType: SMPSearchType.ChildNodePart,
-                    //     partName: NodeLayoutListPart.partName
-                    // }
+                masterObjectPartNames: [
+
                 ]
             }
 
         ]
     }
 
+//yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
 export const GroupElementStaticData = [
     layoutSelectorData,

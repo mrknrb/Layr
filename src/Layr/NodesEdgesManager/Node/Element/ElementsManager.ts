@@ -3,12 +3,14 @@ import {ElementTypesClassFinder} from "./Adatok/ElementTypesClassFinder.js";
 import {LayrFind} from "../../../../0Egyebek/LayrFind.js";
 import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
 import {FieldObject} from "../../../DocsConnsManager/Data/Doc/Field/FieldObject.js";
+import {TypedEvent} from "../../../../0Libraries/TypedEvents.js";
 
 export class ElementsManager {
     elements: Map<string, ElementBaseClass>
     nodeObject: NodeObjectBase
-
+elementCreatedEvent:TypedEvent<ElementBaseClass>
     constructor(nodeObject: NodeObjectBase) {
+        this.elementCreatedEvent=new TypedEvent<ElementBaseClass>()
         this.nodeObject = nodeObject
         this.elements = new Map<string, any>()
     }
@@ -38,9 +40,16 @@ export class ElementsManager {
         this.elements = new Map<string, any>()
     }
 
-    elementToFullScreen(elementId: string) {
-        let element = this.elements.get(elementId)
-        element.elementInsertFullScreen()
+    elementToFullScreen(fieldId: string) {
+
+        let element = this.elements.get(fieldId)
+        this.elements.forEach(element => {
+            if(element.element.parentElement==document.querySelector("#workScreenDiv")) {
+                element.elementInsertFullScreenOrNode(false)
+            }
+        })
+
+        element.elementInsertFullScreenOrNode(true)
     }
 
     elementLoad(fieldObject: FieldObject) {
@@ -48,6 +57,4 @@ export class ElementsManager {
         let elementObject: ElementBaseClass = new elementClass(this.nodeObject, fieldObject.fieldData.fieldId) as ElementBaseClass
         this.elements.set(fieldObject.fieldData.fieldId, elementObject)
     }
-
-
 }

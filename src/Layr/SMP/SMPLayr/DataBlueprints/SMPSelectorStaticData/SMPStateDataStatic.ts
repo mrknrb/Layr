@@ -1,12 +1,12 @@
-import {SMPPartDataStatic} from "./SMPPartDataStatic.js";
+
 
 export class SMPStateDataStatic {
     constructor() {
-        this.masterObjectParts = []
+        this.masterObjectPartNames = []
     }
 
 
     stateName: string
-    masterObjectParts: SMPPartDataStatic[]
+    masterObjectPartNames: string[]
 
 }

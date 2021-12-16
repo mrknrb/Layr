@@ -1,37 +1,40 @@
-import {LayrFrame} from "../LayrFrame.js";
+import {LayrFrame} from "../../LayrFrame.js";
+import {LayrUI} from "../LayrUI.js";
 
-export class Talca {
+export class OptionsBar {
+    layrUI: LayrUI
     layrFrame: LayrFrame
     elemek
-    talcaElement
+    optionsBarElement
 
-    constructor(layrFrame: LayrFrame) {
-        this.layrFrame = layrFrame
-        this._talcaInit()
+    constructor(layrUI: LayrUI) {
+        this.layrUI = layrUI
+        this.layrFrame = layrUI.layrFrame
+        this.optionsBarInit()
         this.elemek = {}
         //options gomb
-        this._optionsGombInit()
+       // this._optionsGombInit()
         //new gomb
-        this._newGombInit()
-        this._openRootGombInit()
+      //  this._newGombInit()
+       // this._openRootGombInit()
 
-        document.querySelector("body").appendChild(this.talcaElement)
+        document.querySelector("body").appendChild(this.optionsBarElement)
     }
 
-    _talcaInit() {
-        this.talcaElement = document.createElement("div")
-        this.talcaElement.style.backgroundColor = "#101010"
-        this.talcaElement.style.width = "100vw"
-        this.talcaElement.style.height = "6ch"
-        this.talcaElement.style.position = "fixed"
-        this.talcaElement.style.bottom = "0"
-        this.talcaElement.style.zIndex = "9999"
-        this.talcaElement.style.left = "0"
+    optionsBarInit() {
+        this.optionsBarElement = document.createElement("div")
+        this.optionsBarElement.style.backgroundColor = "#101010"
+
+        this.optionsBarElement.style.height = "16ch"
+        //this.optionsBarElement.style.position = "fixed"
+        this.optionsBarElement.style.top = "0"
+        this.optionsBarElement.style.zIndex = "9999"
+        this.optionsBarElement.style.left = "0"
         //kozepre helyezi oket
-        this.talcaElement.style.display = "inline-flex"
-        this.talcaElement.style.alignContent = "center"
-        this.talcaElement.style.flexDirection = "row"
-        this.talcaElement.style.justifyContent = "center"
+        this.optionsBarElement.style.display = "flex"
+        this.optionsBarElement.style.alignContent = "center"
+        this.optionsBarElement.style.flexDirection = "column"
+        this.optionsBarElement.style.justifyContent = "center"
     }
 
     _optionsGombInit() {
@@ -39,8 +42,7 @@ export class Talca {
         this.elemek.options.style.backgroundColor = "#5fc4d4"
         this.elemek.options.style.width = "6ch"
         this.elemek.options.style.height = "100%"
-        this.talcaElement.appendChild(this.elemek.options)
-
+        this.optionsBarElement.appendChild(this.elemek.options)
     }
 
     _newGombInit() {
@@ -53,7 +55,7 @@ export class Talca {
         plusicon.style.height = "100%"
         plusicon.style.width = "100%"
         this.elemek.new.appendChild(plusicon)
-        this.talcaElement.appendChild(this.elemek.new)
+        this.optionsBarElement.appendChild(this.elemek.new)
     }
 
     _openRootGombInit() {
@@ -88,7 +90,7 @@ export class Talca {
         elemek.openInput.style.width = "50ch"
         elemek.mainDiv.appendChild(elemek.openInput)
 
-        this.talcaElement.appendChild(elemek.mainDiv)
+        this.optionsBarElement.appendChild(elemek.mainDiv)
 
 
     }

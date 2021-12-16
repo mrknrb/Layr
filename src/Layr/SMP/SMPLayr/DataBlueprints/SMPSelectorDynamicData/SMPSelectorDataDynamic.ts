@@ -22,7 +22,7 @@ export class SMPSelectorDataDynamic {
         this.smpSelectorDataSave = smSelectorDataSave
         this.smpManager = smpManager
         this.smpStateDataDynamicMap = new Map<string, SMPStateDataDynamic>()
-        this.stateChangeRequestEvent=new TypedEvent<string>()
+        this.stateChangeRequestEvent = new TypedEvent<string>()
         this.smpSelectorDataSave.savedActivateState ? this.activatedState = this.smpSelectorDataSave.savedActivateState : this.activatedState = this.smpSelectorDataStatic.defaultState
         this.smpSelectorDataStatic.states.forEach(staticData => {
 
@@ -62,31 +62,36 @@ export class SMPSelectorDataDynamic {
         return this.smpStateDataDynamicMap.get(this.activatedState)
     }
 
-    async activateSelector(activate: boolean) {
+    async activateSelector(activate: boolean, saveActivation?: boolean) {
+
         if (this.selectorActive == activate) return
         this.selectorActive = activate
-        this.smpSelectorDataSave.selectorActivated = activate
-        //  this.smpManager.smpSavePart.saveValue()
+        if (saveActivation) {
+            this.smpSelectorDataSave.selectorActivated = activate
+            this.smpManager.smpSavePart.saveValue()
+        }
+
         this.selectorContextMenu.contextMenuMain.elementVisible(activate)
         this.getState(this.activatedState).activateState(activate)
+        // this.activateState(this.activatedState,activate,selectorDontLoadSaveEllenereIs)
     }
 
-    changeState(stateName: string) {
+    changeActivatedState_OnlyData(stateName: string) {
         if (this.activatedState == stateName) return
+        /*
         if (this.selectorActive) {
-            this.getState(this.activatedState).activateState(false)
-            this.getState(stateName).activateState(true)
+            this.activateState(this.activatedState, false, selectorDontLoadSaveEllenereIs)
+            this.activateState(stateName, true, selectorDontLoadSaveEllenereIs)
         }
+        */
         this.activatedState = stateName
         this.smpSelectorDataSave.savedActivateState = stateName
         this.smpManager.smpSavePart.saveValue()
         this.stateChangeRequestEvent.emit(stateName)
     }
 
+
 }
-
-
-
 
 
 

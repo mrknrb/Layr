@@ -1,6 +1,6 @@
 import {ElementTypes} from "../../Adatok/ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
-import {ElementResizer} from "../../ElementResizer/ElementResizer.js";
+import {HTMLElementResizer} from "../../ElementResizer/HTMLElementResizer.js";
 import {NodeObjectBase} from "../../../NodeObject/NodeObjectBase.js";
 import {SMPManager} from "../../../../../SMP/SMPLayr/SMPManager.js";
 import {TextAreaElementPartsClassArray} from "./TextAreaPartsManager/TextAreaElementPartsClassArray.js";
@@ -11,7 +11,6 @@ import {SMPSavePart_ElementType} from "../../../../../SMP/SMPLayr/SMPSavePart_Ty
 export class TextAreaElement extends ElementBaseClass {
 
     element: HTMLTextAreaElement
-    elementResizer: ElementResizer
 
     constructor(nodeObject: NodeObjectBase, fieldId: string) {
         super(ElementTypes.TextArea, nodeObject, fieldId, document.createElement("textarea"));

@@ -17,7 +17,6 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
     }
 
     activate() {
-
     }
 
     contextInit() {

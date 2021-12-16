@@ -1,11 +1,9 @@
 import {SMPSelectorDataStatic} from "../../../../../../SMP/SMPLayr/DataBlueprints/SMPSelectorStaticData/SMPSelectorDataStatic.js";
-import {SMPSearchType} from "../../../../../../SMP/SMPLayr/SMPEnums/SMPSearchType.js";
-import {NodeLayoutAbsolutePart} from "../../../../NodeObject/NodeSMPManager/Parts/NodeLayoutAbsolutePart.js";
-import {NodeLayoutListPart} from "../../../../NodeObject/NodeSMPManager/Parts/NodeLayoutListPart.js";
 import {TextAreaContentPart} from "./TextAreaParts/TextAreaContentPart.js";
 import {TextAreaTestPartRed} from "./TextAreaParts/TextAreaTestPartRed.js";
 import {TextAreaTestPartBoldFonts} from "./TextAreaParts/TextAreaTestPartBoldFonts.js";
 import {TextAreaTestPartBlue} from "./TextAreaParts/TextAreaTestPartBlue.js";
+import {ElementBackgroundPart} from "../../../ElementPartsGeneral/ElementBackgroundPart.js";
 
 
 const loadedSelectorDataNames = {
@@ -26,23 +24,19 @@ const loadedSelectorData: SMPSelectorDataStatic =
         states: [
             {
                 stateName: loadedSelectorDataNames.states.Loaded,
-                masterObjectParts: [
-                    {
-                        searchType: SMPSearchType.OwnMasterObjectPart,
-                        partName: TextAreaContentPart.partName
-                    },  {
-                        searchType: SMPSearchType.OwnMasterObjectPart,
-                        partName: TextAreaTestPartBoldFonts.partName
-                    }
+                masterObjectPartNames: [
+                    TextAreaContentPart.partName,
+                    TextAreaTestPartBoldFonts.partName,
+                    ElementBackgroundPart.partName
                 ]
-            },  {
+            }, {
                 stateName: loadedSelectorDataNames.states.NotLoaded,
-                masterObjectParts: [
-                ]
+                masterObjectPartNames: []
             }
         ]
     }
-    //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+//yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 const testSelectorDataNames = {
 
     selector: "Colorselector",
@@ -57,23 +51,55 @@ const testSelectorData: SMPSelectorDataStatic =
         defaultState: testSelectorDataNames.states.red,
         selectorName: testSelectorDataNames.selector,
         defaultSelectorActive: true,
-        parentSelectorAndStateName: {selectorName:loadedSelectorDataNames.selector,stateName:loadedSelectorDataNames.states.Loaded},
+        parentSelectorAndStateName: {
+            selectorName: loadedSelectorDataNames.selector,
+            stateName: loadedSelectorDataNames.states.Loaded
+        },
         states: [
             {
                 stateName: testSelectorDataNames.states.red,
-                masterObjectParts: [
-                    {
-                        searchType: SMPSearchType.OwnMasterObjectPart,
-                        partName: TextAreaTestPartRed.partName
-                    }
+                masterObjectPartNames: [
+                    TextAreaTestPartRed.partName
+
                 ]
-            },  {
+            }, {
                 stateName: testSelectorDataNames.states.blue,
-                masterObjectParts: [
-                    {
-                        searchType: SMPSearchType.OwnMasterObjectPart,
-                        partName: TextAreaTestPartBlue.partName
-                    }
+                masterObjectPartNames: [
+                    TextAreaTestPartBlue.partName
+
+                ]
+            }
+        ]
+    }
+//yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+const testSelectorDataNames2 = {
+    selector: "Testselector",
+    states: {
+        test1: "test1",
+        test2: "test2"
+    }
+}
+const testSelectorData2: SMPSelectorDataStatic =
+    {
+        defaultState: testSelectorDataNames2.states.test1,
+        selectorName: testSelectorDataNames2.selector,
+        defaultSelectorActive: true,
+        parentSelectorAndStateName: {
+            selectorName: loadedSelectorDataNames.selector,
+            stateName: loadedSelectorDataNames.states.Loaded
+        },
+        states: [
+            {
+                stateName: testSelectorDataNames2.states.test1,
+                masterObjectPartNames: [
+
+
+                ]
+            }, {
+                stateName: testSelectorDataNames2.states.test2,
+                masterObjectPartNames: [
+
+
                 ]
             }
         ]
@@ -104,7 +130,7 @@ const layoutSelectorData: SMPSelectorDataStatic =
         states: [
             {
                 stateName: layoutSelectorDataNames.states.Absolute,
-                masterObjectParts: [
+                masterObjectPartNames: [
                     {
                         searchType: SMPSearchType.ChildNodePart,
                         partName: NodeLayoutAbsolutePart.name
@@ -112,7 +138,7 @@ const layoutSelectorData: SMPSelectorDataStatic =
                 ]
             }, {
                 stateName: layoutSelectorDataNames.states.List,
-                masterObjectParts: [
+                masterObjectPartNames: [
                     {
                         searchType: SMPSearchType.ChildNodePart,
                         partName: NodeLayoutListPart.name
@@ -125,9 +151,10 @@ const layoutSelectorData: SMPSelectorDataStatic =
 */
 
 export const TextAreaStaticData = [
-   // layoutSelectorData,
+    // layoutSelectorData,
     loadedSelectorData,
-    testSelectorData
+    testSelectorData,
+    testSelectorData2
 ]
 
 

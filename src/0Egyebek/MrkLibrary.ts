@@ -120,30 +120,6 @@ export class MrkLibrary {
         return docFieldKeresett
     }
 
-    static resize() {
-        const BORDER_SIZE = 4;
-        const panel = document.getElementById("right_panel");
-
-        let m_pos;
-
-        function resize(e) {
-            const dx = m_pos - e.x;
-            m_pos = e.x;
-            panel.style.width = (parseInt(getComputedStyle(panel, '').width) + dx) + "px";
-        }
-
-        panel.addEventListener("mousedown", function (e) {
-            if (e.offsetX < BORDER_SIZE) {
-                m_pos = e.x;
-                document.addEventListener("mousemove", resize, false);
-            }
-        }, false);
-
-        document.addEventListener("mouseup", function () {
-            document.removeEventListener("mousemove", resize, false);
-        }, false);
-    }
-
     static forEachFieldInObject(object, callback: (elementKey) => any) {
         for (const elementKey2 in object) {
             if (Object.prototype.hasOwnProperty.call(object, elementKey2)) {
@@ -152,17 +128,17 @@ export class MrkLibrary {
         }
     }
 
-  static  contextMenuInvisibleIfBackGroundClickInit(){
-        let backgroundClickEvent= new TypedEvent()
+    static contextMenuInvisibleIfBackGroundClickInit() {
+        let backgroundClickEvent = new TypedEvent()
 
         // @ts-ignore
-      document.backgroundClickEvent=backgroundClickEvent
+        document.backgroundClickEvent = backgroundClickEvent
         var handler = (event) => {
             if (!event.path.find((element: any) => {
                 if (element == document || element == window) {
 
                 } else {
-                    return  element.classList.contains("ContextMenuLayr")
+                    return element.classList.contains("ContextMenuLayr")
                 }
             })) {
 
@@ -173,18 +149,116 @@ export class MrkLibrary {
         document.body.addEventListener('contextmenu', handler, true);
     }
 
+    static randomColor() {
+        return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+
+    static resizeElement(element: HTMLElement, BORDER_SIZE: number = 4, resizeType: ResizeType) {
+        element.classList.add("resizeRight")
+        let m_pos;
+        let mouseDownListener = (e) => {
+            if (e.offsetX > element.clientWidth - BORDER_SIZE) {
+                m_pos = e.x;
+                document.addEventListener("mousemove", resize, false);
+            }
+        }
+        let resize = (e) => {
+            e.preventDefault()
+            const dx = m_pos - e.x;
+            m_pos = e.x;
+            //element.style.width = (parseInt(getComputedStyle(element, '').width) - dx) + "px";
+            element.style.width = (element.clientWidth - dx) + "px"
+        }
+        let m_pos2;
+        let mouseDownListener2 = (e) => {
+            if (e.offsetY > element.clientHeight - BORDER_SIZE) {
+                m_pos2 = e.y;
+                document.addEventListener("mousemove", resize2, false);
+            }
+        }
+        let resize2 = (e) => {
+            e.preventDefault()
+            const dx = m_pos2 - e.y;
+            m_pos2 = e.y;
+            //element.style.width = (parseInt(getComputedStyle(element, '').width) - dx) + "px";
+            element.style.height = (element.clientHeight - dx) + "px"
+        }
+
+
+        element.addEventListener("mousedown", function (e) {
+            if (resizeType == ResizeType.horizontal || resizeType == ResizeType.both) {
+                mouseDownListener(e)
+            }
+            if (resizeType == ResizeType.vertical || resizeType == ResizeType.both) {
+                mouseDownListener2(e)
+            }
+        }, false);
+
+        document.addEventListener("mouseup", function () {
+            document.body.style.cursor = ""
+            if (resizeType == ResizeType.horizontal || resizeType == ResizeType.both) {
+                document.removeEventListener("mousemove", resize, false);
+            }
+            if (resizeType == ResizeType.vertical || resizeType == ResizeType.both) {
+                document.removeEventListener("mousemove", resize2, false);
+            }
+
+
+        }, false);
+        element.addEventListener("mousemove", function (e) {
+            if (resizeType == ResizeType.horizontal) {
+                if (e.offsetX > element.clientWidth - BORDER_SIZE) {
+                    element.style.cursor = "w-resize"
+                } else {
+                    element.style.cursor = ""
+
+                }
+            }
+            if (resizeType == ResizeType.vertical) {
+                if (e.offsetY > element.clientHeight - BORDER_SIZE) {
+                    element.style.cursor = "n-resize"
+                } else {
+                    element.style.cursor = ""
+
+                }
+            }
+            if (resizeType == ResizeType.both) {
+                if (e.offsetX > element.clientWidth - BORDER_SIZE&&(e.offsetY > element.clientHeight - BORDER_SIZE)) {
+                    element.style.cursor = "se-resize"
+                } else  if (e.offsetX > element.clientWidth - BORDER_SIZE) {
+                    element.style.cursor = "w-resize"
+                } else  if (e.offsetY > element.clientHeight - BORDER_SIZE) {
+                    element.style.cursor = "n-resize"
+                }else{
+                    element.style.cursor = ""
+
+                }
 
 
 
+            }
+        }, false);
 
 
+    }
 
 
+    static mousePositionInit() {
+        document.addEventListener("mousemove", ev => {
+            mousePositionMrk = ev
+        })
+    }
 }
 
 
+export let mousePositionMrk: MouseEvent
 
-
+export enum ResizeType {
+    horizontal = "horizontal",
+    vertical = "vertical",
+    both = "both",
+}
 
 
 

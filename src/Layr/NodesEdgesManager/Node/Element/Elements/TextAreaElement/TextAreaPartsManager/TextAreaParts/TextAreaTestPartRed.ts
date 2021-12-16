@@ -13,24 +13,22 @@ static partName = "TextAreaTestPartRed"
 
     activate() {
 
-      //  this.loadData()
-        this.masterObject.element.style.backgroundColor="red"
+       this.masterObject.element.style.color="red"
 
 
     }
 
     loadData() {
-      //  this.masterObject.element.value = this.getPartData()
+
     }
 
 
     saveValue() {
-      //  this.saveValueDefault(this.masterObject.element.value)
-      //  this.valueSync()
+
     }
 
     deactivate() {
-        this.masterObject.element.style.backgroundColor="transparent"
+        this.masterObject.element.style.color="black"
     }
 
 

@@ -16,7 +16,7 @@ export class SMPSavePart_ElementType extends PartBaseElement_Field {
     }
 
     protected activate() {
-        console.log("actival")
+
         this.loadData()
     }
 

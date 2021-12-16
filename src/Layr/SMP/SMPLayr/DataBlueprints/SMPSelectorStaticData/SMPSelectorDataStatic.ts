@@ -11,6 +11,7 @@ export class SMPSelectorDataStatic {
     selectorName: string
     defaultState: string
     defaultSelectorActive: boolean
+    selectorDontLoadSave?: boolean
     parentSelectorAndStateName?: SMPSelectorAndStateName
     states: SMPStateDataStatic[]
 }

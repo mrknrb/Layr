@@ -27,16 +27,10 @@ export class LayrFind {
         return layrFrame.docsConnsManager.connObjectsMap.get(connId)
     }
 
-    static node_ById_InFrame(nodeId: string, documentHaNincsDefault?: Document): NodeObjectBase {
-        // @ts-ignore
-        let layrFrame: LayrFrame = {}
-        if (documentHaNincsDefault === null) {
-            // @ts-ignore
-            layrFrame = document.layrFrame
-        } else {
-            // @ts-ignore
-            layrFrame = documentHaNincsDefault.layrFrame
-        }
+    static node_ById_InFrame(nodeId: string): NodeObjectBase {
+
+
+
         return layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeNodeIdMap.get(nodeId);
     }
 

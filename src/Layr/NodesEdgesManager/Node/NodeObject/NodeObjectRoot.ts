@@ -1,5 +1,9 @@
 import {MainElementRoot} from "../MainElement/MainElementRoot.js";
 import {NodeObjectBase} from "./NodeObjectBase.js";
+import {SMPManager} from "../../../SMP/SMPLayr/SMPManager.js";
+import {SMPSavePart_NodeType} from "../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_NodeType.js";
+import {NodeRootPartsClassList} from "./NodeSMPManager/NodeRootSMPStatic/NodeRootPartsClassList.js";
+import {NodeRootSMPStaticData} from "./NodeSMPManager/NodeRootSMPStatic/NodeRootSMPStaticData.js";
 
 export class NodeObjectRoot extends NodeObjectBase {
     docId: string;
@@ -16,7 +20,15 @@ export class NodeObjectRoot extends NodeObjectBase {
         this.init()
         this.smpManagerInit()
     }
+    protected smpManagerInit() {
 
+        this.smpManager = new SMPManager({
+            smpSavePart:  SMPSavePart_NodeType,
+            masterObject: this,
+            PartsClassArray: NodeRootPartsClassList,
+            SMPStaticData: NodeRootSMPStaticData
+        })
+    }
     init() {
         this.mainElement.layoutApply()
         this.elementsManager.elementsRefresh()

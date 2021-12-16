@@ -1,13 +1,11 @@
 import {ElementTypes} from "../../Adatok/ElementTypes.js";
 import {ElementBaseClass} from "../../ElementBaseClass.js";
 import {NodeObjectBase} from "../../../NodeObject/NodeObjectBase.js";
-import {MrkLibrary} from "../../../../../../0Egyebek/MrkLibrary.js";
+import {MrkLibrary, ResizeType} from "../../../../../../0Egyebek/MrkLibrary.js";
 import {SMPManager} from "../../../../../SMP/SMPLayr/SMPManager.js";
 import {GroupElementStaticData} from "./GroupElementSMPManager/GroupElementStaticData.js";
 import {GroupElementPartsClassArray} from "./GroupElementSMPManager/GroupElementPartsClassArray.js";
 import {SMPSavePart_ElementType} from "../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_ElementType.js";
-import {TextAreaElementPartsClassArray} from "../TextAreaElement/TextAreaPartsManager/TextAreaElementPartsClassArray.js";
-import {TextAreaStaticData} from "../TextAreaElement/TextAreaPartsManager/TextAreaStaticData.js";
 
 
 export class GroupElement extends ElementBaseClass {
@@ -30,8 +28,7 @@ export class GroupElement extends ElementBaseClass {
         this.element.style.backgroundColor = "#90a4ae"
         this.element.style.overflow = "auto"
         this.element.style.position = "relative"
-        this.element.style.resize = "vertical"
-
+        MrkLibrary.resizeElement(this.element, 4, ResizeType.vertical)
         this.element.addEventListener("mousedown", function (e) {
             e.stopPropagation()
         })

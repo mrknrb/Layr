@@ -26,6 +26,7 @@ export abstract class ElementBaseClass implements SMPMasterObjectInterface {
         this.fieldId = fieldId
         this.contextMenu = new ContextMenu( )
         this.contextMenu.contextMenuRightClickInit(this.element)
+        this.nodeObject.elementsManager.elementCreatedEvent.emit(this)
     }
 
     public abstract deleteElement()
@@ -35,10 +36,14 @@ export abstract class ElementBaseClass implements SMPMasterObjectInterface {
     eventsInit() {
     }
 
-    elementInsertFullScreen() {
-        document.body.appendChild(this.element)
-        this.element.style.height = "100%"
-        this.element.style.width = "100%"
+    elementInsertFullScreenOrNode(fullScreen:boolean) {
+        if(fullScreen){
+            document.querySelector("#workScreenDiv").appendChild(this.element)
+            this.element.style.height = "100%"
+            this.element.style.width = "100%"
+        }else{
+            this.nodeObject.mainElement.element.appendChild(this.element)
+        }
     }
 
     getFieldObject(): FieldObject {
@@ -50,10 +55,7 @@ export abstract class ElementBaseClass implements SMPMasterObjectInterface {
         return LayrFind.conn(nodeObject.connId).nodeCDataObject
     }
 
-    elementInsertInNode() {
-        this.nodeObject.mainElement.element.appendChild(this.element)
 
-    }
 
     getElementCData() {
 

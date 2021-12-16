@@ -1,5 +1,11 @@
 import {MainElementNormal} from "../MainElement/MainElementNormal.js";
 import {NodeObjectBase} from "./NodeObjectBase.js";
+import {SMPManager} from "../../../SMP/SMPLayr/SMPManager.js";
+import {SMPSavePart_NodeType} from "../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_NodeType.js";
+import {NodeRootPartsClassList} from "./NodeSMPManager/NodeRootSMPStatic/NodeRootPartsClassList.js";
+import {NodeRootSMPStaticData} from "./NodeSMPManager/NodeRootSMPStatic/NodeRootSMPStaticData.js";
+import {NodeNormalSMPStaticData} from "./NodeSMPManager/NodeNormalSMPStatic/NodeNormalSMPStaticData.js";
+import {NodeNormalPartsClassList} from "./NodeSMPManager/NodeNormalSMPStatic/NodeNormalPartsClassList.js";
 
 export class NodeObjectNormal extends NodeObjectBase {
 
@@ -22,7 +28,15 @@ export class NodeObjectNormal extends NodeObjectBase {
         this.init()
         this.smpManagerInit()
     }
+    protected smpManagerInit() {
 
+        this.smpManager = new SMPManager({
+            smpSavePart:  SMPSavePart_NodeType,
+            masterObject: this,
+            PartsClassArray: NodeNormalPartsClassList,
+            SMPStaticData: NodeNormalSMPStaticData
+        })
+    }
 
     removeNode() {
         this.mainElement.element.remove()

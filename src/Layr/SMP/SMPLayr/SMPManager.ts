@@ -31,7 +31,6 @@ export class SMPManager {
         this.smpSavePart = this.masterObjectParts.getPartObject_ByName("SMPSave")
 
         this.smpSavePart.setActive(true)
-        console.log(this.smpSelectorDataSaveObjects)
         this.smpSelectorDataDynamicMap = new Map<string, SMPSelectorDataDynamic>()
         this.smpController = new SMPController(this)
 
@@ -45,7 +44,7 @@ export class SMPManager {
     smpSelectorDataInit() {
 
         this.smpSelectorDataStaticArray.forEach(selectorDataStatic => {
-            console.log(this.smpSelectorDataSaveObjects)
+
             let smpSelectorDataSave = this.smpSelectorDataSaveObjects[selectorDataStatic.selectorName]
             /*let smpSelectorDataSave = this.smpSelectorDataSaveObjects.find(smSelectorDataSave => {
                 return smSelectorDataSave.selectorName == selectorDataStatic.selectorName

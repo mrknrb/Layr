@@ -15,7 +15,8 @@ export class DropDownStaticElement extends ElementBaseClass {
     }
 
     dataRefresh() {
-        let elementStyle = this.getElementCData() as DropDownStaticElementC
+
+        let elementStyle = this.getElementCData()
 
         let self = this
         this.options.forEach(function (option) {
@@ -51,6 +52,7 @@ export class DropDownStaticElement extends ElementBaseClass {
             self.element.appendChild(optionElement)
         }
 
+
     }
 
     elementChange_fieldDataUpdate_Init() {
@@ -73,7 +75,7 @@ export class DropDownStaticElement extends ElementBaseClass {
 
     protected elementInit() {
         this.element.classList.add("LayrElement")
-        this.dataRefresh()
+      //  this.dataRefresh()
     }
 
 

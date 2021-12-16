@@ -19,8 +19,8 @@ export class SMPStateDataDynamic {
         this.smStateDataSave = smStateDataSave
         this.smStateDataStatic = smpStateDataStatic
         this.smpSelectorDataDynamic = smpSelectorDataDynamic
-        // console.log(smpStateDataStatic.masterObjectParts)
-        smpStateDataStatic.masterObjectParts.forEach(value => {
+        // console.log(smpStateDataStatic.masterObjectPartNames)
+        smpStateDataStatic.masterObjectPartNames.forEach(value => {
             this.SMPPartDataDynamicArray.push(new SMPPartDataDynamic(value, this))
         })
         // console.log(smpStateDataStatic.masterObjectParts)
@@ -49,7 +49,6 @@ export class SMPStateDataDynamic {
     }
 
     activateState(activate: boolean) {
-
         if (activate) {
             this.smpStateContextMenu.stateContextMenu.contextMenuVisible()
             for (let i = 0; i < this.SMPPartDataDynamicArray.length; i++) {

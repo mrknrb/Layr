@@ -1,6 +1,5 @@
 import {SMPSelectorDataDynamic} from "./DataBlueprints/SMPSelectorDynamicData/SMPSelectorDataDynamic.js";
 import {SMPStateDataDynamic} from "./DataBlueprints/SMPSelectorDynamicData/SMPStateDataDynamic.js";
-import {SMPPartDataStatic} from "./DataBlueprints/SMPSelectorStaticData/SMPPartDataStatic.js";
 import {SMPManager} from "./SMPManager.js";
 import {SMPSelectorAndStateName} from "./SMPEgyebek/SMPSelectorAndStateName.js";
 
@@ -12,40 +11,54 @@ export class SMPController {
         this.smManager = smManager
     }
 
-    async activatedekAktivalasa() {
-        let selectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent(SelectorArrayFilterByEnum.activated)
+    async activatedekAktivalasa(selectorDontLoadSaveEllenereIs?: boolean) {
+        let selectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent({
+            selectorArrayFilterByEnum: SelectorArrayFilterByEnum.activated,
+            selectorDontLoadSaveEllenereIs: selectorDontLoadSaveEllenereIs
+        })
         for await (const selector of selectors) {
             await selector.activateSelector(true)
         }
     }
 
-    changeSelectorState(selectorAndStateName: SMPSelectorAndStateName) {
+    changeSelectorState(selectorAndStateName: SMPSelectorAndStateName, selectorDontLoadSaveEllenereIs?: boolean) {
+        console.log(this.smManager.smpSelectorDataSaveObjects)
         let changedSelector = this.smManager.smpSelectorDataDynamicMap.get(selectorAndStateName.selectorName)
 
-        let kikapcsolandoSelectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent(SelectorArrayFilterByEnum.active, {
-            selectorName: selectorAndStateName.selectorName,
-            stateName: changedSelector.activatedState
+        let kikapcsolandoSelectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent({
+            selectorArrayFilterByEnum: SelectorArrayFilterByEnum.active,
+            selectorAndStateName_UresHaNincsParent: {
+                selectorName: selectorAndStateName.selectorName,
+                stateName: changedSelector.activatedState
+            }
         })
-        changedSelector.changeState(selectorAndStateName.stateName)
-        this.activateSelectorsArray(kikapcsolandoSelectors,false)
-        let aktivalandoSelectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent(SelectorArrayFilterByEnum.activated, {
-            selectorName: selectorAndStateName.selectorName,
-            stateName: selectorAndStateName.stateName
+        this.activateSelectorsArray(kikapcsolandoSelectors, false)
+        changedSelector.activateSelector(false)
+        changedSelector.changeActivatedState_OnlyData(selectorAndStateName.stateName)
+        changedSelector.activateSelector(true,true)
+
+        let aktivalandoSelectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent({
+            selectorArrayFilterByEnum: SelectorArrayFilterByEnum.activated,
+            selectorAndStateName_UresHaNincsParent: {
+                selectorName: selectorAndStateName.selectorName,
+                stateName: selectorAndStateName.stateName
+            },
+            selectorDontLoadSaveEllenereIs: selectorDontLoadSaveEllenereIs
         })
-        this.activateSelectorsArray(aktivalandoSelectors,true)
+        this.activateSelectorsArray(aktivalandoSelectors, true)
 
         this.smManager.smpSavePart.saveValue()
     }
 
+
     activateSelectorsArray(selectorArray: SMPSelectorDataDynamic[], activate: boolean) {
-        console.log(selectorArray)
-        if(selectorArray.length==0) return
+        if (selectorArray.length == 0) return
         if (activate) {
             for (let i = 0; i < selectorArray.length; i++) {
                 selectorArray[i].activateSelector(activate)
             }
         } else {
-            for (let i = selectorArray.length-1; i > -1; i--) {
+            for (let i = selectorArray.length - 1; i > -1; i--) {
                 selectorArray[i].activateSelector(activate)
             }
         }
@@ -68,11 +81,11 @@ export class SMPController {
         return childrenSelectors
     }
 
-    private getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent(selectorArrayFilterByEnum: SelectorArrayFilterByEnum, selectorAndStateName_UresHaNincsParent?: SMPSelectorAndStateName) {
+    private getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent(args: { selectorArrayFilterByEnum: SelectorArrayFilterByEnum, selectorAndStateName_UresHaNincsParent?: SMPSelectorAndStateName, selectorDontLoadSaveEllenereIs?: boolean }) {
         let childrenSelectorsAll: SMPSelectorDataDynamic[] = []
-        let childSelectorsKozvetlen = this.getChildSelectors_OneLevel_IfNoSelectorNoParent(selectorAndStateName_UresHaNincsParent)
+        let childSelectorsKozvetlen = this.getChildSelectors_OneLevel_IfNoSelectorNoParent(args.selectorAndStateName_UresHaNincsParent)
 
-        childrenSelectorsAll = childrenSelectorsAll.concat(this.selectorArraybenFilter(childSelectorsKozvetlen, selectorArrayFilterByEnum))
+        childrenSelectorsAll = childrenSelectorsAll.concat(this.selectorArraybenFilter(childSelectorsKozvetlen, args.selectorArrayFilterByEnum))
         let childrenSelectorsUjak: SMPSelectorDataDynamic[] = []
         childrenSelectorsUjak = childrenSelectorsAll
         while (childrenSelectorsUjak.length > 0) {
@@ -81,17 +94,19 @@ export class SMPController {
                     selectorName: selector.smpSelectorDataStatic.selectorName,
                     stateName: selector.activatedState
                 })
-                childrenSelectorsUjak = this.selectorArraybenFilter(childSelectorsIteracioban, selectorArrayFilterByEnum)
+                childrenSelectorsUjak = this.selectorArraybenFilter(childSelectorsIteracioban, args.selectorArrayFilterByEnum)
                 childrenSelectorsAll = childrenSelectorsAll.concat(childrenSelectorsUjak)
             })
         }
         return childrenSelectorsAll
     }
 
-    private selectorArraybenFilter(selectorArray: SMPSelectorDataDynamic[], selectorArrayFilterByEnum: SelectorArrayFilterByEnum) {
+    private selectorArraybenFilter(selectorArray: SMPSelectorDataDynamic[], selectorArrayFilterByEnum: SelectorArrayFilterByEnum, selectorDontLoadSaveEllenereIs?: boolean) {
         let selectorArraybenActivated = (selectorArray: SMPSelectorDataDynamic[]) => {
             return selectorArray.filter(selector => {
-                return selector.smpSelectorDataStatic.defaultSelectorActive || selector.smpSelectorDataSave.selectorActivated
+                // return selector.smpSelectorDataStatic.defaultSelectorActive || selector.smpSelectorDataSave.selectorActivated
+
+                return this.selectorActivatedCheck(selector, selectorDontLoadSaveEllenereIs)
             })
         }
 
@@ -108,6 +123,12 @@ export class SMPController {
         }
     }
 
+    selectorActivatedCheck(selector: SMPSelectorDataDynamic, selectorDontLoadSaveEllenereIs?: boolean): boolean {
+       if (selector.smpSelectorDataStatic.selectorDontLoadSave && !selectorDontLoadSaveEllenereIs) return selector.smpSelectorDataStatic.defaultSelectorActive
+        if (selector.smpSelectorDataSave.selectorActivated === undefined) return selector.smpSelectorDataStatic.defaultSelectorActive
+        return selector.smpSelectorDataSave.selectorActivated
+
+    }
 
     //yx felfele vannak a mukodoek
 
@@ -149,14 +170,14 @@ export class SMPController {
 
 
     }
-
+/*
     private getActivePartsFromSelectorsChildren(selectorName: string, stateName: string) {
         let selectors = this.getActiveSelectorsFromSelectorsChildren(selectorName, stateName)
         let activeStates = this.getActiveStatesFromSelectors(selectors)
         this.getPartsNamesFromStates(activeStates)
 
     }
-
+*/
 
     private getActiveSelectorsFromSelectorsChildren(selectorName: string, stateName: string) {
         let remainingSelectors = new Map<string, SMPSelectorDataDynamic>()
@@ -196,7 +217,7 @@ export class SMPController {
         })
         return useableSelectors2
     }
-
+/*
     private getPartsNamesFromStates(smStateDataDynamic: SMPStateDataDynamic[]) {
         let partsMap = new Map<string, SMPPartDataStatic>()
         smStateDataDynamic.forEach(value => {
@@ -210,7 +231,7 @@ export class SMPController {
         })
         return partStaticDataArray
     }
-
+*/
     /*
         getPartsFromPartStaticDataArray(SMPartsDataStaticArray: SMPPartDataStatic[]) {
             let parts: PartBase[] = []
@@ -252,22 +273,23 @@ export class SMPController {
         return arrayOfStates
     }
 
-    private setStateActiveAndSave(selectorName: string, stateName: string) {
-        let selector = this.smManager.smpSelectorDataDynamicMap.get(selectorName)
-        selector.activatedState = stateName
-        selector.smpSelectorDataSave.savedActivateState = stateName
-        this.smManager.smpSavePart.saveValue()
-    }
+    /*
+        private setStateActiveAndSave(selectorName: string, stateName: string) {
+            let selector = this.smManager.smpSelectorDataDynamicMap.get(selectorName)
+            selector.activatedState = stateName
+            selector.smpSelectorDataSave.savedActivateState = stateName
+            this.smManager.smpSaveParsaveValue()
+        }
 
-    private setSelectorActiveInactiveAndSave(selectorName: string, active: boolean) {
+        private setSelectorActiveInactiveAndSave(selectorName: string, active: boolean) {
 
-        let selector = this.smManager.smpSelectorDataDynamicMap.get(selectorName)
-        selector.selectorActive = active
-        selector.smpSelectorDataSave.selectorActivated = active
-        this.smManager.smpSavePart.saveValue()
+            let selector = this.smManager.smpSelectorDataDynamicMap.get(selectorName)
+            selector.selectorActive = active
+            selector.smpSelectorDataSave.selectorActivated = active
+            this.smManager.smpSavePart.saveValue()
 
-    }
-
+        }
+    */
 
     //yx constructionarea
 

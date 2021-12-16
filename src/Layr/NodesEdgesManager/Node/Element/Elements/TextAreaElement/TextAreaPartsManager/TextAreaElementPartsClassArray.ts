@@ -4,6 +4,7 @@ import {SMPSavePart_ElementType} from "../../../../../../SMP/SMPLayr/SMPSavePart
 import {TextAreaTestPartRed} from "./TextAreaParts/TextAreaTestPartRed.js";
 import {TextAreaTestPartBoldFonts} from "./TextAreaParts/TextAreaTestPartBoldFonts.js";
 import {TextAreaTestPartBlue} from "./TextAreaParts/TextAreaTestPartBlue.js";
+import {ElementBackgroundPart} from "../../../ElementPartsGeneral/ElementBackgroundPart.js";
 
 
 export let TextAreaElementPartsClassArray = [
@@ -11,5 +12,6 @@ export let TextAreaElementPartsClassArray = [
     TextAreaContentPart,
     TextAreaTestPartRed,
     TextAreaTestPartBlue,
-    TextAreaTestPartBoldFonts
+    TextAreaTestPartBoldFonts,
+    ElementBackgroundPart
 ]

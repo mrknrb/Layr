@@ -4,9 +4,9 @@ import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
 import {SMPManager} from "../../../SMP/SMPLayr/SMPManager.js";
 import {GroupElementStaticData} from "../Element/Elements/GroupElement/GroupElementSMPManager/GroupElementStaticData.js";
 import {SMPMasterObjectInterface} from "../../../SMP/SMPLayr/SMPMasterObjectInterface.js";
-import {NodePartsClassList} from "./NodeSMPManager/NodePartsClassList.js";
+import {NodeRootPartsClassList} from "./NodeSMPManager/NodeRootSMPStatic/NodeRootPartsClassList.js";
 import {SMPSavePart_NodeType} from "../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_NodeType.js";
-import {NodeSMPStaticData} from "./NodeSMPManager/NodeSMPStaticData.js";
+import {NodeRootSMPStaticData} from "./NodeSMPManager/NodeRootSMPStatic/NodeRootSMPStaticData.js";
 
 export abstract class NodeObjectBase implements SMPMasterObjectInterface {
 
@@ -25,15 +25,7 @@ export abstract class NodeObjectBase implements SMPMasterObjectInterface {
 
     }
 
-    protected smpManagerInit() {
 
-        this.smpManager = new SMPManager({
-            smpSavePart:  SMPSavePart_NodeType,
-            masterObject: this,
-            PartsClassArray: NodePartsClassList,
-            SMPStaticData: NodeSMPStaticData
-        })
-    }
 
 
     abstract removeNode()

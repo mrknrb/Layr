@@ -15,6 +15,15 @@ export class ConnObject {
     constructor(connData: ConnData) {
         this.syncObjectNodeCData_Conn = new SyncObjectNodeCData_Conn(this)
         this.connData = connData
+
+        if (connData.data == undefined) {
+            connData.data = {
+                nodeCDataParts: {},
+                edgeCDataParts: {},
+                elementsCDataParts: []
+            }
+        }
+
         this.nodeCDataObject = new NodeCDataObject(connData.data.nodeCDataParts)
         this.edgeCDataObject = new EdgeCDataObject(connData.data.edgeCDataParts)
         connData.data.elementsCDataParts.forEach(elementsStylePartsData => {

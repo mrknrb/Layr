@@ -27,7 +27,7 @@ export class SMPStateContextMenu {
             this.smpStateDataDynamic.smpSelectorDataDynamic.smpManager.smpController.changeSelectorState({
                 selectorName: this.smpStateDataDynamic.smpSelectorDataDynamic.smpSelectorDataStatic.selectorName,
                 stateName: this.smpStateDataDynamic.smStateDataStatic.stateName
-            })
+            },true)
             //  this.contextMenuStatesActivatedVisible()
             this.stateContextMenu.elementVisible(true)
         })

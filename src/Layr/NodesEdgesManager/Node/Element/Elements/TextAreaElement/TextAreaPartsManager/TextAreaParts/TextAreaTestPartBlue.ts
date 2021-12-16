@@ -13,8 +13,9 @@ export class TextAreaTestPartBlue extends PartBaseElement_Field {
 
     activate() {
 
+        this.masterObject.element.style.color="blue"
         //  this.loadData()
-        this.masterObject.element.style.backgroundColor="blue"
+       // this.masterObject.element.style.backgroundColor="blue"
 
 
     }
@@ -30,6 +31,6 @@ export class TextAreaTestPartBlue extends PartBaseElement_Field {
     }
 
     deactivate() {
-        this.masterObject.element.style.backgroundColor="transparent"
+        this.masterObject.element.style.color="black"
     }
 }
