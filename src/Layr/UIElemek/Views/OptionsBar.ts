@@ -40,12 +40,12 @@ export class OptionsBar {
     optionsBarRootNodeContainerInit() {
         this.optionsBarRootNodeContainerElement = document.createElement("div")
         this.optionsBarRootNodeContainerElement.id="optionsBarRootNodeContainer"
-        this.optionsBarRootNodeContainerElement.style.backgroundColor = "#101010"
-        this.optionsBarRootNodeContainerElement.style.overflowY="scroll"
+        this.optionsBarRootNodeContainerElement.style.backgroundColor = "#848484"
+       // this.optionsBarRootNodeContainerElement.style.overflowY="scroll"
         this.optionsBarRootNodeContainerElement.style.overflowX="hidden"
         this.optionsBarRootNodeContainerElement.style.height = "100%"
         this.optionsBarRootNodeContainerElement.style.width = "50ch"
-
+        this.optionsBarRootNodeContainerElement.style.borderRight = "solid 10px rgb(213,213,213)"
         MrkLibrary.resizeElement(this.optionsBarRootNodeContainerElement, 4, ResizeType.horizontal)
         this.topMenuElement.appendChild(this.optionsBarRootNodeContainerElement)
     }
