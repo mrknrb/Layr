@@ -5,7 +5,7 @@ import {MrkLibrary} from "../../../../../../../../0Egyebek/MrkLibrary.js";
 export class TextAreaContentPart extends PartBaseElement_Field {
 
 
-    protected masterObject: TextAreaElement
+    protected masterObject!: TextAreaElement
     static partName = "TextAreaContentPart"
 
     constructor(masterObject: TextAreaElement) {

@@ -2,11 +2,11 @@ import {ContextMenu} from "./ContextMenu.js";
 
 export abstract class ContextMenuElementBase {
 
-    element: HTMLDivElement
-    parentContextMenu: ContextMenu
-    elementName: string
+    element: HTMLDivElement = document.createElement("div")
+    parentContextMenu?: ContextMenu
+    elementName: string=""
     contextMenuElementId: string
-    value: string
+    value: string=""
 
     protected constructor() {
 

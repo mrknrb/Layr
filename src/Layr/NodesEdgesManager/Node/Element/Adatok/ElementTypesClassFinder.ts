@@ -4,7 +4,7 @@ import {TextAreaElement} from "../Elements/TextAreaElement/TextAreaElement.js";
 import {BrowserElement} from "../Elements/BrowserElement/BrowserElement.js";
 import {DropDownDynamicElement} from "../Elements/DropDownDynamicElement/DropDownDynamicElement.js";
 
-export let ElementTypesClassFinder = {
+export const ElementTypesClassFinder = {
     TextArea: TextAreaElement,
     DropDownDynamic: DropDownDynamicElement,
     DropDownStatic: DropDownStaticElement,

@@ -7,7 +7,6 @@ import {NodeNormalPartsClassList} from "./NodeSMPManager/NodeNormalSMPStatic/Nod
 
 export class NodeObjectNormal extends NodeObjectBase {
 
-    docId: string;
     connId: string
     nodeId: string
     parentNodeId: string

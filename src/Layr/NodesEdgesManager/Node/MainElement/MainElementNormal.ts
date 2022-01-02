@@ -13,7 +13,7 @@ export class MainElementNormal extends MainElementBase {
         this.layoutDefault()
         let s = this.element.style
         /*
-                let parentDocObject = LayrFind.doc_ByNodeId_InFrame(this.nodeObject.parentNodeIdnull)
+                let parentDocObject = LayrFind.doc_ByNodeId(this.nodeObject.parentNodeIdnull)
 
                 let nodeGroupData = LayrFind.conn(this.nodeObject.connId).connData.data.nodeCDataParts
                 let nodeStyleData = null
@@ -42,7 +42,7 @@ export class MainElementNormal extends MainElementBase {
                     }
 
                 }
-                let groupElement = LayrFind.elements_ByType(LayrFind.node_ById_InFrame(this.nodeObject.parentNodeId).elementsManager.elements, ElementTypes.Group)[0]
+                let groupElement = LayrFind.elements_ByType(LayrFind.node_ById(this.nodeObject.parentNodeId).elementsManager.elements, ElementTypes.Group)[0]
                 groupElement.element.appendChild(this.element)
         */
     }

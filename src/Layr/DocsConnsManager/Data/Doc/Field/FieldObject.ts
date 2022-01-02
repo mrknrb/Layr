@@ -48,7 +48,7 @@ export class FieldObject {
     }
 
     elementPartSyncWithOthers(elementId: string, partClassName: string, loadData?: any) {
-        let nodes = LayrFind.nodes_ByDocId_Global(this.docObject.docData._id)
+        let nodes = LayrFind.nodes_ByDocId(this.docObject.docData._id)
         nodes.forEach((node, index) => {
             node.elementsManager.elements.get(elementId).smpManager.masterObjectParts.getObject(partClassName).loadData(loadData)
         })

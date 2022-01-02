@@ -16,7 +16,7 @@ export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
     activate() {
         this.loadData()
         setTimeout(() => {
-            let childNodes = LayrFind.nodes_ByParentNodeId_InFrame(this.masterObject.nodeObject.nodeId)
+            let childNodes = LayrFind.nodes_ByParentNodeId(this.masterObject.nodeObject.nodeId)
             childNodes.forEach(node => {
                 node.smpManager.smpController.changeSelectorState({
                     selectorName: NodeLayoutSelectorDataNames.selector,

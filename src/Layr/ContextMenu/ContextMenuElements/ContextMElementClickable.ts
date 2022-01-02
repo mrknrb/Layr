@@ -4,7 +4,6 @@ import {TypedEvent} from "../../../0Libraries/TypedEvents.js";
 export class ContextMElementClickable extends ContextMenuElementBase {
 
     elementName: string
-    element: HTMLDivElement
     clickEvent: TypedEvent<ContextMElementClickable>
 
     constructor(elementName: string) {
@@ -17,7 +16,6 @@ export class ContextMElementClickable extends ContextMenuElementBase {
     elementInitClickable() {
         let self = this
 
-        this.element = document.createElement("div")
 
         this.element.classList.add("ContextMenuElement")
         this.element.classList.add("ContextMenuElementHoverHighlight")

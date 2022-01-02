@@ -10,64 +10,61 @@ import {NodeObjectNormal} from "../Layr/NodesEdgesManager/Node/NodeObject/NodeOb
 export class LayrFind {
 
 
-    static doc(docId: string): DocObject {
-
+    static doc(docId: string | undefined): DocObject | undefined {
+        if (docId == undefined) return undefined
         return layrFrame.docsConnsManager.docObjectsMap.get(docId)
     }
 
     static docs(docIds: string[]): DocObject[] {
         let docs: DocObject[] = []
         docIds.forEach(function (docId) {
-            docs.push(LayrFind.doc(docId))
+            let doc = LayrFind.doc(docId)
+            if (doc !== undefined) {
+                docs.push(doc)
+            }
         })
         return docs
     }
 
-    static conn(connId): ConnObject {
+    static conn(connId: string): ConnObject | undefined {
         return layrFrame.docsConnsManager.connObjectsMap.get(connId)
     }
 
-    static node_ById_InFrame(nodeId: string): NodeObjectBase {
-
-
+    static node_ById(nodeId: string): NodeObjectBase | undefined {
         return layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeNodeIdMap.get(nodeId);
     }
 
-    static nodes_ByDocId_Global(docId: string): NodeObjectBase[] {
+    static nodes_ByDocId(docId: string): NodeObjectBase[] | undefined {
         return layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeDocIdMap.get(docId)
     }
 
-    static nodes_ByParentNodeId_InFrame(nodeId: string,): NodeObjectNormal[] {
-
+    static nodes_ByParentNodeId(nodeId: string,): NodeObjectNormal[] | undefined {
         return layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeParentNodeIdMap.get(nodeId) as NodeObjectNormal[]
     }
 
-    static nodes_ByConnId_Global(connId: string): NodeObjectBase[] {
-        let nodes = []
-
-        nodes.push(layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeConnIdMap.get(connId))
-
-        return nodes
+    static nodes_ByConnId(connId: string): NodeObjectBase[] | undefined {
+        return layrFrame.nodesEdgesManager.nodesEdgesDataStorage.nodeConnIdMap.get(connId)
     }
 
-    static nodes_ByDocId_InAllFrames(docId: string) {
-
+    static doc_ByNodeId(nodeId: string): DocObject | undefined {
+        return this.doc(this.node_ById(nodeId)?.docId)
     }
 
-    static doc_ByNodeId_InFrame(nodeId: string, documentHaNincsDefault: Document | any): DocObject {
-
-        let node = this.node_ById_InFrame(nodeId, documentHaNincsDefault)
-        return this.doc(node.docId)
-    }
-
-    static field_ById_InDocObject(fieldId: string, docObject: DocObject) {
+    static field_ById_InDocObject(fieldId: string, docObject: DocObject){
+        if (!docObject) return
         return docObject.fieldObjects.find(function (fieldObject) {
             return fieldObject.fieldData.fieldId === fieldId;
         })
     }
 
-    static fieldObject_ByFieldId_DocId(fieldId: string, docId: string): FieldObject {
-        return LayrFind.field_ById_InDocObject(fieldId, LayrFind.doc(docId))
+    static fieldObject_ByFieldId_DocId(fieldId: string, docId: string){
+        let doc = LayrFind.doc(docId)
+        if (doc === undefined) {
+            return undefined
+        } else {
+            return LayrFind.field_ById_InDocObject(fieldId, doc)
+        }
+
     }
 
 

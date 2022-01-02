@@ -239,7 +239,7 @@ export class SMPController {
             let parts: PartBase[] = []
             SMPartsDataStaticArray.forEach(smPartsDataStatic => {
                 if (smPartsDataStatic.searchType == SMPSearchType.ChildNodePart) {
-                    let nodes = LayrFind.nodes_ByParentNodeId_InFrame(this.smManager.nodeId)
+                    let nodes = LayrFind.nodes_ByParentNodeId(this.smManager.nodeId)
                     nodes.forEach(value1 => {
                         LayrFind.partOfNodes_ByParentNodeId(value1.nodeId, smPartsDataStatic.partName).forEach(value => {
                             //yx ugyanaz mint a getpart csak nem partmanagerbol jon
@@ -249,7 +249,7 @@ export class SMPController {
                     })
 
                 } else if (smPartsDataStatic.searchType == SMPSearchType.OwnNode) {
-                    let node = LayrFind.node_ById_InFrame(this.smManager.nodeId)
+                    let node = LayrFind.node_ById(this.smManager.nodeId)
                     parts.push(node.nodeSMPManager.getPart(smPartsDataStatic.partName))
                 } else if (smPartsDataStatic.searchType == SMPSearchType.OwnMasterObjectPart) {
                     let master2: ElementBaseClass = this.smManager.masterObject

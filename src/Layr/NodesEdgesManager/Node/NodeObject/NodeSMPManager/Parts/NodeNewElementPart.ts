@@ -30,7 +30,7 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
         subContextMenu.contextMenuElementInsert(subContextMenuElementNewNodeName)
         let options: string[] = []
         for (const elementType in ElementTypes) {
-            options.push(elementType.toString())
+                options.push(elementType.toString())
         }
 
         let subContextMenuElementDropDownStatic = new ContextMElementDropDownStatic("Field Type:", options)

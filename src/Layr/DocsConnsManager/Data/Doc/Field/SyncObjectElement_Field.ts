@@ -19,7 +19,7 @@ export class SyncObjectElement_Field extends SyncObjectBase {
 
     findPartAndLoad(syncData: SyncData) {
 
-        let nodes = LayrFind.nodes_ByDocId_Global(this.fieldObject.docObject.docData._id)
+        let nodes = LayrFind.nodes_ByDocId(this.fieldObject.docObject.docData._id)
         nodes.forEach((node, index) => {
             let element = node.elementsManager.getElement(syncData.fieldId)
 

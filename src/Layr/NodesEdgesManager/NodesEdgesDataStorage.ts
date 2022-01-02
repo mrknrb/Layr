@@ -58,7 +58,6 @@ export class NodesEdgesDataStorage {
             }
         } else {
             console.error("The Node is already stored with the id")
-
         }
 
     }

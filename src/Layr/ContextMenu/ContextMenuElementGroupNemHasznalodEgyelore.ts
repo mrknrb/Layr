@@ -2,9 +2,9 @@ import {ContextMenuElementBase} from "./ContextMenuElementBase.js";
 
 export class ContextMenuElementGroupNemHasznalodEgyelore {
     groupName: string
-    groupElement: HTMLDivElement
-    private groupNameText: HTMLElement
-    private groupElementContainer: HTMLDivElement
+    groupElement: HTMLDivElement= document.createElement("div")
+    private groupNameText?: HTMLElement
+    private groupElementContainer: HTMLDivElement = document.createElement("div")
 
     constructor(groupName: string) {
         this.groupName = groupName
@@ -14,15 +14,13 @@ export class ContextMenuElementGroupNemHasznalodEgyelore {
     init() {
 
 
-        this.groupElement = document.createElement("div")
 
         this.groupElement.style.width = "100%"
         this.groupElement.style.height = "fit-content"
         this.groupElement.style.borderBottom = "solid"
         this.groupElement.style.borderWidth = "3px"
         if (this.groupName != "withoutGroup") {
-
-            this.groupNameText = document.createElement("i")
+           this. groupNameText= document.createElement("i")
             this.groupNameText.style.fontSize = "9px"
             this.groupNameText.innerText = this.groupName
             this.groupNameText.style.userSelect = "none";
@@ -30,7 +28,6 @@ export class ContextMenuElementGroupNemHasznalodEgyelore {
             this.groupNameText.style.marginLeft = "8px"
             this.groupElement.appendChild(this.groupNameText)
         }
-        this.groupElementContainer = document.createElement("div")
         this.groupElementContainer.style.width = "100%"
         this.groupElementContainer.style.height = "fit-content"
         this.groupElement.className = "groupElementContainer"

@@ -5,9 +5,9 @@ import {SMPManager} from "../Layr/SMP/SMPLayr/SMPManager.js";
 
 export class MrkObjectListPartsType extends MrkObjectList {
 
-    objects: { className: string, object: PartBase }[]
+    objects!: { className: string, object: PartBase }[]
 
-    constructor(classList: any[], masterobject: SMPMasterObjectInterface, smpManager: SMPManager, objectsArg3?) {
+    constructor(classList: any[], masterobject: SMPMasterObjectInterface, smpManager: SMPManager, objectsArg3?: any) {
         super(classList, masterobject, smpManager, objectsArg3);
     }
 
@@ -16,6 +16,7 @@ export class MrkObjectListPartsType extends MrkObjectList {
             return object.object.getPartName() === partName
 
         })
+        if (objectData === undefined) return undefined
         return objectData.object
     }
 

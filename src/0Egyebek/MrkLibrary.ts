@@ -3,61 +3,58 @@ import {DocData} from "../Layr/DocsConnsManager/Data/Doc/Doc/DocData.js";
 import {TypedEvent} from "../0Libraries/TypedEvents.js";
 
 export class MrkLibrary {
-    static dragElement(draggingElement: HTMLElement, moveableElement: HTMLElement, kikapcsolas?: boolean) {
+    static dragElement(draggingElement: HTMLElement, moveableElement: HTMLElement, kikapcsolas: boolean = false, gridSize: number = 1) {
         let megmozdultEvent = new TypedEvent()
-        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0
+        let posNewDistanceX = 0, posNewDistanceY = 0, posStartX = 0, posStartY = 0, elementStartX = 0, elementStartY = 0
         if (kikapcsolas) {
-            draggingElement.onmousedown = null
+            draggingElement.removeEventListener("mousedown", dragMouseDown)
         } else {
-            draggingElement.onmousedown = dragMouseDown
+            draggingElement.addEventListener("mousedown", dragMouseDown)
         }
 
-        function dragMouseDown(e) {
+        function dragMouseDown(e: MouseEvent) {
             e = e || window.event
             e.preventDefault()
 
             // get the mouse cursor position at startup:
-            pos3 = e.clientX
-            pos4 = e.clientY
-            document.onmouseup = closeDragElement
+            posStartX = e.clientX
+            posStartY = e.clientY
+            elementStartX = moveableElement.offsetLeft
+            elementStartY = moveableElement.offsetTop
+            document.addEventListener("mouseup", closeDragElement)
             // call a function whenever the cursor moves:
-            document.onmousemove = elementDrag
+            document.addEventListener("mousemove", elementDrag)
         }
 
-        function elementDrag(e) {
+        function elementDrag(e: MouseEvent) {
             e = e || window.event
             e.preventDefault()
             // calculate the new cursor position:
-            pos1 = pos3 - e.clientX
-            pos2 = pos4 - e.clientY
-            pos3 = e.clientX
-            pos4 = e.clientY
-            // set the object's new position:
-            moveableElement.style.top = moveableElement.offsetTop - pos2 + "px"
-            moveableElement.style.left = moveableElement.offsetLeft - pos1 + "px"
+            posNewDistanceX = e.clientX - posStartX
+            posNewDistanceY = e.clientY - posStartY
 
-            //moveableElement.style.top = Math.round((moveableElement.offsetTop - pos2) / 20) * 20 + "px";
-            //moveableElement.style.left=Math.round((moveableElement.offsetLeft - pos1) / 20) * 20 + "px";
-            //Math.round((moveableElement.offsetTop - pos2) / 10) * 10 + "px";
-            //Math.round((moveableElement.offsetLeft - pos1) / 10) * 10 + "px";
+            moveableElement.style.top = (Math.round((elementStartY + posNewDistanceY) / gridSize) * gridSize) + "px"
+            moveableElement.style.left = (Math.round((elementStartX + posNewDistanceX) / gridSize) * gridSize) + "px"
+
         }
 
         function closeDragElement() {
 
             // stop moving when mouse button is released:
-            document.onmouseup = null
-            document.onmousemove = null
+            document.removeEventListener("mouseup", closeDragElement)
+            document.removeEventListener("mousemove", elementDrag)
             megmozdultEvent.emit("")
         }
 
         return megmozdultEvent
     }
 
-    static grabInit(elementDiv) {
+
+    static grabInit(elementDiv: HTMLDivElement) {
 
         let pos = {top: 0, left: 0, x: 0, y: 0}
 
-        const mouseDownHandler = function (e) {
+        const mouseDownHandler = function (e: MouseEvent) {
             //  e.stopPropagation()
             // e = e || window.event
             e.stopPropagation()
@@ -73,7 +70,7 @@ export class MrkLibrary {
             document.addEventListener('mouseup', mouseUpHandler)
 
         }
-        const mouseMoveHandler = function (e) {
+        const mouseMoveHandler = function (e: MouseEvent) {
             // e = e || window.event
             e.preventDefault()
 
@@ -103,7 +100,7 @@ export class MrkLibrary {
         document.body.appendChild(cssPreventNodeModification)
     }
 
-    static htmlToElement(html) {
+    static htmlToElement(html: string) {
         let template = document.createElement('template');
         html = html.trim(); // Never return a text nodeObject of whitespace as the result
         template.innerHTML = html;
@@ -120,7 +117,7 @@ export class MrkLibrary {
         return docFieldKeresett
     }
 
-    static forEachFieldInObject(object, callback: (elementKey) => any) {
+    static forEachFieldInObject(object: Object, callback: (elementKey: string) => any) {
         for (const elementKey2 in object) {
             if (Object.prototype.hasOwnProperty.call(object, elementKey2)) {
                 callback(elementKey2)
@@ -133,7 +130,7 @@ export class MrkLibrary {
 
         // @ts-ignore
         document.backgroundClickEvent = backgroundClickEvent
-        var handler = (event) => {
+        var handler = (event: any) => {
             if (!event.path.find((element: any) => {
                 if (element == document || element == window) {
 
@@ -154,48 +151,53 @@ export class MrkLibrary {
     }
 
 
-    static resizeElement(element: HTMLElement, BORDER_SIZE: number = 4, resizeType: ResizeType) {
+    static resizeElement(element: HTMLElement, BORDER_SIZE: number = 4, resizeType: ResizeType, gridSize: number = 1) {
+
+
         let resizeEvent = new TypedEvent()
-        let m_pos;
-        let mouseDownListener = (e) => {
+        // yx ---------------------------------------------------------------------------------------------------------------
+        let posNewDistanceX = 0, posStartX = 0, elementStartX = 0
+
+        let mouseDownListenerHorizontal = (e: MouseEvent) => {
             if (e.offsetX > element.clientWidth - BORDER_SIZE) {
-
+                posStartX = e.clientX
+                elementStartX = element.clientWidth
                 resizeInProgress = true
-                m_pos = e.x;
-                document.addEventListener("mousemove", resize, false);
+                document.addEventListener("mousemove", resizeHorizontal, false);
             }
         }
-        let resize = (e) => {
+        let resizeHorizontal = (e: MouseEvent) => {
             e.preventDefault()
-            const dx = m_pos - e.x;
-            m_pos = e.x;
-            //element.style.width = (parseInt(getComputedStyle(element, '').width) - dx) + "px";
-            element.style.width = (element.clientWidth - dx) + "px"
+            posNewDistanceX = e.clientX - posStartX
+            let elementBorderX = element.offsetWidth - element.clientWidth
+            element.style.width = (Math.round((elementStartX + posNewDistanceX) / gridSize) * gridSize) - elementBorderX + 2 + "px"
         }
-        let m_pos2;
-        let mouseDownListener2 = (e) => {
+        // yx ---------------------------------------------------------------------------------------------------------------
+        let posNewDistanceY = 0, posStartY = 0, elementStartY = 0
+        let mouseDownListenerVertical = (e: MouseEvent) => {
             if (e.offsetY > element.clientHeight - BORDER_SIZE) {
-
+                posStartY = e.clientY
+                elementStartY = element.clientHeight
                 resizeInProgress = true
-                m_pos2 = e.y;
-                document.addEventListener("mousemove", resize2, false);
+                document.addEventListener("mousemove", resizeVertical, false);
             }
         }
-        let resize2 = (e) => {
+        let resizeVertical = (e: MouseEvent) => {
             e.preventDefault()
-            const dx = m_pos2 - e.y;
-            m_pos2 = e.y;
-            //element.style.width = (parseInt(getComputedStyle(element, '').width) - dx) + "px";
-            element.style.height = (element.clientHeight - dx) + "px"
+            posNewDistanceY = e.clientY - posStartY
+            let elementBorderY = element.offsetHeight - element.clientHeight
+            element.style.height = (Math.round((elementStartY + posNewDistanceY) / gridSize) * gridSize) - elementBorderY + 2 + "px"
         }
+
+        // yx ---------------------------------------------------------------------------------------------------------------
         let resizeInProgress = false
 
         element.addEventListener("mousedown", function (e) {
             if (resizeType == ResizeType.horizontal || resizeType == ResizeType.both) {
-                mouseDownListener(e)
+                mouseDownListenerHorizontal(e)
             }
             if (resizeType == ResizeType.vertical || resizeType == ResizeType.both) {
-                mouseDownListener2(e)
+                mouseDownListenerVertical(e)
             }
 
 
@@ -204,10 +206,10 @@ export class MrkLibrary {
         document.addEventListener("mouseup", function () {
             document.body.style.cursor = ""
             if (resizeType == ResizeType.horizontal || resizeType == ResizeType.both) {
-                document.removeEventListener("mousemove", resize, false);
+                document.removeEventListener("mousemove", resizeHorizontal, false);
             }
             if (resizeType == ResizeType.vertical || resizeType == ResizeType.both) {
-                document.removeEventListener("mousemove", resize2, false);
+                document.removeEventListener("mousemove", resizeVertical, false);
             }
             if (resizeInProgress) {
                 resizeInProgress = false
@@ -215,38 +217,45 @@ export class MrkLibrary {
             }
 
         }, false);
+        // yx ---------------------------------------------------------------------------------------------------------------
         element.addEventListener("mousemove", function (e) {
             if (resizeType == ResizeType.horizontal) {
-                if (e.offsetX > element.clientWidth - BORDER_SIZE) {
-                    element.style.cursor = "w-resize"
+                if (e.offsetX >= element.clientWidth - BORDER_SIZE) {
+                    document.body.style.cursor = "w-resize"
                 } else {
-                    element.style.cursor = ""
-
+                    console.log(resizeInProgress)
+                    resizeInProgress? document.body.style.cursor = "w-resize": document.body.style.cursor = ""
                 }
             }
             if (resizeType == ResizeType.vertical) {
-                if (e.offsetY > element.clientHeight - BORDER_SIZE) {
+                if (e.offsetY >= element.clientHeight - BORDER_SIZE) {
                     element.style.cursor = "n-resize"
                 } else {
-                    element.style.cursor = ""
+                    if (!resizeInProgress) element.style.cursor = ""
 
                 }
             }
             if (resizeType == ResizeType.both) {
-                if (e.offsetX > element.clientWidth - BORDER_SIZE && (e.offsetY > element.clientHeight - BORDER_SIZE)) {
+                if (e.offsetX >= element.clientWidth - BORDER_SIZE && (e.offsetY >= element.clientHeight - BORDER_SIZE)) {
                     element.style.cursor = "se-resize"
-                } else if (e.offsetX > element.clientWidth - BORDER_SIZE) {
+                } else if (e.offsetX >= element.clientWidth - BORDER_SIZE) {
                     element.style.cursor = "w-resize"
-                } else if (e.offsetY > element.clientHeight - BORDER_SIZE) {
+                } else if (e.offsetY >= element.clientHeight - BORDER_SIZE) {
                     element.style.cursor = "n-resize"
                 } else {
-                    element.style.cursor = ""
 
+                    if (!resizeInProgress) element.style.cursor = ""
                 }
 
 
             }
         }, false);
+        // yx ---------------------------------------------------------------------------------------------------------------
+        element.addEventListener("mouseleave", function (e) {
+            resizeInProgress? document.body.style.cursor = "w-resize": document.body.style.cursor = ""
+
+        }, false);
+
         return resizeEvent
 
     }
@@ -258,7 +267,7 @@ export class MrkLibrary {
         })
     }
 
-    static emptyObjectCheck(obj) {
+    static emptyObjectCheck(obj: Object) {
         return Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype
     }
 

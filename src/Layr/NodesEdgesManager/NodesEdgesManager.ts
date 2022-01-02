@@ -53,7 +53,7 @@ export class NodesEdgesManager {
     }
 
     async newNodeObjectWithNewDoc(parentNodeObject: NodeObjectBase) {
-        let parentDoc = LayrFind.doc_ByNodeId_InFrame(parentNodeObject.nodeId, document)
+        let parentDoc = LayrFind.doc_ByNodeId(parentNodeObject.nodeId, document)
 
         let docConnsObjects = await layrFrame.docsConnsManager.insertNewDoc_AsParentDocChild(parentDoc.docData._id)
 

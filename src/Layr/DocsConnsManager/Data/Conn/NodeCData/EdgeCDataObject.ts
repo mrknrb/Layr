@@ -1,4 +1,4 @@
-import {EdgeCData} from "../../../../NodesEdgesManager/Edge/EdgeCData/EdgeStyleData.js";
+
 
 export class EdgeCDataObject {
 

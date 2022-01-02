@@ -2,10 +2,10 @@ import {ContextMenuElementBase} from "./ContextMenuElementBase.js";
 import {TypedEvent} from "../../0Libraries/TypedEvents.js";
 
 export class ContextMenu extends ContextMenuElementBase {
-    htmlElementController: HTMLElement
+    htmlElementController!: HTMLElement
     contextMenuElements: Map<string, ContextMenuElementBase>
     // contextMenuElementGroups: Map<string, ContextMenuElementGroupNemHasznalodEgyelore>
-    private mouseOverNow: boolean
+    private mouseOverNow: boolean=false
 
     constructor() {
         super();
@@ -17,7 +17,6 @@ export class ContextMenu extends ContextMenuElementBase {
 
     contextMenuInit() {
 
-        this.element = document.createElement("div")
         this.element.classList.add("ContextMenuLayr")
         this.element.classList.add("ContextMenuElement")
 
@@ -115,14 +114,14 @@ export class ContextMenu extends ContextMenuElementBase {
 
     contextMenuElementRemove(contextMenuElementId: string) {
         let contextMenuElement = this.contextMenuElements.get(contextMenuElementId)
-        contextMenuElement.element.remove()
+        contextMenuElement?.element.remove()
         // this.ContextMenuElementGroupsDeleteIfEmpty()
         this.contextMenuElements.delete(contextMenuElementId)
     }
 
     contextMenuElementVisible(contextMenuElementId: string, visible: boolean) {
         let contextMenuElement = this.contextMenuElements.get(contextMenuElementId)
-        contextMenuElement.elementVisible(visible)
+        contextMenuElement?.elementVisible(visible)
     }
 
 

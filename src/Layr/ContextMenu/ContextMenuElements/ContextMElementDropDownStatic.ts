@@ -4,8 +4,6 @@ import {LayrCSSClassesEnum} from "../../../0Egyebek/LayrCSSClassesEnum.js";
 
 export class ContextMElementDropDownStatic extends ContextMenuElementBase {
 
-    elementName: string
-    element: HTMLDivElement
     changeEvent: TypedEvent<string>
     options: string[]
 
@@ -19,7 +17,6 @@ export class ContextMElementDropDownStatic extends ContextMenuElementBase {
 
     elementInitClickable(optionsArray: string[]) {
 
-        this.element = document.createElement("div")
         this.element.classList.add(LayrCSSClassesEnum.ContextMenuElement)
 
 

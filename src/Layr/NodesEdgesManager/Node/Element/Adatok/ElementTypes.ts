@@ -5,4 +5,3 @@ export enum ElementTypes {
     Group = "Group",
     Browser = "Browser"
 }
-

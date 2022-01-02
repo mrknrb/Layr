@@ -2,12 +2,13 @@ import {RequestType} from "./RequestCommon/RequestType.js";
 import {RequestObject} from "./RequestObject.js";
 import {RequestMessage} from "./RequestCommon/RequestMessage.js";
 import {ReplyData} from "./RequestCommon/ReplyData.js";
+import {RequestData} from "./RequestCommon/RequestData.js";
 
 
 export class LayrClient {
-    private socketio
+    private socketio!:any
     private requestMap: Map<Number, RequestObject>
-    private lekerdezesSzamlalomegy: boolean
+    private lekerdezesSzamlalomegy: boolean = false
 
     constructor() {
 
@@ -30,7 +31,7 @@ export class LayrClient {
     private socketioInit() {
         //@ts-ignore
         this.socketio = io("http://127.0.0.1:4562")
-        this.socketio.on("message", (message) => {
+        this.socketio.on("message", (message: string) => {
             console.log("Server Message:", message)
         });
         this.socketio.on("connect", () => {
@@ -51,7 +52,7 @@ export class LayrClient {
                 self.lekerdezesSzamlalomegy = false
 
 
-                let elkuldendoRequestsArray = []
+                let elkuldendoRequestsArray: RequestData[] = []
 
                 self.requestMap.forEach(function (value, key) {
                     if (!value.elkuldott) {
@@ -66,7 +67,7 @@ export class LayrClient {
         }
     }
 
-    private async requestsSend(elkuldendoRequestsArray) {
+    private async requestsSend(elkuldendoRequestsArray: RequestData[]) {
 
         let requestMessage = new RequestMessage(elkuldendoRequestsArray)
 
@@ -81,8 +82,15 @@ export class LayrClient {
 
             console.log("replyDataArray: ", replyDataArray);
             replyDataArray.forEach((replyData) => {
-                this.requestMap.get(replyData.requestId).resolve(replyData.replyBody)
-                this.requestMap.delete(replyData.requestId)
+                let request = this.requestMap.get(replyData.requestId)
+                if (request === undefined) {
+                    console.error("Mrk: cant find request of requestid: ", replyData.requestId);
+                } else {
+                    request.resolve(replyData.replyBody)
+                    this.requestMap.delete(replyData.requestId)
+                }
+
+
             })
 
 

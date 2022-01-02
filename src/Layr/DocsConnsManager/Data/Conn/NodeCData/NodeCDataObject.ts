@@ -1,4 +1,3 @@
-import {NodeCData} from "./NodeStyleData.js";
 
 export class NodeCDataObject {
 
@@ -8,6 +7,4 @@ export class NodeCDataObject {
         this.nodeCData = nodeCData
 
     }
-
-
 }

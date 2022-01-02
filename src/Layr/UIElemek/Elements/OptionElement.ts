@@ -30,7 +30,7 @@ export class OptionElement {
         // this.toolGroupsContainer.style.overflow="auto"
         this.toolGroupsContainer.style.display = "none"
         // this.toolGroupsContainer.style.flexDirection = "row"
-        this.toolGroupsContainer.style.backgroundColor = MrkLibrary.randomColor()
+        this.toolGroupsContainer.style.backgroundColor = "#404040"
         this.layrUI.toolbar.toolBarElement.appendChild(this.toolGroupsContainer)
     }
 

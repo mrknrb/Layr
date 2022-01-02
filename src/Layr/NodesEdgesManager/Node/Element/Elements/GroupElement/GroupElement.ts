@@ -28,7 +28,7 @@ export class GroupElement extends ElementBaseClass {
         this.element.style.backgroundColor = "#90a4ae"
         this.element.style.overflow = "auto"
         this.element.style.position = "relative"
-        MrkLibrary.resizeElement(this.element, 4, ResizeType.vertical)
+        MrkLibrary.resizeElement(this.element, 4, ResizeType.vertical,5)
         this.element.addEventListener("mousedown", function (e) {
             e.stopPropagation()
         })

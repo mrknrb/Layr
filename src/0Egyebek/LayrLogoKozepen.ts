@@ -1,5 +1,5 @@
 export class LayrLogoKozepen {
-    layrLogoHatter
+    layrLogoHatter!:HTMLDivElement
 
     eltunik() {
         this.layrLogoHatter.animate([

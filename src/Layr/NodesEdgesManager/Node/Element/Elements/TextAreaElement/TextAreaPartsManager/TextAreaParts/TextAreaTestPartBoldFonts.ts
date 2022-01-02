@@ -4,7 +4,7 @@ import {TextAreaElement} from "../../TextAreaElement.js";
 export class TextAreaTestPartBoldFonts extends PartBaseElement_Field {
 
 
-    protected masterObject: TextAreaElement
+    protected masterObject!: TextAreaElement
     static partName = "TextAreaTestPartBoldFonts"
 
     constructor(masterObject: TextAreaElement) {

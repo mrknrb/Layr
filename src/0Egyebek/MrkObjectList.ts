@@ -3,7 +3,7 @@ export class MrkObjectList {
     classes: { className: string, class: any }[]
     objects: { className: string, object: any }[]
 
-    constructor(classList: any[], objectsArg1?, objectsArg2?, objectsArg3?) {
+    constructor(classList: any[], objectsArg1?:any, objectsArg2?:any, objectsArg3?:any) {
         this.objects = []
         this.classes = []
         // console.log(objectsArg1,objectsArg2)
@@ -19,7 +19,7 @@ export class MrkObjectList {
         })
     }
 
-    protected objectsCreator(objectsArg1?, objectsArg2?, objectsArg3?) {
+    protected objectsCreator(objectsArg1?:any, objectsArg2?:any, objectsArg3?:any) {
         this.classes.forEach(value => {
             let a = new value.class(objectsArg1, objectsArg2, objectsArg3)
             this.objects.push({className: value.className, object: a})
@@ -52,7 +52,7 @@ export class MrkObjectList {
         return objectData.object
     }
 
-    addObjects(classList: any[], objectsArg1?, objectsArg2?, objectsArg3?) {
+    addObjects(classList: any[], objectsArg1?:any, objectsArg2?:any, objectsArg3?:any) {
 
         this.classesSaver(classList)
         this.objectsCreator(objectsArg1, objectsArg2, objectsArg3)

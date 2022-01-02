@@ -16,14 +16,13 @@ export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
 
 
         this.loadData()
-        let megmozdultEvent = MrkLibrary.dragElement(this.masterObject.mainElement.elementOptionsButton, this.masterObject.mainElement.element)
+        let megmozdultEvent = MrkLibrary.dragElement(this.masterObject.mainElement.elementOptionsButton, this.masterObject.mainElement.element,false,20)
         megmozdultEvent.on(() => {
                 this.saveValue()
             }
         )
-        let resizeEvent = MrkLibrary.resizeElement(this.masterObject.mainElement.element, 4, ResizeType.horizontal)
+        let resizeEvent = MrkLibrary.resizeElement(this.masterObject.mainElement.element, 4, ResizeType.horizontal,20)
         resizeEvent.on(() => {
-                console.log("fasza")
                 this.saveValue()
             }
         )

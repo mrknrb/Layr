@@ -7,11 +7,11 @@ import {SMPMasterObjectInterface} from "../../../SMP/SMPLayr/SMPMasterObjectInte
 export abstract class NodeObjectBase implements SMPMasterObjectInterface {
 
     docId: string
-    nodeId: string //ha "0" a nodeid, akkor o a root
-    mainElement: MainElementBase
+    abstract nodeId: string //ha "0" a nodeid, akkor o a root
+    abstract mainElement: MainElementBase
     elementsManager: ElementsManager
-    smpManager: SMPManager
-    contextMenu: ContextMenu
+    abstract smpManager: SMPManager
+    abstract contextMenu: ContextMenu
 
     constructor(docId: string) {
 
@@ -22,7 +22,7 @@ export abstract class NodeObjectBase implements SMPMasterObjectInterface {
     }
 
 
-    abstract removeNode()
+    abstract removeNode():void
 
-    abstract init()
+    abstract init():void
 }

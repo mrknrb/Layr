@@ -20,7 +20,7 @@ export class SyncObjectNodeCData_Conn extends SyncObjectBase {
 
     findPartAndLoad(syncData: SyncData) {
 
-        let nodes = LayrFind.nodes_ByDocId_Global(this.connObject.connData.to)
+        let nodes = LayrFind.nodes_ByDocId(this.connObject.connData.to)
 
         nodes.forEach((node, index) => {
 

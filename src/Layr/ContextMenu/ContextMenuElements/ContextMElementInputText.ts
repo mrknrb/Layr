@@ -4,8 +4,6 @@ import {LayrCSSClassesEnum} from "../../../0Egyebek/LayrCSSClassesEnum.js";
 
 export class ContextMElementInputText extends ContextMenuElementBase {
 
-    elementName: string
-    element: HTMLDivElement
     keyDownEvent: TypedEvent<string>
 
 
@@ -18,7 +16,6 @@ export class ContextMElementInputText extends ContextMenuElementBase {
 
     elementInitClickable() {
 
-        this.element = document.createElement("div")
         this.element.classList.add(LayrCSSClassesEnum.ContextMenuElement)
 
         let textElement = document.createElement("i")

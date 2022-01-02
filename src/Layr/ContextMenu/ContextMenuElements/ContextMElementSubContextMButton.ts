@@ -3,7 +3,6 @@ import {LayrCSSClassesEnum} from "../../../0Egyebek/LayrCSSClassesEnum.js";
 
 export class ContextMElementSubContextMButton extends ContextMenuElementBase {
 
-    element: HTMLDivElement
 
     constructor(elementName: string) {
         super();
@@ -12,9 +11,6 @@ export class ContextMElementSubContextMButton extends ContextMenuElementBase {
     }
 
     elementInitSubContextMenu() {
-
-        this.element = document.createElement("div")
-
         this.element.classList.add(LayrCSSClassesEnum.ContextMenuElementHoverHighlight)
         this.element.classList.add(LayrCSSClassesEnum.ContextMenuElement)
 
