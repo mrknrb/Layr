@@ -39,7 +39,7 @@ textarea, select {
 }
 
 .ContextMenuElementHoverHighlight:hover {
-    background-color: #a1a1a1;
+    background-color: rgba(255, 255, 255, 0.28);
 }
 
 .ContextMenuElement {
@@ -48,13 +48,12 @@ textarea, select {
 }
 
 .ContextMenuLayr {
-    background-color: rgba(225, 225, 225, 0.6);
+    background-color: rgba(156, 156, 156, 0.2);
     width: 20ch;
     height: fit-content;
     z-index: 10001;
     overflow-x: hidden;
     overflow-y: auto;
-
 }
 
 .ContextMenuLayrFloating {

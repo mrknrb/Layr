@@ -1,7 +1,7 @@
 import {PartBaseNode_Doc} from "../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseNode_Doc.js";
 import {NodeObjectBase} from "../../NodeObjectBase.js";
 import {ContextMElementClickable} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
-import {ElementObject} from "../../../Element/ElementObject.js";
+import {PartNodeCommon} from "../../../../../SMP/PartsGeneral/PartNodeCommon.js";
 
 export class NodeFullScreenElementPart extends PartBaseNode_Doc {
     masterObject: NodeObjectBase
@@ -19,26 +19,22 @@ export class NodeFullScreenElementPart extends PartBaseNode_Doc {
     }
 
     fullScreenButtonForElementInit() {
-        let self = this
-        this.masterObject.elementsManager.elements.forEach(element => {
-            self.insertButtonInElement(element)
-        })
-        this.masterObject.elementsManager.elementCreatedEvent.on(element => {
-            self.insertButtonInElement(element)
-        })
-    }
-
-    insertButtonInElement(element: ElementObject) {
-
-        let contextMenuElementClickable = new ContextMElementClickable("FullScreen")
-        element.contextMenu.contextMenuElementInsert(contextMenuElementClickable)
-        contextMenuElementClickable.clickEvent.on(event => {
-            this.insertElementFullscreen(element.fieldId)
-            this.saveValue(element.fieldId)
+        PartNodeCommon.contextMElementToAllChildElement(this.masterObject,this. contextMenuElementCreate, (contextMenuElement,element) => {
+            contextMenuElement.clickEvent.on(event => {
+                this.insertElementFullscreen(element.fieldId)
+                this.saveValue(element.fieldId)
+            })
         })
     }
 
-    insertElementFullscreen(fieldId: string) {
+    contextMenuElementCreate() {
+        return new ContextMElementClickable("FullScreen")
+    }
+
+    insertElementFullscreen(fieldId
+                                :
+                                string
+    ) {
         if (fieldId) {
             this.masterObject.elementsManager.elementToFullScreen(fieldId)
         }
@@ -55,7 +51,10 @@ export class NodeFullScreenElementPart extends PartBaseNode_Doc {
     }
 
 
-    saveValue(fieldId: string) {
+    saveValue(fieldId
+                  :
+                  string
+    ) {
         this.saveValueDefault(fieldId)
         this.valueSync()
     }

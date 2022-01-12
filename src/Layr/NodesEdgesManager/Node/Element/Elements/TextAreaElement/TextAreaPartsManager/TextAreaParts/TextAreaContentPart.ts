@@ -13,6 +13,10 @@ export class TextAreaContentPart extends PartBaseElement_Field {
     activate() {
 
         this.loadData()
+        this.masterObject.element.addEventListener("change", () => {
+
+            this.saveValue()
+        })
         this.masterObject.element.addEventListener("keyup", () => {
 
             this.saveValue()
