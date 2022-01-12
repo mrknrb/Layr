@@ -1,15 +1,13 @@
 import {PartBaseElement_Field} from "../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
-import {GroupElement} from "../../GroupElement.js";
 import {LayrFind} from "../../../../../../../../0Egyebek/LayrFind.js";
 import {NodeLayoutSelectorDataNames} from "../../../../../NodeObject/NodeSMPManager/NodeNormalSMPStatic/NodeNormalSMPStaticData.js";
+import {ElementObject} from "../../../../ElementObject.js";
 
 export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
 
-
-    protected masterObject: GroupElement
     static partName = "GroupElementPartAbsoluteLayout"
 
-    constructor(masterObject: GroupElement) {
+    constructor(masterObject: ElementObject) {
         super(masterObject);
     }
 

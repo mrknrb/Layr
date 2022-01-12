@@ -1,13 +1,12 @@
 import {PartBaseElement_Field} from "../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
-import {TextAreaElement} from "../../TextAreaElement.js";
+import {ElementObject} from "../../../../ElementObject.js";
 
 export class TextAreaTestPartBlue extends PartBaseElement_Field {
 
 
-    protected masterObject!: TextAreaElement
     static partName = "TextAreaTestPartBlue"
 
-    constructor(masterObject: TextAreaElement) {
+    constructor(masterObject: ElementObject) {
         super(masterObject);
     }
 

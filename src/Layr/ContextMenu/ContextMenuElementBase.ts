@@ -4,9 +4,9 @@ export abstract class ContextMenuElementBase {
 
     element: HTMLDivElement = document.createElement("div")
     parentContextMenu?: ContextMenu
-    elementName: string=""
+    elementName: string = ""
     contextMenuElementId: string
-    value: string=""
+    value: string = ""
 
     protected constructor() {
 

@@ -1,5 +1,5 @@
 import {PartBaseRegi} from "../../../../../../../../Global/PartsGeneral/PartBaseRegi.js";
-import {DropDownStaticElement} from "../../DropDownStaticElement.js";
+import {DropDownStaticElement} from "../DropDownStaticElement.js";
 
 export class DropDownStaticContentPart extends PartBaseRegi {
 

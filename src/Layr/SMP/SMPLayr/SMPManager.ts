@@ -21,13 +21,13 @@ export class SMPManager {
     constructor(smpManagerConfigFile: SMPManagerConfigFile) {
 
         this.smpSelectorDataSaveObjects = {}
-        this.smpSelectorDataStaticArray = smpManagerConfigFile.SMPStaticData
+        this.smpSelectorDataStaticArray = smpManagerConfigFile.smpSelectorDataStaticArray
         this.masterObject = smpManagerConfigFile.masterObject
 
         //  this.smpSavePart =new  smpManagerConfigFile.smpSavePart(this)
 
 
-        this.masterObjectParts = new MrkObjectListPartsType(smpManagerConfigFile.PartsClassArray, this.masterObject, this)
+        this.masterObjectParts = new MrkObjectListPartsType(smpManagerConfigFile.partsClassArray, this.masterObject, this)
         this.smpSavePart = this.masterObjectParts.getPartObject_ByName("SMPSave")
 
         this.smpSavePart.setActive(true)

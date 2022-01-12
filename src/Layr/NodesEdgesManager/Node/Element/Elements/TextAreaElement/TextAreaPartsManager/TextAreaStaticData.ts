@@ -4,6 +4,10 @@ import {TextAreaTestPartRed} from "./TextAreaParts/TextAreaTestPartRed.js";
 import {TextAreaTestPartBoldFonts} from "./TextAreaParts/TextAreaTestPartBoldFonts.js";
 import {TextAreaTestPartBlue} from "./TextAreaParts/TextAreaTestPartBlue.js";
 import {ElementBackgroundPart} from "../../../ElementPartsGeneral/ElementBackgroundPart.js";
+import {TextAreaMainPart} from "./TextAreaParts/TextAreaMainPart.js";
+import {ElementConfigFile} from "../../../ElementObject.js";
+import {ElementTypes} from "../../../Adatok/ElementTypes.js";
+import {SMPSavePart_ElementType} from "../../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_ElementType.js";
 
 
 const loadedSelectorDataNames = {
@@ -25,6 +29,7 @@ const loadedSelectorData: SMPSelectorDataStatic =
             {
                 stateName: loadedSelectorDataNames.states.Loaded,
                 masterObjectPartNames: [
+                    TextAreaMainPart.partName,
                     TextAreaContentPart.partName,
                     TextAreaTestPartBoldFonts.partName,
                     ElementBackgroundPart.partName
@@ -144,7 +149,7 @@ const layoutSelectorData: SMPSelectorDataStatic =
     }
 */
 
-export const TextAreaStaticData = [
+const TextAreaSelectorDataStaticArray = [
     // layoutSelectorData,
     loadedSelectorData,
     testSelectorData,
@@ -152,3 +157,21 @@ export const TextAreaStaticData = [
 ]
 
 
+const TextAreaElementPartsClassArray = [
+    SMPSavePart_ElementType,
+    TextAreaMainPart,
+    TextAreaContentPart,
+    TextAreaTestPartRed,
+    TextAreaTestPartBlue,
+    TextAreaTestPartBoldFonts,
+    ElementBackgroundPart
+]
+export const TextAreaConfigFile: ElementConfigFile = {
+    BaseHTMLElementType: "textarea",
+    elementType: ElementTypes.TextArea,
+    smpData: {
+        partsClassArray: TextAreaElementPartsClassArray,
+        SMPSelectorDataStaticArray: TextAreaSelectorDataStaticArray
+    }
+
+}

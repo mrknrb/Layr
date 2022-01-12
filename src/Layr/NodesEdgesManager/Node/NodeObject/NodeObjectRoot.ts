@@ -26,8 +26,8 @@ export class NodeObjectRoot extends NodeObjectBase {
         this.smpManager = new SMPManager({
             smpSavePart: SMPSavePart_NodeType,
             masterObject: this,
-            PartsClassArray: NodeRootPartsClassList,
-            SMPStaticData: NodeRootSMPStaticData
+            partsClassArray: NodeRootPartsClassList,
+            smpSelectorDataStaticArray: NodeRootSMPStaticData
         })
     }
 

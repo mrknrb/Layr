@@ -1,12 +1,12 @@
 import {PartBase} from "../PartBase.js";
 import {LayrFind} from "../../../../0Egyebek/LayrFind.js";
-import {ElementBaseClass} from "../../../NodesEdgesManager/Node/Element/ElementBaseClass.js";
+import {ElementObject} from "../../../NodesEdgesManager/Node/Element/ElementObject.js";
 
 export abstract class PartBaseElementCData_CDataStorePlaces extends PartBase {
 
-    protected masterObject: ElementBaseClass
+    protected masterObject: ElementObject
 
-    protected constructor(masterObject: ElementBaseClass) {
+    protected constructor(masterObject: ElementObject) {
         super();
         this.masterObject = masterObject
     }
@@ -23,7 +23,7 @@ export abstract class PartBaseElementCData_CDataStorePlaces extends PartBase {
     protected valueSync(loadData?: any) {
 
         this.getMasterDataObject().syncObjectNodeCData_Conn.partSyncStart({
-            partClassName: this.getPartClassName(),
+            partName: this.getPartName(),
             loadData: loadData
         })
     }

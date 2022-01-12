@@ -1,9 +1,9 @@
 /*
 
 import {FieldsDefault} from "../../Layr/Background/Data/Doc/Field/FieldsDefault.js";
-import {ResizeTypes} from "../../Layr/Frame/NodesEdgesManager/Node/Element/ElementResizer/ResizeTypes.js";
+import {ResizeTypes} from "../../Layr/Frame/NodesEdgesManager/Node/ElementObject/ElementResizer/ResizeTypes.js";
 import {FieldhezElementCData} from "../../Layr/Background/Data/Conn/NodeCData/FieldhezElementCData.js";
-import {TextAreaElementCData} from "../../Layr/Frame/NodesEdgesManager/Node/Element/Elements/TextAreaElement/TextAreaElementCData.js";
+import {TextAreaElementCData} from "../../Layr/Frame/NodesEdgesManager/Node/ElementObject/Elements/TextAreaElement/TextAreaElementCData.js";
 
 const DocFieldekhezElementCDataDefault: FieldhezElementCData[] = [];
 

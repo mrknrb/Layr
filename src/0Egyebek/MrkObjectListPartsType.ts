@@ -16,7 +16,10 @@ export class MrkObjectListPartsType extends MrkObjectList {
             return object.object.getPartName() === partName
 
         })
-        if (objectData === undefined) return undefined
+        if (objectData === undefined) {
+            console.error(`LayrError: Cant find partObject: ${partName}`, this)
+            return undefined
+        }
         return objectData.object
     }
 

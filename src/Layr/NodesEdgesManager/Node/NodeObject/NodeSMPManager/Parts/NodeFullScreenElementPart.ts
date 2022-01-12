@@ -1,7 +1,7 @@
-import {ElementBaseClass} from "../../../Element/ElementBaseClass.js";
 import {PartBaseNode_Doc} from "../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseNode_Doc.js";
 import {NodeObjectBase} from "../../NodeObjectBase.js";
 import {ContextMElementClickable} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
+import {ElementObject} from "../../../Element/ElementObject.js";
 
 export class NodeFullScreenElementPart extends PartBaseNode_Doc {
     masterObject: NodeObjectBase
@@ -28,7 +28,7 @@ export class NodeFullScreenElementPart extends PartBaseNode_Doc {
         })
     }
 
-    insertButtonInElement(element: ElementBaseClass) {
+    insertButtonInElement(element: ElementObject) {
 
         let contextMenuElementClickable = new ContextMElementClickable("FullScreen")
         element.contextMenu.contextMenuElementInsert(contextMenuElementClickable)
@@ -38,7 +38,7 @@ export class NodeFullScreenElementPart extends PartBaseNode_Doc {
         })
     }
 
-    insertElementFullscreen(fieldId) {
+    insertElementFullscreen(fieldId: string) {
         if (fieldId) {
             this.masterObject.elementsManager.elementToFullScreen(fieldId)
         }

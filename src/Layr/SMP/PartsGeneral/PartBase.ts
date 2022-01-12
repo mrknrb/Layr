@@ -1,9 +1,10 @@
 import {ContextMenu} from "../../ContextMenu/ContextMenu.js";
+import {PartData} from "./PartData.js";
 
 export abstract class PartBase {
 
     static partName: string
-    partContextMenu: ContextMenu
+   abstract partContextMenu: ContextMenu
 
     getPartName() {
 
@@ -68,9 +69,9 @@ export abstract class PartBase {
     }
 
     //eggyel lejjebb hasznalatos
-    protected abstract getMasterDataObject()
+    protected abstract getMasterDataObject():any
 
-    protected abstract getPartData()
+    protected abstract getPartData():PartData
 
     protected abstract valueSync()
 

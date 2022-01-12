@@ -6,9 +6,9 @@ export class RequestObject {
 
     requestData: RequestData
     promise: Promise<any>
-    resolve!:(value?:DocData[]|PromiseLike<DocData[]>|undefined)=>void
-    reject!:(reason?:any)=>void
-    elkuldott: boolean=false
+    resolve!: (value?: DocData[] | PromiseLike<DocData[]> | undefined) => void
+    reject!: (reason?: any) => void
+    elkuldott: boolean = false
 
     constructor(requestType: RequestType, requestBody: any) {
 

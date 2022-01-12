@@ -1,10 +1,10 @@
-import {ElementBaseClass} from "../ElementBaseClass.js";
 import {FieldhezElementCData} from "../../../../DocsConnsManager/Data/Conn/NodeCData/FieldhezElementCData.js";
+import {ElementObject} from "../ElementObject.js";
 
 export class ElementCDataFinder {
 
-    static findElementCDataByPriority(element: ElementBaseClass): any {
-
+    static findElementCDataByPriority(element: ElementObject): any {
+        /*
         if (this.findInGroupConn(element.getFieldObject().fieldData.fieldName)) {
             return this.findInGroupConn(element.getFieldObject().fieldData.fieldName)
         }
@@ -16,7 +16,8 @@ export class ElementCDataFinder {
         }
         if (this.findInUserCDatas(element.getFieldObject().fieldData.fieldName)) {
             return this.findInUserCDatas(element.getFieldObject().fieldData.fieldName)
-        }
+        }*/
+
         /*
         if (this.findInDefaultCDatas(element.getFieldObject().fieldData.fieldName)) {
             return this.findInDefaultCDatas(element.getFieldObject().fieldData.fieldName)
@@ -50,7 +51,7 @@ export class ElementCDataFinder {
     }
 
     private static findCDataInArrayByFieldName(fieldName: string, fieldhezElementStyle: FieldhezElementCData[]) {
-        return fieldhezElementStyle.find(fieldHezStyle => fieldHezStyle.docFieldName == fieldName).elementCData
+       // return fieldhezElementStyle.find(fieldHezStyle => fieldHezStyle.docFieldName == fieldName).elementCData
     }
 
 }

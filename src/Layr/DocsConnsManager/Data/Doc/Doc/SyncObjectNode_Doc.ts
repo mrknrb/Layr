@@ -18,16 +18,16 @@ export class SyncObjectNode_Doc extends SyncObjectBase {
 
     findPartAndLoad(syncData: SyncData) {
         let nodes = LayrFind.nodes_ByDocId(this.docObject.docData._id)
-        if (!nodes) return
+        if (!nodes) return undefined
 
         nodes.forEach((node, index) => {
-            node.smpManager.masterObjectParts.getObject(syncData.partClassName).loadData(syncData.loadData)
+            node.smpManager.masterObjectParts.getPartObject_ByName(syncData.partName)?.loadData(syncData.loadData)
         })
     }
 }
 
 
 interface SyncData {
-    partClassName: string,
+    partName: string,
     loadData: any
 }

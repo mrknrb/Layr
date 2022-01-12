@@ -31,8 +31,8 @@ export class NodeObjectNormal extends NodeObjectBase {
         this.smpManager = new SMPManager({
             smpSavePart: SMPSavePart_NodeType,
             masterObject: this,
-            PartsClassArray: NodeNormalPartsClassList,
-            SMPStaticData: NodeNormalSMPStaticData
+            partsClassArray: NodeNormalPartsClassList,
+            smpSelectorDataStaticArray: NodeNormalSMPStaticData
         })
     }
 

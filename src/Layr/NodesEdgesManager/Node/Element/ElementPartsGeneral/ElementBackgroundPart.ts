@@ -1,15 +1,15 @@
-import {ElementBaseClass} from "../ElementBaseClass.js";
 import {PartBaseElement_Field} from "../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
 import {ContextMenu} from "../../../../ContextMenu/ContextMenu.js";
 import {ContextMElementClickable} from "../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
+import {ElementObject} from "../ElementObject.js";
 
 export class ElementBackgroundPart extends PartBaseElement_Field {
 
 
-    protected masterObject: ElementBaseClass
+    protected masterObject: ElementObject
     static partName = "ElementBackgroundPart"
 
-    constructor(masterObject: ElementBaseClass) {
+    constructor(masterObject: ElementObject) {
         super(masterObject);
         this.contextMenuInit()
     }
@@ -52,7 +52,6 @@ export class ElementBackgroundPart extends PartBaseElement_Field {
         if (this.getPartData().data) {
             this.setBackgroundColor(this.getPartData().data)
         }
-
     }
 
     setBackgroundColor(color) {

@@ -3,9 +3,9 @@ import {SMPSelectorDataStatic} from "./DataBlueprints/SMPSelectorStaticData/SMPS
 
 export class SMPManagerConfigFile {
     masterObject: SMPMasterObjectInterface
-    SMPStaticData: SMPSelectorDataStatic[]
+    smpSelectorDataStaticArray: SMPSelectorDataStatic[]
     smpSavePart: any
-    PartsClassArray: any[]
+    partsClassArray: any[]
 }
 
 enum SMPMasterObjectTypes {

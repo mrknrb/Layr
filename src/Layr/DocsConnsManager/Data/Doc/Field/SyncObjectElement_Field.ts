@@ -23,14 +23,14 @@ export class SyncObjectElement_Field extends SyncObjectBase {
         nodes.forEach((node, index) => {
             let element = node.elementsManager.getElement(syncData.fieldId)
 
-            element.smpManager.masterObjectParts.getObject(syncData.partClassName).loadData(syncData.loadData)
+            element.smpManager.masterObjectParts.getPartObject_ByName(syncData.partName).loadData(syncData.loadData)
         })
     }
 }
 
 
 interface SyncData {
-    partClassName: string,
+    partName: string,
     fieldId: string,
     loadData?: any
 }

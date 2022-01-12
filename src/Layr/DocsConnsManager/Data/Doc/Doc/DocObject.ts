@@ -26,9 +26,7 @@ export class DocObject {
     newField(fieldName: string, elementType: string) {
         console.log("newField")
 
-        let newFieldData = new FieldData()
-        newFieldData.fieldName = fieldName
-        newFieldData.elementType = elementType as ElementTypes
+        let newFieldData = new FieldData(fieldName, elementType as ElementTypes)
         this.docData.fieldsData.push(newFieldData)
         let fieldObject = this.createFieldObject(newFieldData)
         this.docDataMongoUpdate()

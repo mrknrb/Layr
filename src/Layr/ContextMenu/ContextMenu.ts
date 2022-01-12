@@ -5,7 +5,7 @@ export class ContextMenu extends ContextMenuElementBase {
     htmlElementController!: HTMLElement
     contextMenuElements: Map<string, ContextMenuElementBase>
     // contextMenuElementGroups: Map<string, ContextMenuElementGroupNemHasznalodEgyelore>
-    private mouseOverNow: boolean=false
+    private mouseOverNow: boolean = false
 
     constructor() {
         super();

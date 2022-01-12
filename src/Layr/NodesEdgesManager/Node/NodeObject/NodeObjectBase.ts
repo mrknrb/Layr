@@ -22,7 +22,7 @@ export abstract class NodeObjectBase implements SMPMasterObjectInterface {
     }
 
 
-    abstract removeNode():void
+    abstract removeNode(): void
 
-    abstract init():void
+    abstract init(): void
 }

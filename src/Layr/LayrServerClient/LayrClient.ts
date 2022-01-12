@@ -6,7 +6,7 @@ import {RequestData} from "./RequestCommon/RequestData.js";
 
 
 export class LayrClient {
-    private socketio!:any
+    private socketio!: any
     private requestMap: Map<Number, RequestObject>
     private lekerdezesSzamlalomegy: boolean = false
 

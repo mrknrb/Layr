@@ -47,7 +47,7 @@ export class DocsConnsManager {
 
         let newDoc = new DocData()
 
-        return   await this.insertDocs_AsParentDocChildren(parentDocId, [newDoc])
+        return await this.insertDocs_AsParentDocChildren(parentDocId, [newDoc])
     }
 
     async insertDocs_AsParentDocChildren(parentDocId: string, docDataArray: DocData[]) {
@@ -55,16 +55,13 @@ export class DocsConnsManager {
             parentDocId: parentDocId,
             docDataArray: docDataArray
         })
-
         return this.docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData)
-
-
     }
 
     async updateDoc(docId: string, OriginalDocFunction: (docDataOffline: DocData, ModifiedDocFunction: (docDataModified: DocData) => any) => any) {
 
         let mentettDoc = await LayrFind.doc(docId)
-        if(mentettDoc===undefined) return undefined
+        if (mentettDoc === undefined) return undefined
         let modifiedDocFunction = async (docDataModified: DocData) => {
             return await layrFrame.layrClient.newRequest(RequestType.updateDocs, [docDataModified])
         }
@@ -75,7 +72,7 @@ export class DocsConnsManager {
     async updateConn(conId: string, OriginalConFunction: (conDataOffline: ConnData, ModifiedDocFunction: (conDataModified: ConnData) => any) => any) {
 
         let mentettCon = await LayrFind.conn(conId)
-        if(mentettCon===undefined) return undefined
+        if (mentettCon === undefined) return undefined
         let modifiedConFunction = async (conDataModified: ConnData) => {
             return await layrFrame.layrClient.newRequest(RequestType.updateCons, [conDataModified])
         }

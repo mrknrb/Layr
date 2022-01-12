@@ -15,19 +15,20 @@ export abstract class PartBaseNode_Doc extends PartBase {
     }
 
     protected getPartData() {
+        let masterDataObject = this.getMasterDataObject()
+        if (masterDataObject === undefined) return undefined
+        if (!masterDataObject.docData.partsData) masterDataObject.docData.partsData = {}
+        if (!masterDataObject.docData.partsData[this.getPartName()]) masterDataObject.docData.partsData[this.getPartName()] = {}
+        if (!masterDataObject.docData.partsData[this.getPartName()].data) masterDataObject.docData.partsData[this.getPartName()].data = {}
 
-        if (!this.getMasterDataObject().docData.partsData) this.getMasterDataObject().docData.partsData = {}
-        if (!this.getMasterDataObject().docData.partsData[this.getPartName()]) this.getMasterDataObject().docData.partsData[this.getPartName()] = {}
-        if (!this.getMasterDataObject().docData.partsData[this.getPartName()].data) this.getMasterDataObject().docData.partsData[this.getPartName()].data = {}
-
-        return this.getMasterDataObject().docData.partsData[this.getPartName()]
+        return masterDataObject.docData.partsData[this.getPartName()]
 
     }
 
     protected valueSync(loadData?: any) {
 
-        this.getMasterDataObject().syncObjectNode_Doc.partSyncStart({
-            partClassName: this.getPartClassName(),
+        this.getMasterDataObject()?.syncObjectNode_Doc.partSyncStart({
+            partName: this.getPartName(),
             loadData: loadData
         })
     }

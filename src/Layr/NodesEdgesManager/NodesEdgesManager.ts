@@ -1,7 +1,6 @@
 import {NodeObjectRoot} from "./Node/NodeObject/NodeObjectRoot.js";
 import {NodeObjectNormal} from "./Node/NodeObject/NodeObjectNormal.js";
 import {NodeObjectBase} from "./Node/NodeObject/NodeObjectBase.js";
-import {LayrFind} from "../../0Egyebek/LayrFind.js";
 import {NodesEdgesDataStorage} from "./NodesEdgesDataStorage.js";
 import {layrFrame} from "../LayrFrame.js";
 
@@ -53,9 +52,7 @@ export class NodesEdgesManager {
     }
 
     async newNodeObjectWithNewDoc(parentNodeObject: NodeObjectBase) {
-        let parentDoc = LayrFind.doc_ByNodeId(parentNodeObject.nodeId, document)
-
-        let docConnsObjects = await layrFrame.docsConnsManager.insertNewDoc_AsParentDocChild(parentDoc.docData._id)
+        let docConnsObjects = await layrFrame.docsConnsManager.insertNewDoc_AsParentDocChild(parentNodeObject.docId)
 
         let nodeObjectNormal = new NodeObjectNormal(docConnsObjects.docObjects[0].docData._id, docConnsObjects.connObjects[0].connData._id, parentNodeObject.nodeId)
 

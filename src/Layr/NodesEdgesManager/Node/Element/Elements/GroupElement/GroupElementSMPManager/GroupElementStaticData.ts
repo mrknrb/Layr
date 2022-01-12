@@ -2,6 +2,10 @@ import {SMPSelectorDataStatic} from "../../../../../../SMP/SMPLayr/DataBlueprint
 import {ElementBackgroundPart} from "../../../ElementPartsGeneral/ElementBackgroundPart.js";
 import {GroupElementNodesLoader} from "./GroupElementParts/GroupElementNodesLoader.js";
 import {GroupElementPartAbsoluteLayout} from "./GroupElementParts/GroupElementPartAbsoluteLayout.js";
+import {GroupElementMainPart} from "./GroupElementParts/GroupElementMainPart.js";
+import {SMPSavePart_ElementType} from "../../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_ElementType.js";
+import {ElementConfigFile} from "../../../ElementObject.js";
+import {ElementTypes} from "../../../Adatok/ElementTypes.js";
 
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
@@ -25,6 +29,7 @@ const loadedSelectorData: SMPSelectorDataStatic =
             {
                 stateName: loadedSelectorDataNames.states.Loaded,
                 masterObjectPartNames: [
+                    GroupElementMainPart.partName,
                     ElementBackgroundPart.partName,
                     GroupElementNodesLoader.partName
 
@@ -78,9 +83,25 @@ const layoutSelectorData: SMPSelectorDataStatic =
 
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
-export const GroupElementStaticData = [
+const GroupElementSelectorDataStaticArray = [
     layoutSelectorData,
     loadedSelectorData
 ]
 
+const GroupElementPartsClassArray = [
+    SMPSavePart_ElementType,
+    GroupElementMainPart,
+    ElementBackgroundPart,
+    GroupElementNodesLoader,
+    GroupElementPartAbsoluteLayout
+]
 
+export const GroupElementConfigFile: ElementConfigFile = {
+    BaseHTMLElementType: "div",
+    elementType: ElementTypes.Group,
+    smpData: {
+        partsClassArray: GroupElementPartsClassArray,
+        SMPSelectorDataStaticArray: GroupElementSelectorDataStaticArray
+    }
+
+}

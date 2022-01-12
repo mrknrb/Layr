@@ -1,14 +1,11 @@
 import {PartBaseElement_Field} from "../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
-import {GroupElement} from "../../GroupElement.js";
 import {layrFrame} from "../../../../../../../LayrFrame.js";
+import {ElementObject} from "../../../../ElementObject.js";
 
 export class GroupElementNodesLoader extends PartBaseElement_Field {
-
-
-    protected masterObject: GroupElement
     static partName = "GroupElementNodesLoader"
 
-    constructor(masterObject: GroupElement) {
+    constructor(masterObject: ElementObject) {
         super(masterObject);
     }
 

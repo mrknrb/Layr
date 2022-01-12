@@ -35,9 +35,9 @@ export class FieldObject {
             })
         }
     */
-    elementPartChangeSync(elementId: string, partClassName: string, loadData) {
+    elementPartChangeSync(elementId: string, partName: string, loadData?: any) {
         this.fieldDataMongoUpdate()
-        this.elementPartSyncWithOthers(elementId, partClassName, loadData)
+        this.elementPartSyncWithOthers(elementId, partName, loadData)
     }
 
 
@@ -47,10 +47,11 @@ export class FieldObject {
         })
     }
 
-    elementPartSyncWithOthers(elementId: string, partClassName: string, loadData?: any) {
+    elementPartSyncWithOthers(elementId: string, partName: string, loadData?: any) {
         let nodes = LayrFind.nodes_ByDocId(this.docObject.docData._id)
+        if (nodes === undefined) return undefined
         nodes.forEach((node, index) => {
-            node.elementsManager.elements.get(elementId).smpManager.masterObjectParts.getObject(partClassName).loadData(loadData)
+            node.elementsManager.elements.get(elementId)?.smpManager.masterObjectParts.getPartObject_ByName(partName)?.loadData(loadData)
         })
     }
 }

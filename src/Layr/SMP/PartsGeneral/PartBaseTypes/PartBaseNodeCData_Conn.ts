@@ -30,7 +30,7 @@ export abstract class PartBaseNodeCData_Conn extends PartBase {
 
     protected valueSync(loadData?: any) {
         this.getMasterDataObject().syncObjectNodeCData_Conn.partSyncStart({
-            partClassName: this.getPartClassName(),
+            partName: this.getPartName(),
             loadData: loadData
         })
     }

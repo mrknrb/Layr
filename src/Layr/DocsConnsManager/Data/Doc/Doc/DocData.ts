@@ -1,5 +1,6 @@
 import {FieldData} from "../Field/FieldData.js";
 import {FieldhezElementCData} from "../../Conn/NodeCData/FieldhezElementCData.js";
+import {PartData} from "../../../../SMP/PartsGeneral/PartData.js";
 
 export class DocData {
 
@@ -8,11 +9,13 @@ export class DocData {
     ownElementsCData: FieldhezElementCData[] //rootnal johet jol, amikor a sajat docfieldjeit formaznad
     fieldsData: FieldData[]
     tags: string[]
-    partsData: Object
+    partsData: any
 
     constructor() {
+
         this.fieldsData = []
         this.ownElementsCData = []
         this.tags = []
+        this.partsData = {}
     }
 }

@@ -4,12 +4,12 @@ import {SMPStateDataDynamic} from "./SMPStateDataDynamic.js";
 export class SMPPartDataDynamic {
 
     smpStateDataDynamic: SMPStateDataDynamic
-    smpPartDataStatic: string
+    smpPartNameStatic: string
 
     //yx lehet nem jo semmire, de gyeloe megtartom
-    constructor(smpPartDataStatic: string, smpStateDataDynamic: SMPStateDataDynamic) {
+    constructor(smpPartNameStatic: string, smpStateDataDynamic: SMPStateDataDynamic) {
         this.smpStateDataDynamic = smpStateDataDynamic
-        this.smpPartDataStatic = smpPartDataStatic
+        this.smpPartNameStatic = smpPartNameStatic
 
     }
 
@@ -18,6 +18,6 @@ export class SMPPartDataDynamic {
     }
 
     getPart() {
-        return this.smpStateDataDynamic.smpSelectorDataDynamic.smpManager.masterObjectParts.getObject(this.smpPartDataStatic) as PartBase
+        return this.smpStateDataDynamic.smpSelectorDataDynamic.smpManager.masterObjectParts.getPartObject_ByName(this.smpPartNameStatic) as PartBase
     }
 }

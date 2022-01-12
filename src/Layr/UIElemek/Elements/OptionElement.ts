@@ -3,7 +3,6 @@ import {MenuElement} from "./MenuElement.js";
 import {OptionsElementStaticDataType} from "../StaticData/OptionsElementStaticDataType.js";
 import {ToolGroup} from "./ToolGroup.js";
 import {TypedEvent} from "../../../0Libraries/TypedEvents.js";
-import {MrkLibrary} from "../../../0Egyebek/MrkLibrary.js";
 
 export class OptionElement {
     layrUI: LayrUI

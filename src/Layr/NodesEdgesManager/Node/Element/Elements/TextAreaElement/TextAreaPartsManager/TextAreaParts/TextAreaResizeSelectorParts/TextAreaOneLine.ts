@@ -1,9 +1,9 @@
 import {PartBaseElementCData_CDataStorePlaces} from "../../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElementCData_CDataStorePlaces.js";
-import {TextAreaElement} from "../../../TextAreaElement.js";
+import {ElementObject} from "../../../../../ElementObject.js";
 
 export class TextAreaOneLine extends PartBaseElementCData_CDataStorePlaces {
 
-    constructor(textAreaElement: TextAreaElement) {
+    constructor(textAreaElement: ElementObject) {
         super(textAreaElement);
     }
 

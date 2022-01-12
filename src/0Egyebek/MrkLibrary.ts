@@ -108,7 +108,7 @@ export class MrkLibrary {
     }
 
     static docFieldKereso(docFieldName: string, docData: DocData) {
-        let docFieldKeresett = new FieldData()
+        let docFieldKeresett: FieldData | undefined
         docData.fieldsData.forEach(function (docField) {
             if (docField.fieldName == docFieldName) {
                 docFieldKeresett = docField
@@ -224,7 +224,7 @@ export class MrkLibrary {
                     document.body.style.cursor = "w-resize"
                 } else {
                     console.log(resizeInProgress)
-                    resizeInProgress? document.body.style.cursor = "w-resize": document.body.style.cursor = ""
+                    resizeInProgress ? document.body.style.cursor = "w-resize" : document.body.style.cursor = ""
                 }
             }
             if (resizeType == ResizeType.vertical) {
@@ -252,7 +252,7 @@ export class MrkLibrary {
         }, false);
         // yx ---------------------------------------------------------------------------------------------------------------
         element.addEventListener("mouseleave", function (e) {
-            resizeInProgress? document.body.style.cursor = "w-resize": document.body.style.cursor = ""
+            resizeInProgress ? document.body.style.cursor = "w-resize" : document.body.style.cursor = ""
 
         }, false);
 

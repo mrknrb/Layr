@@ -1,12 +1,12 @@
 import {PartBase} from "../PartBase.js";
 import {LayrFind} from "../../../../0Egyebek/LayrFind.js";
-import {ElementBaseClass} from "../../../NodesEdgesManager/Node/Element/ElementBaseClass.js";
 import {FieldObject} from "../../../DocsConnsManager/Data/Doc/Field/FieldObject.js";
+import {ElementObject} from "../../../NodesEdgesManager/Node/Element/ElementObject.js";
 
 export abstract class PartBaseElement_Field extends PartBase {
-    protected masterObject: ElementBaseClass
+    protected masterObject: ElementObject
 
-    protected constructor(masterObject: ElementBaseClass) {
+    protected constructor(masterObject: ElementObject) {
         super();
         this.masterObject = masterObject
     }
@@ -18,23 +18,25 @@ export abstract class PartBaseElement_Field extends PartBase {
 
     protected getPartData() {
         //yx nem tudom, hogy mukodik-e
-        if (!this.getMasterDataObject().fieldData.partsData) this.getMasterDataObject().fieldData.partsData = {}
-        if (!this.getMasterDataObject().fieldData.partsData[this.getPartName()]) this.getMasterDataObject().fieldData.partsData[this.getPartName()] = {}
-        if (!this.getMasterDataObject().fieldData.partsData[this.getPartName()].data) this.getMasterDataObject().fieldData.partsData[this.getPartName()].data = {}
+        let masterDataObject = this.getMasterDataObject()
+        if (masterDataObject === undefined) return undefined
+        if (!masterDataObject.fieldData.partsData) masterDataObject.fieldData.partsData = {}
+        if (!masterDataObject.fieldData.partsData[this.getPartName()]) masterDataObject.fieldData.partsData[this.getPartName()] = {}
+        if (!masterDataObject.fieldData.partsData[this.getPartName()].data) masterDataObject.fieldData.partsData[this.getPartName()].data = {}
 
-        return this.getMasterDataObject().fieldData.partsData[this.getPartName()]
+        return masterDataObject.fieldData.partsData[this.getPartName()]
     }
 
 
     protected valueSync(loadData?: any) {
-        this.getMasterDataObject().syncObjectElement_Field.partSyncStart({
+        this.getMasterDataObject()?.syncObjectElement_Field.partSyncStart({
             fieldId: this.masterObject.fieldId,
-            partClassName: this.getPartClassName(),
+            partName: this.getPartName(),
             loadData: loadData
         })
     }
 
-    abstract saveValue(fieldObject?: FieldObject)
+    abstract saveValue(fieldObject?: FieldObject): void
 
-    abstract loadData(fieldObject?: FieldObject)
+    abstract loadData(fieldObject?: FieldObject): void
 }

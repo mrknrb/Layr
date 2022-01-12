@@ -1,17 +1,17 @@
-import {ElementBaseClass} from "./ElementBaseClass.js";
-import {ElementTypesClassFinder} from "./Adatok/ElementTypesClassFinder.js";
 import {LayrFind} from "../../../../0Egyebek/LayrFind.js";
 import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
 import {FieldObject} from "../../../DocsConnsManager/Data/Doc/Field/FieldObject.js";
 import {TypedEvent} from "../../../../0Libraries/TypedEvents.js";
+import {ElementTypesConfigDataFinder} from "./ElementTypesConfigDataFinder.js";
+import {ElementObject} from "./ElementObject.js";
 
 export class ElementsManager {
-    elements: Map<string, ElementBaseClass>
+    elements: Map<string, ElementObject>
     nodeObject: NodeObjectBase
-    elementCreatedEvent: TypedEvent<ElementBaseClass>
+    elementCreatedEvent: TypedEvent<ElementObject>
 
     constructor(nodeObject: NodeObjectBase) {
-        this.elementCreatedEvent = new TypedEvent<ElementBaseClass>()
+        this.elementCreatedEvent = new TypedEvent<ElementObject>()
         this.nodeObject = nodeObject
         this.elements = new Map<string, any>()
     }
@@ -34,7 +34,7 @@ export class ElementsManager {
     }
 
     elementsDelete() {
-        this.elements.forEach(function (element: ElementBaseClass) {
+        this.elements.forEach(function (element: ElementObject) {
             element.deleteElement()
 
         })
@@ -54,8 +54,10 @@ export class ElementsManager {
     }
 
     elementLoad(fieldObject: FieldObject) {
-        let elementClass = ElementTypesClassFinder[fieldObject.fieldData.elementType]
-        let elementObject: ElementBaseClass = new elementClass(this.nodeObject, fieldObject.fieldData.fieldId) as ElementBaseClass
+
+        // @ts-ignore
+        let elementConfigData = ElementTypesConfigDataFinder[fieldObject.fieldData.elementType]
+        let elementObject = new ElementObject(elementConfigData, fieldObject.fieldData.fieldId, this.nodeObject)
         this.elements.set(fieldObject.fieldData.fieldId, elementObject)
     }
 }

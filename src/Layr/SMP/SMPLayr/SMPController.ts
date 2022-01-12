@@ -223,7 +223,7 @@ export class SMPController {
             let partsMap = new Map<string, SMPPartDataStatic>()
             smStateDataDynamic.forEach(value => {
                 value.masterObjectParts.forEach(value1 => {
-                    partsMap.set(value1.smpPartDataStatic.partName, value1.smpPartDataStatic)
+                    partsMap.set(value1.smpPartNameStatic.partName, value1.smpPartNameStatic)
                 })
             })
             let partStaticDataArray = []

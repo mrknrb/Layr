@@ -2,10 +2,9 @@ import {ConnObject} from "../Layr/DocsConnsManager/Data/Conn/ConnObject.js";
 import {DocObject} from "../Layr/DocsConnsManager/Data/Doc/Doc/DocObject.js";
 import {NodeObjectBase} from "../Layr/NodesEdgesManager/Node/NodeObject/NodeObjectBase.js";
 import {ElementTypes} from "../Layr/NodesEdgesManager/Node/Element/Adatok/ElementTypes.js";
-import {FieldObject} from "../Layr/DocsConnsManager/Data/Doc/Field/FieldObject.js";
-import {ElementBaseClass} from "../Layr/NodesEdgesManager/Node/Element/ElementBaseClass.js";
 import {layrFrame} from "../Layr/LayrFrame.js";
 import {NodeObjectNormal} from "../Layr/NodesEdgesManager/Node/NodeObject/NodeObjectNormal.js";
+import {ElementObject} from "../Layr/NodesEdgesManager/Node/Element/ElementObject.js";
 
 export class LayrFind {
 
@@ -50,14 +49,14 @@ export class LayrFind {
         return this.doc(this.node_ById(nodeId)?.docId)
     }
 
-    static field_ById_InDocObject(fieldId: string, docObject: DocObject){
+    static field_ById_InDocObject(fieldId: string, docObject: DocObject) {
         if (!docObject) return
         return docObject.fieldObjects.find(function (fieldObject) {
             return fieldObject.fieldData.fieldId === fieldId;
         })
     }
 
-    static fieldObject_ByFieldId_DocId(fieldId: string, docId: string){
+    static fieldObject_ByFieldId_DocId(fieldId: string, docId: string) {
         let doc = LayrFind.doc(docId)
         if (doc === undefined) {
             return undefined
@@ -74,8 +73,8 @@ export class LayrFind {
         })
     }
 
-    static elements_ByType(elements: Map<string, ElementBaseClass>, elementType: ElementTypes) {
-        let elementArray: ElementBaseClass[] = []
+    static elements_ByType(elements: Map<string, ElementObject>, elementType: ElementTypes) {
+        let elementArray: ElementObject[] = []
         elements.forEach(element => {
             if (element.getFieldObject().fieldData.elementType == elementType) {
                 elementArray.push(element)

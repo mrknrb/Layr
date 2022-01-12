@@ -5,9 +5,9 @@ import {MrkLibrary, ResizeType} from "../../../0Egyebek/MrkLibrary.js";
 export class OptionsBar {
     layrUI: LayrUI
     layrFrame: LayrFrame
-    topMenuElement: HTMLElement= document.createElement("div")
-    optionsBarElement: HTMLElement= document.createElement("div")
-    optionsBarRootNodeContainerElement: HTMLElement= document.createElement("div")
+    topMenuElement: HTMLElement = document.createElement("div")
+    optionsBarElement: HTMLElement = document.createElement("div")
+    optionsBarRootNodeContainerElement: HTMLElement = document.createElement("div")
 
     constructor(layrUI: LayrUI) {
         this.layrUI = layrUI
@@ -20,15 +20,15 @@ export class OptionsBar {
 
     topMenuInit() {
 
-        let borderAndBackGroundColor= "#323232"
+        let borderAndBackGroundColor = "#323232"
 
-        this.topMenuElement.style.backgroundColor =borderAndBackGroundColor
+        this.topMenuElement.style.backgroundColor = borderAndBackGroundColor
 
         this.topMenuElement.style.height = "16ch"
         //this.optionsBarElement.style.position = "fixed"
-       // this.topMenuElement.style.top = "0"
-       // this.topMenuElement.style.zIndex = "9999"
-       // this.topMenuElement.style.left = "0"
+        // this.topMenuElement.style.top = "0"
+        // this.topMenuElement.style.zIndex = "9999"
+        // this.topMenuElement.style.left = "0"
         this.topMenuElement.style.borderBottom = `solid 3px ${borderAndBackGroundColor}`
         this.topMenuElement.style.display = "flex"
         this.topMenuElement.style.alignContent = "center"

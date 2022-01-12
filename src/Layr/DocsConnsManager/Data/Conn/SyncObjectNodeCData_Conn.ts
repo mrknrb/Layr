@@ -24,7 +24,7 @@ export class SyncObjectNodeCData_Conn extends SyncObjectBase {
 
         nodes.forEach((node, index) => {
 
-            let a: PartBase = node.smpManager.masterObjectParts.getObject(syncData.partClassName)
+            let a: PartBase = node.smpManager.masterObjectParts.getPartObject_ByName(syncData.partName)
             if (!a) {
                 console.error("LayrError: nincs meg a szinkronizalando Part");
                 return
@@ -37,6 +37,6 @@ export class SyncObjectNodeCData_Conn extends SyncObjectBase {
 
 
 interface SyncData {
-    partClassName: string,
+    partName: string,
     loadData?: any
 }

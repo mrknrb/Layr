@@ -16,6 +16,7 @@ textarea, select {
 }
 
 .LayrElement {
+    box-sizing: border-box;
     margin-bottom: 2px;
 }
 
@@ -31,7 +32,7 @@ textarea, select {
     min-width: 40px;
     min-height: 20px;
     height: fit-content;
-
+    border-width: 4px;
     border-radius: 3px;
     line-height: 0px;
     overflow: hidden;
@@ -83,10 +84,9 @@ textarea, select {
 }
 
 
-
 .toolGroupContentDiv {
     max-height: 100%;
-  overflow: hidden;
+    overflow: hidden;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -112,9 +112,9 @@ textarea, select {
 
 }
 
-.toolHTMLElementButton{
-    height:4ch;
-    width:8ch
+.toolHTMLElementButton {
+    height: 4ch;
+    width: 8ch
 }
 
 
@@ -140,22 +140,22 @@ div::-webkit-scrollbar-thumb:active{
  }
 */
 /* custom scrollbar */
-div::-webkit-scrollbar {
+textarea::-webkit-scrollbar, div::-webkit-scrollbar {
     width: 6px;
     height: 6px;
 }
 
-div::-webkit-scrollbar-track {
+textarea::-webkit-scrollbar-track, div::-webkit-scrollbar-track {
     background-color: #404040;
 }
 
-div::-webkit-scrollbar-thumb {
+textarea::-webkit-scrollbar-thumb, div::-webkit-scrollbar-thumb {
     background-color: rgb(109, 109, 109);
     border-radius: 10px;
-   /* border: 6px solid transparent;*/
+    /* border: 6px solid transparent;*/
     background-clip: content-box;
 }
 
-div::-webkit-scrollbar-thumb:hover {
+textarea::-webkit-scrollbar-thumb:hover, div::-webkit-scrollbar-thumb:hover {
     background-color: rgba(170, 170, 170, 0.75);
 }

@@ -1,10 +1,10 @@
 import {PartBaseElement_Field} from "../../PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
-import {ElementBaseClass} from "../../../NodesEdgesManager/Node/Element/ElementBaseClass.js";
 import {SMPManager} from "../SMPManager.js";
+import {ElementObject} from "../../../NodesEdgesManager/Node/Element/ElementObject.js";
 
 export class SMPSavePart_ElementType extends PartBaseElement_Field {
 
-    protected masterObject: ElementBaseClass
+    protected masterObject: ElementObject
     smpManager: SMPManager
 
     static partName = "SMPSave"

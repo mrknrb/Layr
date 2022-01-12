@@ -2,7 +2,7 @@ import {LayrUI} from "../LayrUI.js";
 
 export class ToolBar {
     layrUI: LayrUI
-    toolBarElement: HTMLDivElement= document.createElement("div")
+    toolBarElement: HTMLDivElement = document.createElement("div")
 
     constructor(layrUI: LayrUI) {
         this.layrUI = layrUI
