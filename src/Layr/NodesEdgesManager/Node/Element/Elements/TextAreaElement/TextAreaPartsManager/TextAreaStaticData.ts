@@ -1,21 +1,20 @@
 import {SMPSelectorDataStatic} from "../../../../../../SMP/SMPLayr/DataBlueprints/SMPSelectorStaticData/SMPSelectorDataStatic.js";
 import {TextAreaContentPart} from "./TextAreaParts/TextAreaContentPart.js";
-import {TextAreaTestPartRed} from "./TextAreaParts/TextAreaTestPartRed.js";
-import {TextAreaTestPartBoldFonts} from "./TextAreaParts/TextAreaTestPartBoldFonts.js";
-import {TextAreaTestPartBlue} from "./TextAreaParts/TextAreaTestPartBlue.js";
 import {ElementBackgroundPart} from "../../../ElementPartsGeneral/ElementBackgroundPart.js";
 import {TextAreaMainPart} from "./TextAreaParts/TextAreaMainPart.js";
 import {ElementConfigFile} from "../../../ElementObject.js";
 import {ElementTypes} from "../../../Adatok/ElementTypes.js";
 import {SMPSavePart_ElementType} from "../../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_ElementType.js";
+import {TextAreaAutoResize} from "./TextAreaParts/TextAreaResizeSelectorParts/TextAreaAutoResize.js";
+import {TextAreaTextColorPart} from "./TextAreaParts/TextAreaTextColorPart.js";
+import {ElementManualResizePart} from "../../../ElementPartsGeneral/ElementManualResizePart.js";
 
 
 const loadedSelectorDataNames = {
 
     selector: "LoadedSelector",
     states: {
-        Loaded: "Loaded",
-        NotLoaded: "NotLoaded"
+        Loaded: "Loaded"
 
     }
 
@@ -31,12 +30,9 @@ const loadedSelectorData: SMPSelectorDataStatic =
                 masterObjectPartNames: [
                     TextAreaMainPart.partName,
                     TextAreaContentPart.partName,
-                    TextAreaTestPartBoldFonts.partName,
-                    ElementBackgroundPart.partName
+                    ElementBackgroundPart.partName,
+                    TextAreaTextColorPart.partName
                 ]
-            }, {
-                stateName: loadedSelectorDataNames.states.NotLoaded,
-                masterObjectPartNames: []
             }
         ]
     }
@@ -44,16 +40,16 @@ const loadedSelectorData: SMPSelectorDataStatic =
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 const testSelectorDataNames = {
 
-    selector: "Colorselector",
+    selector: "ResizeSelector",
     states: {
-        red: "red",
-        blue: "blue"
+        auto: "auto",
+        manual: "manual"
     }
 
 }
-const testSelectorData: SMPSelectorDataStatic =
+const resizeSelectorData: SMPSelectorDataStatic =
     {
-        defaultState: testSelectorDataNames.states.red,
+        defaultState: testSelectorDataNames.states.auto,
         selectorName: testSelectorDataNames.selector,
         defaultSelectorActive: true,
         parentSelectorAndStateName: {
@@ -62,98 +58,25 @@ const testSelectorData: SMPSelectorDataStatic =
         },
         states: [
             {
-                stateName: testSelectorDataNames.states.red,
+                stateName: testSelectorDataNames.states.manual,
                 masterObjectPartNames: [
-                    TextAreaTestPartRed.partName
+                    ElementManualResizePart.partName
 
                 ]
             }, {
-                stateName: testSelectorDataNames.states.blue,
+                stateName: testSelectorDataNames.states.auto,
                 masterObjectPartNames: [
-                    TextAreaTestPartBlue.partName
+                    TextAreaAutoResize.partName
 
                 ]
             }
         ]
     }
-//yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-const testSelectorDataNames2 = {
-    selector: "Testselector",
-    states: {
-        test1: "test1",
-        test2: "test2"
-    }
-}
-const testSelectorData2: SMPSelectorDataStatic =
-    {
-        defaultState: testSelectorDataNames2.states.test1,
-        selectorName: testSelectorDataNames2.selector,
-        defaultSelectorActive: true,
-        parentSelectorAndStateName: {
-            selectorName: loadedSelectorDataNames.selector,
-            stateName: loadedSelectorDataNames.states.Loaded
-        },
-        states: [
-            {
-                stateName: testSelectorDataNames2.states.test1,
-                masterObjectPartNames: []
-            }, {
-                stateName: testSelectorDataNames2.states.test2,
-                masterObjectPartNames: []
-            }
-        ]
-    }
-/*
-const layoutSelectorDataNames = {
-
-    selector: "LayoutSelector",
-    states: {
-        Absolute: "Absolute",
-        List: "List",
-        Tree: "Tree"
-
-    }
-
-}
-const layoutSelectorData: SMPSelectorDataStatic =
-    {
-        selectorName: "LayoutSelector",
-        defaultState: "Absolute",
-        defaultSelectorActive: true,
-        parentSelectorAndStateName:
-            {
-                selectorName: loadedSelectorDataNames.selector,
-                stateName: loadedSelectorDataNames.states.Loaded
-            }
-        ,
-        states: [
-            {
-                stateName: layoutSelectorDataNames.states.Absolute,
-                masterObjectPartNames: [
-                    {
-                        searchType: SMPSearchType.ChildNodePart,
-                        partName: NodeLayoutAbsolutePart.name
-                    }
-                ]
-            }, {
-                stateName: layoutSelectorDataNames.states.List,
-                masterObjectPartNames: [
-                    {
-                        searchType: SMPSearchType.ChildNodePart,
-                        partName: NodeLayoutListPart.name
-                    }
-                ]
-            }
-
-        ]
-    }
-*/
 
 const TextAreaSelectorDataStaticArray = [
     // layoutSelectorData,
     loadedSelectorData,
-    testSelectorData,
-    testSelectorData2
+    resizeSelectorData
 ]
 
 
@@ -161,10 +84,10 @@ const TextAreaElementPartsClassArray = [
     SMPSavePart_ElementType,
     TextAreaMainPart,
     TextAreaContentPart,
-    TextAreaTestPartRed,
-    TextAreaTestPartBlue,
-    TextAreaTestPartBoldFonts,
-    ElementBackgroundPart
+    ElementBackgroundPart,
+    ElementManualResizePart,
+    TextAreaAutoResize,
+    TextAreaTextColorPart
 ]
 export const TextAreaConfigFile: ElementConfigFile = {
     BaseHTMLElementType: "textarea",

@@ -1,3 +1,5 @@
+import {MrkLibrary} from "../../../../0Egyebek/MrkLibrary.js";
+
 export class ConnData {
 
     _id: string
@@ -13,7 +15,8 @@ export class ConnData {
     }
 
     constructor(from: string, to: string, type: string) {
-
+        //this._id = MrkLibrary.generateUUID()
+        // yxmultkor zavart okozott
         this.from = from
         this.to = to
         this.type = type

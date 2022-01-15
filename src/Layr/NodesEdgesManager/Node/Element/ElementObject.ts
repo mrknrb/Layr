@@ -25,8 +25,6 @@ export class ElementObject implements SMPMasterObjectInterface {
         this.elementType = elementConfigFile.elementType
         this.nodeObject = nodeObjectBase
 
-        this.element.style.width = "calc(100% - 3px)"
-        this.element.style.height = "50px"
         this.nodeObject.mainElement.element.appendChild(this.element)
         this.fieldId = fieldId
         this.contextMenu = new ContextMenu()
@@ -47,8 +45,7 @@ export class ElementObject implements SMPMasterObjectInterface {
     elementInsertFullScreenOrNode(fullScreen: boolean) {
         if (fullScreen) {
             document.querySelector("#workScreenDiv")?.appendChild(this.element)
-            this.element.style.height = "100%"
-            this.element.style.width = "100%"
+            this.element.classList.add("LayrFullScreenElement")
         } else {
             this.nodeObject.mainElement.element.appendChild(this.element)
         }

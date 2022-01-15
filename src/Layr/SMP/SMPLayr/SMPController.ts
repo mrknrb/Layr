@@ -15,13 +15,35 @@ export class SMPController {
             selectorArrayFilterByEnum: SelectorArrayFilterByEnum.activated,
             selectorDontLoadSaveEllenereIs: selectorDontLoadSaveEllenereIs
         })
+        /*
         for await (const selector of selectors) {
             await selector.activateSelector(true)
+        }*/
+        this.activateSelectorsArray(selectors, true)
+    }
+
+    async activateSelectorAndChildren(selectorName: string, activate: boolean, selectorDontLoadSaveEllenereIs?: boolean) {
+
+        let activatedSelector = this.smManager.smpSelectorDataDynamicMap.get(selectorName)
+        if (!activatedSelector) return
+        if (activatedSelector.smpSelectorDataStatic.selectorNotDeactivatable && !activate) return
+        let selectorAndStateName: SMPSelectorAndStateName = {
+            selectorName: selectorName,
+            stateName: activatedSelector.activatedState
         }
+        let selectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent({
+            selectorAndStateName_UresHaNincsParent: selectorAndStateName,
+            selectorArrayFilterByEnum: SelectorArrayFilterByEnum.activated,
+            selectorDontLoadSaveEllenereIs: selectorDontLoadSaveEllenereIs
+        })
+        activatedSelector.saveActivation(activate)
+        selectors.unshift(activatedSelector)
+        this.activateSelectorsArray(selectors, activate)
+
     }
 
     changeSelectorState(selectorAndStateName: SMPSelectorAndStateName, selectorDontLoadSaveEllenereIs?: boolean) {
-        console.log(this.smManager.smpSelectorDataSaveObjects)
+        // console.log(this.smManager.smpSelectorDataSaveObjects)
         let changedSelector = this.smManager.smpSelectorDataDynamicMap.get(selectorAndStateName.selectorName)
 
         let kikapcsolandoSelectors = this.getChildSelectors_MultipleLevels_Filtered_IfNoSelectorNoParent({

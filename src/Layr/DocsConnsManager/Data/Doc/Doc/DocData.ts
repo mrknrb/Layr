@@ -1,6 +1,6 @@
 import {FieldData} from "../Field/FieldData.js";
 import {FieldhezElementCData} from "../../Conn/NodeCData/FieldhezElementCData.js";
-import {PartData} from "../../../../SMP/PartsGeneral/PartData.js";
+import {MrkLibrary} from "../../../../../0Egyebek/MrkLibrary.js";
 
 export class DocData {
 
@@ -12,7 +12,8 @@ export class DocData {
     partsData: any
 
     constructor() {
-
+       // this._id = MrkLibrary.generateUUID()
+       //yx multkor zavart okozott
         this.fieldsData = []
         this.ownElementsCData = []
         this.tags = []

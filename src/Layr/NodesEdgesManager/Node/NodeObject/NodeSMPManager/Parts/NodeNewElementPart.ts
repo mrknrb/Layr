@@ -44,7 +44,7 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
                 elementType: subContextMenuElementDropDownStatic.value,
                 fieldName: subContextMenuElementNewNodeName.value
             })
-            this.partContextMenu.contextMenuInVisible()
+
             subContextMenu.contextMenuInVisible()
         })
     }

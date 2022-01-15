@@ -1,6 +1,8 @@
 import {SMPSelectorDataStatic} from "../../../../../SMP/SMPLayr/DataBlueprints/SMPSelectorStaticData/SMPSelectorDataStatic.js";
 import {NodeNewElementPart} from "../Parts/NodeNewElementPart.js";
 import {NodeLayoutAbsolutePart} from "../Parts/NodeLayoutAbsolutePart.js";
+import {NodeLayoutListPart} from "../Parts/NodeLayoutListPart.js";
+import {SMPSavePart_NodeType} from "../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_NodeType.js";
 
 
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
@@ -39,7 +41,7 @@ export const NodeLayoutSelectorDataNames = {
 
     selector: "NodeLayoutSelector",
     states: {
-        Nothing: "Nothing",
+        Nothing:"Nothing",
         Absolute: "Absolute",
         List: "List"
     }
@@ -52,17 +54,24 @@ const NodeLayoutSelectorData: SMPSelectorDataStatic =
             selectorName: loadedSelectorDataNames.selector,
             stateName: loadedSelectorDataNames.states.Loaded
         },
-        defaultSelectorActive: true,
-        selectorDontLoadSave: true,
+        defaultSelectorActive: false,
+        selectorDontLoadSave:true,
         states: [
             {
-                stateName: NodeLayoutSelectorDataNames.states.Nothing,
-                masterObjectPartNames: []
+                stateName: NodeLayoutSelectorDataNames.states.Nothing,//yx kell, hogy a deaktivalasnal lehessen hova kapcsolni
+                masterObjectPartNames: [
+                ]
             },
             {
                 stateName: NodeLayoutSelectorDataNames.states.Absolute,
                 masterObjectPartNames: [
                     NodeLayoutAbsolutePart.partName,
+                ]
+            },
+            {
+                stateName: NodeLayoutSelectorDataNames.states.List,
+                masterObjectPartNames: [
+                    NodeLayoutListPart.partName,
                 ]
             }
         ]
@@ -74,3 +83,15 @@ export const NodeNormalSMPStaticData = [
     NodeLoadedSelectorData,
     NodeLayoutSelectorData
 ]
+
+export const NodeNormalPartsClassList =
+    [
+        SMPSavePart_NodeType,
+        NodeNewElementPart,
+        NodeLayoutAbsolutePart,
+        NodeLayoutListPart,
+        //NodeFullScreenElementPart
+
+        // NodeSizeChangePart
+
+    ]

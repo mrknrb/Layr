@@ -18,6 +18,10 @@ textarea, select {
 .LayrElement {
     box-sizing: border-box;
     margin-bottom: 2px;
+resize: none;
+   width : 100%;
+    min-height:  21px;
+   /* height:  21px*/
 }
 
 .LayrElement:last-child {
@@ -32,10 +36,14 @@ textarea, select {
     min-width: 40px;
     min-height: 20px;
     height: fit-content;
-    border-width: 4px;
+   /* border-width: 4px;*/
     border-radius: 3px;
     line-height: 0px;
     overflow: hidden;
+}
+.LayrFullScreenElement {
+  width:100% !important;
+    height:100% !important;
 }
 
 .ContextMenuElementHoverHighlight:hover {
@@ -49,7 +57,7 @@ textarea, select {
 
 .ContextMenuLayr {
     background-color: rgba(156, 156, 156, 0.2);
-    width: 20ch;
+    width: 200px;
     height: fit-content;
     z-index: 10001;
     overflow-x: hidden;

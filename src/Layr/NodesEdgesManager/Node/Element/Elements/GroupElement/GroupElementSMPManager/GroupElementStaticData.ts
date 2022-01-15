@@ -1,11 +1,14 @@
 import {SMPSelectorDataStatic} from "../../../../../../SMP/SMPLayr/DataBlueprints/SMPSelectorStaticData/SMPSelectorDataStatic.js";
 import {ElementBackgroundPart} from "../../../ElementPartsGeneral/ElementBackgroundPart.js";
 import {GroupElementNodesLoader} from "./GroupElementParts/GroupElementNodesLoader.js";
-import {GroupElementPartAbsoluteLayout} from "./GroupElementParts/GroupElementPartAbsoluteLayout.js";
 import {GroupElementMainPart} from "./GroupElementParts/GroupElementMainPart.js";
 import {SMPSavePart_ElementType} from "../../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_ElementType.js";
 import {ElementConfigFile} from "../../../ElementObject.js";
 import {ElementTypes} from "../../../Adatok/ElementTypes.js";
+import {ElementManualResizePart} from "../../../ElementPartsGeneral/ElementManualResizePart.js";
+import {GroupElementPartAbsoluteLayout} from "./GroupElementParts/GroupElementPartAbsoluteLayout.js";
+import {GroupElementListLayoutPart} from "./GroupElementParts/GroupElementListLayoutPart.js";
+import {GroupElementNewNodePart} from "./GroupElementParts/GroupElementNewNodePart.js";
 
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
@@ -21,7 +24,7 @@ const loadedSelectorDataNames = {
 }
 const loadedSelectorData: SMPSelectorDataStatic =
     {
-        defaultState: loadedSelectorDataNames.states.NotLoaded,
+        defaultState: loadedSelectorDataNames.states.Loaded,
         selectorName: loadedSelectorDataNames.selector,
         defaultSelectorActive: false,
         selectorDontLoadSave: true,
@@ -31,43 +34,45 @@ const loadedSelectorData: SMPSelectorDataStatic =
                 masterObjectPartNames: [
                     GroupElementMainPart.partName,
                     ElementBackgroundPart.partName,
-                    GroupElementNodesLoader.partName
+                    GroupElementNodesLoader.partName,
+                    ElementManualResizePart.partName,
+                    GroupElementNewNodePart.partName
 
                 ]
-            }, {
-                stateName: loadedSelectorDataNames.states.NotLoaded,
-                masterObjectPartNames: []
             }
         ]
     }
 
 
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-const layoutSelectorDataNames = {
+export const layoutSelectorDataNames = {
 
     selector: "LayoutSelector",
     states: {
         Nothing: "Nothing",
         Absolute: "Absolute",
         List: "List",
-        Tree: "Tree"
+        Tree: "Tree",
+        Pages:"Pages"
     }
 }
 const layoutSelectorData: SMPSelectorDataStatic =
     {
         selectorName: "LayoutSelector",
-        defaultState: layoutSelectorDataNames.states.Nothing,
+        defaultState: layoutSelectorDataNames.states.Absolute,
         defaultSelectorActive: true,
+        selectorNotDeactivatable:true,
         parentSelectorAndStateName:
             {
                 selectorName: loadedSelectorDataNames.selector,
                 stateName: loadedSelectorDataNames.states.Loaded
             }
         ,
-        states: [{
-            stateName: layoutSelectorDataNames.states.Nothing,
-            masterObjectPartNames: []
-        },
+        states: [
+            {
+                stateName: layoutSelectorDataNames.states.Nothing,
+                masterObjectPartNames: []
+            },
             {
                 stateName: layoutSelectorDataNames.states.Absolute,
                 masterObjectPartNames: [
@@ -75,7 +80,10 @@ const layoutSelectorData: SMPSelectorDataStatic =
                 ]
             }, {
                 stateName: layoutSelectorDataNames.states.List,
-                masterObjectPartNames: []
+                masterObjectPartNames: [
+                    GroupElementListLayoutPart.partName,
+
+                ]
             }
 
         ]
@@ -93,7 +101,10 @@ const GroupElementPartsClassArray = [
     GroupElementMainPart,
     ElementBackgroundPart,
     GroupElementNodesLoader,
-    GroupElementPartAbsoluteLayout
+    GroupElementPartAbsoluteLayout,
+    ElementManualResizePart,
+    GroupElementNewNodePart,
+    GroupElementListLayoutPart
 ]
 
 export const GroupElementConfigFile: ElementConfigFile = {

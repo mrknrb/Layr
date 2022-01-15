@@ -3,12 +3,13 @@ import {NodeObjectNormal} from "./Node/NodeObject/NodeObjectNormal.js";
 import {NodeObjectBase} from "./Node/NodeObject/NodeObjectBase.js";
 import {NodesEdgesDataStorage} from "./NodesEdgesDataStorage.js";
 import {layrFrame} from "../LayrFrame.js";
+import {TypedEvent} from "../../0Libraries/TypedEvents.js";
 
 
 export class NodesEdgesManager {
 
     nodesEdgesDataStorage: NodesEdgesDataStorage
-
+    newNodeObjectWithNewDocEvent: TypedEvent<{ parentNodeObject: NodeObjectBase, newChildNode: NodeObjectNormal }> = new TypedEvent<{ parentNodeObject: NodeObjectBase, newChildNode: NodeObjectNormal }>()
 
     constructor() {
 
@@ -51,13 +52,14 @@ export class NodesEdgesManager {
         return nodeObjectsArray
     }
 
-    async newNodeObjectWithNewDoc(parentNodeObject: NodeObjectBase) {
+    async newNodeObjectNormalWithNewDocToParentNode(parentNodeObject: NodeObjectBase) {
         let docConnsObjects = await layrFrame.docsConnsManager.insertNewDoc_AsParentDocChild(parentNodeObject.docId)
 
-        let nodeObjectNormal = new NodeObjectNormal(docConnsObjects.docObjects[0].docData._id, docConnsObjects.connObjects[0].connData._id, parentNodeObject.nodeId)
+        let newChildNode = new NodeObjectNormal(docConnsObjects.docObjects[0].docData._id, docConnsObjects.connObjects[0].connData._id, parentNodeObject.nodeId)
 
-        this.nodesEdgesDataStorage.insertNode(nodeObjectNormal)
-        return nodeObjectNormal
+        this.nodesEdgesDataStorage.insertNode(newChildNode)
+        this.newNodeObjectWithNewDocEvent.emit({parentNodeObject, newChildNode})
+        return newChildNode
     }
 
 

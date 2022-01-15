@@ -10,26 +10,26 @@ export class ContextMElementSubContextMButton extends ContextMenuElementBase {
         this.elementInitSubContextMenu()
     }
 
+    arrowRight: HTMLElement = document.createElement("b")
+    textElement: HTMLElement = document.createElement("b")
     elementInitSubContextMenu() {
         this.element.classList.add(LayrCSSClassesEnum.ContextMenuElementHoverHighlight)
         this.element.classList.add(LayrCSSClassesEnum.ContextMenuElement)
 
 
-        let textElement = document.createElement("b")
         // textElement.style.fontSize = "1ch"
-        textElement.style.userSelect = "none";
-        textElement.style.cursor = "default"
-        textElement.style.margin = "2px"
-        textElement.innerText = this.elementName
-        this.element.appendChild(textElement)
+       this. textElement.style.userSelect = "none";
+        this. textElement.style.cursor = "default"
+        this. textElement.style.margin = "2px"
+        this. textElement.innerText = this.elementName
+        this.element.appendChild(  this.textElement)
 
-        let arrowRight = document.createElement("b")
-        arrowRight.style.userSelect = "none";
-        arrowRight.style.cursor = "default"
-        arrowRight.style.marginRight = "3px"
-        arrowRight.innerText = ">"
-        arrowRight.style.position = "relative"
-        arrowRight.style.float = "right"
-        this.element.appendChild(arrowRight)
+        this.arrowRight.style.userSelect = "none";
+        this.arrowRight.style.cursor = "default"
+        this.arrowRight.style.marginRight = "3px"
+        this.arrowRight.innerText = ">"
+        this.arrowRight.style.position = "relative"
+        this.arrowRight.style.float = "right"
+        this.element.appendChild(this.arrowRight)
     }
 }

@@ -1,6 +1,7 @@
 import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
 import {ContextMElementClickable} from "../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 import {SMPStateDataDynamic} from "../DataBlueprints/SMPSelectorDynamicData/SMPStateDataDynamic.js";
+import {SMPSelectorDataDynamic} from "../DataBlueprints/SMPSelectorDynamicData/SMPSelectorDataDynamic.js";
 
 export class SMPStateContextMenu {
     smpStateDataDynamic: SMPStateDataDynamic
@@ -20,6 +21,10 @@ export class SMPStateContextMenu {
         if (this.smpStateDataDynamic.smpSelectorDataDynamic.activatedState != this.smpStateDataDynamic.smStateDataStatic.stateName) this.stateContextMenu.contextMenuInVisible()
         this.contextMenuBody.contextMenuElementInsert(this.stateContextMenu)
         this.clickEventInit()
+        this.activeContextMenuHighLight()
+        this.smpStateDataDynamic.smpSelectorDataDynamic.stateChangeRequestEvent.on(()=>{
+            this.activeContextMenuHighLight()
+        })
     }
 
     clickEventInit() {
@@ -37,8 +42,18 @@ export class SMPStateContextMenu {
         let parts = this.smpStateDataDynamic.searchGetAllParts()
         parts.forEach(part => {
             if (part.partContextMenu) {
-                this.contextMenuBody.contextMenuElementInsert(part.partContextMenu);
+                this.stateContextMenu.contextMenuElementInsert(part.partContextMenu);
             }
         })
     }
+
+    activeContextMenuHighLight(){
+        if(this.smpStateDataDynamic.smpSelectorDataDynamic.activatedState==this.smpStateDataDynamic.smStateDataStatic.stateName){
+            this.contextMenuStateButton.element.style.backgroundColor="green"
+        }else{
+            this.contextMenuStateButton.element.style.backgroundColor=""
+        }
+    }
+
+
 }

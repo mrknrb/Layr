@@ -1,10 +1,12 @@
 import {PartBaseElement_Field} from "../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
-import {MrkLibrary, ResizeType} from "../../../../../../../../0Egyebek/MrkLibrary.js";
+import {MrkLibrary} from "../../../../../../../../0Egyebek/MrkLibrary.js";
 import {ElementObject} from "../../../../ElementObject.js";
 
 export class GroupElementMainPart extends PartBaseElement_Field {
 
     static partName = "Main"
+    groupHeadElement: HTMLDivElement = document.createElement("div")
+    groupBodyElement: HTMLDivElement = document.createElement("div")
 
     constructor(masterObject: ElementObject) {
         super(masterObject);
@@ -12,6 +14,9 @@ export class GroupElementMainPart extends PartBaseElement_Field {
 
     activate() {
         this.elementInit()
+        this.groupHeadElementInit()
+        this.groupBodyElementInit()
+
     }
 
     protected elementInit() {
@@ -19,17 +24,31 @@ export class GroupElementMainPart extends PartBaseElement_Field {
         this.masterObject.element.classList.add("LayrElement")
         this.masterObject.element.style.border = `black`
         this.masterObject.element.style.backgroundColor = "#90a4ae"
-        this.masterObject.element.style.overflow = "auto"
+
+        this.masterObject.element.style.display="flex"
+        this.masterObject.element.style.paddingBottom="4px"
+        this.masterObject.element.style.flexDirection = "column";
         this.masterObject.element.style.position = "relative"
-        MrkLibrary.resizeElement(this.masterObject.element, 4, ResizeType.vertical, 25)
         this.masterObject.element.addEventListener("mousedown", function (e) {
             e.stopPropagation()
         })
-        MrkLibrary.grabInit(this.masterObject.element as HTMLDivElement)
-        // this.masterObject.nodeObject.mainElement.element.appendChild(this.masterObject.element)
-
 
     }
+    groupHeadElementInit() {
+        this.groupHeadElement.style.width="100%"
+        this.groupHeadElement.style.height="30px"
+        this.groupHeadElement.style.backgroundColor="grey"
+        this.groupHeadElement.style.position="relative"
+        this.masterObject.element.appendChild(this.groupHeadElement)
+    }
+    groupBodyElementInit() {
+        this.groupBodyElement.style.overflow = "auto"
+        this.groupBodyElement.style.position="relative"
+        this.groupBodyElement.style.flex="1 1"
+        MrkLibrary.grabInit(this.groupBodyElement as HTMLDivElement)
+        this.masterObject.element.appendChild(this.groupBodyElement)
+    }
+
 
     loadData() {
 

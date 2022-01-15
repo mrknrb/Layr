@@ -38,7 +38,8 @@ export class DocsConnsManager {
     async loadDocs_ByDocChildConns(parentDocId: string) {
 
         let docsConnsData: DocsConnsData = await layrFrame.layrClient.newRequest(RequestType.getDocs_ByDocsChildConns, parentDocId)
-
+        console.log("faszaaaaaaaaaaaaa")
+        console.log(docsConnsData)
         return this.docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData)
 
     }

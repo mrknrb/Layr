@@ -5,9 +5,11 @@ import {ElementObject} from "../../../../ElementObject.js";
 export class TextAreaContentPart extends PartBaseElement_Field {
 
     static partName = "TextAreaContentPart"
+    element: HTMLTextAreaElement
 
     constructor(masterObject: ElementObject) {
         super(masterObject);
+        this.element = this.masterObject.element as HTMLTextAreaElement
     }
 
     activate() {
@@ -27,18 +29,17 @@ export class TextAreaContentPart extends PartBaseElement_Field {
 
         if (MrkLibrary.emptyObjectCheck(this.getPartData().data)) return
 
-        this.masterObject.element.value = this.getPartData().data
+        this.element.value = this.getPartData().data
 
 
     }
 
 
     saveValue() {
-        this.saveValueDefault(this.masterObject.element.value)
-        this.valueSync()
+        this.saveValueDefault(this.element.value)
     }
 
     deactivate() {
-        this.masterObject.element.value = ""
+        this.element.value = ""
     }
 }

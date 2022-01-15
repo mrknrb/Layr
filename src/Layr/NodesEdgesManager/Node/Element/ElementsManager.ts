@@ -42,15 +42,15 @@ export class ElementsManager {
     }
 
     elementToFullScreen(fieldId: string) {
-
-        let element = this.elements.get(fieldId)
         this.elements.forEach(element => {
             if (element.element.parentElement == document.querySelector("#workScreenDiv")) {
                 element.elementInsertFullScreenOrNode(false)
             }
         })
+        this.elements.get(fieldId)?.elementInsertFullScreenOrNode(true)
 
-        element.elementInsertFullScreenOrNode(true)
+
+
     }
 
     elementLoad(fieldObject: FieldObject) {

@@ -50,107 +50,6 @@ export class MrkLibrary {
     }
 
 
-    static grabInit(elementDiv: HTMLDivElement) {
-
-        let pos = {top: 0, left: 0, x: 0, y: 0}
-
-        const mouseDownHandler = function (e: MouseEvent) {
-            //  e.stopPropagation()
-            // e = e || window.event
-            e.stopPropagation()
-            //e.preventDefault()
-            pos = {
-                left: elementDiv.scrollLeft,
-                top: elementDiv.scrollTop,
-                // Get the current mouse position
-                x: e.clientX,
-                y: e.clientY,
-            }
-            document.addEventListener('mousemove', mouseMoveHandler)
-            document.addEventListener('mouseup', mouseUpHandler)
-
-        }
-        const mouseMoveHandler = function (e: MouseEvent) {
-            // e = e || window.event
-            e.preventDefault()
-
-            // How far the mouse has been moved
-            const dx = e.clientX - pos.x
-            const dy = e.clientY - pos.y
-
-            // Move the object
-            elementDiv.scrollTop = pos.top - dy
-            elementDiv.scrollLeft = pos.left - dx
-        }
-
-        const mouseUpHandler = function () {
-            //TODO event es mentes
-            document.removeEventListener('mousemove', mouseMoveHandler)
-            document.removeEventListener('mouseup', mouseUpHandler)
-        }
-        elementDiv.addEventListener('mousedown', mouseDownHandler)
-
-
-    }
-
-
-    static cssPreventInit() {
-        let cssPreventNodeModification = document.createElement("style")
-        cssPreventNodeModification.innerText = ".NodeDivMrkS * {all: revert;  * {    all: unset;  }}"
-        document.body.appendChild(cssPreventNodeModification)
-    }
-
-    static htmlToElement(html: string) {
-        let template = document.createElement('template');
-        html = html.trim(); // Never return a text nodeObject of whitespace as the result
-        template.innerHTML = html;
-        return template.content.firstChild;
-    }
-
-    static docFieldKereso(docFieldName: string, docData: DocData) {
-        let docFieldKeresett: FieldData | undefined
-        docData.fieldsData.forEach(function (docField) {
-            if (docField.fieldName == docFieldName) {
-                docFieldKeresett = docField
-            }
-        })
-        return docFieldKeresett
-    }
-
-    static forEachFieldInObject(object: Object, callback: (elementKey: string) => any) {
-        for (const elementKey2 in object) {
-            if (Object.prototype.hasOwnProperty.call(object, elementKey2)) {
-                callback(elementKey2)
-            }
-        }
-    }
-
-    static contextMenuInvisibleIfBackGroundClickInit() {
-        let backgroundClickEvent = new TypedEvent()
-
-        // @ts-ignore
-        document.backgroundClickEvent = backgroundClickEvent
-        var handler = (event: any) => {
-            if (!event.path.find((element: any) => {
-                if (element == document || element == window) {
-
-                } else {
-                    return element.classList.contains("ContextMenuLayr")
-                }
-            })) {
-
-                backgroundClickEvent.emit(true)
-            }
-        }
-        document.body.addEventListener('click', handler, true);
-        document.body.addEventListener('contextmenu', handler, true);
-    }
-
-    static randomColor() {
-        return "#" + Math.floor(Math.random() * 16777215).toString(16);
-    }
-
-
     static resizeElement(element: HTMLElement, BORDER_SIZE: number = 4, resizeType: ResizeType, gridSize: number = 1) {
 
 
@@ -223,7 +122,6 @@ export class MrkLibrary {
                 if (e.offsetX >= element.clientWidth - BORDER_SIZE) {
                     document.body.style.cursor = "w-resize"
                 } else {
-                    console.log(resizeInProgress)
                     resizeInProgress ? document.body.style.cursor = "w-resize" : document.body.style.cursor = ""
                 }
             }
@@ -261,6 +159,107 @@ export class MrkLibrary {
     }
 
 
+    static grabInit(elementDiv: HTMLDivElement) {
+
+        let pos = {top: 0, left: 0, x: 0, y: 0}
+
+        const mouseDownHandler = function (e: MouseEvent) {
+            //  e.stopPropagation()
+            // e = e || window.event
+            e.stopPropagation()
+            //e.preventDefault()
+            pos = {
+                left: elementDiv.scrollLeft,
+                top: elementDiv.scrollTop,
+                // Get the current mouse position
+                x: e.clientX,
+                y: e.clientY,
+            }
+            document.addEventListener('mousemove', mouseMoveHandler)
+            document.addEventListener('mouseup', mouseUpHandler)
+
+        }
+        const mouseMoveHandler = function (e: MouseEvent) {
+            // e = e || window.event
+            e.preventDefault()
+
+            // How far the mouse has been moved
+            const dx = e.clientX - pos.x
+            const dy = e.clientY - pos.y
+
+            // Move the object
+            elementDiv.scrollTop = pos.top - dy
+            elementDiv.scrollLeft = pos.left - dx
+        }
+
+        const mouseUpHandler = function () {
+            //TODO event es mentes
+            document.removeEventListener('mousemove', mouseMoveHandler)
+            document.removeEventListener('mouseup', mouseUpHandler)
+        }
+        elementDiv.addEventListener('mousedown', mouseDownHandler)
+
+
+    }
+
+    static cssPreventInit() {
+        let cssPreventNodeModification = document.createElement("style")
+        cssPreventNodeModification.innerText = ".NodeDivMrkS * {all: revert;  * {    all: unset;  }}"
+        document.body.appendChild(cssPreventNodeModification)
+    }
+
+    static htmlToElement(html: string) {
+        let template = document.createElement('template');
+        html = html.trim(); // Never return a text nodeObject of whitespace as the result
+        template.innerHTML = html;
+        return template.content.firstChild;
+    }
+
+    static docFieldKereso(docFieldName: string, docData: DocData) {
+        let docFieldKeresett: FieldData | undefined
+        docData.fieldsData.forEach(function (docField) {
+            if (docField.fieldName == docFieldName) {
+                docFieldKeresett = docField
+            }
+        })
+        return docFieldKeresett
+    }
+
+    static forEachFieldInObject(object: Object, callback: (elementKey: string) => any) {
+        for (const elementKey2 in object) {
+            if (Object.prototype.hasOwnProperty.call(object, elementKey2)) {
+                callback(elementKey2)
+            }
+        }
+    }
+
+    static contextMenuInvisibleIfBackGroundClickInit() {
+        let backgroundClickEvent = new TypedEvent()
+
+        // @ts-ignore
+        document.backgroundClickEvent = backgroundClickEvent
+        var handler = (event: any) => {
+            if (!event.path.find((element: any) => {
+                if (element == document || element == window) {
+
+                } else {
+                    return element.classList.contains("ContextMenuLayr")
+                }
+            })) {
+
+                backgroundClickEvent.emit(true)
+            }
+        }
+        document.body.addEventListener('click', handler, true);
+        document.body.addEventListener('contextmenu', handler, true);
+    }
+
+
+    static randomColor() {
+        return "#" + Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+
     static mousePositionInit() {
         document.addEventListener("mousemove", ev => {
             mousePositionMrk = ev
@@ -271,6 +270,21 @@ export class MrkLibrary {
         return Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype
     }
 
+    static generateUUID() {
+        let d = new Date().getTime(),
+            d2 = (performance && performance.now && (performance.now() * 1000)) || 0;
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+            let r = Math.random() * 16;
+            if (d > 0) {
+                r = (d + r) % 16 | 0;
+                d = Math.floor(d / 16);
+            } else {
+                r = (d2 + r) % 16 | 0;
+                d2 = Math.floor(d2 / 16);
+            }
+            return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
+        });
+    };
 
 }
 

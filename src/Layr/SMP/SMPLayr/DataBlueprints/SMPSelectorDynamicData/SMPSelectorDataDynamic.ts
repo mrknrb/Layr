@@ -23,7 +23,7 @@ export class SMPSelectorDataDynamic {
         this.smpManager = smpManager
         this.smpStateDataDynamicMap = new Map<string, SMPStateDataDynamic>()
         this.stateChangeRequestEvent = new TypedEvent<string>()
-        this.smpSelectorDataSave.savedActivateState ? this.activatedState = this.smpSelectorDataSave.savedActivateState : this.activatedState = this.smpSelectorDataStatic.defaultState
+
         this.smpSelectorDataStatic.states.forEach(staticData => {
 
             let saveData = smSelectorDataSave.states.find(saveState => {
@@ -38,6 +38,9 @@ export class SMPSelectorDataDynamic {
             this.smpStateDataDynamicMap.set(staticData.stateName, new SMPStateDataDynamic(staticData, saveData, this))
 
         })
+        let savedActivatedKozteVan=this.smpStateDataDynamicMap.has(this.smpSelectorDataSave.savedActivateState)
+        this.smpSelectorDataSave.savedActivateState&&savedActivatedKozteVan ? this.activatedState = this.smpSelectorDataSave.savedActivateState : this.activatedState = this.smpSelectorDataStatic.defaultState
+
         this.selectorContextMenu = new SMPSelectorContextMenu(this)
 
     }
@@ -67,13 +70,28 @@ export class SMPSelectorDataDynamic {
         if (this.selectorActive == activate) return
         this.selectorActive = activate
         if (saveActivation) {
-            this.smpSelectorDataSave.selectorActivated = activate
-            this.smpManager.smpSavePart.saveValue()
+            this.saveActivation(activate)
         }
-
-        this.selectorContextMenu.contextMenuMain.elementVisible(activate)
-        this.getState(this.activatedState).activateState(activate)
+        this.selectorContextMenu.selectorContextMenuActivate(activate)
+        // this.selectorContextMenu.contextMenuMain.elementVisible(activate)
+    /*    console.log("-------------")
+        console.log(this.smpSelectorDataSave.savedActivateState)
+        console.log(this.smpSelectorDataStatic.defaultState)
+        console.log(this.smpSelectorDataStatic.selectorName)
+        console.log(this.activatedState)
+        console.log(this.smpStateDataDynamicMap)
+        console.log(this.getActivatedState())
+      */
+        if (  this.getActivatedState()==undefined){
+            console.error("ajjjajj",this)
+        }
+        this.getActivatedState().activateState(activate)
         // this.activateState(this.activatedState,activate,selectorDontLoadSaveEllenereIs)
+    }
+
+    saveActivation(activate: boolean) {
+        this.smpSelectorDataSave.selectorActivated = activate
+        this.smpManager.smpSavePart.saveValue()
     }
 
     changeActivatedState_OnlyData(stateName: string) {

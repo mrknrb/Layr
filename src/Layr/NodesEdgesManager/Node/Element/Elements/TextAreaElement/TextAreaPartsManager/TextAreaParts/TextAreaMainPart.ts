@@ -15,8 +15,6 @@ export class TextAreaMainPart extends PartBaseElement_Field {
 
     protected elementInit() {
 
-        this.masterObject.element.style.resize = "none"
-
         this.masterObject.element.addEventListener("mousedown", function (e) {
             e.stopPropagation()
         })

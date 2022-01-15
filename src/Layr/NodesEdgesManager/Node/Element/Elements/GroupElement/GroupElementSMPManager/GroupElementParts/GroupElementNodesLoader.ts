@@ -1,6 +1,8 @@
 import {PartBaseElement_Field} from "../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
 import {layrFrame} from "../../../../../../../LayrFrame.js";
 import {ElementObject} from "../../../../ElementObject.js";
+import {layoutSelectorDataNames} from "../GroupElementStaticData.js";
+import {GroupElementMainPart} from "./GroupElementMainPart.js";
 
 export class GroupElementNodesLoader extends PartBaseElement_Field {
     static partName = "GroupElementNodesLoader"
@@ -12,19 +14,21 @@ export class GroupElementNodesLoader extends PartBaseElement_Field {
     activate() {
 
         this.loadData()
-
+        console.log(this)
 
     }
 
-    loadData() {
+    async loadData() {
         // this.masterObject.element = this.getPartData().data
-        let nodes = layrFrame.nodesEdgesManager.loadNormalNodesOfGroupNode(this.masterObject.nodeObject)
-        nodes.then(value => {
-            value.forEach(value1 => {
-                this.masterObject.element.appendChild(value1.mainElement.element)
-            })
+        let nodes = await layrFrame.nodesEdgesManager.loadNormalNodesOfGroupNode(this.masterObject.nodeObject)
 
-        })
+        let groupMainPart=   this. getPartInMasterobject_byClass(GroupElementMainPart.partName) as GroupElementMainPart
+        for await (let value1 of nodes) {
+
+            groupMainPart.groupBodyElement.appendChild(value1.mainElement.element)
+        }
+
+
     }
 
 

@@ -11,23 +11,22 @@ export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
     }
 
     activate() {
+        console.log("pppppppppppppppppppppp")
         let style = this.masterObject.mainElement.element.style
         style.position = "absolute"
 
 
         this.loadData()
-        let megmozdultEvent = MrkLibrary.dragElement(this.masterObject.mainElement.elementOptionsButton, this.masterObject.mainElement.element, false, 25)
+        let megmozdultEvent = MrkLibrary.dragElement(this.masterObject.mainElement.elementOptionsButton, this.masterObject.mainElement.element, false, 23)
         megmozdultEvent.on(() => {
                 this.saveValue()
             }
         )
-        let resizeEvent = MrkLibrary.resizeElement(this.masterObject.mainElement.element, 4, ResizeType.horizontal, 25)
+        let resizeEvent = MrkLibrary.resizeElement(this.masterObject.mainElement.element, 4, ResizeType.horizontal, 23)
         resizeEvent.on(() => {
                 this.saveValue()
             }
         )
-
-
     }
 
 
@@ -61,6 +60,12 @@ export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
 
     deactivate() {
         MrkLibrary.dragElement(this.masterObject.mainElement.elementOptionsButton, this.masterObject.mainElement.element, true)
+
+        let style = this.masterObject.mainElement.element.style
+         style.left = ""
+        style.top = ""
+        style.position = ""
+         style.width = ""
     }
 
 

@@ -1,10 +1,11 @@
 import {ContextMenu} from "../../ContextMenu/ContextMenu.js";
 import {PartData} from "./PartData.js";
+import {GroupElementMainPart} from "../../NodesEdgesManager/Node/Element/Elements/GroupElement/GroupElementSMPManager/GroupElementParts/GroupElementMainPart.js";
 
 export abstract class PartBase {
 
     static partName: string
-   abstract partContextMenu: ContextMenu
+   abstract partContextMenu?: ContextMenu
 
     getPartName() {
 
@@ -13,6 +14,11 @@ export abstract class PartBase {
     }
 
     protected abstract masterObject: any
+
+    getPartInMasterobject_byClass(partClassName:string){
+        return this.masterObject.smpManager.masterObjectParts.getPartObject_ByName(partClassName)
+    }
+
     //yx lehet kellhet meg
     /*
         selectorName: string

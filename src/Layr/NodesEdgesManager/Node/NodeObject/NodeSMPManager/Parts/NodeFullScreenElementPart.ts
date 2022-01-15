@@ -19,7 +19,7 @@ export class NodeFullScreenElementPart extends PartBaseNode_Doc {
     }
 
     fullScreenButtonForElementInit() {
-        PartNodeCommon.contextMElementToAllChildElement(this.masterObject,this. contextMenuElementCreate, (contextMenuElement,element) => {
+        PartNodeCommon.contextMElementToAllChildElement(this.masterObject, this.contextMenuElementCreate, (contextMenuElement, element) => {
             contextMenuElement.clickEvent.on(event => {
                 this.insertElementFullscreen(element.fieldId)
                 this.saveValue(element.fieldId)
@@ -31,10 +31,7 @@ export class NodeFullScreenElementPart extends PartBaseNode_Doc {
         return new ContextMElementClickable("FullScreen")
     }
 
-    insertElementFullscreen(fieldId
-                                :
-                                string
-    ) {
+    insertElementFullscreen(fieldId: string) {
         if (fieldId) {
             this.masterObject.elementsManager.elementToFullScreen(fieldId)
         }
@@ -51,10 +48,7 @@ export class NodeFullScreenElementPart extends PartBaseNode_Doc {
     }
 
 
-    saveValue(fieldId
-                  :
-                  string
-    ) {
+    saveValue(fieldId: string) {
         this.saveValueDefault(fieldId)
         this.valueSync()
     }

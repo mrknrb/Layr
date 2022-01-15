@@ -1,8 +1,7 @@
 import {OptionElement} from "./OptionElement.js";
 import {ToolGroupStaticDataType} from "../StaticData/OptionsElementStaticDataType.js";
 import {ToolElementBaseClass} from "./ToolElementBaseClass.js";
-import {HTMLElementResizer} from "../../NodesEdgesManager/Node/Element/ElementResizer/HTMLElementResizer.js";
-import {ResizeTypes} from "../../NodesEdgesManager/Node/Element/ElementResizer/ResizeTypes.js";
+import {HTMLElementAutoResizer, ResizeTypes} from "../../../0Egyebek/HTMLElementAutoResizer.js";
 
 export class ToolGroup {
     optionElement: OptionElement
@@ -33,8 +32,7 @@ export class ToolGroup {
     toolGroupContentDivInit() {
         this.toolGroupDiv = document.createElement("div")
         this.toolGroupDiv.classList.add("toolGroupContentDiv")
-        let htmlElementResizer = new HTMLElementResizer(this.toolGroupDiv)
-        htmlElementResizer.resizeActivate(ResizeTypes.autoX)
+        let htmlElementResizer = new HTMLElementAutoResizer(this.toolGroupDiv,ResizeTypes.autoX)
         this.optionElement.toolGroupsContainer.appendChild(this.toolGroupDiv)
     }
 
