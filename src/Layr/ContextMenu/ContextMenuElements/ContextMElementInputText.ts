@@ -5,7 +5,7 @@ import {LayrCSSClassesEnum} from "../../../0Egyebek/LayrCSSClassesEnum.js";
 export class ContextMElementInputText extends ContextMenuElementBase {
 
     keyDownEvent: TypedEvent<string>
-
+    inputElement = document.createElement("input")
 
     constructor(elementName: string) {
         super();
@@ -25,19 +25,26 @@ export class ContextMElementInputText extends ContextMenuElementBase {
         textElement.innerText = this.elementName
         this.element.appendChild(textElement)
 
-        let inputElement = document.createElement("input")
-        inputElement.type = "text"
+        this. inputElement = document.createElement("input")
+        this.   inputElement.type = "text"
         // inputElement.style.userSelect = "none";
         // inputElement.style.cursor = "default"
-        inputElement.style.margin = "2px"
-        inputElement.style.width = "90%"
-        inputElement.style.backgroundColor = "transparent"
-        this.element.appendChild(inputElement)
+        this.   inputElement.style.margin = "2px"
+        this.  inputElement.style.width = "90%"
+        this.   inputElement.style.backgroundColor = "transparent"
+        this.element.appendChild( this. inputElement)
 
 
-        inputElement.addEventListener("change", (event) => {
-            this.value = inputElement.value
+        this.  inputElement.addEventListener("change", (event) => {
+            this.value =  this. inputElement.value
             this.keyDownEvent.emit(this.value)
         })
     }
+    resetValue(){
+        this.   inputElement.value=""
+
+    }
+
+
+
 }

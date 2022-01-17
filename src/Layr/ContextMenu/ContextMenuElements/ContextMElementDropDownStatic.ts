@@ -6,7 +6,7 @@ export class ContextMElementDropDownStatic extends ContextMenuElementBase {
 
     changeEvent: TypedEvent<string>
     options: string[]
-
+    ures = document.createElement("option")
     constructor(elementName: string, optionsArray: string[]) {
         super();
         this.elementName = elementName
@@ -38,10 +38,10 @@ export class ContextMElementDropDownStatic extends ContextMenuElementBase {
         this.element.appendChild(selectElement)
 
 
-        let ures = document.createElement("option")
-        ures.value = ""
-        ures.setAttribute("selected", "selected")
-        selectElement.appendChild(ures)
+
+       this. ures.value = ""
+        this. ures.setAttribute("selected", "selected")
+        selectElement.appendChild( this.ures)
         optionsArray.forEach((optionValue) => {
             let optionElement = document.createElement("option")
             optionElement.value = optionValue
@@ -54,5 +54,11 @@ export class ContextMElementDropDownStatic extends ContextMenuElementBase {
         })
     }
 
+    resetValue() {
+        this.options.forEach((optionValue) => {
+        })
+        this. ures.selected=true
+       // this. ures.setAttribute("selected", "selected")
+    }
 
 }

@@ -3,9 +3,6 @@ import {ElementObject} from "../../../../ElementObject.js";
 import {ContextMenu} from "../../../../../../../ContextMenu/ContextMenu.js";
 import {ContextMElementClickable} from "../../../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 import {layrFrame} from "../../../../../../../LayrFrame.js";
-import {NodeLayoutAbsolutePart} from "../../../../../NodeObject/NodeSMPManager/Parts/NodeLayoutAbsolutePart.js";
-import {mousePositionMrk} from "../../../../../../../../0Egyebek/MrkLibrary.js";
-import {GroupElementConfigFile, layoutSelectorDataNames} from "../GroupElementStaticData.js";
 import {GroupElementMainPart} from "./GroupElementMainPart.js";
 
 export class GroupElementNewNodePart extends PartBaseElement_Field {
@@ -20,14 +17,16 @@ export class GroupElementNewNodePart extends PartBaseElement_Field {
     activate() {
     }
 
-    contextMenuInit() {
+   async contextMenuInit() {
 
         this.partContextMenu = new ContextMenu()
         let contextMElementClickable = new ContextMElementClickable("New Node")
 
-        contextMElementClickable.clickEvent.on(event => {
-            this.newNode()
-
+        contextMElementClickable.clickEvent.on(async  event => {
+           let newNode=await this.newNode()
+            let newNodeData=new NewNodeData(newNode.docId,newNode.connId)
+            this.valueSync(newNodeData)
+            this.masterObject.contextMenu.contextMenuInVisible()
 
         })
 
@@ -36,29 +35,30 @@ export class GroupElementNewNodePart extends PartBaseElement_Field {
     }
 
     async newNode() {
-        let nodeNew = await layrFrame.nodesEdgesManager.newNodeObjectNormalWithNewDocToParentNode(this.masterObject.nodeObject)
+        let nodeNew = await layrFrame.nodesEdgesManager.newNodeObjectNormalWithNewConnNewDocToParentNode(this.masterObject.nodeObject)
 
 
-/*
+        /*
 
-        let nodeLayoutAbsolutePart =this.getPartInMasterobject_byClass(NodeLayoutAbsolutePart.partName)as NodeLayoutAbsolutePart
-        nodeNew.smpManager.smpController.activateSelectorAndChildren(layoutSelectorDataNames.selector,true)
+                let nodeLayoutAbsolutePart =this.getPartInMasterobject_byClass(NodeLayoutAbsolutePart.partName)as NodeLayoutAbsolutePart
+                nodeNew.smpManager.smpController.activateSelectorAndChildren(layoutSelectorDataNames.selector,true)
 
-        nodeNew.smpManager.smpController.changeSelectorState({selectorName:layoutSelectorDataNames.selector,stateName:layoutSelectorDataNames.states.Absolute},true)
-*/
+                nodeNew.smpManager.smpController.changeSelectorState({selectorName:layoutSelectorDataNames.selector,stateName:layoutSelectorDataNames.states.Absolute},true)
+        */
 
-        let groupMainPart=   this. getPartInMasterobject_byClass(GroupElementMainPart.partName) as GroupElementMainPart
+        let groupMainPart = this.getPartInMasterobject_byClass(GroupElementMainPart.partName) as GroupElementMainPart
         groupMainPart.groupBodyElement.appendChild(nodeNew.mainElement.element)
 
 
+        // nodeLayoutAbsolutePart.loadData()
 
-       // nodeLayoutAbsolutePart.loadData()
-
-
+return nodeNew
     }
 
-    loadData() {
-
+   async loadData(newNodeData:NewNodeData) {
+      let newNodeObject=await layrFrame.nodesEdgesManager. newNodeObjectNormalToParentNode(this.masterObject.nodeObject,newNodeData.docId,newNodeData.connId)
+      // let groupMainPart = this.getPartInMasterobject_byClass(GroupElementMainPart.partName) as GroupElementMainPart
+      // groupMainPart.groupBodyElement.appendChild(newNodeObject.mainElement.element)
 
     }
 
@@ -68,4 +68,14 @@ export class GroupElementNewNodePart extends PartBaseElement_Field {
 
     deactivate() {
     }
+}
+class NewNodeData{
+    docId:string
+    connId:string
+    constructor(docId:string,connId:string) {
+        this.docId=docId
+        this.connId=connId
+    }
+
+
 }

@@ -58,7 +58,13 @@ export class DocsConnsManager {
         })
         return this.docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData)
     }
-
+    async newConn(parentDocId: string, childDocId:string) {
+        let connData=new ConnData(parentDocId,childDocId,"group")
+        let docsConnsData: DocsConnsData = await layrFrame.layrClient.newRequest(RequestType.insertCons, {
+            conns: [connData]
+        })
+        return this.connObjectsSaver([connData])
+    }
     async updateDoc(docId: string, OriginalDocFunction: (docDataOffline: DocData, ModifiedDocFunction: (docDataModified: DocData) => any) => any) {
 
         let mentettDoc = await LayrFind.doc(docId)
@@ -114,6 +120,16 @@ export class DocsConnsManager {
 
         return new DocsConnsObjects(docObjects, connectionObjects)
     }
+    deleteDoc(docId:string) {
 
+        this.docObjectsMap.delete(docId)
+        layrFrame.layrClient.newRequest(RequestType.deleteDocs,[docId] )
 
+    }
+    deleteConn(connId:string) {
+
+        this.connObjectsMap.delete(connId)
+        layrFrame.layrClient.newRequest(RequestType.deleteCons,[connId] )
+
+    }
 }

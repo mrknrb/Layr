@@ -30,6 +30,7 @@ export abstract class PartBaseElement_Field extends PartBase {
 
     protected valueSync(loadData?: any) {
         this.getMasterDataObject()?.syncObjectElement_Field.partSyncStart({
+            nodeId:this.masterObject.nodeObject.nodeId,
             fieldId: this.masterObject.fieldId,
             partName: this.getPartName(),
             loadData: loadData
@@ -38,5 +39,5 @@ export abstract class PartBaseElement_Field extends PartBase {
 
     abstract saveValue(fieldObject?: FieldObject): void
 
-    abstract loadData(fieldObject?: FieldObject): void
+    abstract loadData(loadData?: any): void
 }

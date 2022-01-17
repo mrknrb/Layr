@@ -48,11 +48,10 @@ export class NodesEdgesManager {
             this.nodesEdgesDataStorage.insertNode(nodeObjectNormal)
             nodeObjectsArray.push(nodeObjectNormal)
         }
-
         return nodeObjectsArray
     }
 
-    async newNodeObjectNormalWithNewDocToParentNode(parentNodeObject: NodeObjectBase) {
+    async newNodeObjectNormalWithNewConnNewDocToParentNode(parentNodeObject: NodeObjectBase) {
         let docConnsObjects = await layrFrame.docsConnsManager.insertNewDoc_AsParentDocChild(parentNodeObject.docId)
 
         let newChildNode = new NodeObjectNormal(docConnsObjects.docObjects[0].docData._id, docConnsObjects.connObjects[0].connData._id, parentNodeObject.nodeId)
@@ -62,5 +61,29 @@ export class NodesEdgesManager {
         return newChildNode
     }
 
+    async newNodeObjectNormalWithNewConnExistingDocToParentNode(parentNodeObject: NodeObjectBase, docId: string) {
+        let connObject = layrFrame.docsConnsManager.newConn(parentNodeObject.docId, docId)
+        let newChildNode = new NodeObjectNormal(docConnsObjects.docObjects[0].docData._id, docConnsObjects.connObjects[0].connData._id, parentNodeObject.nodeId)
 
+        this.nodesEdgesDataStorage.insertNode(newChildNode)
+        this.newNodeObjectWithNewDocEvent.emit({parentNodeObject, newChildNode})
+        return newChildNode
+    }
+
+    async newNodeObjectNormalToParentNode(parentNodeObject: NodeObjectBase, docId: string,connId:string) {
+        let newChildNode = new NodeObjectNormal(docId, connId, parentNodeObject.nodeId)
+        this.nodesEdgesDataStorage.insertNode(newChildNode)
+        this.newNodeObjectWithNewDocEvent.emit({parentNodeObject, newChildNode})
+        return newChildNode
+    }
+    async deleteNodeKeepDoc(nodeToDelete: NodeObjectNormal) {
+
+        this.nodesEdgesDataStorage.deleteNodeByNodeId(nodeToDelete)
+        layrFrame.docsConnsManager.deleteConn(nodeToDelete.connId)
+
+    }
+
+    async deleteDocByNodeObject(nodeToDelete: NodeObjectNormal) {
+        layrFrame.docsConnsManager.deleteDoc(nodeToDelete.docId)
+    }
 }

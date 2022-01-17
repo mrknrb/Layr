@@ -29,9 +29,29 @@ export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
         }, 200)
 
         this.scrollMoreInit()
-        layrFrame.nodesEdgesManager.newNodeObjectWithNewDocEvent.on(this.newNodeAction)
+       // layrFrame.nodesEdgesManager.newNodeObjectWithNewDocEvent.on(this.newNodeAction)
+        this.newNodeActionActivate(true)
         //this.newNodeInit()
     }
+
+    newNodeActionActivate(active: boolean) {
+        let self = this
+        let newNodeActionInvoker = (eventData: { parentNodeObject: NodeObjectBase, newChildNode: NodeObjectNormal }) => {
+            self.newNodeAction(eventData)
+        }
+
+
+        if (active) {
+
+            layrFrame.nodesEdgesManager.newNodeObjectWithNewDocEvent.on(newNodeActionInvoker)
+
+        } else {
+            layrFrame.nodesEdgesManager.newNodeObjectWithNewDocEvent.off(newNodeActionInvoker)
+
+        }
+
+    }
+
 
     nodeAbsolutePartSet(node: NodeObjectNormal) {
         node.smpManager.smpController.changeSelectorState({
@@ -44,9 +64,17 @@ export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
 
         if (eventData.parentNodeObject.nodeId == this.masterObject.nodeObject.nodeId) {
             let nodeLayoutAbsolutePart = eventData.newChildNode.smpManager.masterObjectParts.getPartObject_ByName(NodeLayoutAbsolutePart.partName) as NodeLayoutAbsolutePart
+            let groupElementMainPart = this.masterObject.smpManager.masterObjectParts.getPartObject_ByName(GroupElementMainPart.partName) as GroupElementMainPart
             this.nodeAbsolutePartSet(eventData.newChildNode)
-            eventData.newChildNode.mainElement.element.style.top = mousePositionMrk.clientY + "px"
-            eventData.newChildNode.mainElement.element.style.left = mousePositionMrk.clientX + "px"
+           // eventData.newChildNode.mainElement.element.style.top = mousePositionMrk.clientY + "px"
+           // eventData.newChildNode.mainElement.element.style.left = mousePositionMrk.clientX + "px"
+
+         //   eventData.newChildNode.mainElement.element.style.left =mousePositionMrk.clientX- groupElementMainPart.groupBodyElement.scrollLeft - groupElementMainPart.+"px"
+             //   top : e.pageY - $(document).scrollTop() - $('#canvas').offset().top
+            let rect = groupElementMainPart.groupBodyElement.getBoundingClientRect();
+            eventData.newChildNode.mainElement.element.style.left = mousePositionMrk.clientX + groupElementMainPart.groupBodyElement.scrollLeft - rect.left+"px"
+            eventData.newChildNode.mainElement.element.style.top = mousePositionMrk.clientY + groupElementMainPart.groupBodyElement.scrollTop - rect.top+"px"
+
             nodeLayoutAbsolutePart.saveValue()
         }
 
@@ -76,8 +104,8 @@ export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
                 })
                 */
             })
-
-            layrFrame.nodesEdgesManager.newNodeObjectWithNewDocEvent.off(this.newNodeAction)
+            this.newNodeActionActivate(false)
+            //layrFrame.nodesEdgesManager.newNodeObjectWithNewDocEvent.off(this.newNodeAction)
         }, 200)
         this.contentDiv.remove()
     }

@@ -9,8 +9,6 @@ export class MainElementNormal extends MainElementBase {
     }
 
     layoutApply() {
-        this.layoutClean()
-        this.layoutDefault()
         let s = this.element.style
         /*
                 let parentDocObject = LayrFind.doc_ByNodeId(this.nodeObject.parentNodeIdnull)

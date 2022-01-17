@@ -1,23 +1,29 @@
 import {NodeObjectNormal} from "../../NodeObjectNormal.js";
 import {MrkLibrary, ResizeType} from "../../../../../../0Egyebek/MrkLibrary.js";
 import {PartBaseNodeCData_Conn} from "../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseNodeCData_Conn.js";
+import {NodeQuickButton} from "../../../MainElement/NodeQuickButton.js";
 
 export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
     masterObject: NodeObjectNormal
     static partName = "NodeLayoutAbsolutePart"
 
+    quickButton: NodeQuickButton=new NodeQuickButton()
     constructor(masterObject: NodeObjectNormal) {
         super(masterObject);
     }
 
     activate() {
-        console.log("pppppppppppppppppppppp")
+        this.quickButton.setColor("grey")
+        this.masterObject.mainElement.nodeQuickButtonsBar.quickButtonInsert(this.quickButton)
+
+
+
         let style = this.masterObject.mainElement.element.style
         style.position = "absolute"
 
 
         this.loadData()
-        let megmozdultEvent = MrkLibrary.dragElement(this.masterObject.mainElement.elementOptionsButton, this.masterObject.mainElement.element, false, 23)
+        let megmozdultEvent = MrkLibrary.dragElement(this.quickButton.element, this.masterObject.mainElement.element, false, 23)
         megmozdultEvent.on(() => {
                 this.saveValue()
             }
@@ -59,7 +65,7 @@ export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
     }
 
     deactivate() {
-        MrkLibrary.dragElement(this.masterObject.mainElement.elementOptionsButton, this.masterObject.mainElement.element, true)
+        MrkLibrary.dragElement(this.quickButton.element, this.masterObject.mainElement.element, true)
 
         let style = this.masterObject.mainElement.element.style
          style.left = ""

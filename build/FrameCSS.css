@@ -18,10 +18,10 @@ textarea, select {
 .LayrElement {
     box-sizing: border-box;
     margin-bottom: 2px;
-resize: none;
-   width : 100%;
-    min-height:  21px;
-   /* height:  21px*/
+    resize: none;
+    width: 100%;
+    min-height: 21px;
+    /* height:  21px*/
 }
 
 .LayrElement:last-child {
@@ -36,14 +36,26 @@ resize: none;
     min-width: 40px;
     min-height: 20px;
     height: fit-content;
-   /* border-width: 4px;*/
+    /* border-width: 4px;*/
     border-radius: 3px;
     line-height: 0px;
-    overflow: hidden;
+    /*  overflow: hidden;*/
 }
+
 .LayrFullScreenElement {
-  width:100% !important;
-    height:100% !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.QuickButton {
+
+    height: 100%;
+    width: 35px;
+    background-color: rgb(167, 167, 167);
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center
 }
 
 .ContextMenuElementHoverHighlight:hover {
@@ -59,7 +71,7 @@ resize: none;
     background-color: rgba(156, 156, 156, 0.2);
     width: 200px;
     height: fit-content;
-    z-index: 10001;
+    z-index: 30000;
     overflow-x: hidden;
     overflow-y: auto;
 }

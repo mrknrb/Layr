@@ -1,6 +1,7 @@
 import {LayrFrame} from "./LayrFrame.js";
 import {LayrLogoKozepen} from "../0Egyebek/LayrLogoKozepen.js";
 import {MrkLibrary} from "../0Egyebek/MrkLibrary.js";
+import {LayrWindow} from "./UIElemek/Views/LayrWindow.js";
 
 let layrLogoKozepenAnimacio = new LayrLogoKozepen()
 layrLogoKozepenAnimacio.feltunik()
@@ -51,6 +52,7 @@ export class MainFrame {
             this.testload()
             layrLogoKozepenAnimacio.eltunik()
         }, 50)
+
     }
 
     async testload() {

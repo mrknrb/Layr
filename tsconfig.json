@@ -2,11 +2,12 @@
   "compilerOptions": {
     "outDir": "build",
     "rootDir": "src",
+
     "module": "ES6",
     "target": "ES2020",
     "sourceMap": true,
     "allowJs": true,
-    "strict": true,
+    "strict": true
 
   },
   "exclude": [

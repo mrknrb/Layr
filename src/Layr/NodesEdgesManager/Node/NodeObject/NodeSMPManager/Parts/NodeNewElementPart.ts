@@ -6,10 +6,14 @@ import {ContextMenu} from "../../../../../ContextMenu/ContextMenu.js";
 import {ContextMElementInputText} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementInputText.js";
 import {ContextMElementDropDownStatic} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementDropDownStatic.js";
 import {ContextMElementClickable} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
+import {NodeQuickButton} from "../../../MainElement/NodeQuickButton.js";
+import {TypedEvent} from "../../../../../../0Libraries/TypedEvents.js";
 
 export class NodeNewElementPart extends PartBaseNode_Doc {
     masterObject: NodeObjectBase
     static partName = "NodeNewElementPart"
+    subContextMenu: ContextMenu = new ContextMenu()
+    quickButton: NodeQuickButton = new NodeQuickButton()
 
     constructor(masterObject: NodeObjectBase) {
         super(masterObject);
@@ -17,37 +21,65 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
     }
 
     activate() {
+
+        this.quickButton.setColor("green")
+        this.quickButton.addImage("0Resources/add.svg")
+        this.masterObject.mainElement.nodeQuickButtonsBar.quickButtonInsert(this.quickButton)
+        this.quickButton.element.addEventListener("click", () => {
+            let bounding = this.quickButton.element.getBoundingClientRect()
+            this.subContextMenu.contextMenuActivate(bounding.x, bounding.y)
+        })
+
     }
 
     contextInit() {
         this.partContextMenu = new ContextMenu()
         let contextMenuElementNewNode = new ContextMElementSubContextMButton("New ElementObject")
         this.partContextMenu.contextMenuElementInsert(contextMenuElementNewNode)
-        let subContextMenu = new ContextMenu()
-        subContextMenu.contextMenuHoverInit(contextMenuElementNewNode.element)
+        this.subContextMenu.contextMenuHoverInit(contextMenuElementNewNode.element)
+
 
         let subContextMenuElementNewNodeName = new ContextMElementInputText("Field Name:")
-        subContextMenu.contextMenuElementInsert(subContextMenuElementNewNodeName)
+        this.subContextMenu.contextMenuElementInsert(subContextMenuElementNewNodeName)
         let options: string[] = []
         for (const elementType in ElementTypes) {
             options.push(elementType.toString())
         }
 
         let subContextMenuElementDropDownStatic = new ContextMElementDropDownStatic("Field Type:", options)
-        subContextMenu.contextMenuElementInsert(subContextMenuElementDropDownStatic)
+        this.subContextMenu.contextMenuElementInsert(subContextMenuElementDropDownStatic)
 
         let contextMenuElementClickable = new ContextMElementClickable("New element")
-        subContextMenu.contextMenuElementInsert(contextMenuElementClickable)
+        this.subContextMenu.contextMenuElementInsert(contextMenuElementClickable)
+        let hibauzenet = document.createElement("b")
+        hibauzenet.innerText = "Fill everything!"
+        hibauzenet.style.backgroundColor = "red"
+        hibauzenet.style.display = "none"
+        this.subContextMenu.element.appendChild(hibauzenet)
         contextMenuElementClickable.clickEvent.on(event => {
+            if (!subContextMenuElementDropDownStatic.value || !subContextMenuElementNewNodeName.value) {
+                hibauzenet.style.display = "block"
 
-            this.saveValue({
-                elementType: subContextMenuElementDropDownStatic.value,
-                fieldName: subContextMenuElementNewNodeName.value
-            })
+            } else {
+                this.saveValue({
+                    elementType: subContextMenuElementDropDownStatic.value,
+                    fieldName: subContextMenuElementNewNodeName.value
+                })
+                hibauzenet.style.display = "none"
+                subContextMenuElementNewNodeName.resetValue()
+                subContextMenuElementDropDownStatic.resetValue()
+                this.subContextMenu.contextMenuInVisible()
+            }
 
-            subContextMenu.contextMenuInVisible()
+
         })
     }
+
+    nodeQuickButtonInit() {
+
+
+    }
+
 
     deactivate() {
 

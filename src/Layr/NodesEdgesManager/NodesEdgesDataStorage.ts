@@ -62,23 +62,33 @@ export class NodesEdgesDataStorage {
 
     }
 
-    deleteNodeByNodeId(nodeObjectInterface: NodeObjectBase) {
-        this.nodeNodeIdMap.delete(nodeObjectInterface.nodeId)
-        let nodesByDocId = this.nodeDocIdMap.get(nodeObjectInterface.docId)
-        nodesByDocId.forEach((value, key) => {
-            if (value.nodeId == nodeObjectInterface.nodeId) {
-                nodesByDocId.splice(key)
+    deleteNodeByNodeId(nodeObjectToDelete: NodeObjectNormal) {
+        // yx a NodeobjectRootot nem lehet letorolni, mert nincs ertelme
+        this.nodeNodeIdMap.delete(nodeObjectToDelete.nodeId)
+
+        let nodesByDocId = this.nodeDocIdMap.get(nodeObjectToDelete.docId)
+        nodesByDocId?.forEach((value, key) => {
+            if (value.nodeId == nodeObjectToDelete.nodeId) {
+                nodesByDocId?.splice(key)
             }
         })
-        if (nodeObjectInterface.nodeId != "0") {
-            let nodeObjectNormal = nodeObjectInterface as NodeObjectNormal
-            let nodesByConnId = this.nodeConnIdMap.get(nodeObjectNormal.connId) as NodeObjectNormal[]
-            nodesByConnId.forEach((value, key) => {
-                if (value.connId == nodeObjectNormal.connId) {
-                    nodesByConnId.splice(key)
-                }
-            })
-        }
+
+
+        let nodeParentNodeIdArray = this.nodeParentNodeIdMap.get(nodeObjectToDelete.parentNodeId)
+        nodeParentNodeIdArray?.forEach((value, key) => {
+            if (value.nodeId == nodeObjectToDelete.nodeId) {
+                nodeParentNodeIdArray?.splice(key)
+            }
+        })
+
+        let nodesByConnId = this.nodeConnIdMap.get(nodeObjectToDelete.connId) as NodeObjectNormal[]
+        nodesByConnId.forEach((value, key) => {
+            if (value.connId == nodeObjectToDelete.connId) {
+                nodesByConnId.splice(key)
+            }
+        })
+
+
     }
 
 

@@ -57,6 +57,9 @@ export class ElementsManager {
 
         // @ts-ignore
         let elementConfigData = ElementTypesConfigDataFinder[fieldObject.fieldData.elementType]
+        if(elementConfigData===undefined){
+            console.error("No such element type",fieldObject.fieldData.elementType)
+            return}
         let elementObject = new ElementObject(elementConfigData, fieldObject.fieldData.fieldId, this.nodeObject)
         this.elements.set(fieldObject.fieldData.fieldId, elementObject)
     }

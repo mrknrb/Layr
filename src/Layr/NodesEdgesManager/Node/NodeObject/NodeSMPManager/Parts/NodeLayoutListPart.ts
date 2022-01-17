@@ -13,9 +13,9 @@ export class NodeLayoutListPart extends PartBaseNodeCData_Conn {
 
     activate() {
         let style = this.masterObject.mainElement.element.style
-        style.position = "block"
+        style.position = "relative"
         style.width = "100%"
-
+        style.display = "block"
 
     }
 

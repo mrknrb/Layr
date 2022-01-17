@@ -12,6 +12,7 @@ export class WorkScreen {
     workScreenInit() {
         this.workScreenDiv = document.createElement("div")
         this.workScreenDiv.style.flex = "1"
+        this.workScreenDiv.style.minHeight = "100px"
         this.workScreenDiv.id = "workScreenDiv"
         document.body.appendChild(this.workScreenDiv)
 

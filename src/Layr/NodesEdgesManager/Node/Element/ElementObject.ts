@@ -19,6 +19,7 @@ export class ElementObject implements SMPMasterObjectInterface {
     smpManager: SMPManager
 
     constructor(elementConfigFile: ElementConfigFile, fieldId: string, nodeObjectBase: NodeObjectBase) {
+
         this.element = document.createElement(elementConfigFile.BaseHTMLElementType)
 
         this.element.classList.add("LayrElement")

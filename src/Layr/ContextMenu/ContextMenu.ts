@@ -51,7 +51,7 @@ export class ContextMenu extends ContextMenuElementBase {
             })
         }
     */
-    public contextMenuAppearInCoordinates(coordinateX: number, coordinateY: number) {
+    private contextMenuAppearInCoordinates(coordinateX: number, coordinateY: number) {
 
         let style = this.element.style
         style.display = "block"
