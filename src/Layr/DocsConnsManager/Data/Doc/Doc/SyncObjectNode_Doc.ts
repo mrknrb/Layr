@@ -21,16 +21,16 @@ export class SyncObjectNode_Doc extends SyncObjectBase {
         if (!nodes) return undefined
 
         nodes.forEach((node, index) => {
-            if (node.nodeId !== syncData.nodeId) {
+
                 node.smpManager.masterObjectParts.getPartObject_ByName(syncData.partName)?.loadData(syncData.loadData)
-            }
+
         })
     }
 }
 
 
 interface SyncData {
-    nodeId: string,
+
     partName: string,
     loadData: any
 }

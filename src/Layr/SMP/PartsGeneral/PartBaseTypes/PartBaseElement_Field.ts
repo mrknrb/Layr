@@ -30,7 +30,7 @@ export abstract class PartBaseElement_Field extends PartBase {
 
     protected valueSync(loadData?: any) {
         this.getMasterDataObject()?.syncObjectElement_Field.partSyncStart({
-            nodeId:this.masterObject.nodeObject.nodeId,
+
             fieldId: this.masterObject.fieldId,
             partName: this.getPartName(),
             loadData: loadData

@@ -22,6 +22,7 @@ const NodeLoadedSelectorData: SMPSelectorDataStatic =
         defaultState: loadedSelectorDataNames.states.Loaded,
         selectorName: loadedSelectorDataNames.selector,
         defaultSelectorActive: true,
+        selectorHeadInvisible:true,
         states: [
             {
                 stateName: loadedSelectorDataNames.states.Loaded,
@@ -57,6 +58,7 @@ const NodeLayoutSelectorData: SMPSelectorDataStatic =
         },
         defaultSelectorActive: false,
         selectorDontLoadSave:true,
+        selectorHeadInvisible:true,
         states: [
             {
                 stateName: NodeLayoutSelectorDataNames.states.Nothing,//yx kell, hogy a deaktivalasnal lehessen hova kapcsolni

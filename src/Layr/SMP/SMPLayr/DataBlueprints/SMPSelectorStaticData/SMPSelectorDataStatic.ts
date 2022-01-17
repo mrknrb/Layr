@@ -13,6 +13,7 @@ export class SMPSelectorDataStatic {
     defaultSelectorActive: boolean
     selectorNotDeactivatable?:boolean
     selectorDontLoadSave?: boolean
+    selectorHeadInvisible?: boolean
     parentSelectorAndStateName?: SMPSelectorAndStateName
     states: SMPStateDataStatic[]
 }

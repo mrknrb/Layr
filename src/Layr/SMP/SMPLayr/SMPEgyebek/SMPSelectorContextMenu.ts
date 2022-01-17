@@ -9,7 +9,7 @@ export class SMPSelectorContextMenu {
     buttonHead: ContextMElementSubContextMButton
     contextMenuHead: ContextMenu
     contextMenuBody: ContextMenu
-    activeStateTextElement: HTMLElement= document.createElement("b")
+    activeStateTextElement: HTMLElement = document.createElement("b")
 
     constructor(smpSelector: SMPSelectorDataDynamic) {
         this.smpSelector = smpSelector
@@ -30,7 +30,9 @@ export class SMPSelectorContextMenu {
 
     createHead() {
         this.buttonHead = new ContextMElementSubContextMButton(this.smpSelector.smpSelectorDataStatic.selectorName)
-
+        if (this.smpSelector.smpSelectorDataStatic.selectorHeadInvisible === true) {
+            this.buttonHead.element.style.display = "none"
+        }
         this.buttonHead.element.style.backgroundColor = "red"
         this.contextMenuMain.contextMenuElementInsert(this.buttonHead)
 
@@ -41,15 +43,15 @@ export class SMPSelectorContextMenu {
         } else {
             this.contextMenuHead.contextMenuHoverInit(this.buttonHead.element)
             this.activeStateHighlight()
-            this.smpSelector.stateChangeRequestEvent.on(()=>{
-               this. activeStateHighlight()
+            this.smpSelector.stateChangeRequestEvent.on(() => {
+                this.activeStateHighlight()
             })
             this.buttonHead.element.appendChild(this.activeStateTextElement)
         }
     }
 
-    activeStateHighlight(){
-        this.activeStateTextElement.innerText=this.smpSelector.activatedState
+    activeStateHighlight() {
+        this.activeStateTextElement.innerText = this.smpSelector.activatedState
 
     }
 

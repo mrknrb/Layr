@@ -27,7 +27,7 @@ export abstract class PartBaseNode_Doc extends PartBase {
 
     protected valueSync(loadData?: any) {
         this.getMasterDataObject()?.syncObjectNode_Doc.partSyncStart({
-            nodeId:this.masterObject.nodeId,
+
             partName: this.getPartName(),
             loadData: loadData
         })
