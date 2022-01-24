@@ -4,6 +4,7 @@ import {NodeObjectBase} from "./Node/NodeObject/NodeObjectBase.js";
 import {NodesEdgesDataStorage} from "./NodesEdgesDataStorage.js";
 import {layrFrame} from "../LayrFrame.js";
 import {TypedEvent} from "../../0Libraries/TypedEvents.js";
+import {MrkLibrary} from "../../0Egyebek/MrkLibrary.js";
 
 
 export class NodesEdgesManager {
@@ -23,6 +24,13 @@ export class NodesEdgesManager {
 
     setNodeObjectRoot(nodeObjectRoot: NodeObjectRoot) {
         this.nodesEdgesDataStorage.insertNode(nodeObjectRoot)
+    }
+
+    async loadRootNodeFromURLAuto() {
+        console.log(MrkLibrary.getDocIdByUrl())
+        await this.loadRootNode(MrkLibrary.getDocIdByUrl())
+
+
     }
 
     async loadRootNode(docId: string) {
@@ -70,12 +78,13 @@ export class NodesEdgesManager {
         return newChildNode
     }
 
-    async newNodeObjectNormalToParentNode(parentNodeObject: NodeObjectBase, docId: string,connId:string) {
+    async newNodeObjectNormalToParentNode(parentNodeObject: NodeObjectBase, docId: string, connId: string) {
         let newChildNode = new NodeObjectNormal(docId, connId, parentNodeObject.nodeId)
         this.nodesEdgesDataStorage.insertNode(newChildNode)
         this.newNodeObjectWithNewDocEvent.emit({parentNodeObject, newChildNode})
         return newChildNode
     }
+
     async deleteNodeKeepDoc(nodeToDelete: NodeObjectNormal) {
 
         this.nodesEdgesDataStorage.deleteNodeByNodeId(nodeToDelete)

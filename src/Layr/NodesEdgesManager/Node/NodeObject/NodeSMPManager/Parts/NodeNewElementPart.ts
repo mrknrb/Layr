@@ -6,14 +6,14 @@ import {ContextMenu} from "../../../../../ContextMenu/ContextMenu.js";
 import {ContextMElementInputText} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementInputText.js";
 import {ContextMElementDropDownStatic} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementDropDownStatic.js";
 import {ContextMElementClickable} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
-import {NodeQuickButton} from "../../../MainElement/NodeQuickButton.js";
+import {NodeQuickMenuButton} from "../../../MainElement/NodeQuickMenuButton.js";
 import {TypedEvent} from "../../../../../../0Libraries/TypedEvents.js";
 
 export class NodeNewElementPart extends PartBaseNode_Doc {
     masterObject: NodeObjectBase
     static partName = "NodeNewElementPart"
     subContextMenu: ContextMenu = new ContextMenu()
-    quickButton: NodeQuickButton = new NodeQuickButton()
+    quickButton: NodeQuickMenuButton = new NodeQuickMenuButton()
 
     constructor(masterObject: NodeObjectBase) {
         super(masterObject);

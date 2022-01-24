@@ -1,12 +1,13 @@
 import {MainElementBase} from "./MainElementBase.js";
-import {NodeQuickButton} from "./NodeQuickButton.js";
+import {NodeQuickMenuButton} from "./NodeQuickMenuButton.js";
+import {QuickMenuBarBase} from "../../../../0Egyebek/QuickMenu/QuickMenuBarBase.js";
 
-export class NodeQuickButtonsBar {
+export  class NodeQuickMenuBar extends QuickMenuBarBase{
 
-    element: HTMLDivElement = document.createElement("div")
     mainElementBase: MainElementBase
 
     constructor(mainElementBase: MainElementBase) {
+        super()
         this.mainElementBase = mainElementBase
         this.elementInit()
 
@@ -21,12 +22,10 @@ export class NodeQuickButtonsBar {
         this.element.style.position = "absolute"
         this.element.style.right = "0px"
         this.element.style.top = "-29px"
-        this.element.style.gap = "4px"
-        this.element.style.padding = "0px 4px 0px 4px"
+
+        this.element.style.zIndex="20000"
         this.element.style.borderRadius = "10px 10px 0px 0px"
         this.element.style.display = "none"
-        this.element.style.flexDirection="row-reverse"
-        this.element.style.zIndex="20000"
         this.mainElementBase.element.appendChild(this.element)
 
 
@@ -38,10 +37,6 @@ export class NodeQuickButtonsBar {
             this.element.style.display = "none"
         })
 
-    }
-
-    public quickButtonInsert(nodeQuickButton: NodeQuickButton) {
-        this.element.appendChild(nodeQuickButton.element)
     }
 
 

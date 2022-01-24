@@ -21,11 +21,8 @@ export class SyncObjectElement_Field extends SyncObjectBase {
 
         let nodes = LayrFind.nodes_ByDocId(this.fieldObject.docObject.docData._id)
         nodes.forEach((node, index) => {
-
                 let element = node.elementsManager.getElement(syncData.fieldId)
-
                 element.smpManager.masterObjectParts.getPartObject_ByName(syncData.partName).loadData(syncData.loadData)
-
         })
     }
 }

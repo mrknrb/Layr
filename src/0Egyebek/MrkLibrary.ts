@@ -286,6 +286,16 @@ export class MrkLibrary {
         });
     };
 
+   static splitUrlByBackSlash(url:string) {
+        return url.split("/")
+    }
+   static getDocIdByUrl():string|undefined{
+      return MrkLibrary.splitUrlByBackSlash(window.location.hash.substr(1))[0]
+    }
+    static getFieldIdByUrl():string|undefined{
+        return MrkLibrary.splitUrlByBackSlash(window.location.hash.substr(1))[1]
+    }
+
 }
 
 

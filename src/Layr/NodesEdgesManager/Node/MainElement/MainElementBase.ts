@@ -1,6 +1,6 @@
 import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
 import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
-import {NodeQuickButtonsBar} from "./NodeQuickButtonsBar.js";
+import {NodeQuickMenuBar} from "./NodeQuickMenuBar.js";
 
 
 export abstract class MainElementBase {
@@ -8,7 +8,7 @@ export abstract class MainElementBase {
     nodeObject: NodeObjectBase
     elementOptionsButton: HTMLDivElement
     contextMenu: ContextMenu
-    nodeQuickButtonsBar: NodeQuickButtonsBar = new NodeQuickButtonsBar(this)
+    nodeQuickButtonsBar: NodeQuickMenuBar = new NodeQuickMenuBar(this)
 
     constructor(nodeObject) {
         this.nodeObject = nodeObject

@@ -58,8 +58,11 @@ export class MainFrame {
     async testload() {
         // @ts-ignore
         let a: LayrFrame = document.layrFrame
+    let b=   a.nodesEdgesManager. loadRootNodeFromURLAuto()
+      //  let rootnode = await a.nodesEdgesManager.loadRootNode(window.location.hash.substr(1))
 
-        let rootnode = await a.nodesEdgesManager.loadRootNode(window.location.hash.substr(1))
+
+
         // @ts-ignore
        // let rootnode = await a.nodesEdgesManager.loadRootNode("61817e5f24b034523e70bcc6")
 

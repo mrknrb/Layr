@@ -4,6 +4,7 @@ import {NodeLayoutAbsolutePart} from "../Parts/NodeLayoutAbsolutePart.js";
 import {NodeLayoutListPart} from "../Parts/NodeLayoutListPart.js";
 import {SMPSavePart_NodeType} from "../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_NodeType.js";
 import {NodeDeletePart} from "../Parts/NodeDeletePart.js";
+import {NodeOpenInNewPagePart} from "../Parts/NodeOpenInNewPagePart.js";
 
 
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
@@ -28,7 +29,8 @@ const NodeLoadedSelectorData: SMPSelectorDataStatic =
                 stateName: loadedSelectorDataNames.states.Loaded,
                 masterObjectPartNames: [
                     NodeNewElementPart.partName,
-                    NodeDeletePart.partName
+                    NodeDeletePart.partName,
+                    NodeOpenInNewPagePart.partName
 
                 ]
             }, {
@@ -93,7 +95,9 @@ export const NodeNormalPartsClassList =
         NodeNewElementPart,
         NodeLayoutAbsolutePart,
         NodeLayoutListPart,
-        NodeDeletePart
+        NodeDeletePart,
+
+        NodeOpenInNewPagePart
         //NodeFullScreenElementPart
 
         // NodeSizeChangePart

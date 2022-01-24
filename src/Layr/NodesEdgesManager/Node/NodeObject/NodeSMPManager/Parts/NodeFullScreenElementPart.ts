@@ -2,6 +2,7 @@ import {PartBaseNode_Doc} from "../../../../../SMP/PartsGeneral/PartBaseTypes/Pa
 import {NodeObjectBase} from "../../NodeObjectBase.js";
 import {ContextMElementClickable} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 import {PartNodeCommon} from "../../../../../SMP/PartsGeneral/PartNodeCommon.js";
+import {MrkLibrary} from "../../../../../../0Egyebek/MrkLibrary.js";
 
 export class NodeFullScreenElementPart extends PartBaseNode_Doc {
     masterObject: NodeObjectBase
@@ -12,7 +13,10 @@ export class NodeFullScreenElementPart extends PartBaseNode_Doc {
     }
 
     activate() {
-        this.loadData()
+        let fieldId = MrkLibrary.getFieldIdByUrl()
+        if (fieldId!=undefined) {
+            this.insertElementFullscreen(fieldId)
+        }
         this.fullScreenButtonForElementInit()
 
 
@@ -22,7 +26,7 @@ export class NodeFullScreenElementPart extends PartBaseNode_Doc {
         PartNodeCommon.contextMElementToAllChildElement(this.masterObject, this.contextMenuElementCreate, (contextMenuElement, element) => {
             contextMenuElement.clickEvent.on(event => {
                 this.insertElementFullscreen(element.fieldId)
-                this.saveValue(element.fieldId)
+                window.location.href = window.location.origin + "#" + MrkLibrary.getDocIdByUrl()+"/" + element.fieldId
             })
         })
     }
@@ -44,13 +48,10 @@ export class NodeFullScreenElementPart extends PartBaseNode_Doc {
     loadData() {
 
 
-        this.insertElementFullscreen(this.getPartData().data)
     }
 
 
     saveValue(fieldId: string) {
-        this.saveValueDefault(fieldId)
-        this.valueSync()
     }
 
     partName: string;

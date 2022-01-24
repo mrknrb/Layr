@@ -1,13 +1,13 @@
 import {NodeObjectNormal} from "../../NodeObjectNormal.js";
 import {MrkLibrary, ResizeType} from "../../../../../../0Egyebek/MrkLibrary.js";
 import {PartBaseNodeCData_Conn} from "../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseNodeCData_Conn.js";
-import {NodeQuickButton} from "../../../MainElement/NodeQuickButton.js";
+import {NodeQuickMenuButton} from "../../../MainElement/NodeQuickMenuButton.js";
 
 export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
     masterObject: NodeObjectNormal
     static partName = "NodeLayoutAbsolutePart"
 
-    quickButton: NodeQuickButton=new NodeQuickButton()
+    quickButton: NodeQuickMenuButton=new NodeQuickMenuButton()
     constructor(masterObject: NodeObjectNormal) {
         super(masterObject);
     }

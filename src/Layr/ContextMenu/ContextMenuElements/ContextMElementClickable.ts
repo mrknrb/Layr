@@ -18,8 +18,6 @@ export class ContextMElementClickable extends ContextMenuElementBase {
 
 
         this.element.classList.add("ContextMenuElement")
-        this.element.classList.add("ContextMenuElementHoverHighlight")
-
 
         let textElement = document.createElement("b")
         textElement.style.userSelect = "none";

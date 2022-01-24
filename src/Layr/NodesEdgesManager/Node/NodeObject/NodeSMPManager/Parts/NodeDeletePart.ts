@@ -1,6 +1,6 @@
 import {PartBaseNode_Doc} from "../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseNode_Doc.js";
 import {ContextMenu} from "../../../../../ContextMenu/ContextMenu.js";
-import {NodeQuickButton} from "../../../MainElement/NodeQuickButton.js";
+import {NodeQuickMenuButton} from "../../../MainElement/NodeQuickMenuButton.js";
 import {ContextMElementSubContextMButton} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementSubContextMButton.js";
 import {ContextMElementClickable} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 import {layrFrame} from "../../../../../LayrFrame.js";
@@ -10,7 +10,7 @@ export class NodeDeletePart extends PartBaseNode_Doc {
     masterObject: NodeObjectNormal
     static partName = "NodeDeletePart"
     subContextMenu: ContextMenu = new ContextMenu()
-    quickButton: NodeQuickButton = new NodeQuickButton()
+    quickButton: NodeQuickMenuButton = new NodeQuickMenuButton()
 
     constructor(masterObject: NodeObjectNormal) {
         super(masterObject);

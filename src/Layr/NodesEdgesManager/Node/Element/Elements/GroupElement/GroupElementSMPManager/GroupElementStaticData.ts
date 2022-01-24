@@ -12,34 +12,66 @@ import {GroupElementNewNodePart} from "./GroupElementParts/GroupElementNewNodePa
 
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
-const loadedSelectorDataNames = {
+const initSelectorDataNames = {
 
-    selector: "LoadedSelector",
+    selector: "InitSelector",
     states: {
-        Loaded: "Loaded",
-        NotLoaded: "NotLoaded"
+        Initialised: "Initialised"
 
     }
 
 }
-const loadedSelectorData: SMPSelectorDataStatic =
+const initSelectorData: SMPSelectorDataStatic =
     {
-        defaultState: loadedSelectorDataNames.states.Loaded,
-        selectorName: loadedSelectorDataNames.selector,
-        defaultSelectorActive: false,
-        selectorDontLoadSave: true,
+        defaultState: initSelectorDataNames.states.Initialised,
+        selectorName: initSelectorDataNames.selector,
+        defaultSelectorActive: true,
+        selectorHeadInvisible:true,
+        selectorNotDeactivatable:true,
         states: [
             {
-                stateName: loadedSelectorDataNames.states.Loaded,
+                stateName: initSelectorDataNames.states.Initialised,
                 masterObjectPartNames: [
                     GroupElementMainPart.partName,
                     ElementBackgroundPart.partName,
+                    ElementManualResizePart.partName
+
+                ]
+            }
+        ]
+    }
+
+//yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+export const loadingSelectorDataNames = {
+
+    selector: "LoadingSelector",
+    states: {
+       Loaded:"Loaded"
+    }
+}
+const loadingSelectorData: SMPSelectorDataStatic =
+    {
+        selectorName: "LoadingSelector",
+        defaultState: loadingSelectorDataNames.states.Loaded,
+        defaultSelectorActive: false,
+        selectorDontLoadSave:true,
+
+        parentSelectorAndStateName:
+            {
+                selectorName: initSelectorDataNames.selector,
+                stateName: initSelectorDataNames.states.Initialised
+            }
+        ,
+        states: [
+            {
+                stateName: loadingSelectorDataNames.states.Loaded,
+                masterObjectPartNames: [
                     GroupElementNodesLoader.partName,
-                    ElementManualResizePart.partName,
                     GroupElementNewNodePart.partName
 
                 ]
             }
+
         ]
     }
 
@@ -58,14 +90,14 @@ export const layoutSelectorDataNames = {
 }
 const layoutSelectorData: SMPSelectorDataStatic =
     {
-        selectorName: "LayoutSelector",
+        selectorName:layoutSelectorDataNames.selector,
         defaultState: layoutSelectorDataNames.states.Absolute,
         defaultSelectorActive: true,
         selectorNotDeactivatable:true,
         parentSelectorAndStateName:
             {
-                selectorName: loadedSelectorDataNames.selector,
-                stateName: loadedSelectorDataNames.states.Loaded
+                selectorName: loadingSelectorDataNames.selector,
+                stateName: loadingSelectorDataNames.states.Loaded
             }
         ,
         states: [
@@ -92,8 +124,9 @@ const layoutSelectorData: SMPSelectorDataStatic =
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
 const GroupElementSelectorDataStaticArray = [
+    loadingSelectorData,
     layoutSelectorData,
-    loadedSelectorData
+    initSelectorData
 ]
 
 const GroupElementPartsClassArray = [

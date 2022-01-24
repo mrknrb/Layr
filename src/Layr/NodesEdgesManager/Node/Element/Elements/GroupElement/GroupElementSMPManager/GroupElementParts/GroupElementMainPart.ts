@@ -1,11 +1,12 @@
 import {PartBaseElement_Field} from "../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
 import {MrkLibrary} from "../../../../../../../../0Egyebek/MrkLibrary.js";
 import {ElementObject} from "../../../../ElementObject.js";
+import {QuickMenuBarBase} from "../../../../../../../../0Egyebek/QuickMenu/QuickMenuBarBase.js";
 
 export class GroupElementMainPart extends PartBaseElement_Field {
 
     static partName = "Main"
-    groupHeadElement: HTMLDivElement = document.createElement("div")
+    groupHeadElement: QuickMenuBarBase=new QuickMenuBarBase()
     groupBodyElement: HTMLDivElement = document.createElement("div")
 
     constructor(masterObject: ElementObject) {
@@ -32,14 +33,11 @@ export class GroupElementMainPart extends PartBaseElement_Field {
         this.masterObject.element.addEventListener("mousedown", function (e) {
             e.stopPropagation()
         })
-
     }
     groupHeadElementInit() {
-        this.groupHeadElement.style.width="100%"
-        this.groupHeadElement.style.height="30px"
-        this.groupHeadElement.style.backgroundColor="grey"
-        this.groupHeadElement.style.position="relative"
-        this.masterObject.element.appendChild(this.groupHeadElement)
+        this.groupHeadElement.element.style.height="30px"
+        this.groupHeadElement.element.style.position="relative"
+        this.masterObject.element.appendChild(this.groupHeadElement.element)
     }
     groupBodyElementInit() {
         this.groupBodyElement.style.overflow = "auto"
@@ -48,6 +46,10 @@ export class GroupElementMainPart extends PartBaseElement_Field {
         MrkLibrary.grabInit(this.groupBodyElement as HTMLDivElement)
         this.masterObject.element.appendChild(this.groupBodyElement)
     }
+
+
+
+
 
 
     loadData() {
