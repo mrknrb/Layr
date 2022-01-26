@@ -2,7 +2,7 @@ export class LayrLogoKozepen {
     layrLogoHatter!: HTMLDivElement
 
     eltunik() {
-        this.layrLogoHatter.animate([
+       /* this.layrLogoHatter.animate([
             // keyframes
 
             {opacity: '1', filter: "blur(0px)", backgroundColor: "grey"},
@@ -11,7 +11,9 @@ export class LayrLogoKozepen {
             duration: 200,
         }).onfinish = () => {
             this.layrLogoHatter.remove()
-        }
+        }*/
+        this.layrLogoHatter.remove()
+
     }
 
     feltunik() {

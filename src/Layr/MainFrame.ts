@@ -12,7 +12,8 @@ let scriptek = [
     "0Libraries/jquery.js",
     "0Libraries/arangojs.js",
     "0Libraries/axios.js",
-    "0Libraries/socketio.js"
+    "0Libraries/socketio.js",
+    "0Libraries/createRBTree.js",
 ]
 
 function LoadLibraries(callback: Function) {
@@ -42,10 +43,14 @@ export class MainFrame {
 
     constructor() {
 
+
         this.layrFrame = new LayrFrame()
 
         // @ts-ignore
         document.layrFrame = this.layrFrame
+
+        // @ts-ignore
+        document.mrkLibrary = MrkLibrary
 
         console.log(this.layrFrame)
         setTimeout(() => {

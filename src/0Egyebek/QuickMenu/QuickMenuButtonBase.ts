@@ -21,4 +21,16 @@ export  class QuickMenuButtonBase {
         this.  imageElement.style.width = "65%"
         this.element.appendChild( this. imageElement)
     }
+
+    activate(activate:boolean){
+        if(activate){  this.element.style.backgroundColor="#446d42"
+
+        }else{
+
+            this.element.style.backgroundColor="#664e4e"
+        }
+
+    }
+
+
 }

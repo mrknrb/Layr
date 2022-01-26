@@ -16,6 +16,7 @@
   "include": [
     "src",
     "decs.d.ts",
-    "chrome.d.ts"
+    "chrome.d.ts",
+    "createRBTree.d.ts"
   ]
 }

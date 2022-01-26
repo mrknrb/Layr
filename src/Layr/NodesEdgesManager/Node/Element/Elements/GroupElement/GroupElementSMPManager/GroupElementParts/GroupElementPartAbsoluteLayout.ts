@@ -5,14 +5,14 @@ import {ElementObject} from "../../../../ElementObject.js";
 import {GroupElementMainPart} from "./GroupElementMainPart.js";
 import {layrFrame} from "../../../../../../../LayrFrame.js";
 import {NodeObjectNormal} from "../../../../../NodeObject/NodeObjectNormal.js";
-import {mousePositionMrk} from "../../../../../../../../0Egyebek/MrkLibrary.js";
+import {mousePositionMrk, MrkLibrary} from "../../../../../../../../0Egyebek/MrkLibrary.js";
 import {NodeLayoutAbsolutePart} from "../../../../../NodeObject/NodeSMPManager/Parts/NodeLayoutAbsolutePart.js";
 import {NodeObjectBase} from "../../../../../NodeObject/NodeObjectBase.js";
 
 export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
 
     static partName = "GroupElementPartAbsoluteLayout"
-    contentDiv: HTMLDivElement = document.createElement("div")
+    scrollHelperElement: HTMLDivElement = document.createElement("div")
 
     constructor(masterObject: ElementObject) {
         super(masterObject);
@@ -26,6 +26,11 @@ export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
             childNodes?.forEach(node => {
                 this.nodeAbsolutePartSet(node)
             })
+            setTimeout(() => {
+                let groupElementMainPart = this.masterObject.smpManager.masterObjectParts.getPartObject_ByName(GroupElementMainPart.partName) as GroupElementMainPart
+             //  MrkLibrary.shadowForOverlappingNodesOnce(groupElementMainPart.groupBodyElement)
+                MrkLibrary.   shadowForOverlappingNodesPermanent(groupElementMainPart.groupBodyElement)
+            }, 200)
         }, 200)
 
         this.scrollMoreInit()
@@ -107,31 +112,35 @@ export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
             this.newNodeActionActivate(false)
             //layrFrame.nodesEdgesManager.newNodeObjectWithNewDocEvent.off(this.newNodeAction)
         }, 200)
-        this.contentDiv.remove()
+        this.scrollHelperElement.remove()
     }
 
     scrollMoreInit() {
 
 
         let groupMainPart = this.getPartInMasterobject_byClass(GroupElementMainPart.partName) as GroupElementMainPart
-        groupMainPart.groupBodyElement.appendChild(this.contentDiv)
-        this.contentDiv.style.position = "absolute"
-        this.contentDiv.style.width = "1px"
-        this.contentDiv.style.height = "1px"
-
-        this.contentDiv.style.left = "1px"
-        this.contentDiv.style.top = "1px"
+        groupMainPart.groupBodyElement.appendChild(this.scrollHelperElement)
+        this.scrollHelperElement.style.position = "absolute"
+        this.scrollHelperElement.style.width = "1px"
+        this.scrollHelperElement.style.height = "1px"
+        this.scrollHelperElement.style.left = "1px"
+        this.scrollHelperElement.style.top = "1px"
+        this.scrollHelperElement.style.transition="left  0.1s ease-out,top  0.1s ease-out"
         groupMainPart.groupBodyElement.addEventListener('scroll', (event) => {
             let scrollactualY = groupMainPart.groupBodyElement.scrollHeight - groupMainPart.groupBodyElement.scrollTop
             let scrollbottomY = groupMainPart.groupBodyElement.clientHeight
-            if (Math.abs(scrollactualY - scrollbottomY) < 50) {
-                this.contentDiv.style.top = groupMainPart.groupBodyElement.scrollHeight + 50 + "px"
+            if (Math.abs(scrollactualY - scrollbottomY) < 500) {
+                this.scrollHelperElement.style.top = groupMainPart.groupBodyElement.scrollHeight + 250 + "px"
+            }else if(Math.abs(scrollactualY - scrollbottomY) > 750){
+                this.scrollHelperElement.style.top = groupMainPart.groupBodyElement.scrollHeight - 250 + "px"
             }
             let scrollactualX=groupMainPart.groupBodyElement.scrollWidth - groupMainPart.groupBodyElement.scrollLeft
             let  scrollbottomX=groupMainPart.groupBodyElement.clientWidth
-            if (Math.abs(scrollactualX-scrollbottomX)<50)
+            if (Math.abs(scrollactualX-scrollbottomX)<500)
             {
-                this.contentDiv.style.left=groupMainPart.groupBodyElement.scrollWidth+50+"px"
+                this.scrollHelperElement.style.left=groupMainPart.groupBodyElement.scrollWidth+250+"px"
+            }else if(Math.abs(scrollactualX-scrollbottomX)>750){
+                this.scrollHelperElement.style.left = groupMainPart.groupBodyElement.scrollWidth - 250 + "px"
             }
 
         });
