@@ -6,17 +6,21 @@ export class DocData {
 
 
     _id: string
-    ownElementsCData: FieldhezElementCData[] //rootnal johet jol, amikor a sajat docfieldjeit formaznad
-    fieldsData: FieldData[]
-    tags: string[]
-    partsData: any
+    collection: string
+    type?: string
+    fieldsData?: FieldData[]
+    tags?: string[]
+    partsData?: any
+    lastChange?: number
 
-    constructor() {
-       // this._id = MrkLibrary.generateUUID()
+    constructor(collection:string) {
+        this._id = MrkLibrary.generateUUID()
+        this.collection=collection
        //yx multkor zavart okozott
         this.fieldsData = []
-        this.ownElementsCData = []
         this.tags = []
         this.partsData = {}
+
+        this.lastChange=Date.now()
     }
 }

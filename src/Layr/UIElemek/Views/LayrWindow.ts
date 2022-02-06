@@ -27,6 +27,8 @@ export class LayrWindow {
         this.mainDiv.style.width = "600px"
         this.mainDiv.style.flexDirection = "column"
         this.mainDiv.style.zIndex = "100000"
+        this.mainDiv.style.border = "solid"
+        this.mainDiv.style.borderWidth = "3px"
     }
 
     private  headInit() {

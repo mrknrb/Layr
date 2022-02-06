@@ -4,9 +4,8 @@ import {RequestMessage} from "./RequestCommon/RequestMessage.js";
 import {ReplyData} from "./RequestCommon/ReplyData.js";
 import {RequestData} from "./RequestCommon/RequestData.js";
 
-
 export class LayrClient {
-    private socketio!: any
+    private socketio!: Socket
     private requestMap: Map<Number, RequestObject>
     private lekerdezesSzamlalomegy: boolean = false
 
@@ -29,8 +28,15 @@ export class LayrClient {
     }
 
     private socketioInit() {
-        //@ts-ignore
-        this.socketio = io("http://127.0.0.1:4562")
+        const connectionObject  = {
+
+            withCredentials: true,
+        }
+
+
+        this.socketio = io("localhost:4562"||"",connectionObject)
+       // this.socketio = io("http://127.0.0.1:4562"||"",connectionObject)
+        //yx valamiert nem mukodott ip címmel, csak localhosttal, nem kuldte el a cookiet https://stackoverflow.com/questions/8030199/node-js-express-js-socket-io-authorization-no-cookie
         this.socketio.on("message", (message: string) => {
             console.log("Server Message:", message)
         });
@@ -42,6 +48,8 @@ export class LayrClient {
         //@ts-ignore
         window.socketio = this.socketio
     }
+
+
 
 
     private async lekerdezesSzamlaloStart() {
@@ -70,7 +78,7 @@ export class LayrClient {
     private async requestsSend(elkuldendoRequestsArray: RequestData[]) {
 
         let requestMessage = new RequestMessage(elkuldendoRequestsArray)
-
+        requestMessage.setUserIdentification()
         this.socketio.emit("request", requestMessage);
 
 

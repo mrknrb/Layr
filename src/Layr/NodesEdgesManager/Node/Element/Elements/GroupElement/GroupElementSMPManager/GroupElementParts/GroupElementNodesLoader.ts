@@ -23,6 +23,7 @@ export class GroupElementNodesLoader extends PartBaseElement_Field {
         let nodes = await layrFrame.nodesEdgesManager.loadNormalNodesOfGroupNode(this.masterObject.nodeObject)
 
         let groupMainPart=   this. getPartInMasterobject_byClass(GroupElementMainPart.partName) as GroupElementMainPart
+        if(!nodes) return
         for await (let value1 of nodes) {
 
             groupMainPart.groupBodyElement.appendChild(value1.mainElement.element)

@@ -18,15 +18,18 @@ export class DocObject {
         this.docEvents = new DocEvents()
         this.fieldObjects = []
         this.syncObjectNode_Doc = new SyncObjectNode_Doc(this)
-        docData.fieldsData.forEach((field) => {
+
+        docData.fieldsData?.forEach((field) => {
             this.createFieldObject(field)
         })
+
     }
 
     newField(fieldName: string, elementType: string) {
         console.log("newField")
 
         let newFieldData = new FieldData(fieldName, elementType as ElementTypes)
+        if(!this.docData.fieldsData) this.docData.fieldsData=[]
         this.docData.fieldsData.push(newFieldData)
         let fieldObject = this.createFieldObject(newFieldData)
         this.docDataMongoUpdate()

@@ -46,7 +46,7 @@ export class DocsConnsManager {
 
     async insertNewDoc_AsParentDocChild(parentDocId: string) {
 
-        let newDoc = new DocData()
+        let newDoc = new DocData("mrkCollection")
 
         return await this.insertDocs_AsParentDocChildren(parentDocId, [newDoc])
     }
@@ -56,10 +56,12 @@ export class DocsConnsManager {
             parentDocId: parentDocId,
             docDataArray: docDataArray
         })
+
+        console.log(docsConnsData)
         return this.docsConnsData_TO_DocsConnsObjects_AndSave(docsConnsData)
     }
     async newConn(parentDocId: string, childDocId:string) {
-        let connData=new ConnData(parentDocId,childDocId,"group")
+        let connData=new ConnData(parentDocId,childDocId,"mrkCollection")//yx a collectiont majd meg kell hatarozni
         let docsConnsData: DocsConnsData = await layrFrame.layrClient.newRequest(RequestType.insertCons, {
             conns: [connData]
         })

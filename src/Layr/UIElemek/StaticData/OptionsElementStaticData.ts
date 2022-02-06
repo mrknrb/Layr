@@ -1,31 +1,32 @@
 import {OptionsElementStaticDataType} from "./OptionsElementStaticDataType.js";
 import {ToolElementLogin} from "./ToolElements/File/Account/ToolElementLogin.js";
+import {DocExplorer} from "./ToolElements/File/Explorers/DocExplorer.js";
 
 const OptionsElementFile: OptionsElementStaticDataType = {
+    optionName: "File",
     toolGroupElements: [{
         toolGroupName: "account", toolElements: [
-            ToolElementLogin,
+            ToolElementLogin
         ]
-    }],
-    optionName: "File"
+    },{
+        toolGroupName: "explorers", toolElements: [
 
-
+            DocExplorer
+        ]
+    }]
 }
+
 const OptionsElementEdit: OptionsElementStaticDataType = {
+    optionName: "Edit",
     toolGroupElements: [{
         toolGroupName: "basics", toolElements: []
-    }],
-    optionName: "Edit"
-
-
+    }]
 }
 const OptionsElementHelp: OptionsElementStaticDataType = {
+    optionName: "Help",
     toolGroupElements: [{
         toolGroupName: "starter", toolElements: []
-    }],
-    optionName: "Help"
-
-
+    }]
 }
 export const OptionsElementStaticData: OptionsElementStaticDataType[] = [
     OptionsElementFile,

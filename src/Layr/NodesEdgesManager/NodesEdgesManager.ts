@@ -51,10 +51,14 @@ export class NodesEdgesManager {
             let docObject = docConnObjects.docObjects.find(function (docObject) {
                 return docObject.docData._id == connObject.connData.to
             })
-            let nodeObjectNormal = new NodeObjectNormal(docObject.docData._id, connObject.connData._id, parentNodeObject.nodeId)
+            if (docObject) {
+                let nodeObjectNormal = new NodeObjectNormal(docObject.docData._id, connObject.connData._id, parentNodeObject.nodeId)
 
-            this.nodesEdgesDataStorage.insertNode(nodeObjectNormal)
-            nodeObjectsArray.push(nodeObjectNormal)
+                this.nodesEdgesDataStorage.insertNode(nodeObjectNormal)
+                nodeObjectsArray.push(nodeObjectNormal)
+            }else{
+                console.error("LayrError: Van connection, de Doc nincs")
+            }
         }
         return nodeObjectsArray
     }

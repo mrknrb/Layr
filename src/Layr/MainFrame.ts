@@ -1,7 +1,6 @@
 import {LayrFrame} from "./LayrFrame.js";
 import {LayrLogoKozepen} from "../0Egyebek/LayrLogoKozepen.js";
 import {MrkLibrary} from "../0Egyebek/MrkLibrary.js";
-import {LayrWindow} from "./UIElemek/Views/LayrWindow.js";
 
 let layrLogoKozepenAnimacio = new LayrLogoKozepen()
 layrLogoKozepenAnimacio.feltunik()
@@ -12,7 +11,7 @@ let scriptek = [
     "0Libraries/jquery.js",
     "0Libraries/arangojs.js",
     "0Libraries/axios.js",
-    "0Libraries/socketio.js",
+   "0Libraries/socketio.js",
     "0Libraries/createRBTree.js",
 ]
 
@@ -63,13 +62,12 @@ export class MainFrame {
     async testload() {
         // @ts-ignore
         let a: LayrFrame = document.layrFrame
-    let b=   a.nodesEdgesManager. loadRootNodeFromURLAuto()
-      //  let rootnode = await a.nodesEdgesManager.loadRootNode(window.location.hash.substr(1))
-
+        let b = a.nodesEdgesManager.loadRootNodeFromURLAuto()
+        //  let rootnode = await a.nodesEdgesManager.loadRootNode(window.location.hash.substr(1))
 
 
         // @ts-ignore
-       // let rootnode = await a.nodesEdgesManager.loadRootNode("61817e5f24b034523e70bcc6")
+        // let rootnode = await a.nodesEdgesManager.loadRootNode("61817e5f24b034523e70bcc6")
 
 
         //ideiglenes

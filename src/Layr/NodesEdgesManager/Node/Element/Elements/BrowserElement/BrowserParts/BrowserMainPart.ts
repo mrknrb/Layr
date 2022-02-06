@@ -4,6 +4,8 @@ import {MrkLibrary} from "../../../../../../../0Egyebek/MrkLibrary.js";
 import {QuickMenuBarBase} from "../../../../../../../0Egyebek/QuickMenu/QuickMenuBarBase.js";
 import {QuickMenuButtonBase} from "../../../../../../../0Egyebek/QuickMenu/QuickMenuButtonBase.js";
 import {TypedEvent} from "../../../../../../../0Libraries/TypedEvents.js";
+import {MessageLayr, MessageType} from "../../../../../../../0Egyebek/MessageLayrCommon/MessageLayr.js";
+import {MessageManager} from "../../../../../../../0Egyebek/MessageLayrCommon/MessageManager.js";
 
 
 export class BrowserMainPart extends PartBaseElement_Field {
@@ -21,9 +23,6 @@ export class BrowserMainPart extends PartBaseElement_Field {
     activate() {
         this.elementInit()
         this.loadData()
-        // setInterval(() => {
-        //     this.iframe.contentWindow?.postMessage({h: 123123}, '*');
-        // }, 1000)
     }
 
     protected elementInit() {
@@ -55,7 +54,12 @@ export class BrowserMainPart extends PartBaseElement_Field {
         refreshButton.addImage("0Resources/refresh.svg")
         this.menuBar.quickButtonInsert(refreshButton)
         refreshButton.element.addEventListener("click", ev => {
-            this.iframe.contentWindow?.location.reload(true)
+            // this.iframe.contentWindow?.location.reload(true)
+            //     console.log("mess sent");
+            // this.iframe.contentWindow?.postMessage({h: 123123}, '*');
+            if (!this.iframe.contentWindow) return
+            let messageManager = new MessageManager(this.iframe.contentWindow,MessageType.ToContent_Refresh)
+            messageManager.sendMassage("")
         })
     }
 
@@ -80,7 +84,10 @@ export class BrowserMainPart extends PartBaseElement_Field {
         backButton.imageElement.style.transform = "rotate(180deg)"
         this.menuBar.quickButtonInsert(backButton)
         backButton.element.addEventListener("click", ev => {
+            if (!this.iframe.contentWindow) return
 
+            let messageManager = new MessageManager(this.iframe.contentWindow,MessageType.ToContent_Back)
+            messageManager.sendMassage("")
         })
 
         let forwardButton = new QuickMenuButtonBase()
@@ -88,7 +95,12 @@ export class BrowserMainPart extends PartBaseElement_Field {
 
         this.menuBar.quickButtonInsert(forwardButton)
         forwardButton.element.addEventListener("click", ev => {
+            if (!this.iframe.contentWindow) return
 
+
+
+            let messageManager = new MessageManager(this.iframe.contentWindow,MessageType.ToContent_Forward)
+            messageManager.sendMassage("")
         })
     }
 
@@ -104,8 +116,6 @@ export class BrowserMainPart extends PartBaseElement_Field {
             this.urlFieldInput.value = searchurl
             this.saveValue()
         }
-
-
     }
 
     urlTextAreaElementInit() {
@@ -120,10 +130,20 @@ export class BrowserMainPart extends PartBaseElement_Field {
         this.urlFieldInput.addEventListener("click", (event) => {
             this.urlFieldInput.select()
         });
-
         this.menuBar.element.appendChild(this.urlFieldInput)
     }
+    urlTextAreaElementUrlChangeRefreshInit() {
 
+        if (!this.iframe.contentWindow) return
+
+        let messageManager = new MessageManager(this.iframe.contentWindow,MessageType.ToFrame_UrlChanged)
+        messageManager.messageReceiverInit((message) => {
+            this.urlFieldInput.value=message.data.toString()
+        })
+
+
+
+    }
     iframeCreate() {
         this.iframe = document.createElement("iframe")
         this.iframe.style.transform = "75%"
@@ -132,6 +152,7 @@ export class BrowserMainPart extends PartBaseElement_Field {
         this.iframe.allowFullscreen = true
         this.iframe.src = this.urlFieldInput.value
         // MrkLibrary.resizeElement(this.masterObject.element, 4, ResizeType.vertical, 21)
+        this.urlTextAreaElementUrlChangeRefreshInit()
         this.masterObject.element.appendChild(this.iframe)
         this.iframe.addEventListener("click", (event) => {
             if (!this.browserOn) {

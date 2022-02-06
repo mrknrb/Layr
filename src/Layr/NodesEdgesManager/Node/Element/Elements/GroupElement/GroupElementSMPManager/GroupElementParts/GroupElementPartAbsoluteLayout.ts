@@ -116,15 +116,13 @@ export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
     }
 
     scrollMoreInit() {
-
-
         let groupMainPart = this.getPartInMasterobject_byClass(GroupElementMainPart.partName) as GroupElementMainPart
         groupMainPart.groupBodyElement.appendChild(this.scrollHelperElement)
         this.scrollHelperElement.style.position = "absolute"
-        this.scrollHelperElement.style.width = "1px"
-        this.scrollHelperElement.style.height = "1px"
-        this.scrollHelperElement.style.left = "1px"
-        this.scrollHelperElement.style.top = "1px"
+        this.scrollHelperElement.style.width ="1px"
+        this.scrollHelperElement.style.height ="1px"
+        this.scrollHelperElement.style.left =  groupMainPart.groupBodyElement.scrollWidth+500+"px"
+        this.scrollHelperElement.style.top =  groupMainPart.groupBodyElement.scrollHeight+500+"px"
         this.scrollHelperElement.style.transition="left  0.1s ease-out,top  0.1s ease-out"
         groupMainPart.groupBodyElement.addEventListener('scroll', (event) => {
             let scrollactualY = groupMainPart.groupBodyElement.scrollHeight - groupMainPart.groupBodyElement.scrollTop
