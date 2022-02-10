@@ -1,6 +1,6 @@
 import {MainElementBase} from "../MainElement/MainElementBase.js";
 import {ElementsManager} from "../Element/ElementsManager.js";
-import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
+import {ContextMenu} from "../../../UIElemek/ContextMenu/ContextMenu.js";
 import {SMPManager} from "../../../SMP/SMPLayr/SMPManager.js";
 import {SMPMasterObjectInterface} from "../../../SMP/SMPLayr/SMPMasterObjectInterface.js";
 

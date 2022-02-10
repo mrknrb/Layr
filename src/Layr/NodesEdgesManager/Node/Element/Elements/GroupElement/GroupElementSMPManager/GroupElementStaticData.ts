@@ -9,6 +9,7 @@ import {ElementManualResizePart} from "../../../ElementPartsGeneral/ElementManua
 import {GroupElementPartAbsoluteLayout} from "./GroupElementParts/GroupElementPartAbsoluteLayout.js";
 import {GroupElementListLayoutPart} from "./GroupElementParts/GroupElementListLayoutPart.js";
 import {GroupElementNewNodePart} from "./GroupElementParts/GroupElementNewNodePart.js";
+import {GroupElementCollectionSelectorPart} from "./GroupElementParts/GroupElementCollectionSelectorPart.js";
 
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 
@@ -35,7 +36,6 @@ const initSelectorData: SMPSelectorDataStatic =
                     GroupElementMainPart.partName,
                     ElementBackgroundPart.partName,
                     ElementManualResizePart.partName
-
                 ]
             }
         ]
@@ -67,7 +67,8 @@ const loadingSelectorData: SMPSelectorDataStatic =
                 stateName: loadingSelectorDataNames.states.Loaded,
                 masterObjectPartNames: [
                     GroupElementNodesLoader.partName,
-                    GroupElementNewNodePart.partName
+                    GroupElementNewNodePart.partName,
+                    GroupElementCollectionSelectorPart.partName
 
                 ]
             }
@@ -137,7 +138,8 @@ const GroupElementPartsClassArray = [
     GroupElementPartAbsoluteLayout,
     ElementManualResizePart,
     GroupElementNewNodePart,
-    GroupElementListLayoutPart
+    GroupElementListLayoutPart,
+    GroupElementCollectionSelectorPart
 ]
 
 export const GroupElementConfigFile: ElementConfigFile = {

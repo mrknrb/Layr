@@ -1,8 +1,8 @@
 import {PartBaseElement_Field} from "../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
 import {ElementObject} from "../../../ElementObject.js";
 import {MrkLibrary} from "../../../../../../../0Egyebek/MrkLibrary.js";
-import {QuickMenuBarBase} from "../../../../../../../0Egyebek/QuickMenu/QuickMenuBarBase.js";
-import {QuickMenuButtonBase} from "../../../../../../../0Egyebek/QuickMenu/QuickMenuButtonBase.js";
+import {QuickMenuBarBase} from "../../../../../../UIElemek/QuickMenu/QuickMenuBarBase.js";
+import {QuickMenuButtonBase} from "../../../../../../UIElemek/QuickMenu/QuickMenuButtonBase.js";
 import {TypedEvent} from "../../../../../../../0Libraries/TypedEvents.js";
 import {MessageLayr, MessageType} from "../../../../../../../0Egyebek/MessageLayrCommon/MessageLayr.js";
 import {MessageManager} from "../../../../../../../0Egyebek/MessageLayrCommon/MessageManager.js";
@@ -45,14 +45,13 @@ export class BrowserMainPart extends PartBaseElement_Field {
 
     topBarDivInit() {
         this.menuBar.element.style.height = "30px"
-        this.menuBar.element.style.flexDirection = "row"
         this.masterObject.element.appendChild(this.menuBar.element)
     }
 
     refreshQuickButtonInit() {
         let refreshButton = new QuickMenuButtonBase()
         refreshButton.addImage("0Resources/refresh.svg")
-        this.menuBar.quickButtonInsert(refreshButton)
+        this.menuBar.quickMenuElementInsert(refreshButton)
         refreshButton.element.addEventListener("click", ev => {
             // this.iframe.contentWindow?.location.reload(true)
             //     console.log("mess sent");
@@ -68,7 +67,7 @@ export class BrowserMainPart extends PartBaseElement_Field {
 
     turnOnOffQuickButtonInit() {
         this.powerButton.addImage("0Resources/power.svg")
-        this.menuBar.quickButtonInsert(this.powerButton)
+        this.menuBar.quickMenuElementInsert(this.powerButton)
         this.powerButton.element.addEventListener("click", ev => {
             if (!this.browserOn) {
                 this.browserActivate(true)
@@ -82,7 +81,7 @@ export class BrowserMainPart extends PartBaseElement_Field {
         let backButton = new QuickMenuButtonBase()
         backButton.addImage("0Resources/arrow.svg")
         backButton.imageElement.style.transform = "rotate(180deg)"
-        this.menuBar.quickButtonInsert(backButton)
+        this.menuBar.quickMenuElementInsert(backButton)
         backButton.element.addEventListener("click", ev => {
             if (!this.iframe.contentWindow) return
 
@@ -93,7 +92,7 @@ export class BrowserMainPart extends PartBaseElement_Field {
         let forwardButton = new QuickMenuButtonBase()
         forwardButton.addImage("0Resources/arrow.svg")
 
-        this.menuBar.quickButtonInsert(forwardButton)
+        this.menuBar.quickMenuElementInsert(forwardButton)
         forwardButton.element.addEventListener("click", ev => {
             if (!this.iframe.contentWindow) return
 
@@ -140,9 +139,6 @@ export class BrowserMainPart extends PartBaseElement_Field {
         messageManager.messageReceiverInit((message) => {
             this.urlFieldInput.value=message.data.toString()
         })
-
-
-
     }
     iframeCreate() {
         this.iframe = document.createElement("iframe")

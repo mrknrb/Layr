@@ -4,7 +4,7 @@ import {ElementObject} from "../../../../ElementObject.js";
 
 export class TextAreaContentPart extends PartBaseElement_Field {
 
-    static partName = "TextAreaContentPart"
+    static partName = "Content"
     element: HTMLTextAreaElement
 
     constructor(masterObject: ElementObject) {

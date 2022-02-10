@@ -1,9 +1,9 @@
 import {MainElementRoot} from "../MainElement/MainElementRoot.js";
 import {NodeObjectBase} from "./NodeObjectBase.js";
 import {SMPManager} from "../../../SMP/SMPLayr/SMPManager.js";
-import {SMPSavePart_NodeType} from "../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_NodeType.js";
 import {NodeRootPartsClassList} from "./NodeSMPManager/NodeRootSMPStatic/NodeRootPartsClassList.js";
 import {NodeRootSMPStaticData} from "./NodeSMPManager/NodeRootSMPStatic/NodeRootSMPStaticData.js";
+import {SMPSavePart_RootNodeDocType} from "../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_RootNodeDocType.js";
 
 export class NodeObjectRoot extends NodeObjectBase {
     docId: string;
@@ -24,7 +24,7 @@ export class NodeObjectRoot extends NodeObjectBase {
     protected smpManagerInit() {
 
         this.smpManager = new SMPManager({
-            smpSavePart: SMPSavePart_NodeType,
+            smpSavePart: SMPSavePart_RootNodeDocType,
             masterObject: this,
             partsClassArray: NodeRootPartsClassList,
             smpSelectorDataStaticArray: NodeRootSMPStaticData

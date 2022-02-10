@@ -1,5 +1,5 @@
-import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
-import {ContextMElementClickable} from "../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
+import {ContextMenu} from "../../../UIElemek/ContextMenu/ContextMenu.js";
+import {ContextMElementClickable} from "../../../UIElemek/ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 import {SMPStateDataDynamic} from "../DataBlueprints/SMPSelectorDynamicData/SMPStateDataDynamic.js";
 import {SMPSelectorDataDynamic} from "../DataBlueprints/SMPSelectorDynamicData/SMPSelectorDataDynamic.js";
 

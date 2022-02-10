@@ -1,6 +1,8 @@
 import {PartBase} from "../PartBase.js";
 import {LayrFind} from "../../../../0Egyebek/LayrFind.js";
 import {NodeObjectNormal} from "../../../NodesEdgesManager/Node/NodeObject/NodeObjectNormal.js";
+import {ConnObject} from "../../../DocsConnsManager/Data/Conn/ConnObject.js";
+import {ConnData} from "../../../DocsConnsManager/Data/Conn/ConnData.js";
 
 export abstract class PartBaseNodeCData_Conn extends PartBase {
 
@@ -17,19 +19,21 @@ export abstract class PartBaseNodeCData_Conn extends PartBase {
     }
 
     protected getPartData() {
-        if (!this.getMasterDataObject().connData.data) this.getMasterDataObject().connData.data = {
+        let connObject = this.getMasterDataObject()
+        if (!connObject) return
+        if (!connObject.connData.data) connObject.connData.data = {
             nodeCDataParts: {},
             edgeCDataParts: {},
             elementsCDataParts: []
         }
-        if (!this.getMasterDataObject().connData.data.nodeCDataParts) this.getMasterDataObject().connData.data.nodeCDataParts = {}
-        if (!this.getMasterDataObject().connData.data.nodeCDataParts[this.getPartName()]) this.getMasterDataObject().connData.data.nodeCDataParts[this.getPartName()] = {}
-        if (!this.getMasterDataObject().connData.data.nodeCDataParts[this.getPartName()].data) this.getMasterDataObject().connData.data.nodeCDataParts[this.getPartName()].data = {}
-        return this.getMasterDataObject().connData.data.nodeCDataParts[this.getPartName()]
+        if (!connObject.connData.data.nodeCDataParts) connObject.connData.data.nodeCDataParts = {}
+        if (!connObject.connData.data.nodeCDataParts[this.getPartName()]) connObject.connData.data.nodeCDataParts[this.getPartName()] = {}
+        if (!connObject.connData.data.nodeCDataParts[this.getPartName()].data) connObject.connData.data.nodeCDataParts[this.getPartName()].data = {}
+        return connObject.connData.data.nodeCDataParts[this.getPartName()]
     }
 
     protected valueSync(loadData?: any) {
-        this.getMasterDataObject().syncObjectNodeCData_Conn.partSyncStart({
+        this.getMasterDataObject()?.syncObjectNodeCData_Conn.partSyncStart({
 
             partName: this.getPartName(),
             loadData: loadData

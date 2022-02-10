@@ -1,11 +1,11 @@
 import {PartBaseNode_Doc} from "../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseNode_Doc.js";
 import {NodeObjectBase} from "../../NodeObjectBase.js";
 import {ElementTypes} from "../../../Element/Adatok/ElementTypes.js";
-import {ContextMElementSubContextMButton} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementSubContextMButton.js";
-import {ContextMenu} from "../../../../../ContextMenu/ContextMenu.js";
-import {ContextMElementInputText} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementInputText.js";
-import {ContextMElementDropDownStatic} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementDropDownStatic.js";
-import {ContextMElementClickable} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
+import {ContextMElementSubContextMButton} from "../../../../../UIElemek/ContextMenu/ContextMenuElements/ContextMElementSubContextMButton.js";
+import {ContextMenu} from "../../../../../UIElemek/ContextMenu/ContextMenu.js";
+import {ContextMElementInputText} from "../../../../../UIElemek/ContextMenu/ContextMenuElements/ContextMElementInputText.js";
+import {ContextMElementDropDownStatic} from "../../../../../UIElemek/ContextMenu/ContextMenuElements/ContextMElementDropDownStatic.js";
+import {ContextMElementClickable} from "../../../../../UIElemek/ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 import {NodeQuickMenuButton} from "../../../MainElement/NodeQuickMenuButton.js";
 import {TypedEvent} from "../../../../../../0Libraries/TypedEvents.js";
 
@@ -24,7 +24,7 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
 
         this.quickButton.setColor("green")
         this.quickButton.addImage("0Resources/add.svg")
-        this.masterObject.mainElement.nodeQuickButtonsBar.quickButtonInsert(this.quickButton)
+        this.masterObject.mainElement.nodeQuickButtonsBar.quickMenuElementInsert(this.quickButton)
         this.quickButton.element.addEventListener("click", () => {
             let bounding = this.quickButton.element.getBoundingClientRect()
             this.subContextMenu.contextMenuActivate(bounding.x, bounding.y)
@@ -57,13 +57,13 @@ export class NodeNewElementPart extends PartBaseNode_Doc {
         hibauzenet.style.display = "none"
         this.subContextMenu.element.appendChild(hibauzenet)
         contextMenuElementClickable.clickEvent.on(event => {
-            if (!subContextMenuElementDropDownStatic.value || !subContextMenuElementNewNodeName.value) {
+            if (!subContextMenuElementDropDownStatic.value || !subContextMenuElementNewNodeName.inputElement.value) {
                 hibauzenet.style.display = "block"
 
             } else {
                 this.saveValue({
                     elementType: subContextMenuElementDropDownStatic.value,
-                    fieldName: subContextMenuElementNewNodeName.value
+                    fieldName: subContextMenuElementNewNodeName.inputElement.value
                 })
                 hibauzenet.style.display = "none"
                 subContextMenuElementNewNodeName.resetValue()

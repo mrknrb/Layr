@@ -1,11 +1,11 @@
 import {MainElementNormal} from "../MainElement/MainElementNormal.js";
 import {NodeObjectBase} from "./NodeObjectBase.js";
 import {SMPManager} from "../../../SMP/SMPLayr/SMPManager.js";
-import {SMPSavePart_NodeType} from "../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_NodeType.js";
 import {
     NodeNormalPartsClassList,
     NodeNormalSMPStaticData
 } from "./NodeSMPManager/NodeNormalSMPStatic/NodeNormalSMPStaticData.js";
+import {SMPSavePart_NormalNodeConnType} from "../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_NormalNodeConnType.js";
 
 export class NodeObjectNormal extends NodeObjectBase {
 
@@ -31,7 +31,7 @@ export class NodeObjectNormal extends NodeObjectBase {
     protected smpManagerInit() {
 
         this.smpManager = new SMPManager({
-            smpSavePart: SMPSavePart_NodeType,
+            smpSavePart: SMPSavePart_NormalNodeConnType,
             masterObject: this,
             partsClassArray: NodeNormalPartsClassList,
             smpSelectorDataStaticArray: NodeNormalSMPStaticData

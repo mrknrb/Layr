@@ -1,6 +1,6 @@
 import {PartBaseNode_Doc} from "../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseNode_Doc.js";
 import {NodeObjectBase} from "../../NodeObjectBase.js";
-import {ContextMElementClickable} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
+import {ContextMElementClickable} from "../../../../../UIElemek/ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 import {PartNodeCommon} from "../../../../../SMP/PartsGeneral/PartNodeCommon.js";
 import {MrkLibrary} from "../../../../../../0Egyebek/MrkLibrary.js";
 

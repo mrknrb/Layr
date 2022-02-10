@@ -1,6 +1,7 @@
 import {FieldData} from "../Layr/DocsConnsManager/Data/Doc/Field/FieldData.js";
 import {DocData} from "../Layr/DocsConnsManager/Data/Doc/Doc/DocData.js";
 import {TypedEvent} from "../0Libraries/TypedEvents.js";
+import {UserCookie} from "../Layr/LayrAccountManager/UserCookie.js";
 
 export class MrkLibrary {
     static dragElement(draggingElement: HTMLElement, moveableElement: HTMLElement, kikapcsolas: boolean = false, gridSize: number = 1) {
@@ -44,10 +45,10 @@ export class MrkLibrary {
             document.removeEventListener("mouseup", closeDragElement)
             document.removeEventListener("mousemove", elementDrag)
             let data = MrkLibrary.getElementPositionInParentDiv(moveableElement)
-            if (data.x < 0 ) {
+            if (data.x < 0) {
                 moveableElement.style.left = 0 + "px"
             }
-            if ( data.y < 0) {
+            if (data.y < 0) {
                 moveableElement.style.top = 0 + "px"
             }
 
@@ -393,6 +394,7 @@ export class MrkLibrary {
 
     static twoObjectsSameCheck(obj1: Object, obj2: Object) {
 
+        if (!obj1 || !obj2) return
 
         const obj1Length = Object.keys(obj1).length;
         const obj2Length = Object.keys(obj2).length;
@@ -405,6 +407,12 @@ export class MrkLibrary {
         return false;
 
 
+    }
+
+    static twoObjectsSameCheck2(obj1: Object | undefined, obj2: Object | undefined) {
+        if (!obj1 || !obj2) return false
+        if (JSON.stringify(obj1) == JSON.stringify(obj2)) return true
+        return false;
     }
 
     static shadowForOverlappingNodesPermanent(parentDiv: HTMLDivElement) {
@@ -480,7 +488,7 @@ export class MrkLibrary {
 
     }
 
-    static isValidHttpUrl(urlstring:string) {
+    static isValidHttpUrl(urlstring: string) {
         let url;
 
         try {
@@ -491,6 +499,36 @@ export class MrkLibrary {
 
         return url.protocol === "http:" || url.protocol === "https:";
     }
+
+    static getCookie(name: string, cookies: string) {
+        const value = `; ${cookies}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    static getJSONCookie(name: string, cookies: string) {
+        let part = MrkLibrary.getCookie(name, cookies)
+        if (!part) return
+        let jsonstring = decodeURIComponent(part)
+        if (!jsonstring) return
+        return JSON.parse(jsonstring)
+    }
+
+    static getUserDataCookie() {
+        return MrkLibrary.getJSONCookie("LayrUserData", document.cookie) as UserCookie
+    }
+
+    static deleteAllCookies() {
+        let cookies = document.cookie.split(";");
+
+        for (var i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i];
+            let eqPos = cookie.indexOf("=");
+            let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+    }
+
 }
 
 
@@ -501,22 +539,6 @@ export enum ResizeType {
     vertical = "vertical",
     both = "both",
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

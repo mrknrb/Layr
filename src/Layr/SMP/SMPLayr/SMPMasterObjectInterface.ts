@@ -1,5 +1,5 @@
 import {SMPManager} from "./SMPManager.js";
-import {ContextMenu} from "../../ContextMenu/ContextMenu.js";
+import {ContextMenu} from "../../UIElemek/ContextMenu/ContextMenu.js";
 
 export interface SMPMasterObjectInterface {
 

@@ -1,7 +1,7 @@
 import {PartBaseElement_Field} from "../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
 import {ElementObject} from "../../../../ElementObject.js";
-import {ContextMenu} from "../../../../../../../ContextMenu/ContextMenu.js";
-import {ContextMElementClickable} from "../../../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
+import {ContextMenu} from "../../../../../../../UIElemek/ContextMenu/ContextMenu.js";
+import {ContextMElementClickable} from "../../../../../../../UIElemek/ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 import {layrFrame} from "../../../../../../../LayrFrame.js";
 import {GroupElementMainPart} from "./GroupElementMainPart.js";
 

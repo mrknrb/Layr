@@ -17,5 +17,6 @@ export enum MessageType{
     ToContent_Refresh="ToContent_Refresh",
     ToContent_Back="ToContent_Back",
     ToContent_Forward="ToContent_Forward",
-    ToFrame_UrlChanged="ToFrame_UrlChanged"
+    ToFrame_UrlChanged="ToFrame_UrlChanged",
+    FromServer_ToSocketIOClient_InvalidUser="FromServer_ToSocketIOClient_InvalidUser"
 }

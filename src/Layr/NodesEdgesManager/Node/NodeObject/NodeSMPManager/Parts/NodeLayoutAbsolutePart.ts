@@ -14,7 +14,7 @@ export class NodeLayoutAbsolutePart extends PartBaseNodeCData_Conn {
 
     activate() {
         this.quickButton.setColor("grey")
-        this.masterObject.mainElement.nodeQuickButtonsBar.quickButtonInsert(this.quickButton)
+        this.masterObject.mainElement.nodeQuickButtonsBar.quickMenuElementInsert(this.quickButton)
 
 
 

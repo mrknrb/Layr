@@ -54,6 +54,19 @@ export class FieldObject {
             node.elementsManager.elements.get(elementId)?.smpManager.masterObjectParts.getPartObject_ByName(partName)?.loadData(loadData)
         })
     }
+
+    getContentData(){
+        if(this.fieldData.partsData?.Content?.data){
+            return this.fieldData.partsData?.Content?.data
+
+        }else if(this.fieldData.partsData.Main?.data){
+            return this.fieldData.partsData?.Main?.data
+        }
+        return undefined
+
+    }
+
+
 }
 
 /*

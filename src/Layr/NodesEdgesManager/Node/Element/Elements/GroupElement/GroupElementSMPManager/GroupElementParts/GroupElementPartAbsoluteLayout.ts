@@ -24,7 +24,7 @@ export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
             let childNodes = LayrFind.nodes_ByParentNodeId(this.masterObject.nodeObject.nodeId)
 
             childNodes?.forEach(node => {
-                this.nodeAbsolutePartSet(node)
+               this.nodeAbsolutePartSet(node)
             })
             setTimeout(() => {
                 let groupElementMainPart = this.masterObject.smpManager.masterObjectParts.getPartObject_ByName(GroupElementMainPart.partName) as GroupElementMainPart
@@ -44,17 +44,11 @@ export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
         let newNodeActionInvoker = (eventData: { parentNodeObject: NodeObjectBase, newChildNode: NodeObjectNormal }) => {
             self.newNodeAction(eventData)
         }
-
-
         if (active) {
-
             layrFrame.nodesEdgesManager.newNodeObjectWithNewDocEvent.on(newNodeActionInvoker)
-
         } else {
             layrFrame.nodesEdgesManager.newNodeObjectWithNewDocEvent.off(newNodeActionInvoker)
-
         }
-
     }
 
 
@@ -71,11 +65,6 @@ export class GroupElementPartAbsoluteLayout extends PartBaseElement_Field {
             let nodeLayoutAbsolutePart = eventData.newChildNode.smpManager.masterObjectParts.getPartObject_ByName(NodeLayoutAbsolutePart.partName) as NodeLayoutAbsolutePart
             let groupElementMainPart = this.masterObject.smpManager.masterObjectParts.getPartObject_ByName(GroupElementMainPart.partName) as GroupElementMainPart
             this.nodeAbsolutePartSet(eventData.newChildNode)
-            // eventData.newChildNode.mainElement.element.style.top = mousePositionMrk.clientY + "px"
-            // eventData.newChildNode.mainElement.element.style.left = mousePositionMrk.clientX + "px"
-
-            //   eventData.newChildNode.mainElement.element.style.left =mousePositionMrk.clientX- groupElementMainPart.groupBodyElement.scrollLeft - groupElementMainPart.+"px"
-            //   top : e.pageY - $(document).scrollTop() - $('#canvas').offset().top
             let rect = groupElementMainPart.groupBodyElement.getBoundingClientRect();
             eventData.newChildNode.mainElement.element.style.left = mousePositionMrk.clientX + groupElementMainPart.groupBodyElement.scrollLeft - rect.left + "px"
             eventData.newChildNode.mainElement.element.style.top = mousePositionMrk.clientY + groupElementMainPart.groupBodyElement.scrollTop - rect.top + "px"

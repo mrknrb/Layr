@@ -2,9 +2,9 @@ import {SMPSelectorDataStatic} from "../../../../../SMP/SMPLayr/DataBlueprints/S
 import {NodeNewElementPart} from "../Parts/NodeNewElementPart.js";
 import {NodeLayoutAbsolutePart} from "../Parts/NodeLayoutAbsolutePart.js";
 import {NodeLayoutListPart} from "../Parts/NodeLayoutListPart.js";
-import {SMPSavePart_NodeType} from "../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_NodeType.js";
 import {NodeDeletePart} from "../Parts/NodeDeletePart.js";
 import {NodeOpenInNewPagePart} from "../Parts/NodeOpenInNewPagePart.js";
+import {SMPSavePart_NormalNodeConnType} from "../../../../../SMP/SMPLayr/SMPSavePart_Types/SMPSavePart_NormalNodeConnType.js";
 
 
 //yx  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
@@ -58,8 +58,8 @@ const NodeLayoutSelectorData: SMPSelectorDataStatic =
             selectorName: loadedSelectorDataNames.selector,
             stateName: loadedSelectorDataNames.states.Loaded
         },
-        defaultSelectorActive: false,
-        selectorDontLoadSave:true,
+        defaultSelectorActive: true,
+        selectorDontLoadSave:false,
         selectorHeadInvisible:true,
         states: [
             {
@@ -91,7 +91,7 @@ export const NodeNormalSMPStaticData = [
 
 export const NodeNormalPartsClassList =
     [
-        SMPSavePart_NodeType,
+        SMPSavePart_NormalNodeConnType,
         NodeNewElementPart,
         NodeLayoutAbsolutePart,
         NodeLayoutListPart,

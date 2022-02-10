@@ -1,8 +1,8 @@
 import {PartBaseNode_Doc} from "../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseNode_Doc.js";
-import {ContextMenu} from "../../../../../ContextMenu/ContextMenu.js";
+import {ContextMenu} from "../../../../../UIElemek/ContextMenu/ContextMenu.js";
 import {NodeQuickMenuButton} from "../../../MainElement/NodeQuickMenuButton.js";
-import {ContextMElementSubContextMButton} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementSubContextMButton.js";
-import {ContextMElementClickable} from "../../../../../ContextMenu/ContextMenuElements/ContextMElementClickable.js";
+import {ContextMElementSubContextMButton} from "../../../../../UIElemek/ContextMenu/ContextMenuElements/ContextMElementSubContextMButton.js";
+import {ContextMElementClickable} from "../../../../../UIElemek/ContextMenu/ContextMenuElements/ContextMElementClickable.js";
 import {layrFrame} from "../../../../../LayrFrame.js";
 import {NodeObjectNormal} from "../../NodeObjectNormal.js";
 
@@ -22,7 +22,7 @@ export class NodeDeletePart extends PartBaseNode_Doc {
         this.quickButton.setColor("red")
         this.quickButton.addImage("0Resources/close.svg")
 
-        this.masterObject.mainElement.nodeQuickButtonsBar.quickButtonInsert(this.quickButton)
+        this.masterObject.mainElement.nodeQuickButtonsBar.quickMenuElementInsert(this.quickButton)
         this.quickButton.element.addEventListener("click", () => {
             let bounding = this.quickButton.element.getBoundingClientRect()
             this.subContextMenu.contextMenuActivate(bounding.x, bounding.y)

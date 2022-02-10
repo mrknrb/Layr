@@ -27,10 +27,11 @@ export class NodesEdgesManager {
     }
 
     async loadRootNodeFromURLAuto() {
-        console.log(MrkLibrary.getDocIdByUrl())
         await this.loadRootNode(MrkLibrary.getDocIdByUrl())
+    }
 
-
+    isAnyNodeLoaded() {
+        return this.nodesEdgesDataStorage.nodeNodeIdMap.size != 0
     }
 
     async loadRootNode(docId: string) {
@@ -56,7 +57,7 @@ export class NodesEdgesManager {
 
                 this.nodesEdgesDataStorage.insertNode(nodeObjectNormal)
                 nodeObjectsArray.push(nodeObjectNormal)
-            }else{
+            } else {
                 console.error("LayrError: Van connection, de Doc nincs")
             }
         }

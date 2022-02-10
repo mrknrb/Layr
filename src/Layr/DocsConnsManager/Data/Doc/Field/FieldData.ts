@@ -6,11 +6,11 @@ export class FieldData {
     elementType: ElementTypes
     partsData: any
 
-    constructor(fieldName: string,
-                elementType: ElementTypes) {
+    constructor(fieldName: string, elementType: ElementTypes) {
         this.fieldName = fieldName
         this.elementType = elementType
         this.fieldId = Math.random().toString()
         this.partsData = {}
     }
+
 }

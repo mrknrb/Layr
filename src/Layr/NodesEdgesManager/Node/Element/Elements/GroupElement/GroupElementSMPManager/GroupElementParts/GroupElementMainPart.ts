@@ -1,7 +1,7 @@
 import {PartBaseElement_Field} from "../../../../../../../SMP/PartsGeneral/PartBaseTypes/PartBaseElement_Field.js";
 import {MrkLibrary} from "../../../../../../../../0Egyebek/MrkLibrary.js";
 import {ElementObject} from "../../../../ElementObject.js";
-import {QuickMenuBarBase} from "../../../../../../../../0Egyebek/QuickMenu/QuickMenuBarBase.js";
+import {QuickMenuBarBase} from "../../../../../../../UIElemek/QuickMenu/QuickMenuBarBase.js";
 import {loadingSelectorDataNames} from "../GroupElementStaticData.js";
 
 export class GroupElementMainPart extends PartBaseElement_Field {

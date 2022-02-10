@@ -2,7 +2,7 @@ import {SMPStateDataStatic} from "../SMPSelectorStaticData/SMPStateDataStatic.js
 import {SMPPartDataDynamic} from "./SMPPartDataDynamic.js";
 import {SMPStateDataSave} from "../SMPSelectorSaveData/SMPStateDataSave.js";
 import {SMPSelectorDataDynamic} from "./SMPSelectorDataDynamic.js";
-import {ContextMenu} from "../../../../ContextMenu/ContextMenu.js";
+import {ContextMenu} from "../../../../UIElemek/ContextMenu/ContextMenu.js";
 import {SMPStateContextMenu} from "../../SMPEgyebek/SMPStateContextMenu.js";
 import {PartBase} from "../../../PartsGeneral/PartBase.js";
 

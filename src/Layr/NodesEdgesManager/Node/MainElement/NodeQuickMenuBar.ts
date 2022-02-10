@@ -1,6 +1,6 @@
 import {MainElementBase} from "./MainElementBase.js";
 import {NodeQuickMenuButton} from "./NodeQuickMenuButton.js";
-import {QuickMenuBarBase} from "../../../../0Egyebek/QuickMenu/QuickMenuBarBase.js";
+import {QuickMenuBarBase} from "../../../UIElemek/QuickMenu/QuickMenuBarBase.js";
 
 export  class NodeQuickMenuBar extends QuickMenuBarBase{
 
@@ -18,14 +18,17 @@ export  class NodeQuickMenuBar extends QuickMenuBarBase{
 
         this.element.style.height = "25px"
         this.element.style.width = "fit-content"
-        this.element.style.backgroundColor = "rgba(196,196,196,0.78)"
+        this.element.style.backgroundColor = "rgb(196,196,196)"
         this.element.style.position = "absolute"
-        this.element.style.right = "0px"
+        this.element.style.right = "-4px"
         this.element.style.top = "-29px"
-
+        this.element.style.flexDirection = "row-reverse"
+        this.element.style.padding = "0px"
         this.element.style.zIndex="20000"
-        this.element.style.borderRadius = "10px 10px 0px 0px"
+        this.element.style.borderRadius = "15px 15px 0px 0px"
         this.element.style.display = "none"
+        this.element.style.border = "solid"
+        this.element.style.borderBottomWidth = "0px"
         this.mainElementBase.element.appendChild(this.element)
 
 

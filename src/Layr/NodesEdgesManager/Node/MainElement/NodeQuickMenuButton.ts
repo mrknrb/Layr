@@ -1,4 +1,4 @@
-import {QuickMenuButtonBase} from "../../../../0Egyebek/QuickMenu/QuickMenuButtonBase.js";
+import {QuickMenuButtonBase} from "../../../UIElemek/QuickMenu/QuickMenuButtonBase.js";
 
 export class NodeQuickMenuButton extends QuickMenuButtonBase{
 

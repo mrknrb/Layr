@@ -1,6 +1,6 @@
 import {SMPSelectorDataDynamic} from "../DataBlueprints/SMPSelectorDynamicData/SMPSelectorDataDynamic.js";
-import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
-import {ContextMElementSubContextMButton} from "../../../ContextMenu/ContextMenuElements/ContextMElementSubContextMButton.js";
+import {ContextMenu} from "../../../UIElemek/ContextMenu/ContextMenu.js";
+import {ContextMElementSubContextMButton} from "../../../UIElemek/ContextMenu/ContextMenuElements/ContextMElementSubContextMButton.js";
 
 export class SMPSelectorContextMenu {
     smpSelector: SMPSelectorDataDynamic

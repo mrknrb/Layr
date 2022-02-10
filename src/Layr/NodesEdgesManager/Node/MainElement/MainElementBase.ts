@@ -1,5 +1,5 @@
 import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
-import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
+import {ContextMenu} from "../../../UIElemek/ContextMenu/ContextMenu.js";
 import {NodeQuickMenuBar} from "./NodeQuickMenuBar.js";
 
 

@@ -1,5 +1,5 @@
 import {ElementTypes} from "./Adatok/ElementTypes.js";
-import {ContextMenu} from "../../../ContextMenu/ContextMenu.js";
+import {ContextMenu} from "../../../UIElemek/ContextMenu/ContextMenu.js";
 import {NodeObjectBase} from "../NodeObject/NodeObjectBase.js";
 import {LayrFind} from "../../../../0Egyebek/LayrFind.js";
 import {ElementCDataFinder} from "./Adatok/ElementCDataFinder.js";

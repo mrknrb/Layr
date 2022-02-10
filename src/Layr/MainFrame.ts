@@ -1,4 +1,4 @@
-import {LayrFrame} from "./LayrFrame.js";
+import {layrFrame, LayrFrame} from "./LayrFrame.js";
 import {LayrLogoKozepen} from "../0Egyebek/LayrLogoKozepen.js";
 import {MrkLibrary} from "../0Egyebek/MrkLibrary.js";
 
@@ -11,7 +11,7 @@ let scriptek = [
     "0Libraries/jquery.js",
     "0Libraries/arangojs.js",
     "0Libraries/axios.js",
-   "0Libraries/socketio.js",
+    "0Libraries/socketio.js",
     "0Libraries/createRBTree.js",
 ]
 
@@ -56,13 +56,18 @@ export class MainFrame {
             this.testload()
             layrLogoKozepenAnimacio.eltunik()
         }, 50)
-
     }
 
     async testload() {
         // @ts-ignore
         let a: LayrFrame = document.layrFrame
-        let b = a.nodesEdgesManager.loadRootNodeFromURLAuto()
+        a.nodesEdgesManager.loadRootNodeFromURLAuto()
+        layrFrame.layrClient.socketioActivateEvent.on(activated => {
+            if (activated && !layrFrame.nodesEdgesManager.isAnyNodeLoaded()) {
+
+                a.nodesEdgesManager.loadRootNodeFromURLAuto()
+            }
+        })
         //  let rootnode = await a.nodesEdgesManager.loadRootNode(window.location.hash.substr(1))
 
 

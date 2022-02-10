@@ -1,5 +1,5 @@
 import {NodeObjectBase} from "../../NodesEdgesManager/Node/NodeObject/NodeObjectBase.js";
-import {ContextMenuElementBase} from "../../ContextMenu/ContextMenuElementBase.js";
+import {ContextMenuElementBase} from "../../UIElemek/ContextMenu/ContextMenuElementBase.js";
 import {ElementObject} from "../../NodesEdgesManager/Node/Element/ElementObject.js";
 
 export class PartNodeCommon {

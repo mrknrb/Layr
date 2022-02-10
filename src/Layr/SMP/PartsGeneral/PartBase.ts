@@ -1,4 +1,4 @@
-import {ContextMenu} from "../../ContextMenu/ContextMenu.js";
+import {ContextMenu} from "../../UIElemek/ContextMenu/ContextMenu.js";
 import {PartData} from "./PartData.js";
 import {GroupElementMainPart} from "../../NodesEdgesManager/Node/Element/Elements/GroupElement/GroupElementSMPManager/GroupElementParts/GroupElementMainPart.js";
 
